@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const mainNav = [
-  { title: "Tableau de bord", url: "/", icon: LayoutDashboard },
+  { title: "Tableau de bord", url: "/dashboard", icon: LayoutDashboard },
   { title: "Produits", url: "/produits", icon: Package },
   { title: "Relevés", url: "/releves", icon: FileText },
   { title: "Paramètres de compte", url: "/parametres", icon: Settings },
