@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
+import quercusLogo from "@/assets/quercus-logo.jpg";
 import {
   Sidebar,
   SidebarContent,
@@ -45,11 +46,14 @@ export function QuercusSidebar() {
     <Sidebar collapsible="icon" className="border-r-0">
       <div className="p-6 pb-2">
         {!collapsed ? (
-          <h1 className="text-xl font-serif tracking-widest text-sidebar-foreground">
-            QUERCUS
-          </h1>
+          <div className="flex items-center gap-2">
+            <img src={quercusLogo} alt="Quercus" className="h-8 w-auto brightness-0 invert" />
+            <h1 className="text-xl font-serif tracking-widest text-sidebar-foreground">
+              QUERCUS
+            </h1>
+          </div>
         ) : (
-          <h1 className="text-lg font-serif text-sidebar-foreground text-center">Q</h1>
+          <img src={quercusLogo} alt="Q" className="h-7 w-auto brightness-0 invert mx-auto" />
         )}
       </div>
 

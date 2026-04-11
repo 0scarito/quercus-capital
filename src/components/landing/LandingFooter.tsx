@@ -1,4 +1,5 @@
 import { Separator } from "@/components/ui/separator";
+import quercusLogo from "@/assets/quercus-logo.jpg";
 
 const footerLinks = [
   { title: "Products", items: ["Quercus Euro", "Quercus Dollar", "Quercus Pound", "Quercus Swiss Franc"] },
@@ -31,7 +32,10 @@ export function LandingFooter() {
         <Separator className="bg-background/10" />
 
         <div className="pt-8 space-y-3 text-center">
-          <p className="text-lg font-serif tracking-widest">QUERCUS</p>
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <img src={quercusLogo} alt="Quercus" className="h-7 w-auto brightness-0 invert" />
+            <p className="text-lg font-serif tracking-widest">QUERCUS</p>
+          </div>
           <p className="text-xs text-background/40">
             QUERCUS CAPITAL | 231 RUE SAINT-HONORÉ, 75001 PARIS | Tél +33 1 84 20 07 65
           </p>
