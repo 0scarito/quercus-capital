@@ -3,7 +3,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { AppLayout } from "@/components/AppLayout";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import LandingPage from "@/pages/LandingPage";
 import ProductsPage from "@/pages/ProductsPage";
 import SolutionsPage from "@/pages/SolutionsPage";
@@ -20,27 +22,31 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/solutions" element={<SolutionsPage />} />
-          <Route path="/open-account" element={<OpenAccount />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route element={<AppLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/produits" element={<Products />} />
-            <Route path="/releves" element={<Statements />} />
-            <Route path="/parametres" element={<AccountSettings />} />
-            <Route path="/integrations" element={<Integrations />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/solutions" element={<SolutionsPage />} />
+            <Route path="/open-account" element={<OpenAccount />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AppLayout />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/produits" element={<Products />} />
+                <Route path="/releves" element={<Statements />} />
+                <Route path="/parametres" element={<AccountSettings />} />
+                <Route path="/integrations" element={<Integrations />} />
+              </Route>
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
