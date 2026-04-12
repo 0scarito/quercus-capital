@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 
 export default function SignIn() {
@@ -12,20 +14,25 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulated sign-in — navigate to dashboard
-    setTimeout(() => {
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      toast.error(error.message);
       setLoading(false);
-      navigate("/dashboard");
-    }, 800);
+      return;
+    }
+
+    toast.success("Connexion réussie");
+    navigate("/dashboard");
   };
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
       <div className="w-full max-w-sm space-y-8">
-        {/* Logo & Brand */}
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-3">
             <img src={quercusLogo} alt="Quercus" className="h-10 w-auto" />
@@ -38,7 +45,6 @@ export default function SignIn() {
 
         <Separator />
 
-        {/* Sign In Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
             <Label htmlFor="email" className="text-xs uppercase tracking-wider">
@@ -80,12 +86,11 @@ export default function SignIn() {
 
         <p className="text-center text-xs text-muted-foreground">
           Pas encore de compte ?{" "}
-          <Link to="/" className="underline hover:text-foreground">
+          <Link to="/open-account" className="underline hover:text-foreground">
             Ouvrir un compte
           </Link>
         </p>
 
-        {/* Regulatory footer */}
         <div className="pt-8 text-center space-y-1">
           <p className="text-[10px] text-muted-foreground tracking-wide">
             QUERCUS CAPITAL | 231 RUE SAINT-HONORÉ, 75001 PARIS
