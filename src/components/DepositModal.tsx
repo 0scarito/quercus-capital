@@ -1,5 +1,6 @@
 import { Copy, Check } from "lucide-react";
 import { useState } from "react";
+import quercusLogo from "@/assets/quercus-logo.jpg";
 import {
   Dialog,
   DialogContent,
