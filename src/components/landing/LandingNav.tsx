@@ -17,18 +17,14 @@ export function LandingNav() {
           <Link to="/solutions" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">
             Solutions
           </Link>
-          <a href="/#calculator" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">
-            Calculateur
-          </a>
-          <a href="/#partners" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">
-            Partenaires
-          </a>
         </div>
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="sm" asChild>
-            <Link to="/signin">Sign In</Link>
+            <Link to="/signin">Se connecter</Link>
           </Button>
-          <Button size="sm" className="px-6">Open Account</Button>
+          <Button size="sm" className="px-6" asChild>
+            <Link to="/open-account">Ouvrir un compte</Link>
+          </Button>
         </div>
       </div>
     </nav>
