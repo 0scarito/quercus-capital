@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AppLayout } from "@/components/AppLayout";
 import LandingPage from "@/pages/LandingPage";
+import ProductsPage from "@/pages/ProductsPage";
+import SolutionsPage from "@/pages/SolutionsPage";
 import SignIn from "@/pages/SignIn";
 import Dashboard from "@/pages/Dashboard";
 import Products from "@/pages/Products";
@@ -23,6 +25,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
