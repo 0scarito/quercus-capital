@@ -8,6 +8,7 @@ import LandingPage from "@/pages/LandingPage";
 import ProductsPage from "@/pages/ProductsPage";
 import SolutionsPage from "@/pages/SolutionsPage";
 import SignIn from "@/pages/SignIn";
+import OpenAccount from "@/pages/OpenAccount";
 import Dashboard from "@/pages/Dashboard";
 import Products from "@/pages/Products";
 import Statements from "@/pages/Statements";
