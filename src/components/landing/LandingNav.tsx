@@ -11,10 +11,18 @@ export function LandingNav() {
           <span className="text-lg font-serif tracking-widest">QUERCUS</span>
         </Link>
         <div className="hidden md:flex items-center gap-8">
-          <a href="#products" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">Products</a>
-          <a href="#calculator" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">Calculator</a>
-          <a href="#partners" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">Partners</a>
-          <a href="#specs" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">Specifications</a>
+          <Link to="/products" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">
+            Produits
+          </Link>
+          <Link to="/solutions" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">
+            Solutions
+          </Link>
+          <a href="/#calculator" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">
+            Calculateur
+          </a>
+          <a href="/#partners" className="text-sm text-muted-foreground hover:text-foreground transition-opacity">
+            Partenaires
+          </a>
         </div>
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="sm" asChild>
