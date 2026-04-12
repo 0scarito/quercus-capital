@@ -35,9 +35,12 @@ export function DepositModal({ open, onOpenChange }: DepositModalProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-serif text-xl">
-            <em>Déposer des fonds</em>
-          </DialogTitle>
+          <div className="flex items-center gap-3 mb-1">
+            <img src={quercusLogo} alt="Quercus" className="h-7 w-auto" />
+            <DialogTitle className="font-serif text-xl">
+              <em>Déposer des fonds</em>
+            </DialogTitle>
+          </div>
         </DialogHeader>
         <p className="text-sm text-muted-foreground">
           Effectuez un virement bancaire vers le compte ci-dessous. Les fonds reçus avant 12h25 CET seront crédités en T+0.
