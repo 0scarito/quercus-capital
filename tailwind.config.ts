@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         serif: ["'Playfair Display'", "Georgia", "serif"],
         sans: ["'Inter'", "system-ui", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
