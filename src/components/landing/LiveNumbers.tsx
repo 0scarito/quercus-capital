@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { CountUp } from "@/components/landing/CountUp";
+import { GlassCard } from "@/components/landing/GlassCard";
 
 export function LiveNumbers() {
   const [now, setNow] = useState(new Date());
@@ -8,9 +10,8 @@ export function LiveNumbers() {
     return () => clearInterval(id);
   }, []);
 
-  // Next payout at midnight CET
   const nextPayout = new Date(now);
-  nextPayout.setUTCHours(23, 0, 0, 0); // ~midnight CET
+  nextPayout.setUTCHours(23, 0, 0, 0);
   if (nextPayout <= now) nextPayout.setDate(nextPayout.getDate() + 1);
   const diff = nextPayout.getTime() - now.getTime();
   const hh = String(Math.floor(diff / 3600000)).padStart(2, "0");
@@ -18,24 +19,28 @@ export function LiveNumbers() {
   const ss = String(Math.floor((diff % 60000) / 1000)).padStart(2, "0");
 
   return (
-    <section className="py-20 px-6 bg-primary text-primary-foreground">
+    <section className="py-20 px-6">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-serif text-center mb-12">
-          <em>Real-Time Transparency</em>
+          <em>Transparence en temps réel</em>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-primary-foreground/10">
-          <div className="bg-primary p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-primary-foreground/60">Total Treasury on Platform</p>
-            <p className="text-4xl font-serif font-semibold">€1,3 Mrd</p>
-          </div>
-          <div className="bg-primary p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-primary-foreground/60">Total Interest Paid</p>
-            <p className="text-4xl font-serif font-semibold">€47,2 M</p>
-          </div>
-          <div className="bg-primary p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-primary-foreground/60">Next Interest Payout</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <GlassCard className="p-10 text-center space-y-2">
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">Trésorerie totale</p>
+            <p className="text-4xl font-serif font-semibold">
+              €<CountUp end={1300} suffix=" M" />
+            </p>
+          </GlassCard>
+          <GlassCard className="p-10 text-center space-y-2">
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">Intérêts versés</p>
+            <p className="text-4xl font-serif font-semibold">
+              €<CountUp end={47.2} decimals={1} suffix=" M" />
+            </p>
+          </GlassCard>
+          <GlassCard className="p-10 text-center space-y-2">
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">Prochain versement</p>
             <p className="text-4xl font-serif font-semibold font-mono tracking-wider">{hh}:{mm}:{ss}</p>
-          </div>
+          </GlassCard>
         </div>
       </div>
     </section>
