@@ -219,12 +219,18 @@ async function handleWebhook(req: Request): Promise<Response> {
   }
 
   // Build template props from payload.data (HookData structure)
+  const isSignupEmail = emailType === 'signup'
+  const signupToken = payload.data.token ?? payload.data.email_otp ?? payload.data.hashed_token
+  const signupConfirmationUrl = isSignupEmail
+    ? payload.data.url || payload.data.redirect_to || `https://${ROOT_DOMAIN}/open-account?type=signup&email=${encodeURIComponent(payload.data.email)}`
+    : payload.data.url
+
   const templateProps = {
     siteName: SITE_NAME,
     siteUrl: `https://${ROOT_DOMAIN}`,
     recipient: payload.data.email,
-    confirmationUrl: payload.data.url,
-    token: payload.data.token,
+    confirmationUrl: signupConfirmationUrl,
+    token: isSignupEmail ? signupToken : payload.data.token,
     email: payload.data.email,
     newEmail: payload.data.new_email,
   }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { OnboardingProgress } from "@/components/onboarding/OnboardingProgress";
@@ -10,6 +10,7 @@ import { StageIndividual } from "@/components/onboarding/StageIndividual";
 import { StageCorporate } from "@/components/onboarding/StageCorporate";
 import { StageKYC } from "@/components/onboarding/StageKYC";
 import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
+import { useAuth } from "@/contexts/AuthContext";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 
 type Stage = "welcome" | "email" | "2fa" | "type" | "individual" | "corporate" | "kyc";
@@ -29,9 +30,24 @@ const TOTAL_STEPS = 6;
 
 export default function OpenAccount() {
   const navigate = useNavigate();
+  const { session, loading } = useAuth();
   const [stage, setStage] = useState<Stage>("welcome");
   const [accountType, setAccountType] = useState<"particulier" | "moral" | null>(null);
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const isSignupCallback = params.get("type") === "signup";
+    const callbackEmail = params.get("email");
+
+    if (!isSignupCallback || loading || !session?.user?.email) {
+      return;
+    }
+
+    setEmail(callbackEmail ?? session.user.email);
+    setStage("2fa");
+    window.history.replaceState({}, "", "/open-account");
+  }, [loading, session]);
 
   const stepNumber = getStepNumber(stage, accountType);
 
