@@ -96,6 +96,71 @@ export default function AccountSettings() {
         </CardContent>
       </Card>
 
+      {/* Gestion des utilisateurs */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-sm uppercase tracking-wider font-sans font-medium flex items-center gap-2">
+            <Users className="h-4 w-4" /> Gestion des utilisateurs
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground mb-2">
+            Gérez les personnes autorisées à accéder à votre compte.
+          </p>
+          <div className="border rounded-sm p-4 text-sm">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium">{displayName}</p>
+                <p className="text-xs text-muted-foreground">{user?.email}</p>
+              </div>
+              <span className="text-xs uppercase tracking-wider text-muted-foreground bg-muted px-2 py-1">Titulaire</span>
+            </div>
+          </div>
+          {profile?.account_type === "moral" && (
+            <Button variant="outline" className="mt-4" size="sm">
+              + Ajouter un utilisateur
+            </Button>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Résidence fiscale */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-sm uppercase tracking-wider font-sans font-medium flex items-center gap-2">
+            <Globe className="h-4 w-4" /> Résidence fiscale
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Pays de résidence fiscale</p>
+              <p className="font-medium">{profile?.tax_country || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Numéro d'identification fiscale</p>
+              <p className="font-medium font-mono">{profile?.tax_id || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Adresse</p>
+              <p className="font-medium">{profile?.address || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Ville</p>
+              <p className="font-medium">{profile?.city || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Code postal</p>
+              <p className="font-medium font-mono">{profile?.postal_code || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Pays</p>
+              <p className="font-medium">{profile?.country || "—"}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Bank Accounts */}
       <Card>
         <CardHeader>
