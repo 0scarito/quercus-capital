@@ -222,7 +222,7 @@ async function handleWebhook(req: Request): Promise<Response> {
   const isSignupEmail = emailType === 'signup'
   const signupToken = payload.data.token ?? payload.data.email_otp ?? payload.data.hashed_token
   const signupConfirmationUrl = isSignupEmail
-    ? `${payload.data.redirect_to ?? `https://${ROOT_DOMAIN}`}?email=${encodeURIComponent(payload.data.email)}&type=signup`
+    ? payload.data.url || payload.data.redirect_to || `https://${ROOT_DOMAIN}/open-account?type=signup&email=${encodeURIComponent(payload.data.email)}`
     : payload.data.url
 
   const templateProps = {

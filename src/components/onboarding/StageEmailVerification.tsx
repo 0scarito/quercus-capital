@@ -50,10 +50,14 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
     setErrors({});
     setLoading(true);
 
+    const redirectUrl = new URL("/open-account", window.location.origin);
+    redirectUrl.searchParams.set("type", "signup");
+    redirectUrl.searchParams.set("email", email);
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: { emailRedirectTo: window.location.origin },
+      options: { emailRedirectTo: redirectUrl.toString() },
     });
 
     if (error) {
