@@ -104,34 +104,52 @@ export type Database = {
       profiles: {
         Row: {
           account_type: string | null
+          address: string | null
+          city: string | null
+          country: string | null
           created_at: string
           first_name: string | null
           id: string
           last_name: string | null
           phone: string | null
           phone_verified: boolean | null
+          postal_code: string | null
+          tax_country: string | null
+          tax_id: string | null
           updated_at: string
           user_id: string
         }
         Insert: {
           account_type?: string | null
+          address?: string | null
+          city?: string | null
+          country?: string | null
           created_at?: string
           first_name?: string | null
           id?: string
           last_name?: string | null
           phone?: string | null
           phone_verified?: boolean | null
+          postal_code?: string | null
+          tax_country?: string | null
+          tax_id?: string | null
           updated_at?: string
           user_id: string
         }
         Update: {
           account_type?: string | null
+          address?: string | null
+          city?: string | null
+          country?: string | null
           created_at?: string
           first_name?: string | null
           id?: string
           last_name?: string | null
           phone?: string | null
           phone_verified?: boolean | null
+          postal_code?: string | null
+          tax_country?: string | null
+          tax_id?: string | null
           updated_at?: string
           user_id?: string
         }

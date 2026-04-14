@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Shield, CreditCard, MapPin, AlertTriangle, Loader2 } from "lucide-react";
+import { Shield, CreditCard, MapPin, AlertTriangle, Loader2, Users, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -13,6 +13,12 @@ interface Profile {
   last_name: string | null;
   phone: string | null;
   account_type: string | null;
+  tax_country: string | null;
+  tax_id: string | null;
+  address: string | null;
+  city: string | null;
+  postal_code: string | null;
+  country: string | null;
 }
 
 export default function AccountSettings() {
@@ -24,7 +30,7 @@ export default function AccountSettings() {
     if (!user) return;
     supabase
       .from("profiles")
-      .select("first_name, last_name, phone, account_type")
+      .select("first_name, last_name, phone, account_type, tax_country, tax_id, address, city, postal_code, country")
       .eq("user_id", user.id)
       .single()
       .then(({ data }) => {
@@ -85,6 +91,71 @@ export default function AccountSettings() {
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wider">Identifiant</p>
               <p className="font-medium font-mono text-xs">{user?.id?.slice(0, 8).toUpperCase() || "—"}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Gestion des utilisateurs */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-sm uppercase tracking-wider font-sans font-medium flex items-center gap-2">
+            <Users className="h-4 w-4" /> Gestion des utilisateurs
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground mb-2">
+            Gérez les personnes autorisées à accéder à votre compte.
+          </p>
+          <div className="border rounded-sm p-4 text-sm">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium">{displayName}</p>
+                <p className="text-xs text-muted-foreground">{user?.email}</p>
+              </div>
+              <span className="text-xs uppercase tracking-wider text-muted-foreground bg-muted px-2 py-1">Titulaire</span>
+            </div>
+          </div>
+          {profile?.account_type === "moral" && (
+            <Button variant="outline" className="mt-4" size="sm">
+              + Ajouter un utilisateur
+            </Button>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Résidence fiscale */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-sm uppercase tracking-wider font-sans font-medium flex items-center gap-2">
+            <Globe className="h-4 w-4" /> Résidence fiscale
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Pays de résidence fiscale</p>
+              <p className="font-medium">{profile?.tax_country || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Numéro d'identification fiscale</p>
+              <p className="font-medium font-mono">{profile?.tax_id || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Adresse</p>
+              <p className="font-medium">{profile?.address || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Ville</p>
+              <p className="font-medium">{profile?.city || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Code postal</p>
+              <p className="font-medium font-mono">{profile?.postal_code || "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Pays</p>
+              <p className="font-medium">{profile?.country || "—"}</p>
             </div>
           </div>
         </CardContent>
