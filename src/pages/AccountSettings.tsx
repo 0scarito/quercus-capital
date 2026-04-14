@@ -30,7 +30,7 @@ export default function AccountSettings() {
     if (!user) return;
     supabase
       .from("profiles")
-      .select("first_name, last_name, phone, account_type")
+      .select("first_name, last_name, phone, account_type, tax_country, tax_id, address, city, postal_code, country")
       .eq("user_id", user.id)
       .single()
       .then(({ data }) => {
