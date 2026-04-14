@@ -67,6 +67,20 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
     setLoading(false);
   };
 
+  const handleResendCode = async () => {
+    setLoading(true);
+    const { error } = await supabase.auth.resend({
+      type: "signup",
+      email,
+    });
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Code renvoyé !");
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
     if (otp.length === 6) {
       handleVerifyOtp();
