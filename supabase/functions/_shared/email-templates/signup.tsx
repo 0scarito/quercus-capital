@@ -4,13 +4,13 @@ import * as React from 'npm:react@18.3.1'
 
 import {
   Body,
-  Button,
   Container,
   Head,
   Heading,
   Html,
   Link,
   Preview,
+  Section,
   Text,
 } from 'npm:@react-email/components@0.0.22'
 
@@ -19,6 +19,7 @@ interface SignupEmailProps {
   siteUrl: string
   recipient: string
   confirmationUrl: string
+  token?: string
 }
 
 export const SignupEmail = ({
@@ -26,10 +27,11 @@ export const SignupEmail = ({
   siteUrl,
   recipient,
   confirmationUrl,
+  token,
 }: SignupEmailProps) => (
   <Html lang="fr" dir="ltr">
     <Head />
-    <Preview>Confirmez votre email pour {siteName}</Preview>
+    <Preview>Votre code de vérification pour {siteName}</Preview>
     <Body style={main}>
       <Container style={container}>
         <Text style={brand}>QUERCUS</Text>
@@ -41,13 +43,19 @@ export const SignupEmail = ({
         <Text style={text}>
           Veuillez confirmer votre adresse email (
           <Link href={`mailto:${recipient}`} style={link}>{recipient}</Link>
-          ) en cliquant sur le bouton ci-dessous :
+          ) en entrant le code ci-dessous :
         </Text>
-        <Button style={button} href={confirmationUrl}>
-          Vérifier mon email
-        </Button>
+        {token ? (
+          <Section style={codeSection}>
+            <Text style={codeText}>{token}</Text>
+          </Section>
+        ) : (
+          <Text style={text}>
+            <Link href={confirmationUrl} style={link}>Cliquez ici pour vérifier votre email</Link>
+          </Text>
+        )}
         <Text style={footer}>
-          Si vous n'avez pas créé de compte, vous pouvez ignorer cet email en toute sécurité.
+          Ce code expire dans 15 minutes. Si vous n'avez pas créé de compte, vous pouvez ignorer cet email.
         </Text>
       </Container>
     </Body>
@@ -62,5 +70,6 @@ const brand = { fontSize: '14px', fontFamily: "'Playfair Display', Georgia, seri
 const h1 = { fontSize: '22px', fontWeight: 'bold' as const, fontFamily: "'Playfair Display', Georgia, serif", color: '#18454B', margin: '0 0 20px' }
 const text = { fontSize: '14px', color: '#666666', lineHeight: '1.5', margin: '0 0 25px' }
 const link = { color: '#18454B', textDecoration: 'underline' }
-const button = { backgroundColor: '#18454B', color: '#F5F3ED', fontSize: '14px', borderRadius: '0px', padding: '12px 20px', textDecoration: 'none', fontWeight: '600' as const }
+const codeSection = { textAlign: 'center' as const, margin: '20px 0 30px', padding: '20px', backgroundColor: '#F5F3ED', border: '1px solid #E0DDD5' }
+const codeText = { fontSize: '32px', fontFamily: "'JetBrains Mono', 'Courier New', monospace", fontWeight: 'bold' as const, letterSpacing: '8px', color: '#18454B', margin: '0' }
 const footer = { fontSize: '12px', color: '#999999', margin: '30px 0 0' }
