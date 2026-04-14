@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Shield, CreditCard, MapPin, AlertTriangle, Loader2 } from "lucide-react";
+import { Shield, CreditCard, MapPin, AlertTriangle, Loader2, Users, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -13,6 +13,12 @@ interface Profile {
   last_name: string | null;
   phone: string | null;
   account_type: string | null;
+  tax_country: string | null;
+  tax_id: string | null;
+  address: string | null;
+  city: string | null;
+  postal_code: string | null;
+  country: string | null;
 }
 
 export default function AccountSettings() {
