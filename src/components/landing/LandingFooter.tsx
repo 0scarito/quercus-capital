@@ -1,11 +1,43 @@
 import { Separator } from "@/components/ui/separator";
+import { Link } from "react-router-dom";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 
 const footerLinks = [
-  { title: "Produits", items: ["Quercus Euro", "Quercus Dollar", "Quercus Pound", "Quercus Swiss Franc"] },
-  { title: "Segments", items: ["PME", "Holding", "Start-up", "SCI", "Fintechs"] },
-  { title: "Société", items: ["À propos", "Carrières", "Presse", "Contact"] },
-  { title: "Légal", items: ["Mentions légales", "Confidentialité", "Charte cookie"] },
+  {
+    title: "Produits",
+    items: [
+      { label: "Quercus Euro", href: "/products" },
+      { label: "Quercus Dollar", href: "/products" },
+      { label: "Quercus Pound", href: "/products" },
+      { label: "Quercus Swiss Franc", href: "/products" },
+    ],
+  },
+  {
+    title: "Segments",
+    items: [
+      { label: "PME", href: "/solutions" },
+      { label: "Holding", href: "/solutions" },
+      { label: "Start-up", href: "/solutions" },
+      { label: "SCI", href: "/solutions" },
+      { label: "Fintechs", href: "/solutions" },
+    ],
+  },
+  {
+    title: "Société",
+    items: [
+      { label: "À propos", href: "/a-propos" },
+      { label: "Presse", href: "/presse" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    title: "Légal",
+    items: [
+      { label: "Mentions légales", href: "/mentions-legales" },
+      { label: "Confidentialité", href: "/confidentialite" },
+      { label: "Charte cookie", href: "/charte-cookie" },
+    ],
+  },
 ];
 
 export function LandingFooter() {

@@ -17,6 +17,12 @@ import Statements from "@/pages/Statements";
 import AccountSettings from "@/pages/AccountSettings";
 import Integrations from "@/pages/Integrations";
 import NotFound from "@/pages/NotFound";
+import AboutPage from "@/pages/AboutPage";
+import PressPage from "@/pages/PressPage";
+import ContactPage from "@/pages/ContactPage";
+import LegalPage from "@/pages/LegalPage";
+import PrivacyPage from "@/pages/PrivacyPage";
+import CookiePage from "@/pages/CookiePage";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +37,12 @@ const App = () => (
             <Route path="/" element={<LandingPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/solutions" element={<SolutionsPage />} />
+            <Route path="/a-propos" element={<AboutPage />} />
+            <Route path="/presse" element={<PressPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/mentions-legales" element={<LegalPage />} />
+            <Route path="/confidentialite" element={<PrivacyPage />} />
+            <Route path="/charte-cookie" element={<CookiePage />} />
             <Route path="/open-account" element={<OpenAccount />} />
             <Route path="/signin" element={<SignIn />} />
             <Route element={<ProtectedRoute />}>
