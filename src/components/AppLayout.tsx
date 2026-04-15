@@ -1,6 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { QuercusSidebar } from "@/components/QuercusSidebar";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 export function AppLayout() {
   return (
