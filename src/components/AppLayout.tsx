@@ -23,11 +23,11 @@ export function AppLayout() {
                 RCS PARIS : 928 443 001 | Enregistré auprès de l'ORIAS sous le n°24004789 en qualité de CIF et COA.
               </p>
               <p className="text-xs text-muted-foreground">
-                <a href="#" className="underline hover:text-foreground">mentions légales</a>
+                <Link to="/mentions-legales" className="underline hover:text-foreground">mentions légales</Link>
                 {" — "}
-                <a href="#" className="underline hover:text-foreground">confidentialité</a>
+                <Link to="/confidentialite" className="underline hover:text-foreground">confidentialité</Link>
                 {" — "}
-                <a href="#" className="underline hover:text-foreground">charte cookie</a>
+                <Link to="/charte-cookie" className="underline hover:text-foreground">charte cookie</Link>
               </p>
             </div>
           </footer>
