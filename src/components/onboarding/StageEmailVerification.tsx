@@ -50,14 +50,13 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
     setErrors({});
     setLoading(true);
 
-    const redirectUrl = new URL("/open-account", window.location.origin);
-    redirectUrl.searchParams.set("type", "signup");
-    redirectUrl.searchParams.set("email", email);
-
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: { emailRedirectTo: redirectUrl.toString() },
+      options: {
+        emailRedirectTo: new URL("/open-account", window.location.origin).toString(),
+        data: { skip_email_verification: true },
+      },
     });
 
     if (error) {
@@ -66,9 +65,8 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
       return;
     }
 
-    toast.success("Un code de vérification a été envoyé à votre email.");
-    setPhase("otp");
-    setLoading(false);
+    toast.success("Compte créé !");
+    onNext({ email });
   };
 
   const handleResendCode = async () => {

@@ -16,7 +16,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <FloatingBlobs />
-      <CustomCursor />
+      {/* CustomCursor disabled */}
       <LandingNav />
       <div className="pt-16 relative z-10">
         <ScrollReveal>
