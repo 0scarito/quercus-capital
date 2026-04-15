@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, FileText, ScanFace } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import quercusLogo from "@/assets/quercus-logo.jpg";
 interface StageWelcomeProps {
   onNext: () => void;
 }
@@ -21,6 +21,10 @@ export function StageWelcome({ onNext }: StageWelcomeProps) {
       className="space-y-10 text-center"
     >
       <div className="space-y-3">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <img src={quercusLogo} alt="Quercus" className="h-8 w-auto" />
+          <span className="text-lg font-serif tracking-widest">QUERCUS</span>
+        </div>
         <h1 className="text-3xl font-serif">
           <em>Bienvenue chez Quercus</em>
         </h1>
