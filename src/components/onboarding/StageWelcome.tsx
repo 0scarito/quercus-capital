@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, FileText, ScanFace } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import quercusLogo from "@/assets/quercus-logo.jpg";
 interface StageWelcomeProps {
   onNext: () => void;
 }
