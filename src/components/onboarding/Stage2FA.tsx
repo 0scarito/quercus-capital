@@ -73,6 +73,7 @@ export function Stage2FA({ onNext }: Stage2FAProps) {
       </div>
 
       {!method ? (
+        <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <motion.div whileHover={{ scale: 1.02 }} onClick={() => setMethod("sms")} className={cardClass(false)}>
             <div className="flex flex-col items-center gap-3 text-center">
