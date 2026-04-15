@@ -90,6 +90,10 @@ export function Stage2FA({ onNext }: Stage2FAProps) {
             </div>
           </motion.div>
         </div>
+          <Button variant="outline" className="w-full" onClick={() => onNext()}>
+            Passer cette étape
+          </Button>
+        </div>
       ) : method === "sms" ? (
         <div className="space-y-4">
           {!otpSent ? (
