@@ -50,10 +50,10 @@ export function LandingFooter() {
               <p className="text-xs uppercase tracking-widest text-primary-foreground/50 font-serif">{group.title}</p>
               <ul className="space-y-2">
                 {group.items.map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-opacity">
-                      {item}
-                    </a>
+                  <li key={item.label}>
+                    <Link to={item.href} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-opacity">
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
