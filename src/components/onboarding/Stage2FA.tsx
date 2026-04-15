@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { Smartphone, QrCode } from "lucide-react";
 
 interface Stage2FAProps {
-  onNext: (data: { phone?: string; method: "sms" | "app" }) => void;
+  onNext: (data?: { phone?: string; method: "sms" | "app" }) => void;
 }
 
 export function Stage2FA({ onNext }: Stage2FAProps) {
@@ -73,6 +73,7 @@ export function Stage2FA({ onNext }: Stage2FAProps) {
       </div>
 
       {!method ? (
+        <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <motion.div whileHover={{ scale: 1.02 }} onClick={() => setMethod("sms")} className={cardClass(false)}>
             <div className="flex flex-col items-center gap-3 text-center">
@@ -88,6 +89,10 @@ export function Stage2FA({ onNext }: Stage2FAProps) {
               <span className="text-xs text-muted-foreground leading-tight">Recommandé</span>
             </div>
           </motion.div>
+        </div>
+          <Button variant="outline" className="w-full" onClick={() => onNext()}>
+            Passer cette étape
+          </Button>
         </div>
       ) : method === "sms" ? (
         <div className="space-y-4">
