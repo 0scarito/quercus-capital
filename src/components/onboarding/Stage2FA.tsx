@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { Smartphone, QrCode } from "lucide-react";
 
 interface Stage2FAProps {
-  onNext: (data: { phone?: string; method: "sms" | "app" }) => void;
+  onNext: (data?: { phone?: string; method: "sms" | "app" }) => void;
 }
 
 export function Stage2FA({ onNext }: Stage2FAProps) {
