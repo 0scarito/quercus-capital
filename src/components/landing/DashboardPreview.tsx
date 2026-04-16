@@ -14,8 +14,8 @@ export function DashboardPreview() {
   const opacity = useTransform(scrollYProgress, [0, 0.35], [0, 1]);
 
   return (
-    <section ref={ref} className="py-20 px-6" style={{ perspective: "1200px" }}>
-      <div className="max-w-5xl mx-auto">
+    <section ref={ref} className="py-24 px-4 md:px-8" style={{ perspective: "1200px" }}>
+      <div className="max-w-7xl mx-auto">
         <motion.div
           style={{ rotateX, rotateY, scale, opacity }}
           className="relative"

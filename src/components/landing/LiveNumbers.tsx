@@ -19,9 +19,9 @@ export function LiveNumbers() {
   const ss = String(Math.floor((diff % 60000) / 1000)).padStart(2, "0");
 
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-serif text-center mb-12">
+    <section className="py-24 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
           <em>Transparence en temps réel</em>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">

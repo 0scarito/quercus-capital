@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 export function HeroSection() {
   return (
-    <section className="py-24 md:py-32 px-6">
-      <div className="max-w-4xl mx-auto text-center space-y-8">
-        <h1 className="text-4xl md:text-6xl font-serif font-semibold leading-tight">
+    <section className="py-28 md:py-40 px-4 md:px-8">
+      <div className="max-w-6xl mx-auto text-center space-y-10">
+        <h1 className="text-5xl md:text-7xl font-serif font-semibold leading-tight">
           <em>La quête de l'excellence<br />en gestion de trésorerie.</em>
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
           Générez du rendement quotidien sur votre trésorerie d'entreprise avec une sécurité institutionnelle.
           Vos fonds, investis dans des instruments souverains, ne sont jamais à notre bilan.
         </p>

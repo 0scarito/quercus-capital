@@ -43,7 +43,7 @@ const footerLinks = [
 export function LandingFooter() {
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="max-w-5xl mx-auto px-6 py-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
           {footerLinks.map((group) => (
             <div key={group.title} className="space-y-4">

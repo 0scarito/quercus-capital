@@ -37,16 +37,16 @@ const rows = [
 
 export function ComparisonTable({ segment }: ComparisonTableProps) {
   return (
-    <section className="py-20 px-6">
+    <section className="py-24 px-4 md:px-8">
       <ScrollReveal>
-        <div className="max-w-5xl mx-auto space-y-8">
-          <h2 className="text-3xl md:text-4xl font-serif text-center">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <h2 className="text-4xl md:text-5xl font-serif text-center">
             <em>Pourquoi choisir Quercus ?</em>
           </h2>
 
           {/* Desktop table */}
           <GlassCard className="overflow-x-auto hidden md:block">
-            <table className="w-full text-sm">
+            <table className="w-full text-base">
               <thead>
                 <tr className="border-b border-border/50">
                   <th className="text-left p-5 font-medium text-muted-foreground w-1/4"></th>

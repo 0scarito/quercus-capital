@@ -5,10 +5,10 @@ export default function LegalPage() {
   return (
     <div className="min-h-screen bg-background">
       <LandingNav />
-      <main className="pt-24 pb-20 max-w-4xl mx-auto px-6">
-        <h1 className="text-4xl md:text-5xl font-serif italic mb-8">Mentions légales</h1>
+      <main className="pt-28 pb-24 max-w-6xl mx-auto px-4 md:px-8">
+        <h1 className="text-5xl md:text-6xl font-serif italic mb-10">Mentions légales</h1>
 
-        <section className="space-y-6 text-muted-foreground leading-relaxed text-sm">
+        <section className="space-y-6 text-muted-foreground leading-relaxed text-base">
           <h2 className="text-xl font-serif text-foreground">Éditeur du site</h2>
           <p>
             QUERCUS CAPITAL SAS<br />

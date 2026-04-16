@@ -69,9 +69,9 @@ export function IntegrationRoadmap() {
   }, []);
 
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-serif text-center mb-16">
+    <section className="py-24 px-4 md:px-8">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-serif text-center mb-20">
           <em>Démarrez avec Quercus en quelques minutes</em>
         </h2>
 
@@ -113,10 +113,10 @@ export function IntegrationRoadmap() {
                   <p className="text-xs font-mono text-muted-foreground mb-2">
                     Étape {i + 1}
                   </p>
-                  <h3 className="text-xl font-serif mb-3">
+                  <h3 className="text-2xl font-serif mb-3">
                     <em>{step.title}</em>
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     {step.text}
                   </p>
                 </div>

@@ -6,10 +6,10 @@ export function SecurityBlock() {
   const parallax = useParallax(12);
 
   return (
-    <section className="py-24 px-6">
+    <section className="py-28 px-4 md:px-8">
       <ScrollReveal>
         <div
-          className="max-w-3xl mx-auto text-center space-y-8"
+          className="max-w-5xl mx-auto text-center space-y-10"
           onMouseMove={parallax.onMouseMove}
           onMouseLeave={parallax.onMouseLeave}
         >
@@ -47,11 +47,11 @@ export function SecurityBlock() {
             </div>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-serif">
+          <h2 className="text-4xl md:text-5xl font-serif">
             <em>Votre sécurité est notre priorité absolue.</em>
           </h2>
 
-          <p className="text-muted-foreground leading-relaxed max-w-xl mx-auto">
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             Quercus n'est jamais détenteur de vos fonds. Ils sont conservés par{" "}
             <strong className="text-foreground">CACEIS</strong>, filiale du groupe{" "}
             <strong className="text-foreground">Crédit Agricole</strong>, premier
@@ -61,18 +61,18 @@ export function SecurityBlock() {
 
           <div className="flex flex-wrap items-center justify-center gap-8 pt-4">
             <div className="text-center">
-              <p className="text-2xl font-serif font-semibold text-primary">CACEIS</p>
-              <p className="text-xs text-muted-foreground">Banque dépositaire</p>
+              <p className="text-3xl font-serif font-semibold text-primary">CACEIS</p>
+              <p className="text-sm text-muted-foreground">Banque dépositaire</p>
             </div>
             <div className="w-px h-10 bg-border" />
             <div className="text-center">
-              <p className="text-2xl font-serif font-semibold text-primary">Crédit Agricole</p>
-              <p className="text-xs text-muted-foreground">Groupe bancaire</p>
+              <p className="text-3xl font-serif font-semibold text-primary">Crédit Agricole</p>
+              <p className="text-sm text-muted-foreground">Groupe bancaire</p>
             </div>
             <div className="w-px h-10 bg-border" />
             <div className="text-center">
-              <p className="text-2xl font-serif font-semibold text-primary">Ségrégation</p>
-              <p className="text-xs text-muted-foreground">Fonds jamais au bilan</p>
+              <p className="text-3xl font-serif font-semibold text-primary">Ségrégation</p>
+              <p className="text-sm text-muted-foreground">Fonds jamais au bilan</p>
             </div>
           </div>
         </div>

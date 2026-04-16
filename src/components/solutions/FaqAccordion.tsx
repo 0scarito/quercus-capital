@@ -27,10 +27,10 @@ const faqs = [
 
 export function FaqAccordion() {
   return (
-    <section className="py-20 px-6">
+    <section className="py-24 px-4 md:px-8">
       <ScrollReveal>
-        <div className="max-w-2xl mx-auto space-y-8">
-          <h2 className="text-3xl md:text-4xl font-serif text-center">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <h2 className="text-4xl md:text-5xl font-serif text-center">
             <em>Questions fréquentes</em>
           </h2>
 
@@ -41,10 +41,10 @@ export function FaqAccordion() {
                 value={`faq-${i}`}
                 className="bg-white/40 backdrop-blur-sm border border-white/20 px-6"
               >
-                <AccordionTrigger className="text-left font-serif text-base hover:no-underline">
+                <AccordionTrigger className="text-left font-serif text-lg hover:no-underline">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
+                <AccordionContent className="text-base text-muted-foreground leading-relaxed">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
