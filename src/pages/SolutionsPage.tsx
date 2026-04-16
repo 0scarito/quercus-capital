@@ -60,7 +60,7 @@ export default function SolutionsPage() {
               <h1 className="text-4xl md:text-6xl font-serif font-semibold leading-tight">
                 <em>À qui s'adresse Quercus ?</em>
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Quercus est conçu pour les organisations et les individus qui exigent
                 davantage de leur trésorerie.
               </p>

@@ -12,7 +12,7 @@ export function PartnersSection() {
 
   return (
     <section className="py-16 border-y border-border overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6 mb-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-8">
         <p className="text-center text-sm uppercase tracking-widest text-muted-foreground">
           Infrastructure institutionnelle de confiance
         </p>

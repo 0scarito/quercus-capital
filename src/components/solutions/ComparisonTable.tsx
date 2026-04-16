@@ -46,7 +46,7 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
 
           {/* Desktop table */}
           <GlassCard className="overflow-x-auto hidden md:block">
-            <table className="w-full text-sm">
+            <table className="w-full text-base">
               <thead>
                 <tr className="border-b border-border/50">
                   <th className="text-left p-5 font-medium text-muted-foreground w-1/4"></th>

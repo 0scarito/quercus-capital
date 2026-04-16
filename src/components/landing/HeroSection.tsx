@@ -8,7 +8,7 @@ export function HeroSection() {
         <h1 className="text-4xl md:text-6xl font-serif font-semibold leading-tight">
           <em>La quête de l'excellence<br />en gestion de trésorerie.</em>
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
           Générez du rendement quotidien sur votre trésorerie d'entreprise avec une sécurité institutionnelle.
           Vos fonds, investis dans des instruments souverains, ne sont jamais à notre bilan.
         </p>

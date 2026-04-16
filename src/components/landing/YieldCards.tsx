@@ -63,7 +63,7 @@ export function YieldCards() {
         <h2 className="text-3xl md:text-4xl font-serif text-center mb-4">
           <em>Transparence totale,</em> rendements nets
         </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto text-sm">
+        <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto text-base">
           Taux nets de frais payés quotidiennement par la contrepartie bancaire.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

@@ -47,11 +47,11 @@ export function SecurityBlock() {
             </div>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-serif">
+          <h2 className="text-4xl md:text-5xl font-serif">
             <em>Votre sécurité est notre priorité absolue.</em>
           </h2>
 
-          <p className="text-muted-foreground leading-relaxed max-w-xl mx-auto">
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             Quercus n'est jamais détenteur de vos fonds. Ils sont conservés par{" "}
             <strong className="text-foreground">CACEIS</strong>, filiale du groupe{" "}
             <strong className="text-foreground">Crédit Agricole</strong>, premier

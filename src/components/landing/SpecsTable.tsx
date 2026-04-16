@@ -22,7 +22,7 @@ export function SpecsTable() {
         <h2 className="text-3xl md:text-4xl font-serif text-center mb-4">
           <em>Spécifications produits</em>
         </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">
+        <p className="text-center text-base text-muted-foreground mb-14 max-w-2xl mx-auto">
           Données techniques complètes pour la due diligence institutionnelle.
         </p>
         <GlassCard className="overflow-hidden">

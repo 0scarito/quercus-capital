@@ -24,7 +24,7 @@ export function YieldCalculator() {
     <section className="py-20 px-6 bg-primary text-primary-foreground">
       <div className="max-w-3xl mx-auto space-y-10">
         <div className="text-center space-y-3">
-          <h2 className="text-3xl md:text-4xl font-serif">
+          <h2 className="text-4xl md:text-5xl font-serif">
             <em>Simulateur de rendement</em>
           </h2>
           <p className="text-primary-foreground/70">

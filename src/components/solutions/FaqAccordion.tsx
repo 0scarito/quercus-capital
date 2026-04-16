@@ -41,10 +41,10 @@ export function FaqAccordion() {
                 value={`faq-${i}`}
                 className="bg-white/40 backdrop-blur-sm border border-white/20 px-6"
               >
-                <AccordionTrigger className="text-left font-serif text-base hover:no-underline">
+                <AccordionTrigger className="text-left font-serif text-lg hover:no-underline">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
+                <AccordionContent className="text-base text-muted-foreground leading-relaxed">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
