@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Building2, Landmark, Bitcoin, User, Factory, Cpu, Home, Users } from "lucide-react";
+import { segments as segmentData } from "@/components/solutions/segmentData";
 
 const segments = [
   { name: "Start-ups", icon: Cpu, tagline: "Optimisez votre runway.", description: "Entreprises financées par du capital-risque : déployez votre trésorerie dormante dans des instruments à rendement quotidien tout en conservant une liquidité immédiate pour la paie et les opérations.", yields: "EUR 2,20% · USD 4,00%" },
@@ -25,12 +26,13 @@ function SegmentCard({ s, i }: { s: typeof segments[0]; i: number }) {
   const Icon = s.icon;
   return (
     <ScrollReveal delay={i * 80}>
+      <Link to={`/solutions/${segmentData.find(sd => sd.name === s.name)?.slug || ''}`} className="block h-full">
       <GlassCard
         ref={tilt.ref}
         onMouseMove={tilt.onMouseMove}
         onMouseLeave={tilt.onMouseLeave}
         style={tilt.style}
-        className="p-8 h-full space-y-5"
+        className="p-8 h-full space-y-5 hover:border-primary/30 transition-colors"
       >
         <div className="flex items-center gap-3">
           <Icon className="h-5 w-5 text-muted-foreground" strokeWidth={1.5} />
@@ -41,6 +43,7 @@ function SegmentCard({ s, i }: { s: typeof segments[0]; i: number }) {
         <p className="text-sm text-muted-foreground leading-relaxed">{s.description}</p>
         <p className="text-xs font-mono text-success">{s.yields}</p>
       </GlassCard>
+      </Link>
     </ScrollReveal>
   );
 }
