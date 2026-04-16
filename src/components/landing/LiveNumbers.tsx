@@ -26,13 +26,13 @@ export function LiveNumbers() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <GlassCard className="p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">Trésorerie totale</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">Actifs sous gestion</p>
             <p className="text-4xl font-serif font-semibold">
-              €<CountUp end={1300} suffix=" M" />
+              €<CountUp end={424} suffix=" M" />
             </p>
           </GlassCard>
           <GlassCard className="p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">Intérêts versés</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">Intérêts générés</p>
             <p className="text-4xl font-serif font-semibold">
               €<CountUp end={47.2} decimals={1} suffix=" M" />
             </p>

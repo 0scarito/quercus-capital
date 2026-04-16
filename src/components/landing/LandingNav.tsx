@@ -5,10 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 
 const productItems = [
-  { name: "Quercus Euro", currency: "EUR", yield: "2,20%", flag: "🇪🇺", color: "hsl(173 50% 19%)" },
-  { name: "Quercus Dollar", currency: "USD", yield: "4,00%", flag: "🇺🇸", color: "hsl(210 60% 30%)" },
-  { name: "Quercus Pound", currency: "GBP", yield: "4,00%", flag: "🇬🇧", color: "hsl(350 50% 35%)" },
-  { name: "Quercus Swiss Franc", currency: "CHF", yield: "0,10%", flag: "🇨🇭", color: "hsl(0 70% 40%)" },
+  { name: "Velvet", subtitle: "Smart Cash · UCITS", yield: "€STR + 0,30%", link: "/products/velvet", color: "hsl(173 50% 19%)" },
+  { name: "TOBAM Crypto Liquidity", subtitle: "Cash & Carry · FPS", yield: "~7–8% p.a.", link: "/products/tobam", color: "hsl(35 80% 50%)" },
 ];
 
 const solutionItems = [
@@ -100,29 +98,24 @@ export function LandingNav() {
           >
             <div className="max-w-6xl mx-auto px-6 py-8">
               {activeMenu === "products" && (
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   {productItems.map((p) => (
                     <Link
-                      to="/products"
-                      key={p.currency}
-                      className="group p-5 transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/30"
-                      style={{
-                        // @ts-ignore
-                        "--glow-color": p.color,
-                      } as React.CSSProperties}
+                      to={p.link}
+                      key={p.name}
+                      className="group p-6 transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/30"
                     >
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-2xl">{p.flag}</span>
-                        <p className="font-serif text-sm">{p.name}</p>
-                      </div>
-                      <p className="text-3xl font-serif font-semibold text-success group-hover:drop-shadow-[0_0_8px_var(--glow-color)]">
-                        {p.yield}
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        rendement net en {p.currency}
-                      </p>
+                      <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">{p.subtitle}</p>
+                      <p className="font-serif text-xl font-semibold mb-2">{p.name}</p>
+                      <p className="text-2xl font-serif font-semibold text-success">{p.yield}</p>
                     </Link>
                   ))}
+                  <Link
+                    to="/products"
+                    className="col-span-2 p-4 text-center text-sm text-muted-foreground hover:text-foreground border border-transparent hover:border-white/30 transition-all"
+                  >
+                    Voir tous les produits →
+                  </Link>
                 </div>
               )}
               {activeMenu === "solutions" && (

@@ -10,14 +10,22 @@ export function HeroSection() {
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
           Générez du rendement quotidien sur votre trésorerie d'entreprise avec une sécurité institutionnelle.
-          Vos fonds, investis dans des instruments souverains, ne sont jamais à notre bilan.
+          Vos fonds, détenus par BNP Paribas, ne sont jamais à notre bilan.
         </p>
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex items-center gap-6 text-lg font-mono">
+            <span className="text-success font-semibold">Velvet : €STR + 0,30%</span>
+            <span className="text-muted-foreground">·</span>
+            <span className="text-success font-semibold">TOBAM : ~7–8% p.a.</span>
+          </div>
+          <p className="text-xs text-muted-foreground">Rendements nets de frais · Liquidité quotidienne</p>
+        </div>
         <div className="flex items-center justify-center gap-4 pt-4">
           <Button size="lg" className="px-10 text-base btn-glow" asChild>
             <Link to="/open-account">Ouvrir un compte</Link>
           </Button>
           <Button size="lg" variant="outline" className="px-10 text-base btn-glow" asChild>
-            <Link to="/signin">Prendre rendez-vous</Link>
+            <Link to="/contact">Prendre rendez-vous</Link>
           </Button>
         </div>
       </div>

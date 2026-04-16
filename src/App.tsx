@@ -8,6 +8,8 @@ import { AppLayout } from "@/components/AppLayout";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import LandingPage from "@/pages/LandingPage";
 import ProductsPage from "@/pages/ProductsPage";
+import VelvetPage from "@/pages/VelvetPage";
+import TobamPage from "@/pages/TobamPage";
 import SolutionsPage from "@/pages/SolutionsPage";
 import SolutionDetailPage from "@/pages/SolutionDetailPage";
 import SignIn from "@/pages/SignIn";
@@ -37,6 +39,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/velvet" element={<VelvetPage />} />
+            <Route path="/products/tobam" element={<TobamPage />} />
             <Route path="/solutions" element={<SolutionsPage />} />
             <Route path="/solutions/:segment" element={<SolutionDetailPage />} />
             <Route path="/a-propos" element={<AboutPage />} />

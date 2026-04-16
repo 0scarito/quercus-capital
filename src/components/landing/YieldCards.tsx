@@ -1,55 +1,52 @@
 import { GlassCard } from "@/components/landing/GlassCard";
-import { CountUp } from "@/components/landing/CountUp";
 import { useTilt } from "@/hooks/useTilt";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import quercusLogo from "@/assets/quercus-logo.jpg";
 
 const products = [
-  { name: "Quercus Euro", currency: "EUR", yield: 2.2, flag: "🇪🇺", isin: "FR001401XXXX", fees: "0,10%", liquidity: "T+0" },
-  { name: "Quercus Dollar", currency: "USD", yield: 4.0, flag: "🇺🇸", isin: "FR0014015LE1", fees: "0,23%", liquidity: "T+1" },
-  { name: "Quercus Pound", currency: "GBP", yield: 4.0, flag: "🇬🇧", isin: "FR001401YYYY", fees: "0,15%", liquidity: "T+1" },
-  { name: "Quercus Swiss Franc", currency: "CHF", yield: 0.1, flag: "🇨🇭", isin: "FR001401ZZZZ", fees: "0,10%", liquidity: "T+1" },
+  {
+    name: "Velvet",
+    subtitle: "Smart Cash · UCITS",
+    yield: "€STR + 0,30%",
+    description: "Rendement quotidien garanti par BNP Paribas via Total Return Swap. Liquidité T+1, risque 1/7.",
+    features: ["Intérêts quotidiens", "Zéro frais d'entrée/sortie", "AMF n° FCP20230197"],
+    link: "/products/velvet",
+  },
+  {
+    name: "TOBAM Crypto Liquidity",
+    subtitle: "Cash & Carry · FPS",
+    yield: "~7–8% p.a.",
+    description: "Arbitrage non-directionnel sur futures crypto. Rendement élevé sans exposition au prix des crypto-actifs.",
+    features: ["Liquidité quotidienne", "Exposition crypto 0%", "Compensé carbone"],
+    link: "/products/tobam",
+  },
 ];
 
 function ProductCard({ p }: { p: typeof products[0] }) {
   const tilt = useTilt(5);
 
   return (
-    <Link to="/products">
+    <Link to={p.link}>
       <GlassCard
         ref={tilt.ref}
         onMouseMove={tilt.onMouseMove}
         onMouseLeave={tilt.onMouseLeave}
         style={tilt.style}
-        className="p-6 cursor-pointer group"
+        className="p-8 cursor-pointer group h-full"
       >
         <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <img src={quercusLogo} alt="" className="h-5 w-auto opacity-40" />
-            <span className="text-xl">{p.flag}</span>
-          </div>
+          <p className="text-xs uppercase tracking-widest text-muted-foreground">{p.subtitle}</p>
           <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
         </div>
-        <p className="text-4xl font-serif font-semibold text-success mb-1">
-          <CountUp end={p.yield} decimals={2} suffix="%" />
-        </p>
-        <p className="text-xs text-muted-foreground mb-4">
-          rendement net en {p.currency}
-        </p>
-        <div className="grid grid-cols-3 gap-3 pt-4 border-t border-border/30">
-          <div>
-            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">ISIN</p>
-            <p className="font-mono text-xs mt-0.5">{p.isin}</p>
-          </div>
-          <div>
-            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Frais</p>
-            <p className="font-mono text-xs mt-0.5">{p.fees}</p>
-          </div>
-          <div>
-            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Liquidité</p>
-            <p className="font-mono text-xs mt-0.5">{p.liquidity}</p>
-          </div>
+        <h3 className="text-3xl font-serif font-semibold mb-2"><em>{p.name}</em></h3>
+        <p className="text-4xl font-serif font-semibold text-success mb-4">{p.yield}</p>
+        <p className="text-muted-foreground leading-relaxed mb-6">{p.description}</p>
+        <div className="flex flex-wrap gap-2">
+          {p.features.map((f) => (
+            <span key={f} className="text-xs px-3 py-1 border border-border/50 text-muted-foreground">
+              {f}
+            </span>
+          ))}
         </div>
       </GlassCard>
     </Link>
@@ -61,14 +58,14 @@ export function YieldCards() {
     <section className="py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
-          <em>Transparence totale,</em> rendements nets
+          <em>Nos produits</em>
         </h2>
-        <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto text-base">
-          Taux nets de frais payés quotidiennement par la contrepartie bancaire.
+        <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto text-lg">
+          Deux stratégies complémentaires. Rendement net de frais, liquidité quotidienne.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {products.map((p) => (
-            <ProductCard key={p.currency} p={p} />
+            <ProductCard key={p.name} p={p} />
           ))}
         </div>
       </div>
