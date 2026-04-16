@@ -17,9 +17,9 @@ const specs = [
 
 export function SpecsTable() {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-serif text-center mb-4">
+    <section className="py-24 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
           <em>Spécifications produits</em>
         </h2>
         <p className="text-center text-base text-muted-foreground mb-14 max-w-2xl mx-auto">
@@ -39,9 +39,9 @@ export function SpecsTable() {
               {specs.map((s) => (
                 <TableRow key={s.label}>
                   <TableCell className="font-medium text-muted-foreground">{s.label}</TableCell>
-                  <TableCell className="font-mono text-xs">{s.euro}</TableCell>
-                  <TableCell className="font-mono text-xs">{s.dollar}</TableCell>
-                  <TableCell className="font-mono text-xs">{s.pound}</TableCell>
+                  <TableCell className="font-mono text-sm">{s.euro}</TableCell>
+                  <TableCell className="font-mono text-sm">{s.dollar}</TableCell>
+                  <TableCell className="font-mono text-sm">{s.pound}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

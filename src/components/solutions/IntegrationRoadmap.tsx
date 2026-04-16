@@ -69,9 +69,9 @@ export function IntegrationRoadmap() {
   }, []);
 
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-serif text-center mb-16">
+    <section className="py-24 px-4 md:px-8">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-serif text-center mb-20">
           <em>Démarrez avec Quercus en quelques minutes</em>
         </h2>
 

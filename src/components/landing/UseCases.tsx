@@ -28,9 +28,9 @@ function CaseCard({ c }: { c: typeof cases[0] }) {
 
 export function UseCases() {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-serif text-center mb-4">
+    <section className="py-24 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
           <em>À qui s'adresse Quercus</em>
         </h2>
         <p className="text-center text-lg text-muted-foreground mb-14 max-w-2xl mx-auto">

@@ -54,10 +54,10 @@ export default function SolutionsPage() {
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-16 relative z-10">
-        <section className="py-24 md:py-32 px-6">
+        <section className="py-28 md:py-40 px-4 md:px-8">
           <ScrollReveal>
-            <div className="max-w-4xl mx-auto text-center space-y-6">
-              <h1 className="text-4xl md:text-6xl font-serif font-semibold leading-tight">
+            <div className="max-w-6xl mx-auto text-center space-y-8">
+              <h1 className="text-5xl md:text-7xl font-serif font-semibold leading-tight">
                 <em>À qui s'adresse Quercus ?</em>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -68,18 +68,18 @@ export default function SolutionsPage() {
           </ScrollReveal>
         </section>
 
-        <section className="pb-24 px-6">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
+        <section className="pb-28 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             {segments.map((s, i) => (
               <SegmentCard key={s.name} s={s} i={i} />
             ))}
           </div>
         </section>
 
-        <section className="py-20 px-6">
+        <section className="py-24 px-4 md:px-8">
           <ScrollReveal>
-            <div className="max-w-2xl mx-auto text-center space-y-6">
-              <h2 className="text-3xl md:text-4xl font-serif">
+            <div className="max-w-4xl mx-auto text-center space-y-8">
+              <h2 className="text-4xl md:text-5xl font-serif">
                 <em>Prêt à optimiser votre trésorerie ?</em>
               </h2>
               <div className="flex items-center justify-center gap-4">

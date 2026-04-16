@@ -21,8 +21,8 @@ export function YieldCalculator() {
     new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(v);
 
   return (
-    <section className="py-20 px-6 bg-primary text-primary-foreground">
-      <div className="max-w-3xl mx-auto space-y-10">
+    <section className="py-24 px-4 md:px-8 bg-primary text-primary-foreground">
+      <div className="max-w-5xl mx-auto space-y-12">
         <div className="text-center space-y-3">
           <h2 className="text-4xl md:text-5xl font-serif">
             <em>Simulateur de rendement</em>

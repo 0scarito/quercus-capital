@@ -58,9 +58,9 @@ function ProductCard({ p }: { p: typeof products[0] }) {
 
 export function YieldCards() {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-serif text-center mb-4">
+    <section className="py-24 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
           <em>Transparence totale,</em> rendements nets
         </h2>
         <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto text-base">
