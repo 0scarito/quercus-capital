@@ -12,8 +12,14 @@ const productItems = [
 ];
 
 const solutionItems = [
-  "Start-ups", "Holdings", "Entreprises Crypto", "Freelances",
-  "PME", "Fintechs", "SCI", "Particuliers",
+  { name: "Start-ups", slug: "startups" },
+  { name: "Holdings", slug: "holdings" },
+  { name: "Entreprises Crypto", slug: "crypto" },
+  { name: "Freelances", slug: "freelances" },
+  { name: "PME", slug: "pme" },
+  { name: "Fintechs", slug: "fintechs" },
+  { name: "SCI", slug: "sci" },
+  { name: "Particuliers", slug: "particuliers" },
 ];
 
 export function LandingNav() {
@@ -123,11 +129,11 @@ export function LandingNav() {
                 <div className="grid grid-cols-4 gap-4">
                   {solutionItems.map((s) => (
                     <Link
-                      to="/solutions"
-                      key={s}
+                      to={`/solutions/${s.slug}`}
+                      key={s.slug}
                       className="p-4 text-sm font-medium hover:bg-white/30 border border-transparent hover:border-white/30 transition-all duration-300"
                     >
-                      {s}
+                      {s.name}
                     </Link>
                   ))}
                 </div>

@@ -9,6 +9,7 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import LandingPage from "@/pages/LandingPage";
 import ProductsPage from "@/pages/ProductsPage";
 import SolutionsPage from "@/pages/SolutionsPage";
+import SolutionDetailPage from "@/pages/SolutionDetailPage";
 import SignIn from "@/pages/SignIn";
 import OpenAccount from "@/pages/OpenAccount";
 import Dashboard from "@/pages/Dashboard";
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/" element={<LandingPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/solutions" element={<SolutionsPage />} />
+            <Route path="/solutions/:segment" element={<SolutionDetailPage />} />
             <Route path="/a-propos" element={<AboutPage />} />
             <Route path="/presse" element={<PressPage />} />
             <Route path="/contact" element={<ContactPage />} />
