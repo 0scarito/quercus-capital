@@ -30,10 +30,14 @@ export default function Dashboard() {
   const [depositOpen, setDepositOpen] = useState(false);
   const [newAccountOpen, setNewAccountOpen] = useState(false);
   const [newAccountName, setNewAccountName] = useState("");
+  const [renameOpen, setRenameOpen] = useState(false);
+  const [renameValue, setRenameValue] = useState("");
 
   const { data: subscriptions, isLoading } = useUserSubscriptions();
   const { data: accounts } = useAccounts();
   const createAccount = useCreateAccount();
+  const renameAccount = useRenameAccount();
+  const deleteAccount = useDeleteAccount();
 
   const [activeAccountId, setActiveAccountId] = useState<string | null>(null);
   const primary = accounts?.find((a) => a.is_primary);
