@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Plus, Loader2 } from "lucide-react";
+import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Plus, Loader2, Pencil, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -22,7 +22,7 @@ import { Label } from "@/components/ui/label";
 import { DepositModal } from "@/components/DepositModal";
 import { ProductCard } from "@/components/ProductCard";
 import { useUserSubscriptions } from "@/hooks/useProducts";
-import { useAccounts, useCreateAccount } from "@/hooks/useAccounts";
+import { useAccounts, useCreateAccount, useRenameAccount, useDeleteAccount } from "@/hooks/useAccounts";
 import { toast } from "sonner";
 
 export default function Dashboard() {
@@ -30,10 +30,14 @@ export default function Dashboard() {
   const [depositOpen, setDepositOpen] = useState(false);
   const [newAccountOpen, setNewAccountOpen] = useState(false);
   const [newAccountName, setNewAccountName] = useState("");
+  const [renameOpen, setRenameOpen] = useState(false);
+  const [renameValue, setRenameValue] = useState("");
 
   const { data: subscriptions, isLoading } = useUserSubscriptions();
   const { data: accounts } = useAccounts();
   const createAccount = useCreateAccount();
+  const renameAccount = useRenameAccount();
+  const deleteAccount = useDeleteAccount();
 
   const [activeAccountId, setActiveAccountId] = useState<string | null>(null);
   const primary = accounts?.find((a) => a.is_primary);
@@ -70,6 +74,35 @@ export default function Dashboard() {
     }
   };
 
+  const openRename = () => {
+    if (!currentAccount) return;
+    setRenameValue(currentAccount.name);
+    setRenameOpen(true);
+  };
+
+  const handleRename = async () => {
+    if (!currentAccount || !renameValue.trim()) return;
+    try {
+      await renameAccount.mutateAsync({ id: currentAccount.id, name: renameValue.trim() });
+      setRenameOpen(false);
+      toast.success("Compte renommé");
+    } catch (e: any) {
+      toast.error(e.message);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!currentAccount || currentAccount.is_primary) return;
+    if (!confirm(`Supprimer le compte "${currentAccount.name}" ?`)) return;
+    try {
+      await deleteAccount.mutateAsync(currentAccount.id);
+      setActiveAccountId(null);
+      toast.success("Compte supprimé");
+    } catch (e: any) {
+      toast.error(e.message);
+    }
+  };
+
   return (
     <div className="p-8 max-w-5xl mx-auto animate-fade-in space-y-8">
       {/* Top row: account switcher + actions */}
@@ -87,6 +120,15 @@ export default function Dashboard() {
                 {a.name}{a.is_primary && " (principal)"}
               </DropdownMenuItem>
             ))}
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={openRename}>
+              <Pencil className="mr-2 h-4 w-4" /> Renommer ce compte
+            </DropdownMenuItem>
+            {currentAccount && !currentAccount.is_primary && (
+              <DropdownMenuItem onClick={handleDelete} className="text-destructive">
+                <Trash2 className="mr-2 h-4 w-4" /> Supprimer ce compte
+              </DropdownMenuItem>
+            )}
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => setNewAccountOpen(true)}>
               <Plus className="mr-2 h-4 w-4" /> Nouveau compte
@@ -174,6 +216,30 @@ export default function Dashboard() {
             <Button onClick={handleCreateAccount} disabled={createAccount.isPending}>
               {createAccount.isPending && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
               Créer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Rename account dialog */}
+      <Dialog open={renameOpen} onOpenChange={setRenameOpen}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="font-serif"><em>Renommer le compte</em></DialogTitle>
+          </DialogHeader>
+          <div className="space-y-2">
+            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Nouveau nom</Label>
+            <Input
+              value={renameValue}
+              onChange={(e) => setRenameValue(e.target.value)}
+              autoFocus
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setRenameOpen(false)}>Annuler</Button>
+            <Button onClick={handleRename} disabled={renameAccount.isPending}>
+              {renameAccount.isPending && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
+              Enregistrer
             </Button>
           </DialogFooter>
         </DialogContent>

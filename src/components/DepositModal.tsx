@@ -41,7 +41,6 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
   const [step, setStep] = useState<Step>("product");
   const [productId, setProductId] = useState<string>(presetProductId ?? "");
   const [accountId, setAccountId] = useState<string>(presetAccountId ?? "");
-  const [amount, setAmount] = useState("");
   const [proofAmount, setProofAmount] = useState("");
   const [proofOpen, setProofOpen] = useState(false);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -56,7 +55,6 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
     setStep("product");
     setProductId(presetProductId ?? "");
     setAccountId(presetAccountId ?? "");
-    setAmount("");
     setProofAmount("");
     setReference("");
   };
@@ -78,10 +76,6 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
       toast.error("Sélectionnez un produit et un compte");
       return;
     }
-    if (!amount || parseFloat(amount) < 1) {
-      toast.error("Montant minimum : 1,00 €");
-      return;
-    }
     setStep("instructions");
   };
 
@@ -94,7 +88,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
         user_id: user.id,
         account_id: account.id,
         product_id: product.id,
-        amount: parseFloat(amount),
+        amount: 0,
       })
       .select()
       .single();
@@ -110,7 +104,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
 
   const generateProofPDF = () => {
     if (!product || !bank) return;
-    const value = parseFloat(proofAmount || amount);
+    const value = parseFloat(proofAmount);
     if (isNaN(value) || value < 1) {
       toast.error("Montant invalide");
       return;
@@ -227,21 +221,6 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
                     </button>
                   ))}
                 </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-xs uppercase tracking-wider text-muted-foreground">
-                  Montant ({product?.currency ?? "EUR"})
-                </Label>
-                <Input
-                  type="number"
-                  min="1"
-                  step="0.01"
-                  placeholder="10 000,00"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  className="font-mono"
-                />
                 <p className="text-[11px] text-muted-foreground">Dépôt minimum : 1,00 {product?.currency ?? "EUR"}</p>
               </div>
 
@@ -254,7 +233,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
               <div className="flex items-start gap-2 p-3 rounded-sm bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40">
                 <AlertCircle className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
-                  Effectuez uniquement des virements depuis un compte bancaire à votre nom.
+                  Effectuez uniquement des virements depuis un compte bancaire à votre nom. Le montant que vous virez détermine votre souscription.
                 </p>
               </div>
 
@@ -264,7 +243,6 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
                   { key: "bank", label: "Banque", value: bank.bank, mono: false },
                   { key: "iban", label: "IBAN", value: bank.iban, mono: true },
                   { key: "bic", label: "BIC / SWIFT", value: bank.bic, mono: true },
-                  { key: "amount", label: "Montant", value: `${parseFloat(amount).toLocaleString("fr-FR", { minimumFractionDigits: 2 })} ${product.currency}`, mono: true },
                 ].map((d) => (
                   <div key={d.key} className="flex items-center justify-between gap-3 pb-3 border-b last:border-0">
                     <div className="min-w-0 flex-1">
@@ -284,7 +262,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
                 <Button variant="ghost" size="sm" onClick={() => setStep("product")}>
                   <ArrowLeft className="h-3 w-3 mr-1" /> Retour
                 </Button>
-                <Button variant="outline" size="sm" onClick={() => { setProofAmount(amount); setProofOpen(true); }}>
+                <Button variant="outline" size="sm" onClick={() => { setProofAmount(""); setProofOpen(true); }}>
                   <Download className="h-3 w-3 mr-1" /> J'ai besoin d'un justificatif
                 </Button>
               </div>
@@ -331,6 +309,9 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
               </Label>
               <Input
                 type="number"
+                min="1"
+                step="0.01"
+                placeholder="10 000,00"
                 value={proofAmount}
                 onChange={(e) => setProofAmount(e.target.value)}
                 className="font-mono"
