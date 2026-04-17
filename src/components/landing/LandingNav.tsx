@@ -1,25 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 import { segments } from "@/components/solutions/segmentData";
-
-const productItems = [
-  { name: "Velvet", subtitle: "Smart Cash · UCITS", yield: "€STR + 0,30%", link: "/products/velvet", color: "hsl(173 50% 19%)" },
-  { name: "TOBAM Crypto Liquidity", subtitle: "Cash & Carry · FPS", yield: "~7–8% p.a.", link: "/products/tobam", color: "hsl(35 80% 50%)" },
-];
-
-const solutionItems = [
-  { name: "Start-ups", slug: "startups" },
-  { name: "Holdings", slug: "holdings" },
-  { name: "Entreprises Crypto", slug: "crypto" },
-  { name: "Freelances", slug: "freelances" },
-  { name: "PME", slug: "pme" },
-  { name: "Fintechs", slug: "fintechs" },
-  { name: "SCI", slug: "sci" },
-  { name: "Particuliers", slug: "particuliers" },
-];
 
 interface LandingNavProps {
   variant?: "default" | "solutions";
@@ -28,7 +11,6 @@ interface LandingNavProps {
 
 export function LandingNav({ variant = "default", currentSlug }: LandingNavProps = {}) {
   const [scrolled, setScrolled] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -45,7 +27,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
         WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.2)" : "1px solid transparent",
       }}
-      onMouseLeave={() => setActiveMenu(null)}
     >
       <div className="px-6 md:px-10 h-16 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 shrink-0">
