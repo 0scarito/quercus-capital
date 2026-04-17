@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
-import { segments, SegmentInfo } from "./segmentData";
+import { Link } from "react-router-dom";
+import { SegmentInfo } from "./segmentData";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 
 interface SegmentHeroProps {
@@ -8,29 +8,10 @@ interface SegmentHeroProps {
 }
 
 export function SegmentHero({ current }: SegmentHeroProps) {
-  const navigate = useNavigate();
-
   return (
-    <section className="py-28 md:py-40 px-4 md:px-8">
+    <section className="pt-8 md:pt-12 pb-20 md:pb-28 px-4 md:px-8">
       <ScrollReveal>
         <div className="max-w-6xl mx-auto text-center space-y-10">
-          {/* Pill selector */}
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            {segments.map((s) => (
-              <button
-                key={s.slug}
-                onClick={() => navigate(`/solutions/${s.slug}`)}
-                className={`px-5 py-2 text-sm font-medium tracking-wide transition-all duration-300 border ${
-                  s.slug === current.slug
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-white/40 backdrop-blur-sm text-muted-foreground border-white/30 hover:bg-white/60 hover:text-foreground"
-                }`}
-              >
-                {s.name}
-              </button>
-            ))}
-          </div>
-
           <h1 className="text-5xl md:text-7xl font-serif font-semibold leading-tight text-primary">
             <em>{current.heroTitle}</em>
           </h1>
