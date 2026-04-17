@@ -5,47 +5,48 @@ import { YieldCards } from "@/components/landing/YieldCards";
 import { YieldCalculator } from "@/components/landing/YieldCalculator";
 import { LiveNumbers } from "@/components/landing/LiveNumbers";
 import { PartnersSection } from "@/components/landing/PartnersSection";
-import { SpecsTable } from "@/components/landing/SpecsTable";
+import { SecuritySection } from "@/components/landing/SecuritySection";
 import { UseCases } from "@/components/landing/UseCases";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
-import { CustomCursor } from "@/components/landing/CustomCursor";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
+import { Separator } from "@/components/ui/separator";
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <FloatingBlobs />
-      {/* CustomCursor disabled */}
       <LandingNav />
       <div className="pt-16 relative z-10">
         <ScrollReveal>
           <HeroSection />
         </ScrollReveal>
         <DashboardPreview />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
           <div id="products">
             <YieldCards />
           </div>
         </ScrollReveal>
+        <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
           <div id="calculator">
             <YieldCalculator />
           </div>
         </ScrollReveal>
+        <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
           <LiveNumbers />
         </ScrollReveal>
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <SecuritySection />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
           <div id="partners">
             <PartnersSection />
           </div>
         </ScrollReveal>
-        <ScrollReveal>
-          <div id="specs">
-            <SpecsTable />
-          </div>
-        </ScrollReveal>
+        <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
           <UseCases />
         </ScrollReveal>

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 export function HeroSection() {
   return (
-    <section className="py-28 md:py-40 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto text-center space-y-10">
+    <section className="pt-20 md:pt-28 pb-8 md:pb-12 px-4 md:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto text-center space-y-8">
         <h1 className="text-5xl md:text-7xl font-serif font-semibold leading-tight">
           <em>La quête de l'excellence<br />en gestion de trésorerie.</em>
         </h1>

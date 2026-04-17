@@ -1,44 +1,54 @@
-import { GlassCard } from "@/components/landing/GlassCard";
-import { useTilt } from "@/hooks/useTilt";
-import { Separator } from "@/components/ui/separator";
+import { Link } from "react-router-dom";
+import { ScrollReveal } from "@/components/landing/ScrollReveal";
+import { Rocket, Building2, Users, Briefcase, Cpu, User, Landmark, Bitcoin, ArrowRight } from "lucide-react";
 
 const cases = [
-  { segment: "Start-ups", description: "Entreprises financées par du VC : déployez votre capital dormant tout en gardant une liquidité immédiate pour la paie et les opérations." },
-  { segment: "PME", description: "PME industrielles avec des flux saisonniers : obtenez un rendement compétitif sur vos réserves sans bloquer votre capital." },
-  { segment: "Holdings", description: "Family offices et structures holding : gestion de trésorerie institutionnelle avec transparence et conservation séparée." },
-  { segment: "Fintechs", description: "Intégration API-first pour les sociétés de paiement et néobanques. Rendement en marque blanche pour vos clients." },
+  { slug: "startups", label: "Start-ups", icon: Rocket, desc: "Capital VC déployé, liquidité immédiate." },
+  { slug: "pme", label: "PME", icon: Building2, desc: "Réserves saisonnières, rendement compétitif." },
+  { slug: "holdings", label: "Holdings", icon: Landmark, desc: "Family offices, gestion institutionnelle." },
+  { slug: "fintechs", label: "Fintechs", icon: Cpu, desc: "Intégration API-first, marque blanche." },
+  { slug: "freelances", label: "Freelances", icon: Briefcase, desc: "Trésorerie individuelle optimisée." },
+  { slug: "particuliers", label: "Particuliers", icon: User, desc: "Épargne courante rémunérée quotidiennement." },
+  { slug: "sci", label: "SCI", icon: Users, desc: "Gestion patrimoniale et locative." },
+  { slug: "crypto", label: "Crypto natives", icon: Bitcoin, desc: "Trésorerie stablecoin et fiat hybride." },
 ];
-
-function CaseCard({ c }: { c: typeof cases[0] }) {
-  const tilt = useTilt(4);
-  return (
-    <GlassCard
-      ref={tilt.ref}
-      onMouseMove={tilt.onMouseMove}
-      onMouseLeave={tilt.onMouseLeave}
-      style={tilt.style}
-      className="p-8 space-y-4"
-    >
-      <h3 className="text-2xl font-serif"><em>{c.segment}</em></h3>
-      <Separator />
-      <p className="text-muted-foreground leading-relaxed">{c.description}</p>
-    </GlassCard>
-  );
-}
 
 export function UseCases() {
   return (
-    <section className="py-24 px-4 md:px-8">
+    <section className="py-20 md:py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
-          <em>À qui s'adresse Quercus</em>
-        </h2>
-        <p className="text-center text-lg text-muted-foreground mb-14 max-w-2xl mx-auto">
-          Quercus est conçu pour les organisations qui exigent davantage de leur trésorerie.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {cases.map((c) => (
-            <CaseCard key={c.segment} c={c} />
+        <ScrollReveal>
+          <div className="text-center mb-14">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif">
+              Une <em>solution universelle</em>
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground max-w-3xl mx-auto">
+              PME, start-ups, holdings, freelances, particuliers : Quercus s'adresse à toute organisation
+              qui exige davantage de sa trésorerie.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border/60 border border-border/60">
+          {cases.map((c, i) => (
+            <ScrollReveal key={c.slug} delay={i * 50}>
+              <Link
+                to={`/solutions/${c.slug}`}
+                className="group bg-background hover:bg-card transition-all duration-300 p-6 md:p-8 flex flex-col h-full min-h-[180px] relative overflow-hidden"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <c.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
+                  <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-serif font-semibold mb-2">
+                  <em>{c.label}</em>
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-auto">
+                  {c.desc}
+                </p>
+                <div className="absolute bottom-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" />
+              </Link>
+            </ScrollReveal>
           ))}
         </div>
       </div>
