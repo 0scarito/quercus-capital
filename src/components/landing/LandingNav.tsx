@@ -91,64 +91,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
         </div>
       </div>
 
-      {/* Mega Menu */}
-      <AnimatePresence>
-        {activeMenu && (
-          <motion.div
-            key={activeMenu}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            className="overflow-hidden hidden md:block"
-            style={{
-              backgroundColor: "rgba(255,255,255,0.4)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
-              borderBottom: "1px solid rgba(255,255,255,0.2)",
-            }}
-            onMouseEnter={() => setActiveMenu(activeMenu)}
-            onMouseLeave={() => setActiveMenu(null)}
-          >
-            <div className="max-w-6xl mx-auto px-6 py-8">
-              {activeMenu === "products" && (
-                <div className="grid grid-cols-2 gap-4">
-                  {productItems.map((p) => (
-                    <Link
-                      to={p.link}
-                      key={p.name}
-                      className="group p-6 transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/30"
-                    >
-                      <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">{p.subtitle}</p>
-                      <p className="font-serif text-xl font-semibold mb-2">{p.name}</p>
-                      <p className="text-2xl font-serif font-semibold text-success">{p.yield}</p>
-                    </Link>
-                  ))}
-                  <Link
-                    to="/products"
-                    className="col-span-2 p-4 text-center text-sm text-muted-foreground hover:text-foreground border border-transparent hover:border-white/30 transition-all"
-                  >
-                    Voir tous les produits →
-                  </Link>
-                </div>
-              )}
-              {activeMenu === "solutions" && (
-                <div className="grid grid-cols-4 gap-4">
-                  {solutionItems.map((s) => (
-                    <Link
-                      to={`/solutions/${s.slug}`}
-                      key={s.slug}
-                      className="p-4 text-sm font-medium hover:bg-white/30 border border-transparent hover:border-white/30 transition-all duration-300"
-                    >
-                      {s.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
   );
 }
