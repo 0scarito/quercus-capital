@@ -36,17 +36,19 @@ export default function OpenAccount() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
+    if (loading || !session?.user?.email) return;
+
     const params = new URLSearchParams(window.location.search);
-    const isSignupCallback = params.get("type") === "signup";
     const callbackEmail = params.get("email");
 
-    if (!isSignupCallback || loading || !session?.user?.email) {
-      return;
-    }
-
+    // Any authenticated user landing here (email signup callback OR Google OAuth)
+    // skips past welcome + email steps and goes straight to identity verification.
     setEmail(callbackEmail ?? session.user.email);
-    setStage("2fa");
-    window.history.replaceState({}, "", "/open-account");
+    setStage((prev) => (prev === "welcome" || prev === "email" ? "2fa" : prev));
+
+    if (params.toString()) {
+      window.history.replaceState({}, "", "/open-account");
+    }
   }, [loading, session]);
 
   const stepNumber = getStepNumber(stage, accountType);
