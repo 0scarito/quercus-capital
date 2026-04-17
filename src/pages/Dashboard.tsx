@@ -1,48 +1,24 @@
 import { useState } from "react";
-import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Plus, Loader2, Pencil, Trash2 } from "lucide-react";
+import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { DepositModal } from "@/components/DepositModal";
 import { ProductCard } from "@/components/ProductCard";
+import { AccountSwitcherPopover } from "@/components/AccountSwitcherPopover";
 import { useUserSubscriptions } from "@/hooks/useProducts";
-import { useAccounts, useCreateAccount, useRenameAccount, useDeleteAccount } from "@/hooks/useAccounts";
-import { toast } from "sonner";
+import { useAccounts } from "@/hooks/useAccounts";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [depositOpen, setDepositOpen] = useState(false);
-  const [newAccountOpen, setNewAccountOpen] = useState(false);
-  const [newAccountName, setNewAccountName] = useState("");
-  const [renameOpen, setRenameOpen] = useState(false);
-  const [renameValue, setRenameValue] = useState("");
 
   const { data: subscriptions, isLoading } = useUserSubscriptions();
   const { data: accounts } = useAccounts();
-  const createAccount = useCreateAccount();
-  const renameAccount = useRenameAccount();
-  const deleteAccount = useDeleteAccount();
 
   const [activeAccountId, setActiveAccountId] = useState<string | null>(null);
   const primary = accounts?.find((a) => a.is_primary);
   const currentAccountId = activeAccountId ?? primary?.id ?? null;
-  const currentAccount = accounts?.find((a) => a.id === currentAccountId);
 
   // Filter subscriptions by current account
   const accountSubs = subscriptions?.filter((s) => s.account_id === currentAccountId) ?? [];
@@ -61,80 +37,15 @@ export default function Dashboard() {
     return acc + (Number(s.amount) * Number(s.product?.yield_rate ?? 0) / 100) * days / 365;
   }, 0);
 
-  const handleCreateAccount = async () => {
-    if (!newAccountName.trim()) return;
-    try {
-      const acc = await createAccount.mutateAsync(newAccountName.trim());
-      setActiveAccountId(acc.id);
-      setNewAccountOpen(false);
-      setNewAccountName("");
-      toast.success("Compte créé");
-    } catch (e: any) {
-      toast.error(e.message);
-    }
-  };
-
-  const openRename = () => {
-    if (!currentAccount) return;
-    setRenameValue(currentAccount.name);
-    setRenameOpen(true);
-  };
-
-  const handleRename = async () => {
-    if (!currentAccount || !renameValue.trim()) return;
-    try {
-      await renameAccount.mutateAsync({ id: currentAccount.id, name: renameValue.trim() });
-      setRenameOpen(false);
-      toast.success("Compte renommé");
-    } catch (e: any) {
-      toast.error(e.message);
-    }
-  };
-
-  const handleDelete = async () => {
-    if (!currentAccount || currentAccount.is_primary) return;
-    if (!confirm(`Supprimer le compte "${currentAccount.name}" ?`)) return;
-    try {
-      await deleteAccount.mutateAsync(currentAccount.id);
-      setActiveAccountId(null);
-      toast.success("Compte supprimé");
-    } catch (e: any) {
-      toast.error(e.message);
-    }
-  };
-
   return (
     <div className="p-8 max-w-5xl mx-auto animate-fade-in space-y-8">
       {/* Top row: account switcher + actions */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="gap-2 font-serif text-base">
-              <em>{currentAccount?.name ?? "Compte principal"}</em>
-              <ChevronDown className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-56">
-            {accounts?.map((a) => (
-              <DropdownMenuItem key={a.id} onClick={() => setActiveAccountId(a.id)}>
-                {a.name}{a.is_primary && " (principal)"}
-              </DropdownMenuItem>
-            ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={openRename}>
-              <Pencil className="mr-2 h-4 w-4" /> Renommer ce compte
-            </DropdownMenuItem>
-            {currentAccount && !currentAccount.is_primary && (
-              <DropdownMenuItem onClick={handleDelete} className="text-destructive">
-                <Trash2 className="mr-2 h-4 w-4" /> Supprimer ce compte
-              </DropdownMenuItem>
-            )}
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => setNewAccountOpen(true)}>
-              <Plus className="mr-2 h-4 w-4" /> Nouveau compte
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <AccountSwitcherPopover
+          currentAccountId={currentAccountId}
+          onSelect={setActiveAccountId}
+          subscriptions={subscriptions ?? []}
+        />
 
         <div className="flex gap-2">
           <Button variant="outline" size="default">
@@ -196,54 +107,6 @@ export default function Dashboard() {
       </div>
 
       <DepositModal open={depositOpen} onOpenChange={setDepositOpen} presetAccountId={currentAccountId ?? undefined} />
-
-      {/* New account dialog */}
-      <Dialog open={newAccountOpen} onOpenChange={setNewAccountOpen}>
-        <DialogContent className="sm:max-w-sm">
-          <DialogHeader>
-            <DialogTitle className="font-serif"><em>Nouveau compte</em></DialogTitle>
-          </DialogHeader>
-          <div className="space-y-2">
-            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Nom du compte</Label>
-            <Input
-              placeholder="Ex: Trésorerie"
-              value={newAccountName}
-              onChange={(e) => setNewAccountName(e.target.value)}
-            />
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setNewAccountOpen(false)}>Annuler</Button>
-            <Button onClick={handleCreateAccount} disabled={createAccount.isPending}>
-              {createAccount.isPending && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
-              Créer
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      {/* Rename account dialog */}
-      <Dialog open={renameOpen} onOpenChange={setRenameOpen}>
-        <DialogContent className="sm:max-w-sm">
-          <DialogHeader>
-            <DialogTitle className="font-serif"><em>Renommer le compte</em></DialogTitle>
-          </DialogHeader>
-          <div className="space-y-2">
-            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Nouveau nom</Label>
-            <Input
-              value={renameValue}
-              onChange={(e) => setRenameValue(e.target.value)}
-              autoFocus
-            />
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setRenameOpen(false)}>Annuler</Button>
-            <Button onClick={handleRename} disabled={renameAccount.isPending}>
-              {renameAccount.isPending && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
-              Enregistrer
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

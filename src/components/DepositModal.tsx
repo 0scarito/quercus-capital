@@ -192,7 +192,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
                   <SelectContent>
                     {accounts?.map((a) => (
                       <SelectItem key={a.id} value={a.id}>
-                        {a.name}{a.is_primary && " (principal)"}
+                        {a.is_primary ? "Compte principal" : a.name}
                       </SelectItem>
                     ))}
                   </SelectContent>

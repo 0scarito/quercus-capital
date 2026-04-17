@@ -70,14 +70,14 @@ export function QuercusSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r">
       {/* Logo */}
-      <div className="px-5 pt-5 pb-3">
+      <div className={collapsed ? "px-2 pt-4 pb-3 flex justify-center" : "px-5 pt-5 pb-3"}>
         {!collapsed ? (
           <div className="flex items-center gap-2">
             <img src={quercusLogo} alt="Quercus" className="h-7 w-auto" />
             <span className="text-lg font-serif tracking-widest text-sidebar-foreground">QUERCUS</span>
           </div>
         ) : (
-          <img src={quercusLogo} alt="Q" className="h-6 w-auto mx-auto" />
+          <img src={quercusLogo} alt="Q" className="h-7 w-7 object-contain" />
         )}
       </div>
 
@@ -93,6 +93,9 @@ export function QuercusSidebar() {
           </button>
         </div>
       )}
+
+      {/* Collapsed: subtle divider for visual separation */}
+      {collapsed && <div className="mx-3 border-b border-sidebar-border/50" />}
 
       <SidebarContent className="px-2">
         {/* Main nav */}
@@ -181,14 +184,20 @@ export function QuercusSidebar() {
       </SidebarContent>
 
       {/* Footer: user card + settings dropdown + logout */}
-      <SidebarFooter className="px-2 pb-3 space-y-1">
+      <SidebarFooter className={collapsed ? "px-2 pb-3 space-y-1.5" : "px-2 pb-3 space-y-1"}>
         {/* User card */}
-        {!collapsed && (
+        {!collapsed ? (
           <div className="flex items-center gap-2.5 px-2 py-2 bg-sidebar-accent/40 rounded-sm">
             <div className="h-8 w-8 rounded-sm bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground text-xs font-semibold flex-shrink-0">
               {initials}
             </div>
             <p className="text-xs text-sidebar-foreground truncate">{user?.email}</p>
+          </div>
+        ) : (
+          <div className="flex justify-center pb-1">
+            <div className="h-8 w-8 rounded-sm bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground text-xs font-semibold">
+              {initials}
+            </div>
           </div>
         )}
 
