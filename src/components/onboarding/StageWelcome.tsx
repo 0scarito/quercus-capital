@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, FileText, ScanFace } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { lovable } from "@/integrations/lovable/index";
+import { toast } from "sonner";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 interface StageWelcomeProps {
   onNext: () => void;
