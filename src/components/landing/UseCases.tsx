@@ -29,7 +29,10 @@ export function UseCases() {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-background to-transparent" />
 
-        <div className="flex gap-6 w-max animate-marquee-slow group-hover:[animation-play-state:paused]">
+        <div
+          className="flex gap-6 w-max group-hover:[animation-play-state:paused]"
+          style={{ animation: "marquee 40s linear infinite" }}
+        >
           {loop.map((s, i) => (
             <Link
               key={`${s.slug}-${i}`}
