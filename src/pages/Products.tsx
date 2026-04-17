@@ -119,7 +119,7 @@ export default function Products() {
                       <Button
                         size="sm"
                         variant={subscribed ? "secondary" : "outline"}
-                        onClick={() => setSelected(product)}
+                        onClick={() => handleOpen(product)}
                       >
                         {subscribed ? (
                           <>
@@ -154,18 +154,33 @@ export default function Products() {
               {selected?.description} — Rendement {selected?.yield_rate.toFixed(2)}%
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-3 py-2">
-            <Label htmlFor="amount" className="text-xs uppercase tracking-wider text-muted-foreground">
-              Montant ({selected?.currency})
-            </Label>
-            <Input
-              id="amount"
-              type="number"
-              placeholder="10 000"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              className="font-mono"
-            />
+          <div className="space-y-4 py-2">
+            <div className="space-y-2">
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Compte de destination</Label>
+              <Select value={accountId} onValueChange={setAccountId}>
+                <SelectTrigger><SelectValue placeholder="Sélectionner un compte" /></SelectTrigger>
+                <SelectContent>
+                  {accounts?.map((a) => (
+                    <SelectItem key={a.id} value={a.id}>
+                      {a.name}{a.is_primary && " (principal)"}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="amount" className="text-xs uppercase tracking-wider text-muted-foreground">
+                Montant ({selected?.currency})
+              </Label>
+              <Input
+                id="amount"
+                type="number"
+                placeholder="10 000"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="font-mono"
+              />
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setSelected(null)}>
