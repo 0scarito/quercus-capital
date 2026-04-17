@@ -44,7 +44,8 @@ export default function AccountSettings() {
       .eq("user_id", user.id);
     setSaving(false);
     if (error) {
-      toast.error("Erreur : " + error.message);
+      console.error("Profile update error:", error);
+      toast.error("Une erreur est survenue. Veuillez réessayer.");
       return;
     }
     toast.success("Profil mis à jour");

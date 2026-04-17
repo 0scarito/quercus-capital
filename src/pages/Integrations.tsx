@@ -30,7 +30,8 @@ export default function Integrations() {
         });
     setPendingId(null);
     if (error) {
-      toast.error("Erreur : " + error.message);
+      console.error("Integration toggle error:", error);
+      toast.error("Une erreur est survenue. Veuillez réessayer.");
       return;
     }
     toast.success(existing ? "Intégration déconnectée" : "Intégration connectée");
