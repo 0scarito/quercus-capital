@@ -4,7 +4,7 @@ import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GlassCard } from "@/components/landing/GlassCard";
 import { CountUp } from "@/components/landing/CountUp";
-import { SpecsTable } from "@/components/landing/SpecsTable";
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -464,17 +464,6 @@ export default function VelvetPage() {
             </div>
           </ScrollReveal>
         </section>
-
-        {/* Spécifications produit — fin de page */}
-        <SpecsTable
-          title="Spécifications Velvet"
-          subtitle="Récapitulatif technique pour la due diligence — Parts I2 et I3."
-          columns={[
-            { key: "i2", label: "Part I2 EUR" },
-            { key: "i3", label: "Part I3 EUR" },
-          ]}
-          specs={characteristics.map((c) => ({ label: c.field, i2: c.i2, i3: c.i3 }))}
-        />
 
         <LandingFooter />
       </div>

@@ -3,7 +3,7 @@ import { LandingFooter } from "@/components/landing/LandingFooter";
 import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GlassCard } from "@/components/landing/GlassCard";
-import { SpecsTable } from "@/components/landing/SpecsTable";
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -428,14 +428,6 @@ export default function TobamPage() {
             </div>
           </ScrollReveal>
         </section>
-
-        {/* Spécifications produit — fin de page */}
-        <SpecsTable
-          title="Spécifications TOBAM"
-          subtitle="Récapitulatif technique du fonds pour la due diligence."
-          columns={[{ key: "value", label: "Détail" }]}
-          specs={characteristics.map((c) => ({ label: c.field, value: c.value }))}
-        />
 
         <LandingFooter />
       </div>
