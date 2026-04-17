@@ -121,6 +121,15 @@ export default function Dashboard() {
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={openRename}>
+              <Pencil className="mr-2 h-4 w-4" /> Renommer ce compte
+            </DropdownMenuItem>
+            {currentAccount && !currentAccount.is_primary && (
+              <DropdownMenuItem onClick={handleDelete} className="text-destructive">
+                <Trash2 className="mr-2 h-4 w-4" /> Supprimer ce compte
+              </DropdownMenuItem>
+            )}
+            <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => setNewAccountOpen(true)}>
               <Plus className="mr-2 h-4 w-4" /> Nouveau compte
             </DropdownMenuItem>
