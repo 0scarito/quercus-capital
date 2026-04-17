@@ -74,6 +74,35 @@ export default function Dashboard() {
     }
   };
 
+  const openRename = () => {
+    if (!currentAccount) return;
+    setRenameValue(currentAccount.name);
+    setRenameOpen(true);
+  };
+
+  const handleRename = async () => {
+    if (!currentAccount || !renameValue.trim()) return;
+    try {
+      await renameAccount.mutateAsync({ id: currentAccount.id, name: renameValue.trim() });
+      setRenameOpen(false);
+      toast.success("Compte renommé");
+    } catch (e: any) {
+      toast.error(e.message);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!currentAccount || currentAccount.is_primary) return;
+    if (!confirm(`Supprimer le compte "${currentAccount.name}" ?`)) return;
+    try {
+      await deleteAccount.mutateAsync(currentAccount.id);
+      setActiveAccountId(null);
+      toast.success("Compte supprimé");
+    } catch (e: any) {
+      toast.error(e.message);
+    }
+  };
+
   return (
     <div className="p-8 max-w-5xl mx-auto animate-fade-in space-y-8">
       {/* Top row: account switcher + actions */}
