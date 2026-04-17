@@ -19,7 +19,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useProducts, useUserSubscriptions, type Product } from "@/hooks/useProducts";
+import { useAccounts } from "@/hooks/useAccounts";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
@@ -28,31 +30,44 @@ import { toast } from "sonner";
 export default function Products() {
   const { data: products, isLoading } = useProducts();
   const { data: subscriptions } = useUserSubscriptions();
+  const { data: accounts } = useAccounts();
   const { user } = useAuth();
   const qc = useQueryClient();
 
   const [selected, setSelected] = useState<Product | null>(null);
   const [amount, setAmount] = useState("");
+  const [accountId, setAccountId] = useState<string>("");
   const [submitting, setSubmitting] = useState(false);
 
   const subscribedIds = new Set(subscriptions?.map((s) => s.product_id));
 
+  const handleOpen = (product: Product) => {
+    setSelected(product);
+    setAccountId(accounts?.find((a) => a.is_primary)?.id ?? accounts?.[0]?.id ?? "");
+  };
+
   const handleSubscribe = async () => {
-    if (!selected || !user) return;
+    if (!selected || !user || !accountId) {
+      toast.error("Sélectionnez un compte");
+      return;
+    }
     const numAmount = parseFloat(amount);
     if (isNaN(numAmount) || numAmount <= 0) {
       toast.error("Montant invalide");
       return;
     }
     setSubmitting(true);
-    const existing = subscriptions?.find((s) => s.product_id === selected.id);
+    const existing = subscriptions?.find(
+      (s) => s.product_id === selected.id && s.account_id === accountId
+    );
     const { error } = existing
       ? await supabase
           .from("user_subscriptions")
-          .update({ amount: existing.amount + numAmount })
+          .update({ amount: Number(existing.amount) + numAmount })
           .eq("id", existing.id)
       : await supabase.from("user_subscriptions").insert({
           user_id: user.id,
+          account_id: accountId,
           product_id: selected.id,
           amount: numAmount,
         });
