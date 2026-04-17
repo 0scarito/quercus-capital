@@ -72,16 +72,12 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
           </div>
         ) : (
           <div className="hidden md:flex items-center gap-8">
-            <div className="relative" onMouseEnter={() => setActiveMenu("products")}>
-              <Link to="/products" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
-                Produits
-              </Link>
-            </div>
-            <div className="relative" onMouseEnter={() => setActiveMenu("solutions")}>
-              <Link to="/solutions" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
-                Solutions
-              </Link>
-            </div>
+            <Link to="/products" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
+              Produits
+            </Link>
+            <Link to="/solutions" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
+              Solutions
+            </Link>
           </div>
         )}
 
