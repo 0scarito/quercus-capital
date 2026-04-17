@@ -3,45 +3,47 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 
-const specs = [
-  { label: "Nom officiel", euro: "Quercus Euro", dollar: "Quercus Dollar", pound: "Quercus Pound" },
-  { label: "ISIN", euro: "FR001401XXXX", dollar: "FR0014015LE1", pound: "FR001401YYYY" },
-  { label: "Devise", euro: "EUR", dollar: "USD", pound: "GBP" },
-  { label: "Rendement net", euro: "2,20%", dollar: "4,00%", pound: "4,00%" },
-  { label: "Frais de gestion", euro: "0,23%", dollar: "0,23%", pound: "0,23%" },
-  { label: "Liquidité", euro: "T+0 / T+1", dollar: "T+0 / T+1", pound: "T+0 / T+1" },
-  { label: "Dépôt minimum", euro: "1 €", dollar: "$1", pound: "£1" },
-  { label: "Domicile", euro: "France", dollar: "France", pound: "France" },
-  { label: "Sous-jacent", euro: "€STR TRS", dollar: "US T-Bills", pound: "Short-term Gilts" },
-];
+type Spec = { label: string; [key: string]: string };
 
-export function SpecsTable() {
+interface SpecsTableProps {
+  title?: string;
+  subtitle?: string;
+  columns: { key: string; label: string }[];
+  specs: Spec[];
+}
+
+export function SpecsTable({
+  title = "Spécifications produit",
+  subtitle = "Données techniques complètes pour la due diligence institutionnelle.",
+  columns,
+  specs,
+}: SpecsTableProps) {
   return (
-    <section className="py-24 px-4 md:px-8">
+    <section className="py-20 md:py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
-          <em>Spécifications produits</em>
+        <h2 className="text-4xl md:text-5xl font-serif text-center mb-4">
+          <em>{title}</em>
         </h2>
-        <p className="text-center text-base text-muted-foreground mb-14 max-w-2xl mx-auto">
-          Données techniques complètes pour la due diligence institutionnelle.
+        <p className="text-center text-base text-muted-foreground mb-12 max-w-2xl mx-auto">
+          {subtitle}
         </p>
-        <GlassCard className="overflow-hidden">
+        <GlassCard className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="font-serif text-base w-[200px]">Spécification</TableHead>
-                <TableHead className="font-serif text-base">Euro</TableHead>
-                <TableHead className="font-serif text-base">Dollar</TableHead>
-                <TableHead className="font-serif text-base">Pound</TableHead>
+                <TableHead className="font-serif text-base w-[220px]">Spécification</TableHead>
+                {columns.map((c) => (
+                  <TableHead key={c.key} className="font-serif text-base">{c.label}</TableHead>
+                ))}
               </TableRow>
             </TableHeader>
             <TableBody>
               {specs.map((s) => (
                 <TableRow key={s.label}>
                   <TableCell className="font-medium text-muted-foreground">{s.label}</TableCell>
-                  <TableCell className="font-mono text-sm">{s.euro}</TableCell>
-                  <TableCell className="font-mono text-sm">{s.dollar}</TableCell>
-                  <TableCell className="font-mono text-sm">{s.pound}</TableCell>
+                  {columns.map((c) => (
+                    <TableCell key={c.key} className="font-mono text-sm">{s[c.key]}</TableCell>
+                  ))}
                 </TableRow>
               ))}
             </TableBody>
