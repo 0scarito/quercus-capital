@@ -14,6 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
+      accounts: {
+        Row: {
+          created_at: string
+          id: string
+          is_primary: boolean
+          name: string
+          sort_order: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_primary?: boolean
+          name: string
+          sort_order?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_primary?: boolean
+          name?: string
+          sort_order?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      deposit_intents: {
+        Row: {
+          account_id: string
+          amount: number
+          created_at: string
+          id: string
+          product_id: string
+          reference: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          account_id: string
+          amount: number
+          created_at?: string
+          id?: string
+          product_id: string
+          reference?: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          account_id?: string
+          amount?: number
+          created_at?: string
+          id?: string
+          product_id?: string
+          reference?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
@@ -297,6 +363,7 @@ export type Database = {
       }
       user_subscriptions: {
         Row: {
+          account_id: string
           amount: number
           created_at: string
           id: string
@@ -307,6 +374,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          account_id: string
           amount?: number
           created_at?: string
           id?: string
@@ -317,6 +385,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          account_id?: string
           amount?: number
           created_at?: string
           id?: string
