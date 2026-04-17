@@ -1,6 +1,6 @@
 import { useParallax } from "@/hooks/useParallax";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
-import shieldImg from "@/assets/quercus-shield.png";
+import { QuercusShield } from "@/components/QuercusShield";
 
 export function SecuritySection() {
   const parallax = useParallax(14);
@@ -16,17 +16,7 @@ export function SecuritySection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Shield with parallax */}
             <div className="flex justify-center md:justify-end order-2 md:order-1">
-              <div ref={parallax.ref} style={parallax.style} className="relative">
-                <div className="absolute inset-0 bg-primary/10 blur-3xl scale-75" />
-                <img
-                  src={shieldImg}
-                  alt="Bouclier Quercus — sécurité des fonds"
-                  className="relative w-64 md:w-80 h-auto drop-shadow-2xl"
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                />
-              </div>
+              <QuercusShield size={240} />
             </div>
 
             {/* Text */}
