@@ -60,7 +60,7 @@ export function LandingFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="h-9 w-9 flex items-center justify-center border border-primair-foreground/30 hover:bg-primary-foreground/10 transition-colors"
+                className="h-9 w-9 flex items-center justify-center border border-primary-foreground/30 hover:bg-primary-foreground/10 transition-colors"
               >
                 <Linkedin className="h-4 w-4" />
               </a>
