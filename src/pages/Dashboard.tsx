@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Plus, Loader2 } from "lucide-react";
+import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Plus, Loader2, Pencil, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -22,7 +22,7 @@ import { Label } from "@/components/ui/label";
 import { DepositModal } from "@/components/DepositModal";
 import { ProductCard } from "@/components/ProductCard";
 import { useUserSubscriptions } from "@/hooks/useProducts";
-import { useAccounts, useCreateAccount } from "@/hooks/useAccounts";
+import { useAccounts, useCreateAccount, useRenameAccount, useDeleteAccount } from "@/hooks/useAccounts";
 import { toast } from "sonner";
 
 export default function Dashboard() {
