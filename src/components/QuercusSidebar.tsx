@@ -184,14 +184,20 @@ export function QuercusSidebar() {
       </SidebarContent>
 
       {/* Footer: user card + settings dropdown + logout */}
-      <SidebarFooter className="px-2 pb-3 space-y-1">
+      <SidebarFooter className={collapsed ? "px-2 pb-3 space-y-1.5" : "px-2 pb-3 space-y-1"}>
         {/* User card */}
-        {!collapsed && (
+        {!collapsed ? (
           <div className="flex items-center gap-2.5 px-2 py-2 bg-sidebar-accent/40 rounded-sm">
             <div className="h-8 w-8 rounded-sm bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground text-xs font-semibold flex-shrink-0">
               {initials}
             </div>
             <p className="text-xs text-sidebar-foreground truncate">{user?.email}</p>
+          </div>
+        ) : (
+          <div className="flex justify-center pb-1">
+            <div className="h-8 w-8 rounded-sm bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground text-xs font-semibold">
+              {initials}
+            </div>
           </div>
         )}
 
