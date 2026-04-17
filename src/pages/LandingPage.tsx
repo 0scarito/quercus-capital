@@ -47,9 +47,7 @@ export default function LandingPage() {
           </div>
         </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
-        <ScrollReveal>
-          <UseCases />
-        </ScrollReveal>
+        <UseCases />
         <LandingFooter />
       </div>
     </div>
