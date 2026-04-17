@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import quercusLogo from "@/assets/quercus-logo.jpg";
+import { segments } from "@/components/solutions/segmentData";
 
 const productItems = [
   { name: "Velvet", subtitle: "Smart Cash · UCITS", yield: "€STR + 0,30%", link: "/products/velvet", color: "hsl(173 50% 19%)" },
