@@ -1,22 +1,15 @@
 import { Link } from "react-router-dom";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
-import { Rocket, Building2, Users, Briefcase, Cpu, User, Landmark, Bitcoin, ArrowRight } from "lucide-react";
-
-const cases = [
-  { slug: "startups", label: "Start-ups", icon: Rocket, desc: "Capital VC déployé, liquidité immédiate." },
-  { slug: "pme", label: "PME", icon: Building2, desc: "Réserves saisonnières, rendement compétitif." },
-  { slug: "holdings", label: "Holdings", icon: Landmark, desc: "Family offices, gestion institutionnelle." },
-  { slug: "fintechs", label: "Fintechs", icon: Cpu, desc: "Intégration API-first, marque blanche." },
-  { slug: "freelances", label: "Freelances", icon: Briefcase, desc: "Trésorerie individuelle optimisée." },
-  { slug: "particuliers", label: "Particuliers", icon: User, desc: "Épargne courante rémunérée quotidiennement." },
-  { slug: "sci", label: "SCI", icon: Users, desc: "Gestion patrimoniale et locative." },
-  { slug: "crypto", label: "Crypto natives", icon: Bitcoin, desc: "Trésorerie stablecoin et fiat hybride." },
-];
+import { ArrowUpRight } from "lucide-react";
+import { segments, segmentImages } from "@/components/solutions/segmentData";
 
 export function UseCases() {
+  // Duplicate for seamless marquee loop
+  const loop = [...segments, ...segments];
+
   return (
-    <section className="py-20 md:py-24 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 md:py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
         <ScrollReveal>
           <div className="text-center mb-14">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif">
@@ -28,27 +21,29 @@ export function UseCases() {
             </p>
           </div>
         </ScrollReveal>
+      </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border/60 border border-border/60">
-          {cases.map((c, i) => (
-            <ScrollReveal key={c.slug} delay={i * 50}>
-              <Link
-                to={`/solutions/${c.slug}`}
-                className="group bg-background hover:bg-card transition-all duration-300 p-6 md:p-8 flex flex-col h-full min-h-[180px] relative overflow-hidden"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <c.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
-                  <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                </div>
-                <h3 className="text-xl md:text-2xl font-serif font-semibold mb-2">
-                  <em>{c.label}</em>
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mt-auto">
-                  {c.desc}
-                </p>
-                <div className="absolute bottom-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" />
-              </Link>
-            </ScrollReveal>
+      {/* Horizontal scrolling marquee */}
+      <div className="relative group">
+        <div className="flex gap-5 animate-marquee-slow whitespace-nowrap group-hover:[animation-play-state:paused]">
+          {loop.map((s, i) => (
+            <Link
+              key={`${s.slug}-${i}`}
+              to={`/solutions/${s.slug}`}
+              className="relative shrink-0 w-[280px] md:w-[340px] aspect-[4/5] overflow-hidden group/card"
+            >
+              <img
+                src={segmentImages[s.slug]}
+                alt={s.name}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover/card:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1.5 flex items-center gap-2">
+                <span className="text-sm font-medium text-foreground">{s.name}</span>
+                <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+              </div>
+            </Link>
           ))}
         </div>
       </div>

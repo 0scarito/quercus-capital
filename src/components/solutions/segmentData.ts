@@ -1,4 +1,23 @@
 import { Building2, Landmark, Bitcoin, User, Factory, Cpu, Home, Users, LucideIcon } from "lucide-react";
+import startupsImg from "@/assets/segments/startups.jpg";
+import pmeImg from "@/assets/segments/pme.jpg";
+import holdingsImg from "@/assets/segments/holdings.jpg";
+import fintechsImg from "@/assets/segments/fintechs.jpg";
+import freelancesImg from "@/assets/segments/freelances.jpg";
+import cryptoImg from "@/assets/segments/crypto.jpg";
+import sciImg from "@/assets/segments/sci.jpg";
+import particuliersImg from "@/assets/segments/particuliers.jpg";
+
+export const segmentImages: Record<string, string> = {
+  startups: startupsImg,
+  pme: pmeImg,
+  holdings: holdingsImg,
+  fintechs: fintechsImg,
+  freelances: freelancesImg,
+  crypto: cryptoImg,
+  sci: sciImg,
+  particuliers: particuliersImg,
+};
 
 export interface SegmentInfo {
   slug: string;
@@ -9,6 +28,7 @@ export interface SegmentInfo {
   yields: string;
   yieldEUR?: string;
   yieldUSD?: string;
+  image?: string;
 }
 
 export const segments: SegmentInfo[] = [
