@@ -1,48 +1,24 @@
 import { useState } from "react";
-import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Plus, Loader2, Pencil, Trash2 } from "lucide-react";
+import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { DepositModal } from "@/components/DepositModal";
 import { ProductCard } from "@/components/ProductCard";
+import { AccountSwitcherPopover } from "@/components/AccountSwitcherPopover";
 import { useUserSubscriptions } from "@/hooks/useProducts";
-import { useAccounts, useCreateAccount, useRenameAccount, useDeleteAccount } from "@/hooks/useAccounts";
-import { toast } from "sonner";
+import { useAccounts } from "@/hooks/useAccounts";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [depositOpen, setDepositOpen] = useState(false);
-  const [newAccountOpen, setNewAccountOpen] = useState(false);
-  const [newAccountName, setNewAccountName] = useState("");
-  const [renameOpen, setRenameOpen] = useState(false);
-  const [renameValue, setRenameValue] = useState("");
 
   const { data: subscriptions, isLoading } = useUserSubscriptions();
   const { data: accounts } = useAccounts();
-  const createAccount = useCreateAccount();
-  const renameAccount = useRenameAccount();
-  const deleteAccount = useDeleteAccount();
 
   const [activeAccountId, setActiveAccountId] = useState<string | null>(null);
   const primary = accounts?.find((a) => a.is_primary);
   const currentAccountId = activeAccountId ?? primary?.id ?? null;
-  const currentAccount = accounts?.find((a) => a.id === currentAccountId);
 
   // Filter subscriptions by current account
   const accountSubs = subscriptions?.filter((s) => s.account_id === currentAccountId) ?? [];
