@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AppLayout } from "@/components/AppLayout";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import LandingPage from "@/pages/LandingPage";
 import ProductsPage from "@/pages/ProductsPage";
 import VelvetPage from "@/pages/VelvetPage";
@@ -36,6 +37,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/products" element={<ProductsPage />} />

@@ -18,7 +18,7 @@ export default function SolutionDetailPage() {
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <FloatingBlobs />
-      <LandingNav />
+      <LandingNav variant="solutions" currentSlug={data.slug} />
       <div className="pt-16 relative z-10">
         <SegmentHero current={data} />
         <ComparisonTable segment={data} />
