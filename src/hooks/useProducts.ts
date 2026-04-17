@@ -16,6 +16,7 @@ export interface Product {
 export interface UserSubscription {
   id: string;
   product_id: string;
+  account_id: string;
   amount: number;
   status: string;
   subscribed_at: string;
@@ -45,7 +46,7 @@ export function useUserSubscriptions() {
     queryFn: async (): Promise<UserSubscription[]> => {
       const { data, error } = await supabase
         .from("user_subscriptions")
-        .select("id, product_id, amount, status, subscribed_at, product:products(*)")
+        .select("id, product_id, account_id, amount, status, subscribed_at, product:products(*)")
         .eq("user_id", user!.id);
       if (error) throw error;
       return (data ?? []) as unknown as UserSubscription[];

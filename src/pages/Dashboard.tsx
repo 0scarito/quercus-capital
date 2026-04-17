@@ -1,128 +1,183 @@
 import { useState } from "react";
-import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, Loader2 } from "lucide-react";
+import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Plus, Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { DepositModal } from "@/components/DepositModal";
-import { useUserSubscriptions, useProducts } from "@/hooks/useProducts";
+import { ProductCard } from "@/components/ProductCard";
+import { useUserSubscriptions } from "@/hooks/useProducts";
+import { useAccounts, useCreateAccount } from "@/hooks/useAccounts";
+import { toast } from "sonner";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [depositOpen, setDepositOpen] = useState(false);
+  const [newAccountOpen, setNewAccountOpen] = useState(false);
+  const [newAccountName, setNewAccountName] = useState("");
+
   const { data: subscriptions, isLoading } = useUserSubscriptions();
-  const { data: products } = useProducts();
+  const { data: accounts } = useAccounts();
+  const createAccount = useCreateAccount();
 
-  // Aggregate balance in EUR (simple sum, no FX conversion for now)
-  const totalEur = subscriptions
-    ?.filter((s) => s.product?.currency === "EUR")
-    .reduce((acc, s) => acc + Number(s.amount), 0) ?? 0;
+  const [activeAccountId, setActiveAccountId] = useState<string | null>(null);
+  const primary = accounts?.find((a) => a.is_primary);
+  const currentAccountId = activeAccountId ?? primary?.id ?? null;
+  const currentAccount = accounts?.find((a) => a.id === currentAccountId);
 
-  // Weighted average yield
-  const totalAmount = subscriptions?.reduce((acc, s) => acc + Number(s.amount), 0) ?? 0;
+  // Filter subscriptions by current account
+  const accountSubs = subscriptions?.filter((s) => s.account_id === currentAccountId) ?? [];
+
+  const totalEur = accountSubs
+    .filter((s) => s.product?.currency === "EUR")
+    .reduce((acc, s) => acc + Number(s.amount), 0);
+
+  const totalAmount = accountSubs.reduce((acc, s) => acc + Number(s.amount), 0);
   const weightedYield = totalAmount > 0
-    ? (subscriptions?.reduce((acc, s) => acc + Number(s.amount) * Number(s.product?.yield_rate ?? 0), 0) ?? 0) / totalAmount
+    ? accountSubs.reduce((acc, s) => acc + Number(s.amount) * Number(s.product?.yield_rate ?? 0), 0) / totalAmount
     : 0;
 
-  const activeCount = subscriptions?.length ?? 0;
-  const totalProducts = products?.length ?? 0;
+  const totalInterest = accountSubs.reduce((acc, s) => {
+    const days = (Date.now() - new Date(s.subscribed_at).getTime()) / (1000 * 60 * 60 * 24);
+    return acc + (Number(s.amount) * Number(s.product?.yield_rate ?? 0) / 100) * days / 365;
+  }, 0);
+
+  const handleCreateAccount = async () => {
+    if (!newAccountName.trim()) return;
+    try {
+      const acc = await createAccount.mutateAsync(newAccountName.trim());
+      setActiveAccountId(acc.id);
+      setNewAccountOpen(false);
+      setNewAccountName("");
+      toast.success("Compte créé");
+    } catch (e: any) {
+      toast.error(e.message);
+    }
+  };
 
   return (
-    <div className="p-8 max-w-4xl mx-auto animate-fade-in space-y-8">
-      {/* Balance */}
-      <div>
-        <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">Solde total</p>
-        <div className="flex items-baseline gap-6">
-          <h1 className="text-5xl font-serif font-semibold tracking-tight">
-            {isLoading ? "—" : totalEur.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} EUR
-          </h1>
-          <div className="flex items-center gap-1.5 text-success">
-            <TrendingUp className="h-4 w-4" />
-            <span className="text-lg font-medium">{weightedYield.toFixed(2)}%</span>
-            <span className="text-xs text-muted-foreground">rendement moyen</span>
+    <div className="p-8 max-w-5xl mx-auto animate-fade-in space-y-8">
+      {/* Top row: account switcher + actions */}
+      <div className="flex items-start justify-between gap-4 flex-wrap">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="gap-2 font-serif text-base">
+              <em>{currentAccount?.name ?? "Compte principal"}</em>
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-56">
+            {accounts?.map((a) => (
+              <DropdownMenuItem key={a.id} onClick={() => setActiveAccountId(a.id)}>
+                {a.name}{a.is_primary && " (principal)"}
+              </DropdownMenuItem>
+            ))}
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => setNewAccountOpen(true)}>
+              <Plus className="mr-2 h-4 w-4" /> Nouveau compte
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <div className="flex gap-2">
+          <Button variant="outline" size="default">
+            <ArrowUpFromLine className="mr-2 h-4 w-4" /> Retirer
+          </Button>
+          <Button onClick={() => setDepositOpen(true)}>
+            <ArrowDownToLine className="mr-2 h-4 w-4" /> Déposer
+          </Button>
+        </div>
+      </div>
+
+      {/* Balance card */}
+      <div className="border rounded-sm p-6 bg-card">
+        <div className="flex items-start justify-between gap-6 flex-wrap">
+          <div>
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Solde total</p>
+            <h1 className="text-4xl font-serif font-semibold tracking-tight">
+              {isLoading ? "—" : totalEur.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              {" "}<span className="text-primary">EUR</span>
+            </h1>
+            <div className="flex items-center gap-1.5 text-success mt-2">
+              <TrendingUp className="h-3.5 w-3.5" />
+              <span className="text-sm font-medium font-mono">{weightedYield.toFixed(2)} %</span>
+              <span className="text-xs text-muted-foreground">rendement moyen</span>
+            </div>
+          </div>
+          <div className="text-right">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Intérêts générés</p>
+            <p className="text-2xl font-serif font-semibold text-success">
+              {totalInterest.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} EUR
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="flex gap-4">
-        <Button size="lg" className="px-8" onClick={() => setDepositOpen(true)}>
-          <ArrowDownToLine className="mr-2 h-4 w-4" /> Déposer
-        </Button>
-        <Button size="lg" variant="outline" className="px-8">
-          <ArrowUpFromLine className="mr-2 h-4 w-4" /> Retirer
-        </Button>
-      </div>
-
       <Separator />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs uppercase tracking-wider text-muted-foreground font-sans font-medium">
-              Intérêts générés
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-serif font-semibold">0,00 EUR</p>
-            <p className="text-xs text-muted-foreground mt-1">Depuis l'ouverture</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs uppercase tracking-wider text-muted-foreground font-sans font-medium">
-              Produits actifs
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-serif font-semibold">{activeCount}</p>
-            <p className="text-xs text-muted-foreground mt-1">Sur {totalProducts} disponibles</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs uppercase tracking-wider text-muted-foreground font-sans font-medium">
-              Prochaine échéance
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-serif font-semibold">—</p>
-            <p className="text-xs text-muted-foreground mt-1">Cutoff 12h25 CET</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* My products */}
+      {/* Products carousel */}
       <div>
-        <h2 className="font-serif text-lg mb-4"><em>Mes produits</em></h2>
-        <div className="border rounded-sm">
-          {isLoading ? (
-            <div className="p-8 flex justify-center">
-              <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-            </div>
-          ) : !subscriptions?.length ? (
-            <div className="p-8 text-center text-muted-foreground text-sm">
-              Aucun produit souscrit. Rendez-vous dans <em>Produits</em> pour commencer.
-            </div>
-          ) : (
-            <div className="divide-y">
-              {subscriptions.map((s) => (
-                <div key={s.id} className="flex items-center justify-between p-4">
-                  <div>
-                    <p className="font-medium text-sm">{s.product?.name}</p>
-                    <p className="text-xs text-muted-foreground">{s.product?.product_type}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-mono font-medium">
-                      {Number(s.amount).toLocaleString("fr-FR", { minimumFractionDigits: 2 })} {s.product?.currency}
-                    </p>
-                    <p className="text-xs text-success">{Number(s.product?.yield_rate).toFixed(2)}%</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="font-serif text-lg"><em>Produits</em></h2>
+          <span className="text-xs text-muted-foreground">{accountSubs.length} actif{accountSubs.length > 1 ? "s" : ""}</span>
         </div>
+
+        {isLoading ? (
+          <div className="p-12 flex justify-center"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div>
+        ) : (
+          <div className="flex gap-4 overflow-x-auto pb-2 -mx-1 px-1 snap-x snap-mandatory">
+            {accountSubs.map((s) => (
+              <div key={s.id} className="snap-start">
+                <ProductCard subscription={s} onClick={() => navigate("/produits")} />
+              </div>
+            ))}
+            <div className="snap-start">
+              <ProductCard variant="add" onClick={() => navigate("/produits")} />
+            </div>
+          </div>
+        )}
       </div>
 
-      <DepositModal open={depositOpen} onOpenChange={setDepositOpen} />
+      <DepositModal open={depositOpen} onOpenChange={setDepositOpen} presetAccountId={currentAccountId ?? undefined} />
+
+      {/* New account dialog */}
+      <Dialog open={newAccountOpen} onOpenChange={setNewAccountOpen}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="font-serif"><em>Nouveau compte</em></DialogTitle>
+          </DialogHeader>
+          <div className="space-y-2">
+            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Nom du compte</Label>
+            <Input
+              placeholder="Ex: Trésorerie"
+              value={newAccountName}
+              onChange={(e) => setNewAccountName(e.target.value)}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setNewAccountOpen(false)}>Annuler</Button>
+            <Button onClick={handleCreateAccount} disabled={createAccount.isPending}>
+              {createAccount.isPending && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
+              Créer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
