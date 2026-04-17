@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { segments, segmentImages } from "@/components/solutions/segmentData";
 
 export function UseCases() {
-  // Duplicate for seamless marquee loop
+  // Duplicate for seamless marquee loop (translateX(-50%) loops perfectly)
   const loop = [...segments, ...segments];
 
   return (
@@ -24,8 +24,12 @@ export function UseCases() {
       </div>
 
       {/* Horizontal scrolling marquee */}
-      <div className="relative group">
-        <div className="flex gap-5 animate-marquee-slow whitespace-nowrap group-hover:[animation-play-state:paused]">
+      <div className="relative group overflow-hidden">
+        {/* Edge fades */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-background to-transparent" />
+
+        <div className="flex gap-6 w-max animate-marquee-slow group-hover:[animation-play-state:paused]">
           {loop.map((s, i) => (
             <Link
               key={`${s.slug}-${i}`}
@@ -38,10 +42,13 @@ export function UseCases() {
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover/card:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1.5 flex items-center gap-2">
                 <span className="text-sm font-medium text-foreground">{s.name}</span>
                 <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <p className="text-xs font-mono opacity-90">{s.yields}</p>
               </div>
             </Link>
           ))}
