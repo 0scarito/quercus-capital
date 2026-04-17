@@ -3,7 +3,7 @@ import { LandingFooter } from "@/components/landing/LandingFooter";
 import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GlassCard } from "@/components/landing/GlassCard";
-import { CountUp } from "@/components/landing/CountUp";
+import { SpecsTable } from "@/components/landing/SpecsTable";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -408,7 +408,7 @@ export default function TobamPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <h2 className="text-4xl md:text-5xl font-serif">
@@ -428,6 +428,14 @@ export default function TobamPage() {
             </div>
           </ScrollReveal>
         </section>
+
+        {/* Spécifications produit — fin de page */}
+        <SpecsTable
+          title="Spécifications TOBAM"
+          subtitle="Récapitulatif technique du fonds pour la due diligence."
+          columns={[{ key: "value", label: "Détail" }]}
+          specs={characteristics.map((c) => ({ label: c.field, value: c.value }))}
+        />
 
         <LandingFooter />
       </div>
