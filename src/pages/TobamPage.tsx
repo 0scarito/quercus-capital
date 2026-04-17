@@ -135,7 +135,7 @@ export default function TobamPage() {
         </section>
 
         {/* What is Cash & Carry */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
@@ -183,7 +183,7 @@ export default function TobamPage() {
         </section>
 
         {/* Why crypto */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -209,7 +209,7 @@ export default function TobamPage() {
         </section>
 
         {/* Strategy details */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -238,7 +238,7 @@ export default function TobamPage() {
         </section>
 
         {/* Backtest performance */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
@@ -276,7 +276,7 @@ export default function TobamPage() {
         </section>
 
         {/* Share classes */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -311,7 +311,7 @@ export default function TobamPage() {
         </section>
 
         {/* Product characteristics */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -340,7 +340,7 @@ export default function TobamPage() {
         </section>
 
         {/* Partners */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -383,7 +383,7 @@ export default function TobamPage() {
         </section>
 
         {/* FAQ */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -408,7 +408,7 @@ export default function TobamPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 md:py-24 px-4 md:px-8">
+        <section className="py-20 md:py-20 md:py-24 px-4 md:px-8">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <h2 className="text-4xl md:text-5xl font-serif">

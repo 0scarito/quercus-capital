@@ -176,7 +176,7 @@ export default function VelvetPage() {
         </section>
 
         {/* How it works */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
@@ -224,7 +224,7 @@ export default function VelvetPage() {
         </section>
 
         {/* Collateral */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
@@ -252,7 +252,7 @@ export default function VelvetPage() {
         </section>
 
         {/* Live stats */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -281,7 +281,7 @@ export default function VelvetPage() {
         </section>
 
         {/* Performance */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -312,7 +312,7 @@ export default function VelvetPage() {
         </section>
 
         {/* Product characteristics */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -343,7 +343,7 @@ export default function VelvetPage() {
         </section>
 
         {/* Partners */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -381,7 +381,7 @@ export default function VelvetPage() {
         </section>
 
         {/* Security pillars */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -419,7 +419,7 @@ export default function VelvetPage() {
         </section>
 
         {/* FAQ */}
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-20 md:py-24 px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -444,7 +444,7 @@ export default function VelvetPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 md:py-24 px-4 md:px-8">
+        <section className="py-20 md:py-20 md:py-24 px-4 md:px-8">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <h2 className="text-4xl md:text-5xl font-serif">
