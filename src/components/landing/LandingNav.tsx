@@ -21,7 +21,12 @@ const solutionItems = [
   { name: "Particuliers", slug: "particuliers" },
 ];
 
-export function LandingNav() {
+interface LandingNavProps {
+  variant?: "default" | "solutions";
+  currentSlug?: string;
+}
+
+export function LandingNav({ variant = "default", currentSlug }: LandingNavProps = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
@@ -42,33 +47,45 @@ export function LandingNav() {
       }}
       onMouseLeave={() => setActiveMenu(null)}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={quercusLogo} alt="Quercus" className="h-8 w-auto" />
-          <span className="text-lg font-serif tracking-widest">QUERCUS</span>
+      <div className="px-6 md:px-10 h-16 flex items-center justify-between gap-4">
+        <Link to="/" className="flex items-center gap-3 shrink-0">
+          <img src={quercusLogo} alt="Quercus" className="h-11 w-auto" />
+          <span className="text-xl font-serif tracking-widest">QUERCUS</span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
-          <div
-            className="relative"
-            onMouseEnter={() => setActiveMenu("products")}
-          >
-            <Link to="/products" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
-              Produits
-            </Link>
+        {variant === "solutions" ? (
+          <div className="hidden md:flex items-center gap-1.5 flex-1 justify-center overflow-x-auto">
+            {segments.map((s) => (
+              <Link
+                key={s.slug}
+                to={`/solutions/${s.slug}`}
+                className={`px-4 py-1.5 text-xs font-medium tracking-wide transition-all duration-300 border whitespace-nowrap ${
+                  s.slug === currentSlug
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-white/40 backdrop-blur-sm text-muted-foreground border-white/30 hover:bg-white/60 hover:text-foreground"
+                }`}
+              >
+                {s.name}
+              </Link>
+            ))}
           </div>
-          <div
-            className="relative"
-            onMouseEnter={() => setActiveMenu("solutions")}
-          >
-            <Link to="/solutions" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
-              Solutions
-            </Link>
+        ) : (
+          <div className="hidden md:flex items-center gap-8">
+            <div className="relative" onMouseEnter={() => setActiveMenu("products")}>
+              <Link to="/products" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
+                Produits
+              </Link>
+            </div>
+            <div className="relative" onMouseEnter={() => setActiveMenu("solutions")}>
+              <Link to="/solutions" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
+                Solutions
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <Button variant="ghost" size="sm" className="btn-glow" asChild>
             <Link to="/signin">Se connecter</Link>
           </Button>
