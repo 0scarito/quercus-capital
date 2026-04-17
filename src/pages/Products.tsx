@@ -73,7 +73,8 @@ export default function Products() {
         });
     setSubmitting(false);
     if (error) {
-      toast.error("Erreur : " + error.message);
+      console.error("Subscription error:", error);
+      toast.error("Une erreur est survenue. Veuillez réessayer.");
       return;
     }
     toast.success(`${selected.name} souscrit avec succès`);

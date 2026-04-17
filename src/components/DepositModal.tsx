@@ -94,7 +94,8 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
       .single();
     setSubmitting(false);
     if (error) {
-      toast.error("Erreur : " + error.message);
+      console.error("Deposit intent error:", error);
+      toast.error("Une erreur est survenue. Veuillez réessayer.");
       return;
     }
     setReference(data.reference);
