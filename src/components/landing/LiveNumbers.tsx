@@ -24,22 +24,28 @@ export function LiveNumbers() {
         <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
           <em>Transparence en temps réel</em>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <GlassCard className="p-10 text-center space-y-2">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          <GlassCard className="p-8 md:p-10 text-center space-y-2">
             <p className="text-xs uppercase tracking-widest text-muted-foreground">Actifs sous gestion</p>
-            <p className="text-4xl font-serif font-semibold">
+            <p className="text-3xl md:text-4xl font-serif font-semibold">
               €<CountUp end={424} suffix=" M" />
             </p>
           </GlassCard>
-          <GlassCard className="p-10 text-center space-y-2">
+          <GlassCard className="p-8 md:p-10 text-center space-y-2">
             <p className="text-xs uppercase tracking-widest text-muted-foreground">Intérêts générés</p>
-            <p className="text-4xl font-serif font-semibold">
+            <p className="text-3xl md:text-4xl font-serif font-semibold">
               €<CountUp end={47.2} decimals={1} suffix=" M" />
             </p>
           </GlassCard>
-          <GlassCard className="p-10 text-center space-y-2">
+          <GlassCard className="p-8 md:p-10 text-center space-y-2">
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">Investisseurs actifs</p>
+            <p className="text-3xl md:text-4xl font-serif font-semibold">
+              <CountUp end={1280} suffix="+" />
+            </p>
+          </GlassCard>
+          <GlassCard className="p-8 md:p-10 text-center space-y-2">
             <p className="text-xs uppercase tracking-widest text-muted-foreground">Prochain versement</p>
-            <p className="text-4xl font-serif font-semibold font-mono tracking-wider">{hh}:{mm}:{ss}</p>
+            <p className="text-3xl md:text-4xl font-serif font-semibold font-mono tracking-wider">{hh}:{mm}:{ss}</p>
           </GlassCard>
         </div>
       </div>
