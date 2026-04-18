@@ -1,5 +1,5 @@
 import { LandingNav } from "@/components/landing/LandingNav";
-import { AnnouncementBanner } from "@/components/landing/AnnouncementBanner";
+import { AnnouncementBanner, useAnnouncementVisible } from "@/components/landing/AnnouncementBanner";
 import { TrustBadgeStrip } from "@/components/landing/TrustBadgeStrip";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { DashboardPreview } from "@/components/landing/DashboardPreview";
@@ -17,12 +17,13 @@ import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { Separator } from "@/components/ui/separator";
 
 export default function LandingPage() {
+  const bannerVisible = useAnnouncementVisible();
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <FloatingBlobs />
       <AnnouncementBanner />
       <LandingNav />
-      <div className="pt-16 relative z-10">
+      <div style={{ paddingTop: bannerVisible ? "100px" : "64px" }} className="transition-[padding] duration-500 relative z-10">
         <ScrollReveal>
           <HeroSection />
         </ScrollReveal>
