@@ -407,6 +407,69 @@ export default function TobamPage() {
           </div>
         </section>
 
+        {/* Security architecture + Risk + AMF */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto space-y-10">
+            <ScrollReveal>
+              <h2 className="text-4xl md:text-5xl font-serif text-center mb-4">
+                <em>Architecture de sécurité</em>
+              </h2>
+              <p className="text-center text-muted-foreground max-w-2xl mx-auto text-lg">
+                Cinq acteurs régulés, séparés et indépendants — vos actifs ne sont jamais au bilan de TOBAM ni de Quercus.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <SecurityArchitecture />
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ScrollReveal>
+                <GlassCard className="p-8 h-full">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Indicateur de risque</p>
+                  <RiskScale
+                    level={2}
+                    label="Stratégie non-directionnelle. Volatilité hebdomadaire ~5 %, max drawdown trimestriel 0 % sur le backtest 2019–2024."
+                  />
+                </GlassCard>
+              </ScrollReveal>
+
+              <ScrollReveal>
+                <GlassCard className="p-8 h-full flex flex-col">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Régulation & vérification</p>
+                  <ul className="space-y-3 text-sm flex-1">
+                    <li className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Structure</span>
+                      <span className="font-mono">FIA · FPS</span>
+                    </li>
+                    <li className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Gérant</span>
+                      <span className="font-mono">TOBAM · GP 06 000019</span>
+                    </li>
+                    <li className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Dépositaire</span>
+                      <span className="font-mono">CACEIS · PSAN AMF</span>
+                    </li>
+                    <li className="flex justify-between pb-2">
+                      <span className="text-muted-foreground">Auditeur</span>
+                      <span className="font-mono">PwC · annuel</span>
+                    </li>
+                  </ul>
+                  <a
+                    href="https://www.amf-france.org/fr/recherche-acteur"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                  >
+                    Vérifier l'agrément AMF
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </GlassCard>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
         {/* Partners */}
         <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
