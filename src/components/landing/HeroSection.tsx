@@ -9,8 +9,7 @@ export function HeroSection() {
           <em>La quête de l'excellence<br />en gestion de trésorerie.</em>
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Générez du rendement quotidien sur votre trésorerie d'entreprise avec une sécurité institutionnelle.
-          Vos fonds, détenus par BNP Paribas, ne sont jamais à notre bilan.
+          Pour <strong className="text-foreground font-medium">holdings, PME et family offices</strong> : accédez aux meilleures stratégies monétaires et de rendement, jusqu'ici réservées aux institutionnels. Liquidité quotidienne, sécurité bancaire.
         </p>
         <div className="flex flex-col items-center gap-2">
           <div className="flex items-center gap-6 text-lg font-mono">
@@ -18,7 +17,9 @@ export function HeroSection() {
             <span className="text-muted-foreground">·</span>
             <span className="text-success font-semibold">TOBAM : ~7–8% p.a.</span>
           </div>
-          <p className="text-xs text-muted-foreground">Rendements nets de frais · Liquidité quotidienne</p>
+          <p className="text-xs text-muted-foreground">
+            Rendements nets de frais, payés par contrepartie bancaire · au {new Date().toLocaleDateString("fr-FR", { day: "2-digit", month: "long", year: "numeric" })}
+          </p>
         </div>
         <div className="flex items-center justify-center gap-4 pt-4">
           <Button size="lg" className="px-10 text-base btn-glow" asChild>
