@@ -7,7 +7,10 @@ import { GlassCard } from "@/components/landing/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, ArrowDownUp, Lock, Leaf } from "lucide-react";
+import { TrendingUp, ArrowDownUp, Lock, Leaf, ExternalLink } from "lucide-react";
+import { RiskScale } from "@/components/landing/RiskScale";
+import { CMEPremiumChart } from "@/components/landing/CMEPremiumChart";
+import { SecurityArchitecture } from "@/components/landing/SecurityArchitecture";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -208,6 +211,71 @@ export default function TobamPage() {
           </div>
         </section>
 
+        {/* Worked example + CME chart */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto space-y-10">
+            <ScrollReveal>
+              <h2 className="text-4xl md:text-5xl font-serif text-center mb-4">
+                <em>Le basis trade en chiffres</em>
+              </h2>
+              <p className="text-center text-muted-foreground max-w-2xl mx-auto text-lg">
+                Un exemple concret + 5 ans de prime CME observée.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ScrollReveal>
+                <GlassCard className="p-8 h-full space-y-5">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground">Exemple à 1 mois</p>
+                  <h3 className="text-2xl font-serif">
+                    <em>Bitcoin spot vs futures CME</em>
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">BTC spot (long ETF)</span>
+                      <span className="font-mono">$ 109 042</span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">BTC futures CME (short, 1 mois)</span>
+                      <span className="font-mono">$ 109 920</span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Spread capturé</span>
+                      <span className="font-mono text-success">+ $ 878</span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Rendement mensuel</span>
+                      <span className="font-mono text-success">≈ 0,80 %</span>
+                    </div>
+                    <div className="flex justify-between pt-2">
+                      <span className="font-semibold">Annualisé (composé)</span>
+                      <span className="font-mono text-success font-semibold">≈ 10,0 %</span>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground pt-2 border-t border-white/30">
+                    Position non-directionnelle. Si BTC monte ou baisse, les deux jambes bougent ensemble — seul le spread est capté.
+                  </p>
+                </GlassCard>
+              </ScrollReveal>
+
+              <ScrollReveal>
+                <GlassCard className="p-6 md:p-8 h-full flex flex-col">
+                  <div className="flex items-baseline justify-between mb-3">
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                      Prime CME futures BTC · 5 ans
+                    </p>
+                    <p className="text-[11px] text-muted-foreground">Annualisée, mensuelle</p>
+                  </div>
+                  <CMEPremiumChart />
+                  <p className="text-[11px] text-muted-foreground mt-3 leading-relaxed">
+                    Moyenne sur 5 ans : ~8 % p.a. — la prime est restée au-dessus de 3 % pendant 76 % du temps.
+                  </p>
+                </GlassCard>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
         {/* Strategy details */}
         <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
@@ -336,6 +404,69 @@ export default function TobamPage() {
                 </Table>
               </GlassCard>
             </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Security architecture + Risk + AMF */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto space-y-10">
+            <ScrollReveal>
+              <h2 className="text-4xl md:text-5xl font-serif text-center mb-4">
+                <em>Architecture de sécurité</em>
+              </h2>
+              <p className="text-center text-muted-foreground max-w-2xl mx-auto text-lg">
+                Cinq acteurs régulés, séparés et indépendants — vos actifs ne sont jamais au bilan de TOBAM ni de Quercus.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <SecurityArchitecture />
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ScrollReveal>
+                <GlassCard className="p-8 h-full">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Indicateur de risque</p>
+                  <RiskScale
+                    level={2}
+                    label="Stratégie non-directionnelle. Volatilité hebdomadaire ~5 %, max drawdown trimestriel 0 % sur le backtest 2019–2024."
+                  />
+                </GlassCard>
+              </ScrollReveal>
+
+              <ScrollReveal>
+                <GlassCard className="p-8 h-full flex flex-col">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Régulation & vérification</p>
+                  <ul className="space-y-3 text-sm flex-1">
+                    <li className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Structure</span>
+                      <span className="font-mono">FIA · FPS</span>
+                    </li>
+                    <li className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Gérant</span>
+                      <span className="font-mono">TOBAM · GP 06 000019</span>
+                    </li>
+                    <li className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Dépositaire</span>
+                      <span className="font-mono">CACEIS · PSAN AMF</span>
+                    </li>
+                    <li className="flex justify-between pb-2">
+                      <span className="text-muted-foreground">Auditeur</span>
+                      <span className="font-mono">PwC · annuel</span>
+                    </li>
+                  </ul>
+                  <a
+                    href="https://www.amf-france.org/fr/recherche-acteur"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                  >
+                    Vérifier l'agrément AMF
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </GlassCard>
+              </ScrollReveal>
+            </div>
           </div>
         </section>
 
