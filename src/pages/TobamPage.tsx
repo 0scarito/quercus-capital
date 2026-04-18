@@ -211,6 +211,71 @@ export default function TobamPage() {
           </div>
         </section>
 
+        {/* Worked example + CME chart */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto space-y-10">
+            <ScrollReveal>
+              <h2 className="text-4xl md:text-5xl font-serif text-center mb-4">
+                <em>Le basis trade en chiffres</em>
+              </h2>
+              <p className="text-center text-muted-foreground max-w-2xl mx-auto text-lg">
+                Un exemple concret + 5 ans de prime CME observée.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ScrollReveal>
+                <GlassCard className="p-8 h-full space-y-5">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground">Exemple à 1 mois</p>
+                  <h3 className="text-2xl font-serif">
+                    <em>Bitcoin spot vs futures CME</em>
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">BTC spot (long ETF)</span>
+                      <span className="font-mono">$ 109 042</span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">BTC futures CME (short, 1 mois)</span>
+                      <span className="font-mono">$ 109 920</span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Spread capturé</span>
+                      <span className="font-mono text-success">+ $ 878</span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Rendement mensuel</span>
+                      <span className="font-mono text-success">≈ 0,80 %</span>
+                    </div>
+                    <div className="flex justify-between pt-2">
+                      <span className="font-semibold">Annualisé (composé)</span>
+                      <span className="font-mono text-success font-semibold">≈ 10,0 %</span>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground pt-2 border-t border-white/30">
+                    Position non-directionnelle. Si BTC monte ou baisse, les deux jambes bougent ensemble — seul le spread est capté.
+                  </p>
+                </GlassCard>
+              </ScrollReveal>
+
+              <ScrollReveal>
+                <GlassCard className="p-6 md:p-8 h-full flex flex-col">
+                  <div className="flex items-baseline justify-between mb-3">
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                      Prime CME futures BTC · 5 ans
+                    </p>
+                    <p className="text-[11px] text-muted-foreground">Annualisée, mensuelle</p>
+                  </div>
+                  <CMEPremiumChart />
+                  <p className="text-[11px] text-muted-foreground mt-3 leading-relaxed">
+                    Moyenne sur 5 ans : ~8 % p.a. — la prime est restée au-dessus de 3 % pendant 76 % du temps.
+                  </p>
+                </GlassCard>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
         {/* Strategy details */}
         <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
