@@ -8,15 +8,15 @@ interface QuercusShieldProps {
 }
 
 /**
- * 3D-orienting shield logo. Stays fixed in place but rotates on rotateX/rotateY
- * to face the cursor. Subtle (max ~18°), spring-smoothed.
+ * Imposing 3D-orienting shield logo with periodic shine sweep.
+ * Centered in its container, rotates subtly toward cursor.
  */
 export function QuercusShield({ size = 64, className = "" }: QuercusShieldProps) {
   const ref = useRef<HTMLDivElement>(null);
   const rx = useMotionValue(0);
   const ry = useMotionValue(0);
-  const sx = useSpring(rx, { stiffness: 150, damping: 20 });
-  const sy = useSpring(ry, { stiffness: 150, damping: 20 });
+  const sx = useSpring(rx, { stiffness: 120, damping: 18 });
+  const sy = useSpring(ry, { stiffness: 120, damping: 18 });
   const rotateX = useTransform(sx, (v) => `${v}deg`);
   const rotateY = useTransform(sy, (v) => `${v}deg`);
 
@@ -27,8 +27,8 @@ export function QuercusShield({ size = 64, className = "" }: QuercusShieldProps)
     const cy = rect.top + rect.height / 2;
     const dx = (e.clientX - cx) / (window.innerWidth / 2);
     const dy = (e.clientY - cy) / (window.innerHeight / 2);
-    ry.set(Math.max(-18, Math.min(18, dx * 18)));
-    rx.set(Math.max(-18, Math.min(18, -dy * 18)));
+    ry.set(Math.max(-15, Math.min(15, dx * 15)));
+    rx.set(Math.max(-15, Math.min(15, -dy * 15)));
   };
 
   const onLeave = () => {
@@ -41,22 +41,92 @@ export function QuercusShield({ size = 64, className = "" }: QuercusShieldProps)
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className={`inline-flex items-center justify-center ${className}`}
-      style={{ perspective: 800 }}
+      className={`flex items-center justify-center w-full ${className}`}
+      style={{ perspective: 1200, minHeight: size * 1.6 }}
     >
       <motion.div
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="relative"
       >
+        {/* Outer ambient glow */}
         <div
-          className="absolute inset-0 rounded-full blur-xl opacity-30 bg-primary"
-          style={{ transform: "translateZ(-20px)" }}
+          className="absolute rounded-full blur-3xl bg-primary/30 animate-pulse"
+          style={{
+            width: size * 1.8,
+            height: size * 1.8,
+            left: -size * 0.4,
+            top: -size * 0.4,
+            transform: "translateZ(-60px)",
+          }}
         />
+
+        {/* Mid halo ring */}
         <div
-          className="relative flex items-center justify-center rounded-sm bg-gradient-to-br from-primary to-primary/70 shadow-lg"
-          style={{ width: size, height: size }}
+          className="absolute rounded-full border border-primary/20"
+          style={{
+            width: size * 1.35,
+            height: size * 1.35,
+            left: -size * 0.175,
+            top: -size * 0.175,
+            transform: "translateZ(-30px)",
+          }}
+        />
+
+        {/* Rotating outer ring (slow) */}
+        <motion.div
+          className="absolute rounded-full border border-dashed border-primary/30"
+          style={{
+            width: size * 1.15,
+            height: size * 1.15,
+            left: -size * 0.075,
+            top: -size * 0.075,
+            transform: "translateZ(-10px)",
+          }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        />
+
+        {/* Shield body */}
+        <div
+          className="relative flex items-center justify-center bg-gradient-to-br from-primary via-primary to-primary/60 shadow-2xl overflow-hidden"
+          style={{
+            width: size,
+            height: size,
+            boxShadow:
+              "0 25px 60px -15px hsl(var(--primary) / 0.5), 0 0 0 1px hsl(var(--primary) / 0.3), inset 0 1px 0 hsl(var(--primary-foreground) / 0.2)",
+          }}
         >
-          <Shield className="text-primary-foreground" style={{ width: size * 0.5, height: size * 0.5 }} strokeWidth={1.5} />
+          {/* Inner gradient highlight */}
+          <div
+            className="absolute inset-0 opacity-60"
+            style={{
+              background:
+                "radial-gradient(circle at 30% 20%, hsl(var(--primary-foreground) / 0.25), transparent 60%)",
+            }}
+          />
+
+          {/* Periodic shine sweep — every ~6s */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(105deg, transparent 30%, hsl(var(--primary-foreground) / 0.55) 48%, hsl(var(--primary-foreground) / 0.8) 50%, hsl(var(--primary-foreground) / 0.55) 52%, transparent 70%)",
+              backgroundSize: "250% 100%",
+            }}
+            animate={{ backgroundPositionX: ["150%", "-150%"] }}
+            transition={{
+              duration: 1.4,
+              repeat: Infinity,
+              repeatDelay: 5,
+              ease: "easeInOut",
+            }}
+          />
+
+          <Shield
+            className="relative text-primary-foreground drop-shadow-lg"
+            style={{ width: size * 0.5, height: size * 0.5 }}
+            strokeWidth={1.5}
+          />
         </div>
       </motion.div>
     </div>
