@@ -52,21 +52,9 @@ export function QuercusShield({ size = 280, className = "" }: QuercusShieldProps
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Ambient outer glow */}
-        <div
-          className="absolute rounded-full blur-3xl bg-primary/25 animate-pulse"
-          style={{
-            width: size * 1.6,
-            height: size * 1.6,
-            left: -size * 0.3,
-            top: -size * 0.3,
-            transform: "translateZ(-80px)",
-          }}
-        />
-
         {/* Soft floor shadow */}
         <div
-          className="absolute rounded-[50%] bg-primary/30 blur-2xl"
+          className="absolute rounded-[50%] bg-primary/20 blur-2xl"
           style={{
             width: size * 0.9,
             height: size * 0.12,
@@ -74,34 +62,6 @@ export function QuercusShield({ size = 280, className = "" }: QuercusShieldProps
             top: size * 1.05,
             transform: "translateZ(-40px)",
           }}
-        />
-
-        {/* Slow rotating dashed halo */}
-        <motion.div
-          className="absolute rounded-full border border-dashed border-primary/25"
-          style={{
-            width: size * 1.2,
-            height: size * 1.2,
-            left: -size * 0.1,
-            top: -size * 0.1,
-            transform: "translateZ(-20px)",
-          }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-        />
-
-        {/* Subtle counter-rotating ring */}
-        <motion.div
-          className="absolute rounded-full border border-primary/15"
-          style={{
-            width: size * 1.4,
-            height: size * 1.4,
-            left: -size * 0.2,
-            top: -size * 0.2,
-            transform: "translateZ(-30px)",
-          }}
-          animate={{ rotate: -360 }}
-          transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
         />
 
         {/* Shield image with shine mask */}
