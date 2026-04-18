@@ -26,6 +26,7 @@ export function AnnouncementBanner() {
           onClick={() => {
             localStorage.setItem(STORAGE_KEY, "1");
             setVisible(false);
+            window.dispatchEvent(new Event("quercus:banner-dismissed"));
           }}
           className="shrink-0 opacity-70 hover:opacity-100 transition-opacity"
           aria-label="Fermer"
@@ -41,10 +42,14 @@ export function useAnnouncementVisible() {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     if (typeof window === "undefined") return;
-    setVisible(localStorage.getItem(STORAGE_KEY) !== "1");
-    const onStorage = () => setVisible(localStorage.getItem(STORAGE_KEY) !== "1");
-    window.addEventListener("storage", onStorage);
-    return () => window.removeEventListener("storage", onStorage);
+    const update = () => setVisible(localStorage.getItem(STORAGE_KEY) !== "1");
+    update();
+    window.addEventListener("storage", update);
+    window.addEventListener("quercus:banner-dismissed", update);
+    return () => {
+      window.removeEventListener("storage", update);
+      window.removeEventListener("quercus:banner-dismissed", update);
+    };
   }, []);
   return visible;
 }
