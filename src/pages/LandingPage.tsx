@@ -9,6 +9,8 @@ import { LiveNumbers } from "@/components/landing/LiveNumbers";
 import { PartnersSection } from "@/components/landing/PartnersSection";
 import { SecuritySection } from "@/components/landing/SecuritySection";
 import { UseCases } from "@/components/landing/UseCases";
+import { ClientSegmentsCards } from "@/components/landing/ClientSegmentsCards";
+import { PressStrip } from "@/components/landing/PressStrip";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
@@ -51,7 +53,15 @@ export default function LandingPage() {
           </div>
         </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
+          <ClientSegmentsCards />
+        </ScrollReveal>
+        <Separator className="max-w-7xl mx-auto opacity-60" />
         <UseCases />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
+          <PressStrip />
+        </ScrollReveal>
         <LandingFooter />
       </div>
     </div>
