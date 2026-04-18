@@ -1,5 +1,5 @@
 import { LandingNav } from "@/components/landing/LandingNav";
-import { AnnouncementBanner } from "@/components/landing/AnnouncementBanner";
+import { AnnouncementBanner, useAnnouncementVisible } from "@/components/landing/AnnouncementBanner";
 import { TrustBadgeStrip } from "@/components/landing/TrustBadgeStrip";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { DashboardPreview } from "@/components/landing/DashboardPreview";
