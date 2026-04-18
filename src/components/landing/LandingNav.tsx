@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 import { segments } from "@/components/solutions/segmentData";
+import { useAnnouncementVisible } from "@/components/landing/AnnouncementBanner";
 
 interface LandingNavProps {
   variant?: "default" | "solutions";
@@ -25,10 +26,28 @@ const productItems = [
   },
 ];
 
+const solutionItems = [
+  { name: "Holdings & Family Offices", slug: "holdings" },
+  { name: "PME & Start-ups", slug: "pme" },
+  { name: "Entreprises Crypto", slug: "crypto" },
+  { name: "Professions libérales", slug: "freelances" },
+  { name: "Particuliers", slug: "particuliers" },
+];
+
+const resourceItems = [
+  { name: "À propos", href: "/a-propos", desc: "Notre mission et notre équipe" },
+  { name: "Presse", href: "/presse", desc: "Communiqués et couverture média" },
+  { name: "Contact", href: "/contact", desc: "Prendre rendez-vous" },
+  { name: "Mentions légales", href: "/mentions-legales", desc: "Information réglementaire" },
+];
+
+type MenuKey = "products" | "solutions" | "resources" | null;
+
 export function LandingNav({ variant = "default", currentSlug }: LandingNavProps = {}) {
   const [scrolled, setScrolled] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
+  const [openMenuKey, setOpenMenuKey] = useState<MenuKey>(null);
   const closeTimer = useRef<number | null>(null);
+  const bannerVisible = useAnnouncementVisible();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -36,19 +55,20 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const openMenu = () => {
+  const open = (key: MenuKey) => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
-    setProductsOpen(true);
+    setOpenMenuKey(key);
   };
   const scheduleClose = () => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
-    closeTimer.current = window.setTimeout(() => setProductsOpen(false), 120);
+    closeTimer.current = window.setTimeout(() => setOpenMenuKey(null), 120);
   };
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+      className="fixed left-0 right-0 z-50 transition-all duration-500"
       style={{
+        top: bannerVisible ? "36px" : "0",
         backgroundColor: scrolled ? "rgba(255,255,255,0.3)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
@@ -80,22 +100,17 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
           </div>
         ) : (
           <div className="hidden md:flex items-center gap-8">
-            <div
-              className="relative"
-              onMouseEnter={openMenu}
-              onMouseLeave={scheduleClose}
-            >
+            {/* Produits */}
+            <div className="relative" onMouseEnter={() => open("products")} onMouseLeave={scheduleClose}>
               <Link
                 to="/products"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4 inline-flex items-center gap-1"
               >
                 Produits
               </Link>
-
-              {/* Dropdown */}
               <div
                 className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${
-                  productsOpen
+                  openMenuKey === "products"
                     ? "opacity-100 translate-y-0 pointer-events-auto"
                     : "opacity-0 -translate-y-1 pointer-events-none"
                 }`}
@@ -106,7 +121,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                       <Link
                         key={p.name}
                         to={p.href}
-                        onClick={() => setProductsOpen(false)}
+                        onClick={() => setOpenMenuKey(null)}
                         className="group bg-background p-5 hover:bg-muted/40 transition-colors flex flex-col gap-2"
                       >
                         <div className="flex items-start justify-between gap-2">
@@ -123,8 +138,8 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                     ))}
                   </div>
                   <div className="p-3 bg-background border-t border-border">
-                    <Button asChild size="sm" className="w-full btn-glow" >
-                      <Link to="/products" onClick={() => setProductsOpen(false)}>
+                    <Button asChild size="sm" className="w-full btn-glow">
+                      <Link to="/products" onClick={() => setOpenMenuKey(null)}>
                         Voir tous les produits
                       </Link>
                     </Button>
@@ -133,9 +148,76 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
               </div>
             </div>
 
-            <Link to="/solutions" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
-              Solutions
-            </Link>
+            {/* Solutions */}
+            <div className="relative" onMouseEnter={() => open("solutions")} onMouseLeave={scheduleClose}>
+              <Link
+                to="/solutions"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4"
+              >
+                Solutions
+              </Link>
+              <div
+                className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${
+                  openMenuKey === "solutions"
+                    ? "opacity-100 translate-y-0 pointer-events-auto"
+                    : "opacity-0 -translate-y-1 pointer-events-none"
+                }`}
+              >
+                <div className="w-[320px] bg-background/95 backdrop-blur-xl border border-border shadow-xl">
+                  <div className="flex flex-col">
+                    {solutionItems.map((s) => (
+                      <Link
+                        key={s.slug}
+                        to={`/solutions/${s.slug}`}
+                        onClick={() => setOpenMenuKey(null)}
+                        className="group px-5 py-3 hover:bg-muted/40 transition-colors flex items-center justify-between border-b border-border last:border-0"
+                      >
+                        <span className="text-sm">{s.name}</span>
+                        <ArrowUpRight className="h-3.5 w-3.5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="p-3 border-t border-border">
+                    <Button asChild size="sm" variant="outline" className="w-full">
+                      <Link to="/solutions" onClick={() => setOpenMenuKey(null)}>
+                        Toutes les solutions
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Ressources */}
+            <div className="relative" onMouseEnter={() => open("resources")} onMouseLeave={scheduleClose}>
+              <button className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
+                Ressources
+              </button>
+              <div
+                className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${
+                  openMenuKey === "resources"
+                    ? "opacity-100 translate-y-0 pointer-events-auto"
+                    : "opacity-0 -translate-y-1 pointer-events-none"
+                }`}
+              >
+                <div className="w-[340px] bg-background/95 backdrop-blur-xl border border-border shadow-xl">
+                  {resourceItems.map((r) => (
+                    <Link
+                      key={r.href}
+                      to={r.href}
+                      onClick={() => setOpenMenuKey(null)}
+                      className="group block px-5 py-3 hover:bg-muted/40 transition-colors border-b border-border last:border-0"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-sm font-medium">{r.name}</span>
+                        <ArrowUpRight className="h-3.5 w-3.5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">{r.desc}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -148,7 +230,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
           </Button>
         </div>
       </div>
-
     </nav>
   );
 }
