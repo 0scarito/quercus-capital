@@ -7,7 +7,10 @@ import { GlassCard } from "@/components/landing/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, ArrowDownUp, Lock, Leaf } from "lucide-react";
+import { TrendingUp, ArrowDownUp, Lock, Leaf, ExternalLink } from "lucide-react";
+import { RiskScale } from "@/components/landing/RiskScale";
+import { CMEPremiumChart } from "@/components/landing/CMEPremiumChart";
+import { SecurityArchitecture } from "@/components/landing/SecurityArchitecture";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
