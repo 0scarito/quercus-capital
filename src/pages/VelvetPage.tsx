@@ -224,7 +224,83 @@ export default function VelvetPage() {
           </div>
         </section>
 
-        {/* Collateral */}
+        {/* Worked example + Risk + AMF */}
+        <section className="py-14 md:py-10 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <ScrollReveal>
+              <GlassCard className="p-8 h-full space-y-5">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">Exemple chiffré</p>
+                <h3 className="text-2xl md:text-3xl font-serif">
+                  <em>1 M€ placé sur 12 mois</em>
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between border-b border-white/30 pb-2">
+                    <span className="text-muted-foreground">Capital placé</span>
+                    <span className="font-mono">1 000 000 €</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/30 pb-2">
+                    <span className="text-muted-foreground">€STR moyen estimé</span>
+                    <span className="font-mono">2,90 %</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/30 pb-2">
+                    <span className="text-muted-foreground">Spread Velvet</span>
+                    <span className="font-mono text-success">+ 0,30 %</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/30 pb-2">
+                    <span className="text-muted-foreground">Frais de gestion (Part I2)</span>
+                    <span className="font-mono">− 0,15 %</span>
+                  </div>
+                  <div className="flex justify-between pt-2">
+                    <span className="font-semibold">Rendement net annuel</span>
+                    <span className="font-mono text-success font-semibold">≈ 3,05 %</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-semibold">Intérêts perçus (12 mois)</span>
+                    <span className="font-mono text-success font-semibold">≈ 30 500 €</span>
+                  </div>
+                </div>
+                <p className="text-[11px] text-muted-foreground pt-2 border-t border-white/30">
+                  Estimation indicative basée sur le €STR au 30 mai 2025. Les rendements passés ne préjugent pas des rendements futurs.
+                </p>
+              </GlassCard>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <GlassCard className="p-8 h-full flex flex-col gap-6">
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Indicateur de risque</p>
+                  <RiskScale level={1} label="Velvet est noté 1/7 sur l'échelle synthétique de risque (SRI). Aucun défaut depuis 2014." />
+                </div>
+                <div className="border-t border-white/30 pt-6 space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground">Notation BNP Paribas</p>
+                  <div className="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                      <p className="text-2xl font-serif font-semibold text-primary">AA-</p>
+                      <p className="text-[11px] text-muted-foreground mt-1">Fitch</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-serif font-semibold text-primary">A1</p>
+                      <p className="text-[11px] text-muted-foreground mt-1">Moody's</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-serif font-semibold text-primary">A+</p>
+                      <p className="text-[11px] text-muted-foreground mt-1">S&amp;P</p>
+                    </div>
+                  </div>
+                </div>
+                <a
+                  href="https://geco.amf-france.org/Bio/rech_opcvm.aspx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                >
+                  Vérifier l'agrément AMF n° FCP20230197
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </GlassCard>
+            </ScrollReveal>
+          </div>
+        </section>
         <section className="py-14 md:py-10 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
