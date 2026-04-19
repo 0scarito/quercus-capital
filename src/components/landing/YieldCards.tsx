@@ -2,27 +2,18 @@ import { GlassCard } from "@/components/landing/GlassCard";
 import { useTilt } from "@/hooks/useTilt";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const products = [
-  {
-    name: "Velvet",
-    subtitle: "Smart Cash · UCITS",
-    yield: "€STR + 0,30%",
-    description: "Rendement quotidien garanti par BNP Paribas via Total Return Swap. Liquidité T+1, risque 1/7.",
-    features: ["Intérêts quotidiens", "Zéro frais d'entrée/sortie", "AMF n° FCP20230197"],
-    link: "/products/velvet",
-  },
-  {
-    name: "TOBAM Crypto Liquidity",
-    subtitle: "Cash & Carry · FPS",
-    yield: "~7–8% p.a.",
-    description: "Arbitrage non-directionnel sur futures crypto. Rendement élevé sans exposition au prix des crypto-actifs.",
-    features: ["Liquidité quotidienne", "Exposition crypto 0%", "Compensé carbone"],
-    link: "/products/tobam",
-  },
-];
+interface ProductData {
+  name: string;
+  subtitle: string;
+  yield: string;
+  description: string;
+  features: string[];
+  link: string;
+}
 
-function ProductCard({ p }: { p: typeof products[0] }) {
+function ProductCard({ p }: { p: ProductData }) {
   const tilt = useTilt(5);
 
   return (
@@ -54,14 +45,34 @@ function ProductCard({ p }: { p: typeof products[0] }) {
 }
 
 export function YieldCards() {
+  const { t } = useTranslation("landing");
+  const products: ProductData[] = [
+    {
+      name: "Velvet",
+      subtitle: t("products.velvet.subtitle"),
+      yield: "€STR + 0,30%",
+      description: t("products.velvet.description"),
+      features: [t("products.velvet.f1"), t("products.velvet.f2"), t("products.velvet.f3")],
+      link: "/products/velvet",
+    },
+    {
+      name: "TOBAM Crypto Liquidity",
+      subtitle: t("products.tobam.subtitle"),
+      yield: "~7–8% p.a.",
+      description: t("products.tobam.description"),
+      features: [t("products.tobam.f1"), t("products.tobam.f2"), t("products.tobam.f3")],
+      link: "/products/tobam",
+    },
+  ];
+
   return (
     <section className="py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
-          <em>Nos produits</em>
+          <em>{t("products.title")}</em>
         </h2>
         <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto text-lg">
-          Deux stratégies complémentaires. Rendement net de frais, liquidité quotidienne.
+          {t("products.subtitle")}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {products.map((p) => (

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { GlassCard } from "@/components/landing/GlassCard";
+import { useTranslation } from "react-i18next";
 
 const currencies = [
   { code: "EUR", rate: 0.022 },
@@ -10,6 +11,7 @@ const currencies = [
 ];
 
 export function YieldCalculator() {
+  const { t, i18n } = useTranslation("landing");
   const [currencyIndex, setCurrencyIndex] = useState(0);
   const [amount, setAmount] = useState(1000000);
   const [duration, setDuration] = useState(6);
@@ -17,25 +19,27 @@ export function YieldCalculator() {
   const currency = currencies[currencyIndex];
   const interest = amount * (currency.rate / 12) * duration;
 
+  const locale = (i18n.resolvedLanguage || "fr") === "en" ? "en-GB" : "fr-FR";
   const formatAmount = (v: number) =>
-    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(v);
+    new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(v);
+
+  const monthsLabel = duration === 1 ? t("calculator.monthSingular") : t("calculator.months");
 
   return (
     <section className="py-24 px-4 md:px-8 bg-primary text-primary-foreground">
       <div className="max-w-5xl mx-auto space-y-12">
         <div className="text-center space-y-3">
           <h2 className="text-4xl md:text-5xl font-serif">
-            <em>Simulateur de rendement</em>
+            <em>{t("calculator.title")}</em>
           </h2>
-          <p className="text-primary-foreground/70">
-            Estimez les intérêts générés sur votre trésorerie.
-          </p>
+          <p className="text-primary-foreground/70">{t("calculator.subtitle")}</p>
         </div>
 
         <div className="space-y-8">
-          {/* Currency */}
           <div className="space-y-3">
-            <label className="text-xs uppercase tracking-widest text-primary-foreground/60">Devise</label>
+            <label className="text-xs uppercase tracking-widest text-primary-foreground/60">
+              {t("calculator.currency")}
+            </label>
             <div className="flex gap-3">
               {currencies.map((c, i) => (
                 <button
@@ -53,10 +57,11 @@ export function YieldCalculator() {
             </div>
           </div>
 
-          {/* Amount */}
           <div className="space-y-3">
             <div className="flex justify-between items-baseline">
-              <label className="text-xs uppercase tracking-widest text-primary-foreground/60">Montant</label>
+              <label className="text-xs uppercase tracking-widest text-primary-foreground/60">
+                {t("calculator.amount")}
+              </label>
               <span className="text-xl font-serif">{formatAmount(amount)} {currency.code}</span>
             </div>
             <Slider
@@ -68,16 +73,17 @@ export function YieldCalculator() {
               className="[&_[role=slider]]:bg-primary-foreground [&_[role=slider]]:border-primary-foreground [&_.relative]:bg-primary-foreground/20 [&_[data-orientation=horizontal]>.absolute]:bg-primary-foreground"
             />
             <div className="flex justify-between text-xs text-primary-foreground/50">
-              <span>10 000</span>
-              <span>10 000 000</span>
+              <span>{formatAmount(10000)}</span>
+              <span>{formatAmount(10000000)}</span>
             </div>
           </div>
 
-          {/* Duration */}
           <div className="space-y-3">
             <div className="flex justify-between items-baseline">
-              <label className="text-xs uppercase tracking-widest text-primary-foreground/60">Durée</label>
-              <span className="text-xl font-serif">{duration} mois</span>
+              <label className="text-xs uppercase tracking-widest text-primary-foreground/60">
+                {t("calculator.duration")}
+              </label>
+              <span className="text-xl font-serif">{duration} {monthsLabel}</span>
             </div>
             <Slider
               value={[duration]}
@@ -88,20 +94,21 @@ export function YieldCalculator() {
               className="[&_[role=slider]]:bg-primary-foreground [&_[role=slider]]:border-primary-foreground [&_.relative]:bg-primary-foreground/20 [&_[data-orientation=horizontal]>.absolute]:bg-primary-foreground"
             />
             <div className="flex justify-between text-xs text-primary-foreground/50">
-              <span>1 mois</span>
-              <span>12 mois</span>
+              <span>1 {t("calculator.monthSingular")}</span>
+              <span>12 {t("calculator.months")}</span>
             </div>
           </div>
         </div>
 
-        {/* Result */}
         <GlassCard className="!bg-primary-foreground/10 !border-primary-foreground/20 text-primary-foreground py-8 text-center space-y-2">
-          <p className="text-xs uppercase tracking-widest text-primary-foreground/60">Intérêts générés</p>
+          <p className="text-xs uppercase tracking-widest text-primary-foreground/60">
+            {t("calculator.interestGenerated")}
+          </p>
           <p className="text-5xl font-serif font-semibold">
             {formatAmount(Math.round(interest))} {currency.code}
           </p>
           <p className="text-sm text-primary-foreground/60">
-            à {(currency.rate * 100).toFixed(2)}% annualisé sur {duration} mois
+            {t("calculator.annualised", { rate: (currency.rate * 100).toFixed(2), duration })}
           </p>
         </GlassCard>
       </div>

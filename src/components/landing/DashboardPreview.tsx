@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Wallet } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /**
  * A faithful, non-interactive mock of the real investor dashboard.
@@ -8,6 +9,7 @@ import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Wallet } fro
  * Smooth parallax: rises and settles as the user scrolls into it.
  */
 export function DashboardPreview() {
+  const { t } = useTranslation("landing");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -49,15 +51,15 @@ export function DashboardPreview() {
               <div className="flex items-start justify-between gap-4 flex-wrap">
                 <button className="flex items-center gap-2.5 px-3 py-2 border border-border/60 bg-card rounded-sm">
                   <Wallet className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium">Compte principal</span>
+                  <span className="text-sm font-medium">{t("dashboardPreview.mainAccount")}</span>
                   <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
                 </button>
                 <div className="flex gap-2">
                   <div className="flex items-center gap-2 px-3 py-2 border border-border/60 rounded-sm text-sm">
-                    <ArrowUpFromLine className="h-3.5 w-3.5" /> Retirer
+                    <ArrowUpFromLine className="h-3.5 w-3.5" /> {t("dashboardPreview.withdraw")}
                   </div>
                   <div className="flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-sm text-sm">
-                    <ArrowDownToLine className="h-3.5 w-3.5" /> Déposer
+                    <ArrowDownToLine className="h-3.5 w-3.5" /> {t("dashboardPreview.deposit")}
                   </div>
                 </div>
               </div>
@@ -67,7 +69,7 @@ export function DashboardPreview() {
                 <div className="flex items-start justify-between gap-6 flex-wrap">
                   <div>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-2">
-                      Solde total
+                      {t("dashboardPreview.totalBalance")}
                     </p>
                     <h2 className="text-3xl md:text-4xl font-serif font-semibold tracking-tight">
                       <span className="font-mono">2 480 312,57</span>{" "}
@@ -76,17 +78,17 @@ export function DashboardPreview() {
                     <div className="flex items-center gap-1.5 text-success mt-3">
                       <TrendingUp className="h-3.5 w-3.5" />
                       <span className="text-sm font-mono font-medium">3,42 %</span>
-                      <span className="text-xs text-muted-foreground">rendement moyen pondéré</span>
+                      <span className="text-xs text-muted-foreground">{t("dashboardPreview.weightedYield")}</span>
                     </div>
                   </div>
                   <div className="text-right">
                     <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-2">
-                      Intérêts générés
+                      {t("dashboardPreview.interestGenerated")}
                     </p>
                     <p className="text-xl md:text-2xl font-serif font-semibold text-success">
                       <span className="font-mono">+18 247,93</span> EUR
                     </p>
-                    <p className="text-[10px] text-muted-foreground mt-1">depuis le 01/01</p>
+                    <p className="text-[10px] text-muted-foreground mt-1">{t("dashboardPreview.sinceJan")}</p>
                   </div>
                 </div>
               </div>
@@ -96,16 +98,16 @@ export function DashboardPreview() {
                 <div className="border border-border/60 rounded-sm p-5 bg-card">
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground">FCP UCITS</p>
+                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("dashboardPreview.fundType1")}</p>
                       <p className="font-serif text-lg italic">Velvet</p>
                     </div>
                     <span className="text-[10px] font-mono text-success border border-success/30 px-1.5 py-0.5 rounded-sm">
-                      ACTIF
+                      {t("dashboardPreview.active")}
                     </span>
                   </div>
                   <p className="font-mono text-xl font-semibold">1 850 000,00 €</p>
                   <div className="flex items-center justify-between mt-3 text-xs">
-                    <span className="text-muted-foreground">Rendement</span>
+                    <span className="text-muted-foreground">{t("dashboardPreview.yield")}</span>
                     <span className="font-mono text-success">€STR + 0,30 %</span>
                   </div>
                 </div>
@@ -113,16 +115,16 @@ export function DashboardPreview() {
                 <div className="border border-border/60 rounded-sm p-5 bg-card">
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground">FIA FPS</p>
+                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("dashboardPreview.fundType2")}</p>
                       <p className="font-serif text-lg italic">TOBAM Crypto Liquidity</p>
                     </div>
                     <span className="text-[10px] font-mono text-success border border-success/30 px-1.5 py-0.5 rounded-sm">
-                      ACTIF
+                      {t("dashboardPreview.active")}
                     </span>
                   </div>
                   <p className="font-mono text-xl font-semibold">630 312,57 €</p>
                   <div className="flex items-center justify-between mt-3 text-xs">
-                    <span className="text-muted-foreground">Rendement cible</span>
+                    <span className="text-muted-foreground">{t("dashboardPreview.targetYield")}</span>
                     <span className="font-mono text-success">~7–8 % p.a.</span>
                   </div>
                 </div>
@@ -132,7 +134,7 @@ export function DashboardPreview() {
               <div className="border border-border/60 rounded-sm p-5 bg-card">
                 <div className="flex items-center justify-between mb-3">
                   <p className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                    Performance · 30 jours
+                    {t("dashboardPreview.performance30d")}
                   </p>
                   <span className="text-xs font-mono text-success">+0,28 %</span>
                 </div>

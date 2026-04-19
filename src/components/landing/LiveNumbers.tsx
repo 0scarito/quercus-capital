@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { CountUp } from "@/components/landing/CountUp";
 import { GlassCard } from "@/components/landing/GlassCard";
+import { useTranslation } from "react-i18next";
 
 export function LiveNumbers() {
+  const { t } = useTranslation("landing");
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -22,29 +24,29 @@ export function LiveNumbers() {
     <section className="py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-          <em>Transparence en temps réel</em>
+          <em>{t("live.title")}</em>
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           <GlassCard className="p-8 md:p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">Actifs sous gestion</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("live.aum")}</p>
             <p className="text-3xl md:text-4xl font-serif font-semibold">
               €<CountUp end={424} suffix=" M" />
             </p>
           </GlassCard>
           <GlassCard className="p-8 md:p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">Intérêts générés</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("live.interest")}</p>
             <p className="text-3xl md:text-4xl font-serif font-semibold">
               €<CountUp end={47.2} decimals={1} suffix=" M" />
             </p>
           </GlassCard>
           <GlassCard className="p-8 md:p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">Investisseurs actifs</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("live.investors")}</p>
             <p className="text-3xl md:text-4xl font-serif font-semibold">
               <CountUp end={1280} suffix="+" />
             </p>
           </GlassCard>
           <GlassCard className="p-8 md:p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">Prochain versement</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("live.nextPayout")}</p>
             <p className="text-3xl md:text-4xl font-serif font-semibold font-mono tracking-wider">{hh}:{mm}:{ss}</p>
           </GlassCard>
         </div>

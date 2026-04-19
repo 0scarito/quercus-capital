@@ -1,13 +1,14 @@
 import { ShieldCheck, Landmark, FileCheck2, Scale } from "lucide-react";
-
-const items = [
-  { icon: Landmark, label: "Fonds détenus par BNP Paribas & CACEIS" },
-  { icon: FileCheck2, label: "Audités par PwC" },
-  { icon: Scale, label: "Régulés par l'AMF" },
-  { icon: ShieldCheck, label: "Ségrégation hors bilan" },
-];
+import { useTranslation } from "react-i18next";
 
 export function TrustBadgeStrip() {
+  const { t } = useTranslation("landing");
+  const items = [
+    { icon: Landmark, label: t("trust.custody") },
+    { icon: FileCheck2, label: t("trust.audit") },
+    { icon: Scale, label: t("trust.regulator") },
+    { icon: ShieldCheck, label: t("trust.segregation") },
+  ];
   return (
     <section className="px-4 md:px-8 -mt-2 md:-mt-4 relative z-10">
       <div className="max-w-6xl mx-auto bg-white/40 backdrop-blur-[12px] border border-white/30 px-6 py-4">
