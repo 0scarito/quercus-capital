@@ -2,52 +2,55 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 import { segments } from "@/components/solutions/segmentData";
 import { useAnnouncementVisible } from "@/components/landing/AnnouncementBanner";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 interface LandingNavProps {
   variant?: "default" | "solutions";
   currentSlug?: string;
 }
 
-const productItems = [
-  {
-    name: "Velvet",
-    subtitle: "Smart Cash · FCP UCITS",
-    yield: "€STR + 0,30%",
-    href: "/products/velvet",
-  },
-  {
-    name: "TOBAM Crypto Liquidity",
-    subtitle: "Cash & Carry · FIA FPS",
-    yield: "~7–8% p.a.",
-    href: "/products/tobam",
-  },
-];
-
-const solutionItems = [
-  { name: "Holdings & Family Offices", slug: "holdings" },
-  { name: "PME & Start-ups", slug: "pme" },
-  { name: "Entreprises Crypto", slug: "crypto" },
-  { name: "Professions libérales", slug: "freelances" },
-  { name: "Particuliers", slug: "particuliers" },
-];
-
-const resourceItems = [
-  { name: "À propos", href: "/a-propos", desc: "Notre mission et notre équipe" },
-  { name: "Presse", href: "/presse", desc: "Communiqués et couverture média" },
-  { name: "Contact", href: "/contact", desc: "Prendre rendez-vous" },
-  { name: "Mentions légales", href: "/mentions-legales", desc: "Information réglementaire" },
-];
-
 type MenuKey = "products" | "solutions" | "resources" | null;
 
 export function LandingNav({ variant = "default", currentSlug }: LandingNavProps = {}) {
+  const { t } = useTranslation(["nav", "common"]);
   const [scrolled, setScrolled] = useState(false);
   const [openMenuKey, setOpenMenuKey] = useState<MenuKey>(null);
   const closeTimer = useRef<number | null>(null);
   const bannerVisible = useAnnouncementVisible();
+
+  const productItems = [
+    {
+      name: "Velvet",
+      subtitle: t("nav:productsList.velvetSubtitle"),
+      yield: "€STR + 0,30%",
+      href: "/products/velvet",
+    },
+    {
+      name: "TOBAM Crypto Liquidity",
+      subtitle: t("nav:productsList.tobamSubtitle"),
+      yield: "~7–8% p.a.",
+      href: "/products/tobam",
+    },
+  ];
+
+  const solutionItems = [
+    { name: t("nav:solutionsList.holdings"), slug: "holdings" },
+    { name: t("nav:solutionsList.pme"), slug: "pme" },
+    { name: t("nav:solutionsList.crypto"), slug: "crypto" },
+    { name: t("nav:solutionsList.freelances"), slug: "freelances" },
+    { name: t("nav:solutionsList.particuliers"), slug: "particuliers" },
+  ];
+
+  const resourceItems = [
+    { name: t("nav:resourcesList.about"), href: "/a-propos", desc: t("nav:resourcesList.aboutDesc") },
+    { name: t("nav:resourcesList.press"), href: "/presse", desc: t("nav:resourcesList.pressDesc") },
+    { name: t("nav:resourcesList.contact"), href: "/contact", desc: t("nav:resourcesList.contactDesc") },
+    { name: t("nav:resourcesList.legal"), href: "/mentions-legales", desc: t("nav:resourcesList.legalDesc") },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -81,7 +84,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
           <span className="text-xl font-serif tracking-widest">QUERCUS</span>
         </Link>
 
-        {/* Desktop nav */}
         {variant === "solutions" ? (
           <div className="hidden md:flex items-center gap-1.5 flex-1 justify-center overflow-x-auto">
             {segments.map((s) => (
@@ -100,13 +102,12 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
           </div>
         ) : (
           <div className="hidden md:flex items-center gap-8">
-            {/* Produits */}
             <div className="relative" onMouseEnter={() => open("products")} onMouseLeave={scheduleClose}>
               <Link
                 to="/products"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4 inline-flex items-center gap-1"
               >
-                Produits
+                {t("nav:products")}
               </Link>
               <div
                 className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${
@@ -140,7 +141,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                   <div className="p-3 bg-background border-t border-border">
                     <Button asChild size="sm" className="w-full btn-glow">
                       <Link to="/products" onClick={() => setOpenMenuKey(null)}>
-                        Voir tous les produits
+                        {t("nav:viewAllProducts")}
                       </Link>
                     </Button>
                   </div>
@@ -148,13 +149,12 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
               </div>
             </div>
 
-            {/* Solutions */}
             <div className="relative" onMouseEnter={() => open("solutions")} onMouseLeave={scheduleClose}>
               <Link
                 to="/solutions"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4"
               >
-                Solutions
+                {t("nav:solutions")}
               </Link>
               <div
                 className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${
@@ -180,7 +180,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                   <div className="p-3 border-t border-border">
                     <Button asChild size="sm" variant="outline" className="w-full">
                       <Link to="/solutions" onClick={() => setOpenMenuKey(null)}>
-                        Toutes les solutions
+                        {t("nav:allSolutions")}
                       </Link>
                     </Button>
                   </div>
@@ -188,10 +188,9 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
               </div>
             </div>
 
-            {/* Ressources */}
             <div className="relative" onMouseEnter={() => open("resources")} onMouseLeave={scheduleClose}>
               <button className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
-                Ressources
+                {t("nav:resources")}
               </button>
               <div
                 className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${
@@ -222,11 +221,12 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
         )}
 
         <div className="flex items-center gap-3 shrink-0">
+          <LanguageSwitcher />
           <Button variant="ghost" size="sm" className="btn-glow" asChild>
-            <Link to="/signin">Se connecter</Link>
+            <Link to="/signin">{t("common:actions.signIn")}</Link>
           </Button>
           <Button size="sm" className="px-6 btn-glow" asChild>
-            <Link to="/open-account">Ouvrir un compte</Link>
+            <Link to="/open-account">{t("common:actions.openAccount")}</Link>
           </Button>
         </div>
       </div>
