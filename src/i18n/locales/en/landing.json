@@ -3,5 +3,120 @@
     "title": "The quest for excellence in treasury management.",
     "subtitle": "For <1>holdings, SMEs and family offices</1>: access the finest money market and yield strategies, until now reserved for institutional investors. Daily liquidity, bank-grade security.",
     "yieldsNote": "Yields net of fees, paid by banking counterparty · as of {{date}}"
+  },
+  "trust": {
+    "custody": "Funds held by BNP Paribas & CACEIS",
+    "audit": "Audited by PwC",
+    "regulator": "Regulated by the AMF",
+    "segregation": "Off-balance-sheet segregation"
+  },
+  "products": {
+    "title": "Our products",
+    "subtitle": "Two complementary strategies. Yields net of fees, daily liquidity.",
+    "velvet": {
+      "subtitle": "Smart Cash · UCITS",
+      "description": "Daily yield guaranteed by BNP Paribas via Total Return Swap. T+1 liquidity, risk rating 1/7.",
+      "f1": "Daily interest",
+      "f2": "Zero entry or exit fees",
+      "f3": "AMF no. FCP20230197"
+    },
+    "tobam": {
+      "subtitle": "Cash & Carry · FPS",
+      "description": "Non-directional arbitrage on crypto futures. High yield without exposure to crypto-asset prices.",
+      "f1": "Daily liquidity",
+      "f2": "0% crypto exposure",
+      "f3": "Carbon offset"
+    }
+  },
+  "calculator": {
+    "title": "Yield simulator",
+    "subtitle": "Estimate the interest generated on your treasury.",
+    "currency": "Currency",
+    "amount": "Amount",
+    "duration": "Duration",
+    "months": "months",
+    "monthSingular": "month",
+    "interestGenerated": "Interest generated",
+    "annualised": "at {{rate}}% annualised over {{duration}} months"
+  },
+  "live": {
+    "title": "Real-time transparency",
+    "aum": "Assets under management",
+    "interest": "Interest generated",
+    "investors": "Active investors",
+    "nextPayout": "Next payout"
+  },
+  "partners": {
+    "label": "Trusted institutional infrastructure"
+  },
+  "security": {
+    "title": "Your funds are held by depositary bank BNP Paribas",
+    "body": "Quercus never holds your capital. Your assets are segregated at <1>BNP Paribas</1> — the leading banking group in the eurozone — and remain fully protected, whatever happens to our platform.",
+    "depositary": "Depositary bank",
+    "regulator": "Regulator",
+    "segregation": "Segregation",
+    "offBalance": "Off balance sheet"
+  },
+  "useCases": {
+    "title1": "A",
+    "title2": "universal solution",
+    "subtitle": "SMEs, start-ups, holdings, freelancers, private clients: Quercus is built for any organisation that demands more from its treasury."
+  },
+  "segments": {
+    "title": "Who is it for?",
+    "subtitle": "A single platform, with strategies tailored to every treasury profile.",
+    "holdings": {
+      "name": "Holdings & Family Offices",
+      "pain": "Your cash sits idle between deals. Put it to work every day."
+    },
+    "pme": {
+      "name": "SMEs & Start-ups",
+      "pain": "Your current account earns nothing. Your treasury can."
+    },
+    "freelances": {
+      "name": "Independent Professionals",
+      "pain": "Simple, no minimum, accessible in one click."
+    },
+    "crypto": {
+      "name": "Crypto Businesses",
+      "pain": "Secure your fiat reserves with a sovereign yield."
+    },
+    "particuliers": {
+      "name": "Institutional & Private Clients",
+      "pain": "Compliant, off-balance-sheet, UCITS or AIF structure."
+    }
+  },
+  "press": {
+    "label": "Media coverage",
+    "title": "Recognised by the specialist press",
+    "items": {
+      "ft": {
+        "quote": "Europe's first Bitcoin mutual fund.",
+        "context": "On TOBAM's pioneering strategy (manager of our Crypto Liquidity fund)."
+      },
+      "fonds": {
+        "quote": "An institutional approach to crypto arbitrage, without directional exposure.",
+        "context": "Coverage of the BTC/ETH basis trade."
+      },
+      "agefi": {
+        "quote": "Democratising access to treasury strategies reserved for institutional investors.",
+        "context": "On Quercus Capital's mission."
+      }
+    }
+  },
+  "dashboardPreview": {
+    "mainAccount": "Main account",
+    "withdraw": "Withdraw",
+    "deposit": "Deposit",
+    "totalBalance": "Total balance",
+    "weightedYield": "weighted average yield",
+    "interestGenerated": "Interest generated",
+    "sinceJan": "since 01/01",
+    "fundType1": "UCITS Fund",
+    "fundType2": "AIF FPS",
+    "active": "ACTIVE",
+    "yield": "Yield",
+    "targetYield": "Target yield",
+    "performance30d": "Performance · 30 days"
   }
 }

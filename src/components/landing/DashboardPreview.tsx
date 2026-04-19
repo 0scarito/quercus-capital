@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, ChevronDown, Wallet } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /**
  * A faithful, non-interactive mock of the real investor dashboard.

@@ -2,51 +2,28 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Landmark, Factory, User, Bitcoin, Building2 } from "lucide-react";
 import { GlassCard } from "@/components/landing/GlassCard";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
-
-const segmentCards = [
-  {
-    slug: "holdings",
-    icon: Landmark,
-    name: "Holdings & Family Offices",
-    pain: "Votre cash dort entre deux opérations. Mettez-le au travail chaque jour.",
-  },
-  {
-    slug: "pme",
-    icon: Factory,
-    name: "PME & Start-ups",
-    pain: "Votre compte courant ne génère rien. Votre trésorerie le peut.",
-  },
-  {
-    slug: "freelances",
-    icon: User,
-    name: "Professions libérales",
-    pain: "Simple, sans minimum, accessible en un clic.",
-  },
-  {
-    slug: "crypto",
-    icon: Bitcoin,
-    name: "Entreprises Crypto",
-    pain: "Sécurisez vos réserves fiat avec un rendement souverain.",
-  },
-  {
-    slug: "particuliers",
-    icon: Building2,
-    name: "Institutionnels & Particuliers",
-    pain: "Conforme, hors bilan, structure UCITS ou FIA.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export function ClientSegmentsCards() {
+  const { t } = useTranslation("landing");
+  const segmentCards = [
+    { slug: "holdings", icon: Landmark, name: t("segments.holdings.name"), pain: t("segments.holdings.pain") },
+    { slug: "pme", icon: Factory, name: t("segments.pme.name"), pain: t("segments.pme.pain") },
+    { slug: "freelances", icon: User, name: t("segments.freelances.name"), pain: t("segments.freelances.pain") },
+    { slug: "crypto", icon: Bitcoin, name: t("segments.crypto.name"), pain: t("segments.crypto.pain") },
+    { slug: "particuliers", icon: Building2, name: t("segments.particuliers.name"), pain: t("segments.particuliers.pain") },
+  ];
+
   return (
     <section className="py-20 md:py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="text-center mb-14">
             <h2 className="text-4xl md:text-5xl font-serif">
-              <em>Pour qui ?</em>
+              <em>{t("segments.title")}</em>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Une plateforme unique, des stratégies adaptées à chaque profil de trésorerie.
+              {t("segments.subtitle")}
             </p>
           </div>
         </ScrollReveal>

@@ -1,36 +1,26 @@
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GlassCard } from "@/components/landing/GlassCard";
 import { Quote } from "lucide-react";
-
-const pressItems = [
-  {
-    outlet: "Financial Times",
-    quote: "Europe's first Bitcoin mutual fund.",
-    context: "Sur la stratégie pionnière TOBAM (gérant de notre fonds Crypto Liquidity).",
-  },
-  {
-    outlet: "Fonds Online",
-    quote: "Une approche institutionnelle de l'arbitrage crypto, sans exposition directionnelle.",
-    context: "Couverture du basis trade BTC/ETH.",
-  },
-  {
-    outlet: "L'Agefi",
-    quote: "Démocratiser l'accès aux stratégies de trésorerie réservées aux institutionnels.",
-    context: "Sur la mission de Quercus Capital.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export function PressStrip() {
+  const { t } = useTranslation("landing");
+  const pressItems = [
+    { outlet: "Financial Times", quote: t("press.items.ft.quote"), context: t("press.items.ft.context") },
+    { outlet: "Fonds Online", quote: t("press.items.fonds.quote"), context: t("press.items.fonds.context") },
+    { outlet: "L'Agefi", quote: t("press.items.agefi.quote"), context: t("press.items.agefi.context") },
+  ];
+
   return (
     <section className="py-20 md:py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
-              Couverture média
+              {t("press.label")}
             </p>
             <h2 className="text-4xl md:text-5xl font-serif">
-              <em>Reconnu par la presse spécialisée</em>
+              <em>{t("press.title")}</em>
             </h2>
           </div>
         </ScrollReveal>

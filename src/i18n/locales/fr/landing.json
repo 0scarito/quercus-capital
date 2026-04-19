@@ -3,5 +3,120 @@
     "title": "La quête de l'excellence en gestion de trésorerie.",
     "subtitle": "Pour <1>holdings, PME et family offices</1> : accédez aux meilleures stratégies monétaires et de rendement, jusqu'ici réservées aux institutionnels. Liquidité quotidienne, sécurité bancaire.",
     "yieldsNote": "Rendements nets de frais, payés par contrepartie bancaire · au {{date}}"
+  },
+  "trust": {
+    "custody": "Fonds détenus par BNP Paribas & CACEIS",
+    "audit": "Audités par PwC",
+    "regulator": "Régulés par l'AMF",
+    "segregation": "Ségrégation hors bilan"
+  },
+  "products": {
+    "title": "Nos produits",
+    "subtitle": "Deux stratégies complémentaires. Rendement net de frais, liquidité quotidienne.",
+    "velvet": {
+      "subtitle": "Smart Cash · UCITS",
+      "description": "Rendement quotidien garanti par BNP Paribas via Total Return Swap. Liquidité T+1, risque 1/7.",
+      "f1": "Intérêts quotidiens",
+      "f2": "Zéro frais d'entrée/sortie",
+      "f3": "AMF n° FCP20230197"
+    },
+    "tobam": {
+      "subtitle": "Cash & Carry · FPS",
+      "description": "Arbitrage non-directionnel sur futures crypto. Rendement élevé sans exposition au prix des crypto-actifs.",
+      "f1": "Liquidité quotidienne",
+      "f2": "Exposition crypto 0%",
+      "f3": "Compensé carbone"
+    }
+  },
+  "calculator": {
+    "title": "Simulateur de rendement",
+    "subtitle": "Estimez les intérêts générés sur votre trésorerie.",
+    "currency": "Devise",
+    "amount": "Montant",
+    "duration": "Durée",
+    "months": "mois",
+    "monthSingular": "mois",
+    "interestGenerated": "Intérêts générés",
+    "annualised": "à {{rate}}% annualisé sur {{duration}} mois"
+  },
+  "live": {
+    "title": "Transparence en temps réel",
+    "aum": "Actifs sous gestion",
+    "interest": "Intérêts générés",
+    "investors": "Investisseurs actifs",
+    "nextPayout": "Prochain versement"
+  },
+  "partners": {
+    "label": "Infrastructure institutionnelle de confiance"
+  },
+  "security": {
+    "title": "Vos fonds sont conservés par la banque dépositaire BNP Paribas",
+    "body": "Quercus n'est jamais détenteur de votre capital. Vos avoirs sont ségrégés chez <1>BNP Paribas</1> — premier groupe bancaire de la zone euro — et restent intégralement protégés, quoi qu'il advienne de notre plateforme.",
+    "depositary": "Banque dépositaire",
+    "regulator": "Régulateur",
+    "segregation": "Ségrégation",
+    "offBalance": "Hors bilan"
+  },
+  "useCases": {
+    "title1": "Une",
+    "title2": "solution universelle",
+    "subtitle": "PME, start-ups, holdings, freelances, particuliers : Quercus s'adresse à toute organisation qui exige davantage de sa trésorerie."
+  },
+  "segments": {
+    "title": "Pour qui ?",
+    "subtitle": "Une plateforme unique, des stratégies adaptées à chaque profil de trésorerie.",
+    "holdings": {
+      "name": "Holdings & Family Offices",
+      "pain": "Votre cash dort entre deux opérations. Mettez-le au travail chaque jour."
+    },
+    "pme": {
+      "name": "PME & Start-ups",
+      "pain": "Votre compte courant ne génère rien. Votre trésorerie le peut."
+    },
+    "freelances": {
+      "name": "Professions libérales",
+      "pain": "Simple, sans minimum, accessible en un clic."
+    },
+    "crypto": {
+      "name": "Entreprises Crypto",
+      "pain": "Sécurisez vos réserves fiat avec un rendement souverain."
+    },
+    "particuliers": {
+      "name": "Institutionnels & Particuliers",
+      "pain": "Conforme, hors bilan, structure UCITS ou FIA."
+    }
+  },
+  "press": {
+    "label": "Couverture média",
+    "title": "Reconnu par la presse spécialisée",
+    "items": {
+      "ft": {
+        "quote": "Europe's first Bitcoin mutual fund.",
+        "context": "Sur la stratégie pionnière TOBAM (gérant de notre fonds Crypto Liquidity)."
+      },
+      "fonds": {
+        "quote": "Une approche institutionnelle de l'arbitrage crypto, sans exposition directionnelle.",
+        "context": "Couverture du basis trade BTC/ETH."
+      },
+      "agefi": {
+        "quote": "Démocratiser l'accès aux stratégies de trésorerie réservées aux institutionnels.",
+        "context": "Sur la mission de Quercus Capital."
+      }
+    }
+  },
+  "dashboardPreview": {
+    "mainAccount": "Compte principal",
+    "withdraw": "Retirer",
+    "deposit": "Déposer",
+    "totalBalance": "Solde total",
+    "weightedYield": "rendement moyen pondéré",
+    "interestGenerated": "Intérêts générés",
+    "sinceJan": "depuis le 01/01",
+    "fundType1": "FCP UCITS",
+    "fundType2": "FIA FPS",
+    "active": "ACTIF",
+    "yield": "Rendement",
+    "targetYield": "Rendement cible",
+    "performance30d": "Performance · 30 jours"
   }
 }
