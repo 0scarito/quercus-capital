@@ -1,0 +1,57 @@
+{
+  "follow": "Follow us",
+  "newsletter": {
+    "title": "Newsletter",
+    "desc": "Receive our market analyses and product updates.",
+    "placeholder": "Your email…",
+    "subscribe": "Subscribe",
+    "successAlready": "You are already subscribed to our newsletter.",
+    "successNew": "Thank you! Your subscription is confirmed.",
+    "error": "Subscription failed. Please check your email address."
+  },
+  "sections": {
+    "products": "Products",
+    "useCases": "Use cases",
+    "resources": "Resources",
+    "legal": "Legal",
+    "documentation": "Product documentation"
+  },
+  "products": {
+    "velvet": "Velvet (Smart Cash)",
+    "tobam": "TOBAM Crypto Liquidity",
+    "all": "All products"
+  },
+  "useCases": {
+    "holdings": "Holdings",
+    "pme": "SMEs",
+    "startups": "Start-ups",
+    "crypto": "Crypto",
+    "freelances": "Freelancers",
+    "fintechs": "Fintechs",
+    "sci": "Property holding companies",
+    "particuliers": "Private clients"
+  },
+  "resources": {
+    "about": "About",
+    "press": "Press",
+    "contact": "Contact"
+  },
+  "legal": {
+    "mentions": "Legal notice",
+    "privacy": "Privacy",
+    "cookies": "Cookie policy"
+  },
+  "documents": {
+    "velvetProspectus": "Velvet Prospectus",
+    "velvetKid": "Velvet KID",
+    "tobamProspectus": "TOBAM Prospectus",
+    "regulatory": "Regulatory information"
+  },
+  "disclaimer": {
+    "warningLabel": "Disclaimer.",
+    "warning": "Quercus Capital acts as a distributor for the Velvet fund (UCITS managed by LFIS Capital, approved by the AMF under no. FCP20230197) and the TOBAM Crypto Liquidity Fund (AIF · Specialised Professional Fund managed by TOBAM, AMF-approved GP 06 000019). The funds are held by depositary banks (BNP Paribas for Velvet, CACEIS Bank for TOBAM) and are never recorded on Quercus Capital's balance sheet. Audited annually by PwC.",
+    "performance": "Past performance is not indicative of future results. Any investment carries a risk of capital loss. Yields shown are indicative and net of fees; they may vary depending on market conditions. Before subscribing, please consult the Prospectus and the Key Information Document (KID), available on request or on the management companies' websites."
+  },
+  "copyright": "© {{year}} Quercus Capital — All rights reserved.",
+  "address": "231 rue Saint-Honoré, 75001 Paris · RCS Paris 928 443 001 · ORIAS no. 24004789 (CIF & COA)"
+}

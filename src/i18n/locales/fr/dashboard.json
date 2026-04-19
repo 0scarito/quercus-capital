@@ -1,0 +1,28 @@
+{
+  "sidebar": {
+    "dashboard": "Tableau de bord",
+    "products": "Produits",
+    "statements": "Relevés",
+    "settings": "Paramètres",
+    "integrations": "Intégrations",
+    "signOut": "Se déconnecter"
+  },
+  "balance": {
+    "title": "Solde total",
+    "deposit": "Déposer",
+    "withdraw": "Retirer"
+  },
+  "transactions": {
+    "title": "Transactions",
+    "search": "Rechercher un produit…",
+    "type": "Type",
+    "all": "Tous",
+    "deposit": "Dépôt",
+    "withdrawal": "Retrait",
+    "interest": "Intérêts",
+    "date": "Date",
+    "product": "Produit",
+    "amount": "Montant",
+    "empty": "Aucune transaction"
+  }
+}

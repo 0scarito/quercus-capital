@@ -5,51 +5,54 @@ import { Link } from "react-router-dom";
 import { Linkedin, FileText, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 import { supabase } from "@/integrations/supabase/client";
-
-const productLinks = [
-  { label: "Velvet (Smart Cash)", href: "/products/velvet" },
-  { label: "TOBAM Crypto Liquidity", href: "/products/tobam" },
-  { label: "Tous les produits", href: "/products" },
-];
-
-const useCaseLinksLeft = [
-  { label: "Holdings", href: "/solutions/holdings" },
-  { label: "PME", href: "/solutions/pme" },
-  { label: "Start-ups", href: "/solutions/startups" },
-  { label: "Crypto", href: "/solutions/crypto" },
-];
-
-const useCaseLinksRight = [
-  { label: "Freelances", href: "/solutions/freelances" },
-  { label: "Fintechs", href: "/solutions/fintechs" },
-  { label: "SCI", href: "/solutions/sci" },
-  { label: "Particuliers", href: "/solutions/particuliers" },
-];
-
-const resourceLinks = [
-  { label: "À propos", href: "/a-propos" },
-  { label: "Presse", href: "/presse" },
-  { label: "Contact", href: "/contact" },
-];
-
-const legalLinks = [
-  { label: "Mentions légales", href: "/mentions-legales" },
-  { label: "Confidentialité", href: "/confidentialite" },
-  { label: "Charte cookie", href: "/charte-cookie" },
-];
-
-const documentLinks = [
-  { label: "Prospectus Velvet", href: "https://www.lfis.com" },
-  { label: "KID Velvet", href: "https://www.lfis.com" },
-  { label: "Prospectus TOBAM", href: "https://www.tobam.fr" },
-  { label: "Informations réglementaires", href: "/mentions-legales" },
-];
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function LandingFooter() {
+  const { t } = useTranslation(["footer"]);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const productLinks = [
+    { label: t("footer:products.velvet"), href: "/products/velvet" },
+    { label: t("footer:products.tobam"), href: "/products/tobam" },
+    { label: t("footer:products.all"), href: "/products" },
+  ];
+
+  const useCaseLinksLeft = [
+    { label: t("footer:useCases.holdings"), href: "/solutions/holdings" },
+    { label: t("footer:useCases.pme"), href: "/solutions/pme" },
+    { label: t("footer:useCases.startups"), href: "/solutions/startups" },
+    { label: t("footer:useCases.crypto"), href: "/solutions/crypto" },
+  ];
+
+  const useCaseLinksRight = [
+    { label: t("footer:useCases.freelances"), href: "/solutions/freelances" },
+    { label: t("footer:useCases.fintechs"), href: "/solutions/fintechs" },
+    { label: t("footer:useCases.sci"), href: "/solutions/sci" },
+    { label: t("footer:useCases.particuliers"), href: "/solutions/particuliers" },
+  ];
+
+  const resourceLinks = [
+    { label: t("footer:resources.about"), href: "/a-propos" },
+    { label: t("footer:resources.press"), href: "/presse" },
+    { label: t("footer:resources.contact"), href: "/contact" },
+  ];
+
+  const legalLinks = [
+    { label: t("footer:legal.mentions"), href: "/mentions-legales" },
+    { label: t("footer:legal.privacy"), href: "/confidentialite" },
+    { label: t("footer:legal.cookies"), href: "/charte-cookie" },
+  ];
+
+  const documentLinks = [
+    { label: t("footer:documents.velvetProspectus"), href: "https://www.lfis.com" },
+    { label: t("footer:documents.velvetKid"), href: "https://www.lfis.com" },
+    { label: t("footer:documents.tobamProspectus"), href: "https://www.tobam.fr" },
+    { label: t("footer:documents.regulatory"), href: "/mentions-legales" },
+  ];
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,13 +65,13 @@ export function LandingFooter() {
 
       if (error) {
         if (error.code === "23505") {
-          toast.success("Vous êtes déjà inscrit à notre newsletter.");
+          toast.success(t("footer:newsletter.successAlready"));
         } else {
           console.error("newsletter error", error);
-          toast.error("Inscription impossible. Vérifiez votre adresse e-mail.");
+          toast.error(t("footer:newsletter.error"));
         }
       } else {
-        toast.success("Merci ! Votre inscription est confirmée.");
+        toast.success(t("footer:newsletter.successNew"));
         setEmail("");
       }
     } finally {
@@ -79,20 +82,20 @@ export function LandingFooter() {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="max-w-7xl mx-auto px-6 md:px-10 pt-16 pb-10">
-        {/* Top: logo */}
-        <div className="flex items-center gap-3 mb-10">
-          <img src={quercusLogo} alt="Quercus" className="h-10 w-auto brightness-0 invert" />
-          <span className="text-3xl font-serif tracking-widest">QUERCUS</span>
+        <div className="flex items-center justify-between gap-3 mb-10">
+          <div className="flex items-center gap-3">
+            <img src={quercusLogo} alt="Quercus" className="h-10 w-auto brightness-0 invert" />
+            <span className="text-3xl font-serif tracking-widest">QUERCUS</span>
+          </div>
+          <LanguageSwitcher variant="dark" />
         </div>
 
         <Separator className="bg-primary-foreground/15 mb-12" />
 
-        {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
-          {/* Newsletter / follow */}
           <div className="md:col-span-4 space-y-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-2xl md:text-3xl font-serif">Suivez-nous</h3>
+              <h3 className="text-2xl md:text-3xl font-serif">{t("footer:follow")}</h3>
               <a
                 href="https://www.linkedin.com"
                 target="_blank"
@@ -105,17 +108,15 @@ export function LandingFooter() {
             </div>
 
             <div className="bg-primary-foreground/5 border border-primary-foreground/10 p-6 space-y-4">
-              <h4 className="text-xl font-serif">Newsletter</h4>
-              <p className="text-sm text-primary-foreground/70">
-                Recevez nos analyses de marché et les actualités produits.
-              </p>
+              <h4 className="text-xl font-serif">{t("footer:newsletter.title")}</h4>
+              <p className="text-sm text-primary-foreground/70">{t("footer:newsletter.desc")}</p>
               <form onSubmit={handleSubscribe} className="flex gap-2">
                 <Input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Votre email..."
+                  placeholder={t("footer:newsletter.placeholder")}
                   className="bg-background text-foreground placeholder:text-muted-foreground border-0 h-11"
                 />
                 <Button
@@ -124,15 +125,14 @@ export function LandingFooter() {
                   variant="secondary"
                   className="h-11 px-5 bg-foreground text-background hover:bg-foreground/90"
                 >
-                  {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "S'inscrire"}
+                  {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : t("footer:newsletter.subscribe")}
                 </Button>
               </form>
             </div>
           </div>
 
-          {/* Produits */}
           <div className="md:col-span-2 space-y-4">
-            <h4 className="text-lg font-serif">Produits</h4>
+            <h4 className="text-lg font-serif">{t("footer:sections.products")}</h4>
             <ul className="space-y-2.5">
               {productLinks.map((item) => (
                 <li key={item.label}>
@@ -144,9 +144,8 @@ export function LandingFooter() {
             </ul>
           </div>
 
-          {/* Cas d'usage */}
           <div className="md:col-span-3 space-y-4">
-            <h4 className="text-lg font-serif">Cas d'usage</h4>
+            <h4 className="text-lg font-serif">{t("footer:sections.useCases")}</h4>
             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {useCaseLinksLeft.map((item) => (
                 <Link key={item.label} to={item.href} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
@@ -161,10 +160,9 @@ export function LandingFooter() {
             </div>
           </div>
 
-          {/* Ressources + Légal */}
           <div className="md:col-span-3 space-y-6">
             <div className="space-y-3">
-              <h4 className="text-lg font-serif">Ressources</h4>
+              <h4 className="text-lg font-serif">{t("footer:sections.resources")}</h4>
               <ul className="space-y-2.5">
                 {resourceLinks.map((item) => (
                   <li key={item.label}>
@@ -176,7 +174,7 @@ export function LandingFooter() {
               </ul>
             </div>
             <div className="space-y-3">
-              <h4 className="text-lg font-serif">Légal</h4>
+              <h4 className="text-lg font-serif">{t("footer:sections.legal")}</h4>
               <ul className="space-y-2.5">
                 {legalLinks.map((item) => (
                   <li key={item.label}>
@@ -190,11 +188,10 @@ export function LandingFooter() {
           </div>
         </div>
 
-        {/* Document downloads */}
         <Separator className="bg-primary-foreground/15 mt-14 mb-8" />
         <div className="space-y-4">
           <h4 className="text-sm uppercase tracking-widest text-primary-foreground/70">
-            Documentation produit
+            {t("footer:sections.documentation")}
           </h4>
           <div className="flex flex-wrap gap-3">
             {documentLinks.map((doc) => (
@@ -212,23 +209,19 @@ export function LandingFooter() {
           </div>
         </div>
 
-        {/* Distributor disclaimer */}
         <Separator className="bg-primary-foreground/15 mt-10 mb-6" />
         <div className="space-y-4 text-[11px] text-primary-foreground/60 leading-relaxed">
           <p>
-            <strong className="text-primary-foreground/80">Avertissement.</strong> Quercus Capital agit en qualité de distributeur des fonds Velvet (FCP UCITS géré par LFIS Capital, agréé AMF n° FCP20230197) et TOBAM Crypto Liquidity Fund (FIA · Fonds Professionnel Spécialisé géré par TOBAM, agréée AMF GP 06 000019). Les fonds sont détenus par les banques dépositaires (BNP Paribas pour Velvet, CACEIS Bank pour TOBAM) et ne sont jamais inscrits au bilan de Quercus Capital. Audités annuellement par PwC.
+            <strong className="text-primary-foreground/80">{t("footer:disclaimer.warningLabel")}</strong>{" "}
+            {t("footer:disclaimer.warning")}
           </p>
-          <p>
-            Les performances passées ne préjugent pas des performances futures. Tout investissement comporte un risque de perte en capital. Les rendements affichés sont indicatifs et nets de frais ; ils peuvent varier en fonction des conditions de marché. Avant toute souscription, prenez connaissance du Prospectus et du Document d'Information Clé (KID/DIC) disponibles sur demande ou sur les sites des sociétés de gestion.
-          </p>
+          <p>{t("footer:disclaimer.performance")}</p>
         </div>
 
         <Separator className="bg-primary-foreground/15 mt-8 mb-6" />
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-primary-foreground/50">
-          <p>© {new Date().getFullYear()} Quercus Capital — Tous droits réservés.</p>
-          <p>
-            231 rue Saint-Honoré, 75001 Paris · RCS Paris 928 443 001 · ORIAS n°24004789 (CIF & COA)
-          </p>
+          <p>{t("footer:copyright", { year: new Date().getFullYear() })}</p>
+          <p>{t("footer:address")}</p>
         </div>
       </div>
     </footer>

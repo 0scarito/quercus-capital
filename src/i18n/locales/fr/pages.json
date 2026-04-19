@@ -1,0 +1,35 @@
+{
+  "contact": {
+    "title": "Contact",
+    "intro": "Notre équipe est à votre disposition pour répondre à vos questions et vous accompagner dans vos projets de gestion de trésorerie.",
+    "headquarters": "Siège social",
+    "details": "Coordonnées",
+    "phoneLabel": "Téléphone :",
+    "emailLabel": "Email :",
+    "hours": "Horaires d'ouverture",
+    "weekdays": "Lundi – Vendredi : 9h00 – 18h00",
+    "weekend": "Samedi – Dimanche : Fermé"
+  },
+  "about": {
+    "title": "À propos"
+  },
+  "press": {
+    "title": "Presse"
+  },
+  "legal": {
+    "title": "Mentions légales"
+  },
+  "privacy": {
+    "title": "Confidentialité"
+  },
+  "cookie": {
+    "title": "Charte cookie"
+  },
+  "products": {
+    "title": "Produits"
+  },
+  "solutions": {
+    "title": "Solutions",
+    "registerCta": "S'inscrire"
+  }
+}

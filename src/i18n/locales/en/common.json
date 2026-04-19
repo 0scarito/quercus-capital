@@ -1,0 +1,34 @@
+{
+  "actions": {
+    "signIn": "Sign in",
+    "openAccount": "Open an account",
+    "bookMeeting": "Book a meeting",
+    "subscribe": "Subscribe",
+    "register": "Register",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "next": "Next",
+    "back": "Back",
+    "close": "Close",
+    "loading": "Loading…",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "viewAll": "View all",
+    "learnMore": "Learn more",
+    "discover": "Discover"
+  },
+  "states": {
+    "loading": "Loading…",
+    "error": "An error occurred",
+    "empty": "No results",
+    "success": "Success"
+  },
+  "language": {
+    "label": "Language",
+    "fr": "French",
+    "en": "English"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "statements": "Statements",
+    "settings": "Settings",
+    "integrations": "Integrations",
+    "signOut": "Sign out"
+  },
+  "balance": {
+    "title": "Total balance",
+    "deposit": "Deposit",
+    "withdraw": "Withdraw"
+  },
+  "transactions": {
+    "title": "Transactions",
+    "search": "Search a product…",
+    "type": "Type",
+    "all": "All",
+    "deposit": "Deposit",
+    "withdrawal": "Withdrawal",
+    "interest": "Interest",
+    "date": "Date",
+    "product": "Product",
+    "amount": "Amount",
+    "empty": "No transactions"
+  }
+}

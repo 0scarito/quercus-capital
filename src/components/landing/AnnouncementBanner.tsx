@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { X, Sparkles } from "lucide-react";
+import { Trans } from "react-i18next";
 
 const STORAGE_KEY = "quercus_banner_dismissed_v1";
 
@@ -19,7 +20,10 @@ export function AnnouncementBanner() {
         <div className="flex-1 flex items-center justify-center gap-2 text-center">
           <Sparkles className="h-3.5 w-3.5 shrink-0 opacity-80" />
           <span className="tracking-wide">
-            Quercus Capital — Plateforme désormais ouverte aux <em className="font-serif">holdings</em> et <em className="font-serif">family offices</em>.
+            <Trans
+              i18nKey="nav:banner"
+              components={[<em className="font-serif" />, <em className="font-serif" />]}
+            />
           </span>
         </div>
         <button
