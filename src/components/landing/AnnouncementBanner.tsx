@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { X, Sparkles } from "lucide-react";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 const STORAGE_KEY = "quercus_banner_dismissed_v1";
 
 export function AnnouncementBanner() {
+  const { t } = useTranslation("common");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export function AnnouncementBanner() {
             window.dispatchEvent(new Event("quercus:banner-dismissed"));
           }}
           className="shrink-0 opacity-70 hover:opacity-100 transition-opacity"
-          aria-label="Fermer"
+          aria-label={t("actions.close", { defaultValue: "Close" })}
         >
           <X className="h-3.5 w-3.5" />
         </button>
