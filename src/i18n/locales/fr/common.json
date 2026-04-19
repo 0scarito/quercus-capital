@@ -1,0 +1,34 @@
+{
+  "actions": {
+    "signIn": "Se connecter",
+    "openAccount": "Ouvrir un compte",
+    "bookMeeting": "Prendre rendez-vous",
+    "subscribe": "S'inscrire",
+    "register": "S'inscrire",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "next": "Suivant",
+    "back": "Retour",
+    "close": "Fermer",
+    "loading": "Chargement…",
+    "submit": "Envoyer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "all": "Tous",
+    "viewAll": "Tout voir",
+    "learnMore": "En savoir plus",
+    "discover": "Découvrir"
+  },
+  "states": {
+    "loading": "Chargement…",
+    "error": "Une erreur est survenue",
+    "empty": "Aucun résultat",
+    "success": "Succès"
+  },
+  "language": {
+    "label": "Langue",
+    "fr": "Français",
+    "en": "Anglais"
+  }
+}

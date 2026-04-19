@@ -1,0 +1,29 @@
+{
+  "products": "Products",
+  "solutions": "Solutions",
+  "resources": "Resources",
+  "viewAllProducts": "View all products",
+  "allSolutions": "All solutions",
+  "productsList": {
+    "velvetSubtitle": "Smart Cash · UCITS Fund",
+    "tobamSubtitle": "Cash & Carry · AIF FPS"
+  },
+  "solutionsList": {
+    "holdings": "Holdings & Family Offices",
+    "pme": "SMEs & Start-ups",
+    "crypto": "Crypto Businesses",
+    "freelances": "Independent Professionals",
+    "particuliers": "Private Clients"
+  },
+  "resourcesList": {
+    "about": "About",
+    "aboutDesc": "Our mission and team",
+    "press": "Press",
+    "pressDesc": "Releases and media coverage",
+    "contact": "Contact",
+    "contactDesc": "Book a meeting",
+    "legal": "Legal notice",
+    "legalDesc": "Regulatory information"
+  },
+  "banner": "Quercus Capital — Platform now open to <1>holdings</1> and <3>family offices</3>."
+}

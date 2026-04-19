@@ -1,0 +1,17 @@
+{
+  "title": "Open an account",
+  "stages": {
+    "welcome": "Welcome",
+    "accountType": "Account type",
+    "individual": "Personal information",
+    "corporate": "Company information",
+    "kyc": "Identity verification",
+    "twoFA": "Two-factor authentication",
+    "emailVerification": "Email verification"
+  },
+  "common": {
+    "continue": "Continue",
+    "back": "Back",
+    "skip": "Skip"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "follow": "Suivez-nous",
+  "newsletter": {
+    "title": "Newsletter",
+    "desc": "Recevez nos analyses de marché et les actualités produits.",
+    "placeholder": "Votre email…",
+    "subscribe": "S'inscrire",
+    "successAlready": "Vous êtes déjà inscrit à notre newsletter.",
+    "successNew": "Merci ! Votre inscription est confirmée.",
+    "error": "Inscription impossible. Vérifiez votre adresse e-mail."
+  },
+  "sections": {
+    "products": "Produits",
+    "useCases": "Cas d'usage",
+    "resources": "Ressources",
+    "legal": "Légal",
+    "documentation": "Documentation produit"
+  },
+  "products": {
+    "velvet": "Velvet (Smart Cash)",
+    "tobam": "TOBAM Crypto Liquidity",
+    "all": "Tous les produits"
+  },
+  "useCases": {
+    "holdings": "Holdings",
+    "pme": "PME",
+    "startups": "Start-ups",
+    "crypto": "Crypto",
+    "freelances": "Freelances",
+    "fintechs": "Fintechs",
+    "sci": "SCI",
+    "particuliers": "Particuliers"
+  },
+  "resources": {
+    "about": "À propos",
+    "press": "Presse",
+    "contact": "Contact"
+  },
+  "legal": {
+    "mentions": "Mentions légales",
+    "privacy": "Confidentialité",
+    "cookies": "Charte cookie"
+  },
+  "documents": {
+    "velvetProspectus": "Prospectus Velvet",
+    "velvetKid": "KID Velvet",
+    "tobamProspectus": "Prospectus TOBAM",
+    "regulatory": "Informations réglementaires"
+  },
+  "disclaimer": {
+    "warningLabel": "Avertissement.",
+    "warning": "Quercus Capital agit en qualité de distributeur des fonds Velvet (FCP UCITS géré par LFIS Capital, agréé AMF n° FCP20230197) et TOBAM Crypto Liquidity Fund (FIA · Fonds Professionnel Spécialisé géré par TOBAM, agréée AMF GP 06 000019). Les fonds sont détenus par les banques dépositaires (BNP Paribas pour Velvet, CACEIS Bank pour TOBAM) et ne sont jamais inscrits au bilan de Quercus Capital. Audités annuellement par PwC.",
+    "performance": "Les performances passées ne préjugent pas des performances futures. Tout investissement comporte un risque de perte en capital. Les rendements affichés sont indicatifs et nets de frais ; ils peuvent varier en fonction des conditions de marché. Avant toute souscription, prenez connaissance du Prospectus et du Document d'Information Clé (KID/DIC) disponibles sur demande ou sur les sites des sociétés de gestion."
+  },
+  "copyright": "© {{year}} Quercus Capital — Tous droits réservés.",
+  "address": "231 rue Saint-Honoré, 75001 Paris · RCS Paris 928 443 001 · ORIAS n°24004789 (CIF & COA)"
+}

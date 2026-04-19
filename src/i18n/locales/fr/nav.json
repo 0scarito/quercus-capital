@@ -1,0 +1,29 @@
+{
+  "products": "Produits",
+  "solutions": "Solutions",
+  "resources": "Ressources",
+  "viewAllProducts": "Voir tous les produits",
+  "allSolutions": "Toutes les solutions",
+  "productsList": {
+    "velvetSubtitle": "Smart Cash · FCP UCITS",
+    "tobamSubtitle": "Cash & Carry · FIA FPS"
+  },
+  "solutionsList": {
+    "holdings": "Holdings & Family Offices",
+    "pme": "PME & Start-ups",
+    "crypto": "Entreprises Crypto",
+    "freelances": "Professions libérales",
+    "particuliers": "Particuliers"
+  },
+  "resourcesList": {
+    "about": "À propos",
+    "aboutDesc": "Notre mission et notre équipe",
+    "press": "Presse",
+    "pressDesc": "Communiqués et couverture média",
+    "contact": "Contact",
+    "contactDesc": "Prendre rendez-vous",
+    "legal": "Mentions légales",
+    "legalDesc": "Information réglementaire"
+  },
+  "banner": "Quercus Capital — Plateforme désormais ouverte aux <1>holdings</1> et <3>family offices</3>."
+}

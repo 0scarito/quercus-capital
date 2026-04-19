@@ -1,0 +1,35 @@
+{
+  "contact": {
+    "title": "Contact",
+    "intro": "Our team is available to answer your questions and support you in your treasury management projects.",
+    "headquarters": "Head office",
+    "details": "Contact details",
+    "phoneLabel": "Phone:",
+    "emailLabel": "Email:",
+    "hours": "Opening hours",
+    "weekdays": "Monday – Friday: 9:00 – 18:00",
+    "weekend": "Saturday – Sunday: Closed"
+  },
+  "about": {
+    "title": "About"
+  },
+  "press": {
+    "title": "Press"
+  },
+  "legal": {
+    "title": "Legal notice"
+  },
+  "privacy": {
+    "title": "Privacy"
+  },
+  "cookie": {
+    "title": "Cookie policy"
+  },
+  "products": {
+    "title": "Products"
+  },
+  "solutions": {
+    "title": "Solutions",
+    "registerCta": "Register"
+  }
+}
