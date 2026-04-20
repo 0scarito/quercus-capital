@@ -27,9 +27,9 @@ export function DashboardPreview() {
 
   return (
     <section ref={ref} className="pt-32 pb-24 md:pt-48 md:pb-32 px-4 md:px-8 relative z-0">
-      <div className="max-w-7xl mx-auto" style={{ perspective: "1600px" }}>
+      <div className="max-w-7xl mx-auto" style={{ perspective: "2000px" }}>
         <motion.div
-          style={{ y, scale, opacity, rotateX, transformStyle: "preserve-3d" }}
+          style={{ y, scale, opacity, rotateX, filter, transformStyle: "preserve-3d", transformOrigin: "50% 100%" }}
           className="relative will-change-transform"
         >
           {/* Browser chrome frame */}
