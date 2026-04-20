@@ -16,14 +16,17 @@ export function DashboardPreview() {
     offset: ["start end", "end start"],
   });
 
-  // Smooth, professional motion — gentle rise + subtle scale + tilt release
-  const y = useTransform(scrollYProgress, [0, 0.45], [80, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.45], [0.94, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1]);
-  const rotateX = useTransform(scrollYProgress, [0, 0.5], [8, 0]);
+  // Cinematic "approach" — starts far away (small + low + tilted), travels toward viewer.
+  // Eased ranges so motion feels weighted and silky, never abrupt.
+  const y = useTransform(scrollYProgress, [0, 0.55, 0.75], [320, 40, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.55, 0.8], [0.55, 0.92, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.18, 0.4], [0, 0.4, 1]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.55, 0.8], [22, 6, 0]);
+  const blur = useTransform(scrollYProgress, [0, 0.35, 0.6], [10, 3, 0]);
+  const filter = useTransform(blur, (b) => `blur(${b}px)`);
 
   return (
-    <section ref={ref} className="py-12 md:py-20 px-4 md:px-8 -mt-16 md:-mt-24 relative z-0">
+    <section ref={ref} className="pt-32 pb-24 md:pt-48 md:pb-32 px-4 md:px-8 relative z-0">
       <div className="max-w-7xl mx-auto" style={{ perspective: "1600px" }}>
         <motion.div
           style={{ y, scale, opacity, rotateX, transformStyle: "preserve-3d" }}
