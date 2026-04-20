@@ -13,20 +13,21 @@ export function DashboardPreview() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    // Animation completes when section top reaches viewport top — so the final frame
+    // is seen while the dashboard is fully on screen, not as it's scrolling away.
+    offset: ["start end", "start start"],
   });
 
-  // Cinematic "approach" — starts far away (small + low + tilted), travels toward viewer.
-  // Eased ranges so motion feels weighted and silky, never abrupt.
-  const y = useTransform(scrollYProgress, [0, 0.55, 0.75], [320, 40, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.55, 0.8], [0.55, 0.92, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.18, 0.4], [0, 0.4, 1]);
-  const rotateX = useTransform(scrollYProgress, [0, 0.55, 0.8], [22, 6, 0]);
-  const blur = useTransform(scrollYProgress, [0, 0.35, 0.6], [10, 3, 0]);
+  // Cinematic "approach" — far away → traveling toward the viewer.
+  const y = useTransform(scrollYProgress, [0, 0.7, 1], [280, 40, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.7, 1], [0.6, 0.92, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.5], [0, 0.5, 1]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.7, 1], [20, 5, 0]);
+  const blur = useTransform(scrollYProgress, [0, 0.5, 0.8], [8, 2, 0]);
   const filter = useTransform(blur, (b) => `blur(${b}px)`);
 
   return (
-    <section ref={ref} className="pt-32 pb-24 md:pt-48 md:pb-32 px-4 md:px-8 relative z-0">
+    <section ref={ref} className="pt-20 pb-32 md:pt-28 md:pb-48 px-4 md:px-8 relative z-0">
       <div className="max-w-7xl mx-auto" style={{ perspective: "2000px" }}>
         <motion.div
           style={{ y, scale, opacity, rotateX, filter, transformStyle: "preserve-3d", transformOrigin: "50% 100%" }}
