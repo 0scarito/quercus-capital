@@ -29,7 +29,7 @@ export function UseCases() {
 
         <div
           className="flex gap-6 w-max group-hover:[animation-play-state:paused]"
-          style={{ animation: "marquee 40s linear infinite" }}
+          style={{ animation: `marquee ${segments.length * 7}s linear infinite` }}
         >
           {loop.map((s, i) => {
             const localizedName = t(`nav:solutionsList.${s.slug}`, { defaultValue: s.name });
