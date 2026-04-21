@@ -221,6 +221,63 @@ export type Database = {
         }
         Relationships: []
       }
+      onboarding_details: {
+        Row: {
+          account_type: string
+          activity_sector: string | null
+          created_at: string
+          entity_type: string | null
+          funds_origin: string | null
+          id: string
+          income_band: string | null
+          legal_form: string | null
+          legal_name: string | null
+          planned_deposit: string | null
+          referral_source: string | null
+          sector: string | null
+          siren: string | null
+          updated_at: string
+          user_id: string
+          wealth_band: string | null
+        }
+        Insert: {
+          account_type: string
+          activity_sector?: string | null
+          created_at?: string
+          entity_type?: string | null
+          funds_origin?: string | null
+          id?: string
+          income_band?: string | null
+          legal_form?: string | null
+          legal_name?: string | null
+          planned_deposit?: string | null
+          referral_source?: string | null
+          sector?: string | null
+          siren?: string | null
+          updated_at?: string
+          user_id: string
+          wealth_band?: string | null
+        }
+        Update: {
+          account_type?: string
+          activity_sector?: string | null
+          created_at?: string
+          entity_type?: string | null
+          funds_origin?: string | null
+          id?: string
+          income_band?: string | null
+          legal_form?: string | null
+          legal_name?: string | null
+          planned_deposit?: string | null
+          referral_source?: string | null
+          sector?: string | null
+          siren?: string | null
+          updated_at?: string
+          user_id?: string
+          wealth_band?: string | null
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           created_at: string
