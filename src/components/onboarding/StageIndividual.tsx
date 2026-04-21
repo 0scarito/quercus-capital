@@ -7,6 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const addressSchema = z.object({
   country: z.string().min(1, "Requis"),
@@ -27,6 +31,9 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
   const [sub, setSub] = useState<SubStep>("address");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [shake, setShake] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const { user } = useAuth();
+  const qc = useQueryClient();
 
   // Address
   const [country, setCountry] = useState("France");
@@ -57,7 +64,7 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
 
   const subIndex = subSteps.indexOf(sub);
 
-  const goNext = () => {
+  const goNext = async () => {
     setErrors({});
     if (sub === "address") {
       const result = addressSchema.safeParse({ country, address, city, postalCode });
@@ -73,6 +80,44 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
     if (subIndex < subSteps.length - 1) {
       setSub(subSteps[subIndex + 1]);
     } else {
+      if (!user) {
+        toast.error("Session expirée. Veuillez vous reconnecter.");
+        return;
+      }
+      setSaving(true);
+      const { error: profileError } = await supabase
+        .from("profiles")
+        .update({
+          address, city, postal_code: postalCode, country,
+          tax_country: taxFrance ? country : (taxCountry || null),
+          tax_id: taxId || null,
+          account_type: "particulier",
+        })
+        .eq("user_id", user.id);
+      if (profileError) {
+        setSaving(false);
+        toast.error("Erreur d'enregistrement du profil.");
+        return;
+      }
+      const { error: detailsError } = await supabase
+        .from("onboarding_details")
+        .upsert({
+          user_id: user.id,
+          account_type: "particulier",
+          sector: sector || null,
+          income_band: income || null,
+          wealth_band: patrimoine || null,
+          planned_deposit: deposit || null,
+          funds_origin: fundsOrigin || null,
+          referral_source: referral || null,
+        }, { onConflict: "user_id" });
+      setSaving(false);
+      if (detailsError) {
+        toast.error("Erreur d'enregistrement des informations.");
+        return;
+      }
+      qc.invalidateQueries({ queryKey: ["profile"] });
+      qc.invalidateQueries({ queryKey: ["onboarding_details"] });
       onNext({
         country, address, city, postalCode,
         taxFrance, taxCountry, taxId,
@@ -268,8 +313,8 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
       <div className="flex gap-3">
         <Button variant="ghost" onClick={goBack} className="flex-1">Retour</Button>
         <motion.div className="flex-1" animate={shake ? { x: [-4, 4, -4, 4, 0] } : {}} transition={{ duration: 0.4 }}>
-          <Button onClick={goNext} className="btn-glow w-full">
-            {subIndex === subSteps.length - 1 ? "Valider" : "Suivant"}
+          <Button onClick={goNext} className="btn-glow w-full" disabled={saving}>
+            {saving ? "Enregistrement…" : subIndex === subSteps.length - 1 ? "Valider" : "Suivant"}
           </Button>
         </motion.div>
       </div>

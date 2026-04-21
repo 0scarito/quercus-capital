@@ -8,6 +8,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Progress } from "@/components/ui/progress";
 import { Upload, FileText, CheckCircle, Building2, Briefcase, Landmark } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const orgSchema = z.object({
   legalName: z.string().min(1, "Requis").max(255),
@@ -27,6 +31,9 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
   const [sub, setSub] = useState<SubStep>("org");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [shake, setShake] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const { user } = useAuth();
+  const qc = useQueryClient();
 
   // Org
   const [legalName, setLegalName] = useState("");
@@ -78,7 +85,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
     }
   }, []);
 
-  const goNext = () => {
+  const goNext = async () => {
     setErrors({});
     if (sub === "org") {
       const result = orgSchema.safeParse({ legalName, legalForm, siren });
@@ -94,6 +101,47 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
     if (subIndex < subSteps.length - 1) {
       setSub(subSteps[subIndex + 1]);
     } else {
+      if (!user) {
+        toast.error("Session expirée. Veuillez vous reconnecter.");
+        return;
+      }
+      setSaving(true);
+      const { error: profileError } = await supabase
+        .from("profiles")
+        .update({
+          address: orgAddress || null,
+          city: orgCity || null,
+          postal_code: orgPostalCode || null,
+          country: orgCountry || null,
+          account_type: "moral",
+        })
+        .eq("user_id", user.id);
+      if (profileError) {
+        setSaving(false);
+        toast.error("Erreur d'enregistrement du profil.");
+        return;
+      }
+      const { error: detailsError } = await supabase
+        .from("onboarding_details")
+        .upsert({
+          user_id: user.id,
+          account_type: "moral",
+          legal_name: legalName,
+          legal_form: legalForm,
+          siren,
+          entity_type: entityType || null,
+          activity_sector: activitySector || null,
+          planned_deposit: depositAmount || null,
+          funds_origin: fundsSource || null,
+          referral_source: referral || null,
+        }, { onConflict: "user_id" });
+      setSaving(false);
+      if (detailsError) {
+        toast.error("Erreur d'enregistrement des informations.");
+        return;
+      }
+      qc.invalidateQueries({ queryKey: ["profile"] });
+      qc.invalidateQueries({ queryKey: ["onboarding_details"] });
       onNext({
         legalName, legalForm, siren,
         orgCountry, orgAddress, orgCity, orgPostalCode,
@@ -332,8 +380,8 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
       <div className="flex gap-3">
         <Button variant="ghost" onClick={goBack} className="flex-1">Retour</Button>
         <motion.div className="flex-1" animate={shake ? { x: [-4, 4, -4, 4, 0] } : {}} transition={{ duration: 0.4 }}>
-          <Button onClick={goNext} className="btn-glow w-full">
-            {subIndex === subSteps.length - 1 ? "Valider" : "Suivant"}
+          <Button onClick={goNext} className="btn-glow w-full" disabled={saving}>
+            {saving ? "Enregistrement…" : subIndex === subSteps.length - 1 ? "Valider" : "Suivant"}
           </Button>
         </motion.div>
       </div>
