@@ -92,6 +92,13 @@ export default function AccountSettings() {
     </div>
   );
 
+  const ReadOnly = ({ label, value, mono }: { label: string; value: string | null | undefined; mono?: boolean }) => (
+    <div>
+      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{label}</p>
+      <p className={`font-medium text-sm ${mono ? "font-mono" : ""}`}>{value || "—"}</p>
+    </div>
+  );
+
   return (
     <div className="p-8 max-w-4xl mx-auto animate-fade-in space-y-8">
       <div className="flex items-start justify-between">
@@ -192,6 +199,42 @@ export default function AccountSettings() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Profil financier */}
+      {onboarding && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm uppercase tracking-wider font-sans font-medium flex items-center gap-2">
+              <Wallet className="h-4 w-4" /> Profil financier
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 gap-4">
+              {onboarding.account_type === "particulier" ? (
+                <>
+                  <ReadOnly label="Secteur d'activité" value={onboarding.sector} />
+                  <ReadOnly label="Revenu annuel" value={onboarding.income_band} />
+                  <ReadOnly label="Patrimoine" value={onboarding.wealth_band} />
+                  <ReadOnly label="Dépôt prévu" value={onboarding.planned_deposit} mono />
+                  <ReadOnly label="Origine des fonds" value={onboarding.funds_origin} />
+                  <ReadOnly label="Source de découverte" value={onboarding.referral_source} />
+                </>
+              ) : (
+                <>
+                  <ReadOnly label="Raison sociale" value={onboarding.legal_name} />
+                  <ReadOnly label="Forme juridique" value={onboarding.legal_form} />
+                  <ReadOnly label="SIREN" value={onboarding.siren} mono />
+                  <ReadOnly label="Type d'entité" value={onboarding.entity_type} />
+                  <ReadOnly label="Secteur d'activité" value={onboarding.activity_sector} />
+                  <ReadOnly label="Dépôt prévu" value={onboarding.planned_deposit} mono />
+                  <ReadOnly label="Source des fonds" value={onboarding.funds_origin} />
+                  <ReadOnly label="Source de découverte" value={onboarding.referral_source} />
+                </>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Bank Accounts */}
       <Card>
