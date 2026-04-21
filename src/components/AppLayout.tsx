@@ -1,4 +1,4 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { QuercusSidebar } from "@/components/QuercusSidebar";
 import { Outlet, Link } from "react-router-dom";
 
@@ -8,9 +8,6 @@ export function AppLayout() {
       <div className="min-h-screen flex w-full">
         <QuercusSidebar />
         <div className="flex-1 flex flex-col">
-          <header className="h-14 flex items-center border-b px-6">
-            <SidebarTrigger />
-          </header>
           <main className="flex-1 overflow-auto">
             <Outlet />
           </main>
