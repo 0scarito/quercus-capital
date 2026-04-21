@@ -53,16 +53,17 @@ export function AccountSwitcherPopover({ currentAccountId, onSelect, subscriptio
     });
   }, [accounts]);
 
-  const displayName = (a: Account) => (a.is_primary ? PRIMARY_NAME : a.name);
+  // Primary accounts may be renamed; only the default placeholder name is shown
+  // as "Compte principal" until the user customizes it.
+  const displayName = (a: Account) =>
+    a.is_primary && (!a.name || a.name === PRIMARY_NAME) ? PRIMARY_NAME : a.name;
 
-  const canEdit = current && !current.is_primary;
+  const canEdit = !!current;
+  const canDelete = current && !current.is_primary;
 
   const openRename = () => {
-    if (!current || current.is_primary) {
-      toast.error("Le compte principal ne peut pas être renommé");
-      return;
-    }
-    setRenameValue(current.name);
+    if (!current) return;
+    setRenameValue(current.name && current.name !== PRIMARY_NAME ? current.name : "");
     setRenameOpen(true);
   };
 
@@ -131,7 +132,7 @@ export function AccountSwitcherPopover({ currentAccountId, onSelect, subscriptio
                 setOpen(false);
                 setTimeout(handleDelete, 50);
               }}
-              disabled={!canEdit}
+              disabled={!canDelete}
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-sm hover:bg-muted/60 transition-colors text-left disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <Trash2 className="h-4 w-4" />
