@@ -24,7 +24,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   DropdownMenu,
@@ -49,9 +48,8 @@ const secondaryNav = [
 ];
 
 export function QuercusSidebar() {
-  const { state } = useSidebar();
-  const collapsed = state === "collapsed";
   const navigate = useNavigate();
+  const collapsed = false;
   const { user, signOut } = useAuth();
   const { data: profile } = useProfile();
 
