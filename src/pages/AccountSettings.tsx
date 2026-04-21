@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Shield, CreditCard, MapPin, AlertTriangle, Loader2, Users, Globe, Pencil, Save, X } from "lucide-react";
+import { Shield, CreditCard, MapPin, AlertTriangle, Loader2, Users, Globe, Pencil, Save, X, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -8,13 +8,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { useProfile, type Profile } from "@/hooks/useProfile";
+import { useProfile, useOnboardingDetails, type Profile } from "@/hooks/useProfile";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export default function AccountSettings() {
   const { user } = useAuth();
   const { data: profile, isLoading } = useProfile();
+  const { data: onboarding } = useOnboardingDetails();
   const qc = useQueryClient();
 
   const [editing, setEditing] = useState(false);
