@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Shield, CreditCard, MapPin, AlertTriangle, Loader2, Users, Globe, Pencil, Save, X } from "lucide-react";
+import { Shield, CreditCard, MapPin, AlertTriangle, Loader2, Users, Globe, Pencil, Save, X, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -8,13 +8,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { useProfile, type Profile } from "@/hooks/useProfile";
+import { useProfile, useOnboardingDetails, type Profile } from "@/hooks/useProfile";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export default function AccountSettings() {
   const { user } = useAuth();
   const { data: profile, isLoading } = useProfile();
+  const { data: onboarding } = useOnboardingDetails();
   const qc = useQueryClient();
 
   const [editing, setEditing] = useState(false);
@@ -88,6 +89,13 @@ export default function AccountSettings() {
       ) : (
         <p className={`font-medium text-sm ${mono ? "font-mono" : ""}`}>{value || "—"}</p>
       )}
+    </div>
+  );
+
+  const ReadOnly = ({ label, value, mono }: { label: string; value: string | null | undefined; mono?: boolean }) => (
+    <div>
+      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{label}</p>
+      <p className={`font-medium text-sm ${mono ? "font-mono" : ""}`}>{value || "—"}</p>
     </div>
   );
 
@@ -191,6 +199,42 @@ export default function AccountSettings() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Profil financier */}
+      {onboarding && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm uppercase tracking-wider font-sans font-medium flex items-center gap-2">
+              <Wallet className="h-4 w-4" /> Profil financier
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 gap-4">
+              {onboarding.account_type === "particulier" ? (
+                <>
+                  <ReadOnly label="Secteur d'activité" value={onboarding.sector} />
+                  <ReadOnly label="Revenu annuel" value={onboarding.income_band} />
+                  <ReadOnly label="Patrimoine" value={onboarding.wealth_band} />
+                  <ReadOnly label="Dépôt prévu" value={onboarding.planned_deposit} mono />
+                  <ReadOnly label="Origine des fonds" value={onboarding.funds_origin} />
+                  <ReadOnly label="Source de découverte" value={onboarding.referral_source} />
+                </>
+              ) : (
+                <>
+                  <ReadOnly label="Raison sociale" value={onboarding.legal_name} />
+                  <ReadOnly label="Forme juridique" value={onboarding.legal_form} />
+                  <ReadOnly label="SIREN" value={onboarding.siren} mono />
+                  <ReadOnly label="Type d'entité" value={onboarding.entity_type} />
+                  <ReadOnly label="Secteur d'activité" value={onboarding.activity_sector} />
+                  <ReadOnly label="Dépôt prévu" value={onboarding.planned_deposit} mono />
+                  <ReadOnly label="Source des fonds" value={onboarding.funds_origin} />
+                  <ReadOnly label="Source de découverte" value={onboarding.referral_source} />
+                </>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Bank Accounts */}
       <Card>

@@ -10,6 +10,8 @@ import { toast } from "sonner";
 import { Mail } from "lucide-react";
 
 const emailSchema = z.object({
+  firstName: z.string().trim().min(1, "Prénom requis").max(100),
+  lastName: z.string().trim().min(1, "Nom requis").max(100),
   email: z.string().trim().email("Adresse email invalide").max(255),
   password: z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères").max(128),
   confirmPassword: z.string(),
@@ -25,6 +27,8 @@ interface StageEmailVerificationProps {
 
 export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmailVerificationProps) {
   const [phase, setPhase] = useState<"credentials" | "otp">("credentials");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState(defaultEmail);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -39,7 +43,7 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
   };
 
   const handleSignUp = async () => {
-    const result = emailSchema.safeParse({ email, password, confirmPassword });
+    const result = emailSchema.safeParse({ firstName, lastName, email, password, confirmPassword });
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
       result.error.errors.forEach(e => { fieldErrors[e.path[0] as string] = e.message; });
@@ -55,7 +59,11 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
       password,
       options: {
         emailRedirectTo: new URL("/open-account", window.location.origin).toString(),
-        data: { skip_email_verification: true },
+        data: {
+          first_name: firstName.trim(),
+          last_name: lastName.trim(),
+          skip_email_verification: true,
+        },
       },
     });
 
@@ -126,6 +134,28 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
           </div>
 
           <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="firstName">Prénom</Label>
+                <Input
+                  id="firstName"
+                  value={firstName}
+                  onChange={e => setFirstName(e.target.value)}
+                  className={errors.firstName ? "border-destructive" : ""}
+                />
+                {errors.firstName && <p className="text-xs text-destructive">{errors.firstName}</p>}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="lastName">Nom</Label>
+                <Input
+                  id="lastName"
+                  value={lastName}
+                  onChange={e => setLastName(e.target.value)}
+                  className={errors.lastName ? "border-destructive" : ""}
+                />
+                {errors.lastName && <p className="text-xs text-destructive">{errors.lastName}</p>}
+              </div>
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input

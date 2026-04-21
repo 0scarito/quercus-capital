@@ -9,6 +9,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { AccountSwitcherPopover } from "@/components/AccountSwitcherPopover";
 import { useUserSubscriptions } from "@/hooks/useProducts";
 import { useAccounts } from "@/hooks/useAccounts";
+import { useProfile } from "@/hooks/useProfile";
 
 type TxType = "deposit" | "withdrawal" | "interest";
 
@@ -28,6 +29,7 @@ export default function Dashboard() {
 
   const { data: subscriptions, isLoading } = useUserSubscriptions();
   const { data: accounts } = useAccounts();
+  const { data: profile } = useProfile();
 
   const [activeAccountId, setActiveAccountId] = useState<string | null>(null);
   const primary = accounts?.find((a) => a.is_primary);
@@ -103,6 +105,13 @@ export default function Dashboard() {
 
   return (
     <div className="h-full flex flex-col p-6 max-w-6xl mx-auto w-full animate-fade-in gap-5 overflow-hidden">
+      {profile?.first_name && (
+        <div className="shrink-0">
+          <h1 className="font-serif text-2xl">
+            Bonjour, <em>{profile.first_name}</em>
+          </h1>
+        </div>
+      )}
       {/* Top row */}
       <div className="flex items-start justify-between gap-4 flex-wrap shrink-0">
         <AccountSwitcherPopover
