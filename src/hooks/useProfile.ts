@@ -15,6 +15,7 @@ export interface Profile {
   city: string | null;
   postal_code: string | null;
   country: string | null;
+  date_of_birth: string | null;
   onboarding_completed: boolean;
 }
 
