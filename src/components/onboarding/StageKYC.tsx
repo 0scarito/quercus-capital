@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ScanFace, CheckCircle, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { useQueryClient } from "@tanstack/react-query";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 
 interface StageKYCProps {
@@ -10,11 +13,21 @@ interface StageKYCProps {
 
 export function StageKYC({ onComplete }: StageKYCProps) {
   const [phase, setPhase] = useState<"ready" | "verifying" | "done">("ready");
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
 
-  const handleVerify = () => {
+  const handleVerify = async () => {
     setPhase("verifying");
     // Simulate KYC provider integration
-    setTimeout(() => setPhase("done"), 3000);
+    await new Promise((r) => setTimeout(r, 3000));
+    if (user) {
+      await supabase
+        .from("profiles")
+        .update({ onboarding_completed: true })
+        .eq("user_id", user.id);
+      queryClient.invalidateQueries({ queryKey: ["profile", user.id] });
+    }
+    setPhase("done");
   };
 
   return (
