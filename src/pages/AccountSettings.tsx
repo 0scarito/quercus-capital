@@ -35,6 +35,7 @@ export default function AccountSettings() {
         first_name: form.first_name,
         last_name: form.last_name,
         phone: form.phone,
+        date_of_birth: form.date_of_birth || null,
         address: form.address,
         city: form.city,
         postal_code: form.postal_code,
