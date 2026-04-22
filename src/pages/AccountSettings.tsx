@@ -35,6 +35,7 @@ export default function AccountSettings() {
         first_name: form.first_name,
         last_name: form.last_name,
         phone: form.phone,
+        date_of_birth: form.date_of_birth || null,
         address: form.address,
         city: form.city,
         postal_code: form.postal_code,
@@ -136,6 +137,12 @@ export default function AccountSettings() {
           <div className="grid grid-cols-2 gap-4">
             <Field label="Prénom" value={profile?.first_name} field="first_name" />
             <Field label="Nom" value={profile?.last_name} field="last_name" />
+            <Field
+              label="Date de naissance"
+              value={profile?.date_of_birth}
+              field="date_of_birth"
+              mono
+            />
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Email</p>
               <p className="font-medium text-sm">{user?.email || "—"}</p>
