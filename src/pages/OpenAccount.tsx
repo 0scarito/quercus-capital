@@ -11,6 +11,7 @@ import { StageCorporate } from "@/components/onboarding/StageCorporate";
 import { StageKYC } from "@/components/onboarding/StageKYC";
 import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { useAuth } from "@/contexts/AuthContext";
+import { useProfile } from "@/hooks/useProfile";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 
 type Stage = "welcome" | "email" | "2fa" | "type" | "individual" | "corporate" | "kyc";
@@ -31,9 +32,16 @@ const TOTAL_STEPS = 6;
 export default function OpenAccount() {
   const navigate = useNavigate();
   const { session, loading } = useAuth();
+  const { data: profile } = useProfile();
   const [stage, setStage] = useState<Stage>("welcome");
   const [accountType, setAccountType] = useState<"particulier" | "moral" | null>(null);
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    if (profile?.onboarding_completed) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [profile?.onboarding_completed, navigate]);
 
   useEffect(() => {
     if (loading || !session?.user?.email) return;
