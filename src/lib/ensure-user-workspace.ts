@@ -1,5 +1,6 @@
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
+import type { TablesUpdate } from "@/integrations/supabase/types";
 
 const PRIMARY_ACCOUNT_NAME = "Compte principal";
 
@@ -57,7 +58,7 @@ export async function ensureUserWorkspace(user: User) {
 
     if (error) throw error;
   } else {
-    const profilePatch: Record<string, string> = {};
+    const profilePatch: TablesUpdate<"profiles"> = {};
 
     if (!profile.first_name && details.firstName) profilePatch.first_name = details.firstName;
     if (!profile.last_name && details.lastName) profilePatch.last_name = details.lastName;

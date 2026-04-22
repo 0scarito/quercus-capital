@@ -1,6 +1,7 @@
 import * as React from "react";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Session, User } from "@supabase/supabase-js";
+import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { ensureUserWorkspace } from "@/lib/ensure-user-workspace";
 
@@ -21,9 +22,11 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const queryClient = useQueryClient();
   const [session, setSession] = useState<Session | null>(null);
   const [authResolved, setAuthResolved] = useState(false);
   const [loading, setLoading] = useState(true);
+  const previousUserIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -43,6 +46,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let cancelled = false;
+    const currentUserId = session?.user?.id ?? null;
+
+    if (previousUserIdRef.current !== currentUserId) {
+      queryClient.clear();
+      previousUserIdRef.current = currentUserId;
+    }
 
     const bootstrapUserWorkspace = async () => {
       if (!authResolved) return;
@@ -66,7 +75,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, [authResolved, session?.user?.id]);
+  }, [authResolved, queryClient, session?.user?.id]);
 
   const signOut = async () => {
     await supabase.auth.signOut();
