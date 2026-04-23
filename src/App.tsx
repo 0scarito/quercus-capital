@@ -20,6 +20,7 @@ import Products from "@/pages/Products";
 import Statements from "@/pages/Statements";
 import AccountSettings from "@/pages/AccountSettings";
 import Integrations from "@/pages/Integrations";
+import CompleteProfile from "@/pages/CompleteProfile";
 import NotFound from "@/pages/NotFound";
 import AboutPage from "@/pages/AboutPage";
 import PressPage from "@/pages/PressPage";
@@ -54,6 +55,7 @@ const App = () => (
             <Route path="/open-account" element={<OpenAccount />} />
             <Route path="/signin" element={<SignIn />} />
             <Route element={<ProtectedRoute />}>
+              <Route path="/complete-profile" element={<CompleteProfile />} />
               <Route element={<AppLayout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/produits" element={<Products />} />

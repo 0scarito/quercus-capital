@@ -1,29 +1,27 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Loader2, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ScanFace, CheckCircle, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
-import { useQueryClient } from "@tanstack/react-query";
 import { useProfile } from "@/hooks/useProfile";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import quercusLogo from "@/assets/quercus-logo.jpg";
 
-interface StageKYCProps {
-  onComplete: () => void;
-}
-
-export function StageKYC({ onComplete }: StageKYCProps) {
-  const [phase, setPhase] = useState<"ready" | "verifying" | "review" | "done">("ready");
+/**
+ * Shown to any authenticated user whose profile is missing one of the
+ * required fields (name, DOB, address, fiscal info). They must fill
+ * everything before they can use the app again.
+ */
+export default function CompleteProfile() {
+  const navigate = useNavigate();
   const { user } = useAuth();
-  const { data: profile } = useProfile();
+  const { data: profile, isLoading } = useProfile();
   const queryClient = useQueryClient();
 
-  // Editable fields extracted/confirmed from the ID document.
-  // Pre-filled with what we already know about the user so they only correct
-  // mismatches before everything is written to `profiles`.
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
@@ -48,14 +46,7 @@ export function StageKYC({ onComplete }: StageKYCProps) {
     setTaxId(profile.tax_id ?? "");
   }, [profile]);
 
-  const handleVerify = async () => {
-    setPhase("verifying");
-    // Simulate KYC provider OCR / identity extraction
-    await new Promise((r) => setTimeout(r, 3000));
-    setPhase("review");
-  };
-
-  const handleConfirm = async () => {
+  const handleSave = async () => {
     if (!user) return;
     const required: Array<[string, string]> = [
       [firstName.trim(), "Prénom"],
@@ -95,69 +86,37 @@ export function StageKYC({ onComplete }: StageKYCProps) {
       return;
     }
     queryClient.invalidateQueries({ queryKey: ["profile", user.id] });
-    setPhase("done");
+    toast.success("Profil complété.");
+    navigate("/dashboard", { replace: true });
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="space-y-8 max-w-md mx-auto text-center"
-    >
-      {phase === "ready" && (
-        <>
-          <div className="space-y-3">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-              <ScanFace className="w-8 h-8 text-primary" />
-            </div>
-            <h2 className="text-2xl font-serif"><em>Vérification d'identité</em></h2>
-            <p className="text-sm text-muted-foreground">
-              Dernière étape : nous devons vérifier votre identité pour activer votre compte.
-            </p>
+    <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-md space-y-6"
+      >
+        <div className="text-center space-y-3">
+          <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+            <ShieldAlert className="w-7 h-7 text-primary" />
           </div>
-
-          <div className="bg-white/40 backdrop-blur-[12px] border border-white/20 p-6 space-y-3 text-left">
-            <p className="text-sm font-medium">Vous aurez besoin de :</p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary" /> Pièce d'identité (CNI ou Passeport)
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary" /> Caméra pour un selfie de vérification
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary" /> 2 minutes de votre temps
-              </li>
-            </ul>
-          </div>
-
-          <Button onClick={handleVerify} size="lg" className="btn-glow w-full">
-            Vérifier mon identité
-          </Button>
-        </>
-      )}
-
-      {phase === "verifying" && (
-        <div className="space-y-6 py-12">
-          <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto" />
-          <p className="text-sm text-muted-foreground">Extraction des informations en cours…</p>
+          <h1 className="text-2xl font-serif"><em>Complétez votre profil</em></h1>
+          <p className="text-sm text-muted-foreground">
+            Pour des raisons réglementaires, certaines informations obligatoires sont manquantes.
+            Merci de les compléter pour continuer à utiliser votre espace.
+          </p>
         </div>
-      )}
 
-      {phase === "review" && (
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-5 text-left"
-        >
-          <div className="space-y-2 text-center">
-            <h2 className="text-2xl font-serif"><em>Confirmez vos informations</em></h2>
-            <p className="text-sm text-muted-foreground">
-              Voici les informations extraites de votre pièce d'identité. Corrigez si nécessaire — elles seront enregistrées dans vos paramètres.
-            </p>
-          </div>
-
+        <div className="bg-white/40 backdrop-blur-[12px] border border-white/20 p-6 space-y-5">
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
               <Label className="text-xs uppercase tracking-wider text-muted-foreground">Prénom</Label>
@@ -206,54 +165,11 @@ export function StageKYC({ onComplete }: StageKYCProps) {
             </div>
           </div>
 
-          <Button onClick={handleConfirm} size="lg" className="btn-glow w-full" disabled={saving}>
-            {saving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Enregistrement…</> : "Confirmer et activer mon compte"}
+          <Button onClick={handleSave} size="lg" className="btn-glow w-full" disabled={saving}>
+            {saving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Enregistrement…</> : "Enregistrer et continuer"}
           </Button>
-        </motion.div>
-      )}
-
-      {phase === "done" && (
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", duration: 0.6 }}
-          className="space-y-6 py-8"
-        >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="flex justify-center"
-          >
-            <motion.img
-              src={quercusLogo}
-              alt="Quercus"
-              className="w-24 h-24 object-contain"
-              initial={{ filter: "grayscale(100%) brightness(1.5)", opacity: 0.3 }}
-              animate={{ filter: "grayscale(0%) brightness(1)", opacity: 1 }}
-              transition={{ duration: 1.5, delay: 0.5 }}
-            />
-          </motion.div>
-
-          <div className="space-y-2">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", delay: 0.8 }}
-            >
-              <CheckCircle className="w-12 h-12 text-success mx-auto" />
-            </motion.div>
-            <h2 className="text-2xl font-serif"><em>Félicitations !</em></h2>
-            <p className="text-sm text-muted-foreground">
-              Votre compte est en cours d'examen. Vous recevrez une confirmation par email sous 24 à 48 heures.
-            </p>
-          </div>
-
-          <Button onClick={onComplete} size="lg" className="btn-glow w-full">
-            Accéder à mon espace
-          </Button>
-        </motion.div>
-      )}
-    </motion.div>
+        </div>
+      </motion.div>
+    </div>
   );
 }
