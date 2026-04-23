@@ -57,8 +57,20 @@ export function StageKYC({ onComplete }: StageKYCProps) {
 
   const handleConfirm = async () => {
     if (!user) return;
-    if (!firstName.trim() || !lastName.trim()) {
-      toast.error("Le prénom et le nom sont requis.");
+    const required: Array<[string, string]> = [
+      [firstName.trim(), "Prénom"],
+      [lastName.trim(), "Nom"],
+      [dateOfBirth, "Date de naissance"],
+      [address.trim(), "Adresse"],
+      [city.trim(), "Ville"],
+      [postalCode.trim(), "Code postal"],
+      [country.trim(), "Pays de résidence"],
+      [taxCountry.trim(), "Résidence fiscale"],
+      [taxId.trim(), "Numéro fiscal (NIF)"],
+    ];
+    const missing = required.filter(([v]) => !v).map(([, label]) => label);
+    if (missing.length) {
+      toast.error(`Veuillez renseigner : ${missing.join(", ")}`);
       return;
     }
     setSaving(true);
@@ -67,13 +79,13 @@ export function StageKYC({ onComplete }: StageKYCProps) {
       .update({
         first_name: firstName.trim(),
         last_name: lastName.trim(),
-        date_of_birth: dateOfBirth || null,
-        address: address.trim() || null,
-        city: city.trim() || null,
-        postal_code: postalCode.trim() || null,
-        country: country || null,
-        tax_country: taxCountry || null,
-        tax_id: taxId.trim() || null,
+        date_of_birth: dateOfBirth,
+        address: address.trim(),
+        city: city.trim(),
+        postal_code: postalCode.trim(),
+        country: country.trim(),
+        tax_country: taxCountry.trim(),
+        tax_id: taxId.trim(),
         onboarding_completed: true,
       })
       .eq("user_id", user.id);
