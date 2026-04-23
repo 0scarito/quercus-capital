@@ -77,6 +77,38 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
       }
     }
 
+    if (sub === "tax" && !taxFrance) {
+      if (!taxCountry || !taxId.trim()) {
+        toast.error("Veuillez renseigner votre pays de résidence fiscale et votre NIF.");
+        triggerShake();
+        return;
+      }
+    }
+
+    if (sub === "profession" && (!sector || !income)) {
+      toast.error("Veuillez sélectionner votre secteur et votre revenu annuel.");
+      triggerShake();
+      return;
+    }
+
+    if (sub === "wealth" && (!patrimoine || !deposit.trim())) {
+      toast.error("Veuillez renseigner votre patrimoine et le dépôt prévu.");
+      triggerShake();
+      return;
+    }
+
+    if (sub === "funds" && !fundsOrigin) {
+      toast.error("Veuillez sélectionner l'origine des fonds.");
+      triggerShake();
+      return;
+    }
+
+    if (sub === "referral" && !referral) {
+      toast.error("Veuillez indiquer comment vous avez connu Quercus.");
+      triggerShake();
+      return;
+    }
+
     if (subIndex < subSteps.length - 1) {
       setSub(subSteps[subIndex + 1]);
     } else {
