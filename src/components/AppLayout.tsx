@@ -5,10 +5,12 @@ import { Outlet, Link } from "react-router-dom";
 export function AppLayout() {
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full">
-        <QuercusSidebar />
-        <div className="flex-1 flex flex-col">
-          <main className="flex-1 overflow-auto">
+      <div className="h-screen flex w-full overflow-hidden">
+        <div className="sticky top-0 h-screen flex-shrink-0">
+          <QuercusSidebar />
+        </div>
+        <div className="flex-1 flex flex-col h-screen overflow-y-auto">
+          <main className="flex-1">
             <Outlet />
           </main>
           <footer className="border-t py-6 px-6">
