@@ -4,15 +4,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 
 const IDLE_LIMIT_MS = 15 * 60 * 1000; // 15 minutes
-const ACTIVITY_EVENTS: (keyof WindowEventMap)[] = [
+const ACTIVITY_EVENTS = [
   "mousemove",
   "mousedown",
   "keydown",
   "touchstart",
   "scroll",
   "wheel",
-  "visibilitychange",
-];
+] as const;
 const STORAGE_KEY = "quercus.lastActivity";
 
 /**
