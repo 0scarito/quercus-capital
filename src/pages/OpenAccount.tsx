@@ -49,10 +49,16 @@ export default function OpenAccount() {
     const params = new URLSearchParams(window.location.search);
     const callbackEmail = params.get("email");
 
-    // Any authenticated user landing here (email signup callback OR Google OAuth)
-    // skips past welcome + email steps and goes straight to identity verification.
+    // Pre-fill the email from session so later steps have it, but DO NOT
+    // auto-skip stages. An incomplete onboarding must always restart from
+    // the beginning (welcome) so the user re-confirms every step.
     setEmail(callbackEmail ?? session.user.email);
-    setStage((prev) => (prev === "welcome" || prev === "email" ? "2fa" : prev));
+
+    // Only auto-advance when arriving from an explicit email-verification
+    // callback (?email=...), which means the email step is genuinely done.
+    if (callbackEmail) {
+      setStage((prev) => (prev === "welcome" || prev === "email" ? "2fa" : prev));
+    }
 
     if (params.toString()) {
       window.history.replaceState({}, "", "/open-account");
