@@ -74,7 +74,7 @@ export function QuercusSidebar() {
     profile?.account_type === "moral" || profile?.account_type === "corporate";
 
   return (
-    <Sidebar collapsible="none" className="border-r">
+    <Sidebar collapsible="none" className="border-r h-screen">
       <div className="px-5 pt-5 pb-3">
         <div className="flex items-center gap-2">
           <img src={quercusLogo} alt="Quercus" className="h-7 w-auto" />
