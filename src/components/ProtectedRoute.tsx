@@ -1,11 +1,13 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProfile } from "@/hooks/useProfile";
+import { useIdleTimeout } from "@/hooks/useIdleTimeout";
 
 export default function ProtectedRoute() {
   const { session, loading } = useAuth();
   const { data: profile, isLoading: profileLoading } = useProfile();
   const location = useLocation();
+  useIdleTimeout();
 
   if (loading || (session && profileLoading)) {
     return (

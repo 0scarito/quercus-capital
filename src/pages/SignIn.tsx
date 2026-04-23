@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
+import { Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,6 +12,8 @@ import quercusLogo from "@/assets/quercus-logo.jpg";
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const expired = searchParams.get("expired") === "1";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -66,6 +69,18 @@ export default function SignIn() {
         </div>
 
         <Separator />
+
+        {expired && (
+          <div className="rounded-md border border-amber-500/40 bg-amber-500/5 p-4 space-y-1">
+            <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
+              <Clock className="h-4 w-4" />
+              <p className="text-sm font-medium">Vous avez été déconnecté.</p>
+            </div>
+            <p className="text-xs text-muted-foreground pl-6">
+              Votre session a expiré après 15 minutes d'inactivité. Veuillez vous reconnecter.
+            </p>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
