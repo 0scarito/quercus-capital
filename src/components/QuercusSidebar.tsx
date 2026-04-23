@@ -133,11 +133,6 @@ export function QuercusSidebar() {
                       <item.icon className="h-[18px] w-[18px]" />
                       <>
                         <span className="text-sm flex-1">{item.title}</span>
-                        {item.badge && (
-                          <Badge variant="outline" className="h-5 px-1.5 text-[10px] font-medium border-primary/40 text-primary">
-                            {item.badge}
-                          </Badge>
-                        )}
                         <ChevronRight className="h-4 w-4 text-sidebar-foreground/40" />
                       </>
                     </NavLink>
