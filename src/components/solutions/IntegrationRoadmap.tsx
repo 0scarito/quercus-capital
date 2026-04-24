@@ -114,9 +114,9 @@ export function IntegrationRoadmap() {
           <div
             className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-3 rounded-full pointer-events-none overflow-hidden"
             style={{
-              border: "1.5px solid hsl(152 55% 32%)",
-              background: "hsl(152 40% 96%)",
-              boxShadow: "inset 0 0 0 1px hsl(152 45% 90%)",
+              border: "1.5px solid hsl(var(--primary))",
+              background: "hsl(var(--primary) / 0.06)",
+              boxShadow: "inset 0 0 0 1px hsl(var(--primary) / 0.15)",
             }}
           >
             {/* Green sap filling from top */}
@@ -126,7 +126,7 @@ export function IntegrationRoadmap() {
                 height: "100%",
                 transform: `scaleY(${lineProgress})`,
                 background:
-                  "linear-gradient(to bottom, hsl(152 60% 45%) 0%, hsl(152 65% 38%) 60%, hsl(152 70% 32%) 100%)",
+                  "linear-gradient(to bottom, hsl(173 50% 28%) 0%, hsl(173 55% 22%) 60%, hsl(173 60% 16%) 100%)",
                 transition: "transform 140ms linear",
               }}
             />
@@ -150,8 +150,8 @@ export function IntegrationRoadmap() {
                   className="absolute left-6 md:left-1/2 w-5 h-5 rounded-full border-2 transition-colors duration-500 z-10"
                   style={{
                     top: "0.25rem",
-                    borderColor: "hsl(152 55% 32%)",
-                    background: lit ? "hsl(152 65% 38%)" : "hsl(152 40% 96%)",
+                    borderColor: "hsl(var(--primary))",
+                    background: lit ? "hsl(var(--primary))" : "hsl(var(--primary) / 0.06)",
                     transform: "translateX(-50%)",
                   }}
                 />
@@ -164,7 +164,7 @@ export function IntegrationRoadmap() {
                 >
                   <p
                     className="text-xs font-mono mb-2 transition-colors duration-500"
-                    style={{ color: lit ? "hsl(152 60% 30%)" : "hsl(var(--muted-foreground))" }}
+                    style={{ color: lit ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))" }}
                   >
                     Étape {i + 1}
                   </p>
@@ -185,9 +185,9 @@ export function IntegrationRoadmap() {
               size="lg"
               className="px-12 py-6 text-base transition-all duration-700"
               style={{
-                background: ctaLit ? "hsl(152 65% 34%)" : "hsl(0 0% 82%)",
-                color: ctaLit ? "hsl(0 0% 100%)" : "hsl(0 0% 45%)",
-                borderColor: ctaLit ? "hsl(152 65% 34%)" : "hsl(0 0% 75%)",
+                background: ctaLit ? "hsl(var(--primary))" : "hsl(0 0% 82%)",
+                color: ctaLit ? "hsl(var(--primary-foreground))" : "hsl(0 0% 45%)",
+                borderColor: ctaLit ? "hsl(var(--primary))" : "hsl(0 0% 75%)",
               }}
               asChild
             >
