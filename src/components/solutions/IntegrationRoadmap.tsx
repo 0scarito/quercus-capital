@@ -145,22 +145,65 @@ export function IntegrationRoadmap() {
                   isRight ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                {/* Dot (fills with green when sap reaches it) */}
+                {/* Marker: ripple halo + check icon that "arrives" when sap reaches it */}
                 <div
-                  className="absolute left-6 md:left-1/2 w-5 h-5 rounded-full border-2 transition-colors duration-500 z-10"
-                  style={{
-                    top: "0.25rem",
-                    borderColor: "hsl(var(--primary))",
-                    background: lit ? "hsl(var(--primary))" : "hsl(var(--primary) / 0.06)",
-                    transform: "translateX(-50%)",
-                  }}
-                />
+                  className="absolute left-6 md:left-1/2 z-10 pointer-events-none"
+                  style={{ top: "0.25rem", transform: "translateX(-50%)" }}
+                >
+                  {/* Expanding ripple on arrival */}
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 m-auto rounded-full"
+                    style={{
+                      width: "1.25rem",
+                      height: "1.25rem",
+                      border: "1.5px solid hsl(var(--primary))",
+                      opacity: lit ? 0 : 0,
+                      animation: lit ? "roadmap-ripple 900ms ease-out 1" : "none",
+                    }}
+                  />
+                  {/* Core marker */}
+                  <div
+                    className="relative w-5 h-5 rounded-full flex items-center justify-center"
+                    style={{
+                      border: "2px solid hsl(var(--primary))",
+                      background: lit ? "hsl(var(--primary))" : "hsl(var(--background))",
+                      transform: lit ? "scale(1.15)" : "scale(1)",
+                      transition:
+                        "transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 400ms ease",
+                      boxShadow: lit
+                        ? "0 0 0 4px hsl(var(--primary) / 0.12), 0 4px 12px hsl(var(--primary) / 0.25)"
+                        : "none",
+                    }}
+                  >
+                    <svg
+                      viewBox="0 0 16 16"
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="hsl(var(--primary-foreground))"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{
+                        opacity: lit ? 1 : 0,
+                        transform: lit ? "scale(1)" : "scale(0.4)",
+                        transition: "opacity 300ms ease 180ms, transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1) 180ms",
+                      }}
+                    >
+                      <path d="M3 8.5L6.5 12L13 4.5" />
+                    </svg>
+                  </div>
+                </div>
 
                 {/* Content */}
                 <div
                   className={`ml-14 md:ml-0 md:w-[calc(50%-2rem)] transition-all duration-700 ease-out ${
                     visible ? "opacity-100 translate-x-0" : `opacity-0 ${isRight ? "md:-translate-x-8" : "md:translate-x-8"} translate-y-4`
                   } ${isRight ? "md:pr-10" : "md:pl-10 md:ml-auto"}`}
+                  style={{
+                    transform: lit ? "translateY(-2px)" : undefined,
+                    transition: "transform 600ms cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
                 >
                   <p
                     className="text-xs font-mono mb-2 transition-colors duration-500"
@@ -168,16 +211,29 @@ export function IntegrationRoadmap() {
                   >
                     Étape {i + 1}
                   </p>
-                  <h3 className="font-serif mb-2 whitespace-nowrap text-[clamp(1rem,1.7vw,1.5rem)]">
+                  <h3
+                    className="font-serif mb-2 whitespace-nowrap text-[clamp(1rem,1.7vw,1.5rem)] transition-colors duration-500"
+                    style={{ color: lit ? "hsl(var(--foreground))" : "hsl(var(--foreground) / 0.55)" }}
+                  >
                     <em>{step.title}</em>
                   </h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                  <p
+                    className="text-sm md:text-base leading-relaxed transition-colors duration-500"
+                    style={{ color: lit ? "hsl(var(--muted-foreground))" : "hsl(var(--muted-foreground) / 0.6)" }}
+                  >
                     {step.text}
                   </p>
                 </div>
               </div>
             );
           })}
+
+          <style>{`
+            @keyframes roadmap-ripple {
+              0% { transform: scale(1); opacity: 0.55; }
+              100% { transform: scale(2.4); opacity: 0; }
+            }
+          `}</style>
 
           {/* CTA anchored inside roadmap so sap reaches it */}
           <div ref={ctaRef} className="text-center mt-16 relative">
