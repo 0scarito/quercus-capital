@@ -103,28 +103,34 @@ export function IntegrationRoadmap() {
   }, [dotPositions.length, ctaPosition]);
 
   return (
-    <section className="py-24 px-2 md:px-4">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-center mb-20">
+    <section className="py-24 px-2">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="font-serif text-center mb-20 whitespace-nowrap text-[clamp(1.75rem,4.2vw,3.25rem)]">
           <em>Démarrez avec Quercus en quelques minutes</em>
         </h2>
 
         <div ref={containerRef} className="relative">
-          {/* Central line (dim track) */}
-          <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-px bg-border" />
-          {/* Golden sap flowing down */}
+          {/* Capsule (green outline holding the sap) */}
           <div
-            className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 w-[2px] origin-top pointer-events-none"
+            className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-3 rounded-full pointer-events-none overflow-hidden"
             style={{
-              height: "100%",
-              transform: `scaleY(${lineProgress})`,
-              background:
-                "linear-gradient(to bottom, hsl(45 90% 75% / 0.0) 0%, hsl(45 90% 65%) 20%, hsl(42 95% 55%) 70%, hsl(38 95% 50%) 100%)",
-              boxShadow:
-                "0 0 10px hsl(45 95% 60% / 0.7), 0 0 20px hsl(42 95% 55% / 0.45)",
-              transition: "transform 120ms linear",
+              border: "1.5px solid hsl(152 55% 32%)",
+              background: "hsl(152 40% 96%)",
+              boxShadow: "inset 0 0 0 1px hsl(152 45% 90%)",
             }}
-          />
+          >
+            {/* Green sap filling from top */}
+            <div
+              className="absolute inset-x-0 top-0 origin-top"
+              style={{
+                height: "100%",
+                transform: `scaleY(${lineProgress})`,
+                background:
+                  "linear-gradient(to bottom, hsl(152 60% 45%) 0%, hsl(152 65% 38%) 60%, hsl(152 70% 32%) 100%)",
+                transition: "transform 140ms linear",
+              }}
+            />
+          </div>
 
           {steps.map((step, i) => {
             const isRight = i % 2 === 0;
@@ -135,39 +141,34 @@ export function IntegrationRoadmap() {
               <div
                 key={i}
                 data-step={i}
-                className={`relative flex items-start mb-10 md:mb-12 last:mb-0 ${
+                className={`relative flex items-start mb-10 md:mb-14 last:mb-0 ${
                   isRight ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                {/* Dot */}
+                {/* Dot (fills with green when sap reaches it) */}
                 <div
-                  className={`absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 transition-all duration-500 z-10`}
+                  className="absolute left-6 md:left-1/2 w-5 h-5 rounded-full border-2 transition-colors duration-500 z-10"
                   style={{
                     top: "0.25rem",
-                    borderColor: lit ? "hsl(42 95% 55%)" : "hsl(var(--border))",
-                    background: lit
-                      ? "radial-gradient(circle, hsl(48 100% 70%) 0%, hsl(42 95% 55%) 100%)"
-                      : "hsl(var(--background))",
-                    boxShadow: lit
-                      ? "0 0 12px hsl(45 95% 60% / 0.8), 0 0 24px hsl(42 95% 55% / 0.5)"
-                      : "none",
-                    transform: `translateX(-50%) scale(${lit ? 1.1 : 0.75})`,
+                    borderColor: "hsl(152 55% 32%)",
+                    background: lit ? "hsl(152 65% 38%)" : "hsl(152 40% 96%)",
+                    transform: "translateX(-50%)",
                   }}
                 />
 
                 {/* Content */}
                 <div
-                  className={`ml-14 md:ml-0 md:w-[calc(50%-1.25rem)] transition-all duration-700 ease-out ${
+                  className={`ml-14 md:ml-0 md:w-[calc(50%-2rem)] transition-all duration-700 ease-out ${
                     visible ? "opacity-100 translate-x-0" : `opacity-0 ${isRight ? "md:-translate-x-8" : "md:translate-x-8"} translate-y-4`
-                  } ${isRight ? "md:pr-8" : "md:pl-8 md:ml-auto"}`}
+                  } ${isRight ? "md:pr-10" : "md:pl-10 md:ml-auto"}`}
                 >
                   <p
                     className="text-xs font-mono mb-2 transition-colors duration-500"
-                    style={{ color: lit ? "hsl(38 95% 40%)" : "hsl(var(--muted-foreground))" }}
+                    style={{ color: lit ? "hsl(152 60% 30%)" : "hsl(var(--muted-foreground))" }}
                   >
                     Étape {i + 1}
                   </p>
-                  <h3 className="text-xl md:text-2xl font-serif mb-2">
+                  <h3 className="font-serif mb-2 whitespace-nowrap text-[clamp(1rem,1.7vw,1.5rem)]">
                     <em>{step.title}</em>
                   </h3>
                   <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
@@ -179,19 +180,14 @@ export function IntegrationRoadmap() {
           })}
 
           {/* CTA anchored inside roadmap so sap reaches it */}
-          <div ref={ctaRef} className="text-center mt-12 relative">
+          <div ref={ctaRef} className="text-center mt-16 relative">
             <Button
               size="lg"
-              className="px-12 py-6 text-base btn-glow transition-all duration-700"
+              className="px-12 py-6 text-base transition-all duration-700"
               style={{
-                background: ctaLit
-                  ? "linear-gradient(135deg, hsl(42 95% 55%), hsl(38 95% 50%))"
-                  : undefined,
-                color: ctaLit ? "hsl(173 50% 15%)" : undefined,
-                boxShadow: ctaLit
-                  ? "0 0 24px hsl(45 95% 60% / 0.7), 0 0 48px hsl(42 95% 55% / 0.4)"
-                  : undefined,
-                filter: ctaLit ? "none" : "saturate(0.6) brightness(0.9)",
+                background: ctaLit ? "hsl(152 65% 34%)" : "hsl(0 0% 82%)",
+                color: ctaLit ? "hsl(0 0% 100%)" : "hsl(0 0% 45%)",
+                borderColor: ctaLit ? "hsl(152 65% 34%)" : "hsl(0 0% 75%)",
               }}
               asChild
             >
