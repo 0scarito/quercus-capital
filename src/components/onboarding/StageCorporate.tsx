@@ -24,7 +24,17 @@ interface StageCorporateProps {
   onBack: () => void;
 }
 
-const subSteps = ["org", "orgAddress", "entityType", "sector", "finance", "documents", "referral"] as const;
+const subSteps = [
+  "country",
+  "org",
+  "orgAddress",
+  "entityType",
+  "sector",
+  "deposit",
+  "fundsOrigin",
+  "documents",
+  "referral",
+] as const;
 type SubStep = typeof subSteps[number];
 
 export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
@@ -52,7 +62,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
   // Sector
   const [activitySector, setActivitySector] = useState("");
 
-  // Finance
+  // Finance — split into two screens to match the pro flow
   const [depositAmount, setDepositAmount] = useState("");
   const [fundsSource, setFundsSource] = useState("");
 
@@ -159,10 +169,61 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
   const errorClass = (f: string) => errors[f] ? "border-destructive" : "";
 
   const entityCards = [
-    { value: "operative", icon: Briefcase, label: "Entité opérationnelle", desc: "Activité commerciale de biens/services" },
-    { value: "patrimoine", icon: Building2, label: "Entité patrimoniale", desc: "Gestion passive d'actifs" },
-    { value: "financial", icon: Landmark, label: "Institution financière", desc: "Banque, fonds, PSP" },
+    {
+      value: "operative",
+      icon: Briefcase,
+      label: "Entité opérationnelle (active)",
+      desc: "Plus de 50 % de vos revenus proviennent de la vente de biens ou de services (logiciel, conseil, industrie, prestations, etc.).",
+      recommended: true,
+    },
+    {
+      value: "patrimoine",
+      icon: Building2,
+      label: "Entité patrimoniale (passive)",
+      desc: "Plus de 50 % de vos revenus proviennent de revenus passifs (dividendes, intérêts, loyers, plus-values, etc.).",
+    },
+    {
+      value: "financial",
+      icon: Landmark,
+      label: "Institution financière",
+      desc: "Vous êtes une banque, une entreprise d'investissement, un fonds, un établissement de paiement, etc.",
+    },
   ];
+
+  const sectorOptions = [
+    "Industrie et fabrication",
+    "Technologies et logiciels",
+    "Services financiers",
+    "Conseil et services professionnels",
+    "Commerce et distribution",
+    "Immobilier et construction",
+    "Santé et sciences de la vie",
+    "Énergie et utilities",
+    "Transport et logistique",
+    "Médias, loisirs et communication",
+    "Hôtellerie et restauration",
+    "Agriculture et agroalimentaire",
+    "Éducation",
+    "Holding / Gestion de participations",
+    "Associations et secteur public",
+    "Autre",
+  ];
+
+  const depositOptions = [
+    { value: "lt_100k", label: "Moins de 100 000 €" },
+    { value: "100k_500k", label: "Entre 100 000 € et 500 000 €" },
+    { value: "500k_1m", label: "Entre 500 000 € et 1 000 000 €" },
+    { value: "1m_5m", label: "Entre 1 000 000 € et 5 000 000 €" },
+    { value: "gt_5m", label: "Plus de 5 000 000 €" },
+  ];
+
+  const fundsOriginOptions = [
+    { value: "operating", label: "De l'activité opérationnelle de l'entreprise ou de l'organisation" },
+    { value: "fundraise", label: "De levées de fonds auprès d'investisseurs ou de prêts" },
+    { value: "client-funds", label: "Ce sont des fonds qui appartiennent aux clients de l'entreprise ou de l'entité" },
+  ];
+
+  const countries = ["France", "Belgique", "Suisse", "Luxembourg", "Allemagne", "Pays-Bas", "Italie", "Espagne", "Autre"];
 
   const docFields = [
     { key: "funds", label: "Justificatif d'origine des fonds", desc: "Dernier bilan ou relevé bancaire" },
@@ -178,7 +239,19 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
       className="space-y-6 max-w-md mx-auto"
     >
       <div className="text-center space-y-1">
-        <h2 className="text-2xl font-serif"><em>Informations de l'entité</em></h2>
+        <h2 className="text-2xl font-serif">
+          <em>
+            {sub === "country" && "Pays d'immatriculation"}
+            {sub === "org" && "Informations sur votre société ou organisation"}
+            {sub === "orgAddress" && "Adresse d'immatriculation"}
+            {sub === "entityType" && "Votre activité"}
+            {sub === "sector" && "Secteur"}
+            {sub === "deposit" && "Quel montant pensez-vous déposer sur Quercus ?"}
+            {sub === "fundsOrigin" && "Origine des fonds"}
+            {sub === "documents" && "Téléchargez les documents nécessaires"}
+            {sub === "referral" && "Comment avez-vous entendu parler de Quercus ?"}
+          </em>
+        </h2>
         <p className="text-xs text-muted-foreground">Étape {subIndex + 1} sur {subSteps.length}</p>
       </div>
 
@@ -197,6 +270,20 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
           transition={{ duration: 0.2 }}
           className="space-y-4"
         >
+          {sub === "country" && (
+            <div className="space-y-2">
+              <Label>Pays d'immatriculation</Label>
+              <Select value={orgCountry} onValueChange={setOrgCountry}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {countries.map(c => (
+                    <SelectItem key={c} value={c}>{c}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
           {sub === "org" && (
             <>
               <div className="space-y-2">
@@ -206,17 +293,16 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
               </div>
               <div className="space-y-2">
                 <Label>Forme juridique</Label>
-                <Select value={legalForm} onValueChange={setLegalForm}>
-                  <SelectTrigger className={errorClass("legalForm")}><SelectValue placeholder="Sélectionner…" /></SelectTrigger>
-                  <SelectContent>
-                    {["SAS", "SARL", "SA", "SCI", "SASU", "EURL", "SNC", "Autre"].map(f => (
-                      <SelectItem key={f} value={f}>{f}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Input
+                  value={legalForm}
+                  onChange={e => setLegalForm(e.target.value)}
+                  placeholder="Par exemple SAS, SARL, SA, EI, etc."
+                  className={errorClass("legalForm")}
+                />
+                <p className="text-xs text-muted-foreground">Par exemple SAS, SARL, SA, EI, etc.</p>
               </div>
               <div className="space-y-2">
-                <Label>Numéro SIREN</Label>
+                <Label>SIREN ou numéro d'immatriculation</Label>
                 <Input
                   value={siren}
                   onChange={e => setSiren(e.target.value.replace(/\D/g, ""))}
@@ -225,6 +311,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
                   maxLength={14}
                 />
                 {errors.siren && <p className="text-xs text-destructive">{errors.siren}</p>}
+                <p className="text-xs text-muted-foreground">Par exemple le SIREN (France), le numéro d'entreprise BCE/KBO (Belgique), etc.</p>
               </div>
             </>
           )}
@@ -232,18 +319,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
           {sub === "orgAddress" && (
             <>
               <div className="space-y-2">
-                <Label>Pays du siège social</Label>
-                <Select value={orgCountry} onValueChange={setOrgCountry}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    {["France", "Belgique", "Suisse", "Luxembourg", "Allemagne", "Autre"].map(c => (
-                      <SelectItem key={c} value={c}>{c}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label>Adresse du siège social</Label>
+                <Label>Adresse d'immatriculation</Label>
                 <Input value={orgAddress} onChange={e => setOrgAddress(e.target.value)} />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -261,41 +337,45 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
 
           {sub === "entityType" && (
             <div className="space-y-3">
-              <Label>Type d'entité</Label>
+              <p className="text-sm text-muted-foreground">
+                Sélectionnez l'option qui décrit le mieux l'activité de votre organisation.
+              </p>
               {entityCards.map(card => (
                 <motion.div
                   key={card.value}
                   whileHover={{ scale: 1.01 }}
                   onClick={() => setEntityType(card.value)}
-                  className={`bg-white/40 backdrop-blur-[12px] border p-4 cursor-pointer transition-all flex items-center gap-4 ${
+                  className={`relative bg-white/40 backdrop-blur-[12px] border p-4 cursor-pointer transition-all flex items-start gap-4 ${
                     entityType === card.value ? "border-primary shadow-[0_0_16px_hsl(173_50%_19%/0.15)]" : "border-white/20 hover:border-primary/40"
                   }`}
                 >
-                  <card.icon className="w-8 h-8 text-primary shrink-0" />
-                  <div>
-                    <p className="font-medium text-sm">{card.label}</p>
-                    <p className="text-xs text-muted-foreground">{card.desc}</p>
+                  <card.icon className="w-7 h-7 text-primary shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <p className="font-medium text-sm">{card.label}</p>
+                      {card.recommended && (
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded">
+                          Recommandé
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{card.desc}</p>
                   </div>
                 </motion.div>
               ))}
+              <p className="text-xs text-muted-foreground pt-2">
+                En sélectionnant l'une de ces options, vous certifiez de l'exactitude de ces informations conformément aux réglementations FATCA &amp; CRS.
+              </p>
             </div>
           )}
 
           {sub === "sector" && (
             <div className="space-y-2">
-              <Label>Secteur d'activité (code NAF)</Label>
+              <Label>Secteur d'activité</Label>
               <Select value={activitySector} onValueChange={setActivitySector}>
                 <SelectTrigger><SelectValue placeholder="Rechercher…" /></SelectTrigger>
                 <SelectContent>
-                  {[
-                    "64.19Z — Autres intermédiations monétaires",
-                    "64.20Z — Activités des sociétés holding",
-                    "66.19B — Autres activités auxiliaires de services financiers",
-                    "62.01Z — Programmation informatique",
-                    "68.20A — Location de logements",
-                    "70.10Z — Activités des sièges sociaux",
-                    "Autre",
-                  ].map(s => (
+                  {sectorOptions.map(s => (
                     <SelectItem key={s} value={s}>{s}</SelectItem>
                   ))}
                 </SelectContent>
@@ -303,39 +383,50 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
             </div>
           )}
 
-          {sub === "finance" && (
+          {sub === "deposit" && (
+            <RadioGroup value={depositAmount} onValueChange={setDepositAmount} className="space-y-2">
+              {depositOptions.map(opt => (
+                <label
+                  key={opt.value}
+                  htmlFor={`dep-${opt.value}`}
+                  className={`flex items-center gap-3 bg-white/40 backdrop-blur-[12px] border p-4 cursor-pointer transition-all ${
+                    depositAmount === opt.value ? "border-primary shadow-[0_0_16px_hsl(173_50%_19%/0.15)]" : "border-white/20 hover:border-primary/40"
+                  }`}
+                >
+                  <RadioGroupItem value={opt.value} id={`dep-${opt.value}`} />
+                  <span className="text-sm">{opt.label}</span>
+                </label>
+              ))}
+            </RadioGroup>
+          )}
+
+          {sub === "fundsOrigin" && (
             <>
-              <div className="space-y-2">
-                <Label>Montant à déposer</Label>
-                <Input
-                  value={depositAmount}
-                  onChange={e => setDepositAmount(e.target.value)}
-                  placeholder="Ex: 500 000 €"
-                  className="font-mono"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>Source des fonds</Label>
-                <RadioGroup value={fundsSource} onValueChange={setFundsSource} className="space-y-2">
-                  {[
-                    { value: "operating", label: "Activité opérationnelle" },
-                    { value: "fundraise", label: "Levée de fonds" },
-                    { value: "client-funds", label: "Fonds clients" },
-                    { value: "other", label: "Autre" },
-                  ].map(opt => (
-                    <div key={opt.value} className="flex items-center gap-3 bg-white/40 backdrop-blur-[12px] border border-white/20 p-3 cursor-pointer hover:border-primary/40 transition-colors">
-                      <RadioGroupItem value={opt.value} id={`corp-${opt.value}`} />
-                      <Label htmlFor={`corp-${opt.value}`} className="cursor-pointer text-sm">{opt.label}</Label>
-                    </div>
-                  ))}
-                </RadioGroup>
-              </div>
+              <p className="text-sm text-muted-foreground">
+                D'où proviennent principalement les fonds que vous souhaitez déposer sur Quercus&nbsp;?
+              </p>
+              <RadioGroup value={fundsSource} onValueChange={setFundsSource} className="space-y-2">
+                {fundsOriginOptions.map(opt => (
+                  <label
+                    key={opt.value}
+                    htmlFor={`fo-${opt.value}`}
+                    className={`flex items-start gap-3 bg-white/40 backdrop-blur-[12px] border p-4 cursor-pointer transition-all ${
+                      fundsSource === opt.value ? "border-primary shadow-[0_0_16px_hsl(173_50%_19%/0.15)]" : "border-white/20 hover:border-primary/40"
+                    }`}
+                  >
+                    <RadioGroupItem value={opt.value} id={`fo-${opt.value}`} className="mt-0.5" />
+                    <span className="text-sm leading-relaxed">{opt.label}</span>
+                  </label>
+                ))}
+              </RadioGroup>
             </>
           )}
 
           {sub === "documents" && (
             <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">Téléchargez les documents requis pour la vérification.</p>
+              <p className="text-sm text-muted-foreground">
+                Téléchargez les documents suivants pour valider votre inscription.
+              </p>
               {docFields.map(doc => (
                 <div key={doc.key} className="space-y-2">
                   <Label className="text-sm">{doc.label}</Label>
