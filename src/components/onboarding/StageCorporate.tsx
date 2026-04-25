@@ -38,7 +38,7 @@ const subSteps = [
 type SubStep = typeof subSteps[number];
 
 export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
-  const [sub, setSub] = useState<SubStep>("org");
+  const [sub, setSub] = useState<SubStep>("country");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [shake, setShake] = useState(false);
   const [saving, setSaving] = useState(false);
