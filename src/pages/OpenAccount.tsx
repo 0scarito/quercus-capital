@@ -36,9 +36,14 @@ export default function OpenAccount() {
   const [stage, setStage] = useState<Stage>("welcome");
   const [accountType, setAccountType] = useState<"particulier" | "moral" | null>(null);
   const [email, setEmail] = useState("");
+  const [upgradeMode, setUpgradeMode] = useState(false);
 
   useEffect(() => {
-    if (profile?.onboarding_completed) {
+    const params = new URLSearchParams(window.location.search);
+    const requestedType = params.get("type");
+    // If user explicitly wants to open a corporate account (upgrade flow),
+    // don't bounce them back to the dashboard even if onboarding is done.
+    if (profile?.onboarding_completed && requestedType !== "corporate") {
       navigate("/dashboard", { replace: true });
     }
   }, [profile?.onboarding_completed, navigate]);
@@ -48,6 +53,7 @@ export default function OpenAccount() {
 
     const params = new URLSearchParams(window.location.search);
     const callbackEmail = params.get("email");
+    const requestedType = params.get("type");
 
     // Pre-fill the email from session so later steps have it, but DO NOT
     // auto-skip stages. An incomplete onboarding must always restart from
@@ -58,6 +64,15 @@ export default function OpenAccount() {
     // callback (?email=...), which means the email step is genuinely done.
     if (callbackEmail) {
       setStage((prev) => (prev === "welcome" || prev === "email" ? "2fa" : prev));
+    }
+
+    // Upgrade flow: existing authenticated user opening a professional
+    // account. Skip welcome/email/2fa/type and jump straight into the
+    // corporate sub-steps.
+    if (requestedType === "corporate") {
+      setUpgradeMode(true);
+      setAccountType("moral");
+      setStage("corporate");
     }
 
     if (params.toString()) {
@@ -128,7 +143,7 @@ export default function OpenAccount() {
               <StageCorporate
                 key="corporate"
                 onNext={() => setStage("kyc")}
-                onBack={() => setStage("type")}
+                onBack={() => (upgradeMode ? navigate("/dashboard") : setStage("type"))}
               />
             )}
 
