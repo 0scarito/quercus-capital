@@ -28,6 +28,7 @@ import ContactPage from "@/pages/ContactPage";
 import LegalPage from "@/pages/LegalPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import CookiePage from "@/pages/CookiePage";
+import HelpCenter from "@/pages/HelpCenter";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,8 @@ const App = () => (
             <Route path="/mentions-legales" element={<LegalPage />} />
             <Route path="/confidentialite" element={<PrivacyPage />} />
             <Route path="/charte-cookie" element={<CookiePage />} />
+            <Route path="/aide" element={<HelpCenter />} />
+            <Route path="/aide/:slug" element={<HelpCenter />} />
             <Route path="/open-account" element={<OpenAccount />} />
             <Route path="/signin" element={<SignIn />} />
             <Route element={<ProtectedRoute />}>

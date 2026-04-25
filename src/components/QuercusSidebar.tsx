@@ -197,10 +197,14 @@ export function QuercusSidebar() {
                   Paramètres du compte
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <a href="mailto:contact@quercus.capital">
+                  <button
+                    type="button"
+                    onClick={() => navigate("/aide")}
+                    className="w-full flex items-center"
+                  >
                     <HelpCircle className="mr-2 h-4 w-4" />
                     Centre d'aide
-                  </a>
+                  </button>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => navigate("/contact")}>
                   <Mail className="mr-2 h-4 w-4" />
