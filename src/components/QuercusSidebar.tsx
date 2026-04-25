@@ -105,7 +105,7 @@ export function QuercusSidebar() {
               <>
                 <div className="h-px bg-border" />
                 <button
-                  onClick={() => navigate("/ouvrir-un-compte?type=corporate")}
+                  onClick={() => navigate("/open-account?type=corporate")}
                   className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/60 transition-colors text-left"
                 >
                   <PlusSquare className="h-4 w-4 text-muted-foreground" />
