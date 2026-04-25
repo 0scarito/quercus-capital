@@ -85,7 +85,9 @@ export default function OpenAccount() {
   return (
     <div className="min-h-screen bg-background relative flex flex-col">
       <FloatingBlobs />
-      <OnboardingProgress currentStep={stepNumber} totalSteps={TOTAL_STEPS} />
+      {!upgradeMode && (
+        <OnboardingProgress currentStep={stepNumber} totalSteps={TOTAL_STEPS} />
+      )}
 
       {/* Header */}
       <div className="relative z-10 flex items-center justify-between px-6 py-4">
