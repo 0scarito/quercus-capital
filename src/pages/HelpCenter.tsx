@@ -1,9 +1,10 @@
 import { LandingNav } from "@/components/landing/LandingNav";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 import { Link, useParams } from "react-router-dom";
-import { BookOpen, Search, ChevronRight } from "lucide-react";
+import { BookOpen, Search, ChevronRight, Clock, Calendar } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState, useMemo } from "react";
+import { HELP_ARTICLES, slugify, type HelpArticle, type ArticleBlock } from "@/data/helpArticles";
 
 type Category = {
   slug: string;
@@ -250,12 +251,12 @@ function CategoryDetail({ cat }: { cat: Category }) {
               {sec.items.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm">
                   <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 flex-shrink-0" />
-                  <a
-                    href="#"
+                  <Link
+                    to={`/aide/${cat.slug}/${slugify(item)}`}
                     className="text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
                   >
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -278,16 +279,227 @@ function CategoryDetail({ cat }: { cat: Category }) {
   );
 }
 
+function Block({ block }: { block: ArticleBlock }) {
+  switch (block.type) {
+    case "p":
+      return <p className="text-muted-foreground leading-relaxed mb-5">{block.text}</p>;
+    case "h2":
+      return (
+        <h2 className="text-xl md:text-2xl font-serif italic text-foreground mt-10 mb-4">
+          {block.text}
+        </h2>
+      );
+    case "ul":
+      return (
+        <ul className="space-y-2.5 mb-6">
+          {block.items.map((it) => (
+            <li key={it} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-muted-foreground/60 flex-shrink-0" />
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    case "ol":
+      return (
+        <ol className="space-y-3 mb-6 counter-reset">
+          {block.items.map((it, i) => (
+            <li key={it} className="flex items-start gap-4 text-sm text-muted-foreground leading-relaxed">
+              <span className="flex-shrink-0 h-7 w-7 border border-border flex items-center justify-center text-xs font-serif text-foreground">
+                {i + 1}
+              </span>
+              <span className="pt-1">{it}</span>
+            </li>
+          ))}
+        </ol>
+      );
+    case "callout":
+      return (
+        <div
+          className={`border-l-2 ${
+            block.tone === "warning" ? "border-foreground" : "border-muted-foreground/40"
+          } pl-5 py-3 my-6 bg-muted/30`}
+        >
+          {block.title && (
+            <p className="text-xs uppercase tracking-[0.18em] text-foreground mb-1.5">
+              {block.title}
+            </p>
+          )}
+          <p className="text-sm text-muted-foreground leading-relaxed">{block.text}</p>
+        </div>
+      );
+    case "table":
+      return (
+        <div className="border border-border my-6 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border bg-muted/30">
+                {block.head.map((h) => (
+                  <th
+                    key={h}
+                    className="text-left px-4 py-3 font-serif italic text-foreground text-xs uppercase tracking-wider"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, i) => (
+                <tr key={i} className="border-b border-border last:border-0">
+                  {row.map((c, j) => (
+                    <td
+                      key={j}
+                      className={`px-4 py-3 ${
+                        j === 0 ? "text-foreground" : "text-muted-foreground"
+                      }`}
+                    >
+                      {c}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+  }
+}
+
+function ArticleView({
+  cat,
+  article,
+  articleSlug,
+}: {
+  cat: Category;
+  article: HelpArticle;
+  articleSlug: string;
+}) {
+  const related = cat.sections
+    .flatMap((s) => s.items)
+    .filter((it) => slugify(it) !== articleSlug)
+    .slice(0, 5);
+
+  return (
+    <>
+      <nav className="mb-10 text-sm flex items-center gap-2 text-muted-foreground flex-wrap">
+        <Link to="/aide" className="hover:text-foreground underline-offset-4 hover:underline">
+          Quercus
+        </Link>
+        <ChevronRight className="h-3.5 w-3.5" />
+        <Link
+          to={`/aide/${cat.slug}`}
+          className="hover:text-foreground underline-offset-4 hover:underline"
+        >
+          {cat.title}
+        </Link>
+        <ChevronRight className="h-3.5 w-3.5" />
+        <span className="text-foreground">{article.title}</span>
+      </nav>
+
+      <div className="grid md:grid-cols-[1fr_240px] gap-12">
+        <article className="max-w-2xl">
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
+            {article.categoryTitle}
+          </p>
+          <h1 className="text-3xl md:text-4xl font-serif italic mb-5 leading-tight">
+            {article.title}
+          </h1>
+          <div className="flex items-center gap-5 text-xs text-muted-foreground mb-8 pb-8 border-b border-border">
+            <span className="flex items-center gap-2">
+              <Calendar className="h-3.5 w-3.5" />
+              Mis à jour le {article.updatedAt}
+            </span>
+            <span className="flex items-center gap-2">
+              <Clock className="h-3.5 w-3.5" />
+              {article.readTime}
+            </span>
+          </div>
+
+          <p className="text-foreground/90 text-lg font-serif italic leading-relaxed mb-10">
+            {article.intro}
+          </p>
+
+          {article.blocks.map((b, i) => (
+            <Block key={i} block={b} />
+          ))}
+
+          <div className="mt-14 border-t border-border pt-8">
+            <p className="text-sm text-foreground mb-4 font-serif italic">
+              Cet article vous a-t-il été utile ?
+            </p>
+            <div className="flex gap-3 mb-10">
+              <button className="px-5 py-2 text-sm border border-border hover:border-foreground transition-colors">
+                Oui
+              </button>
+              <button className="px-5 py-2 text-sm border border-border hover:border-foreground transition-colors">
+                Non
+              </button>
+            </div>
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-border">
+              <p className="text-sm text-muted-foreground">
+                Besoin de plus d'informations ?
+              </p>
+              <Link
+                to="/contact"
+                className="text-sm font-serif italic text-foreground underline underline-offset-4"
+              >
+                Contacter notre équipe →
+              </Link>
+            </div>
+          </div>
+        </article>
+
+        <aside className="hidden md:block">
+          <div className="sticky top-28 space-y-8">
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-foreground mb-4">
+                Articles liés
+              </p>
+              <ul className="space-y-3">
+                {related.map((it) => (
+                  <li key={it}>
+                    <Link
+                      to={`/aide/${cat.slug}/${slugify(it)}`}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors leading-relaxed block"
+                    >
+                      {it}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Link
+              to={`/aide/${cat.slug}`}
+              className="text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground inline-flex items-center gap-2"
+            >
+              ← Retour à {cat.title}
+            </Link>
+          </div>
+        </aside>
+      </div>
+    </>
+  );
+}
+
 export default function HelpCenter() {
-  const { slug } = useParams();
+  const { slug, articleSlug } = useParams();
   const [query, setQuery] = useState("");
   const cat = slug ? CATEGORIES.find((c) => c.slug === slug) : undefined;
+  const article =
+    cat && articleSlug ? HELP_ARTICLES[`${cat.slug}/${articleSlug}`] : undefined;
 
   return (
     <div className="min-h-screen bg-background">
       <LandingNav />
       <main className="pt-28 pb-24 max-w-6xl mx-auto px-4 md:px-8">
-        {cat ? <CategoryDetail cat={cat} /> : <HelpIndex query={query} setQuery={setQuery} />}
+        {cat && article && articleSlug ? (
+          <ArticleView cat={cat} article={article} articleSlug={articleSlug} />
+        ) : cat ? (
+          <CategoryDetail cat={cat} />
+        ) : (
+          <HelpIndex query={query} setQuery={setQuery} />
+        )}
       </main>
       <LandingFooter />
     </div>
