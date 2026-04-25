@@ -879,7 +879,7 @@ export const HELP_ARTICLES: Record<string, HelpArticle> = {
       { type: "p", text: "Notre export comptable mensuel est compatible avec la plupart des PGI du marché." },
     ],
   },
-  "fiscalite-et-comptabilite/relevés-comptables-et-exports": {
+  "fiscalite-et-comptabilite/releves-comptables-et-exports": {
     title: "Relevés comptables et exports",
     categorySlug: "fiscalite-et-comptabilite",
     categoryTitle: "Fiscalité et comptabilité",
