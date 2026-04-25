@@ -55,6 +55,7 @@ const App = () => (
             <Route path="/charte-cookie" element={<CookiePage />} />
             <Route path="/aide" element={<HelpCenter />} />
             <Route path="/aide/:slug" element={<HelpCenter />} />
+            <Route path="/aide/:slug/:articleSlug" element={<HelpCenter />} />
             <Route path="/open-account" element={<OpenAccount />} />
             <Route path="/signin" element={<SignIn />} />
             <Route element={<ProtectedRoute />}>
