@@ -27,7 +27,7 @@ export function DashboardPreview() {
   const filter = useTransform(blur, (b) => `blur(${b}px)`);
 
   return (
-    <section ref={ref} className="pt-20 pb-32 md:pt-28 md:pb-48 px-4 md:px-8 relative z-0">
+    <section ref={ref} className="pt-8 pb-32 md:pt-10 md:pb-48 px-4 md:px-8 relative z-0">
       <div className="max-w-7xl mx-auto" style={{ perspective: "2000px" }}>
         <motion.div
           style={{ y, scale, opacity, rotateX, filter, transformStyle: "preserve-3d", transformOrigin: "50% 100%" }}
