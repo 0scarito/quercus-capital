@@ -54,7 +54,8 @@
   "legal": {
     "mentions": "Mentions légales",
     "privacy": "Confidentialité",
-    "cookies": "Charte cookie"
+    "cookies": "Charte cookie",
+    "amf": "Information AMF"
   },
   "documents": {
     "velvetProspectus": "Prospectus Velvet",
