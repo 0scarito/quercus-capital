@@ -4,7 +4,7 @@
     "title": "Your liquid savings, working every single day.",
     "subtitle": "Access institutional money-market funds, hand-picked and monitored by your <1>wealth advisor</1>. Daily liquidity, yields net of fees.",
     "yieldsNote": "Yields net of fees, refreshed every business day · as of {{date}}",
-    "primaryCta": "Book a meeting",
+    "primaryCta": "Open your account",
     "secondaryCta": "Discover our products"
   },
   "yieldCard": {
@@ -18,14 +18,14 @@
   },
   "howItWorks": {
     "title": "How it works, concretely",
-    "subtitle": "Four simple steps, supported by your advisor at every key moment.",
+    "subtitle": "Four simple steps, with a dedicated advisor as soon as your amounts justify it.",
     "steps": {
-      "s1Title": "Meet your advisor",
-      "s1Desc": "Your wealth advisor analyses your situation, your goals and your tax profile, then recommends the funds best suited to you.",
-      "s2Title": "Open your account",
-      "s2Desc": "Create your client area online in under 5 minutes. Identity verification compliant with KYC requirements.",
-      "s3Title": "Invest at your own pace",
-      "s3Desc": "Transfer from your bank account to the fund of your choice. No imposed minimum — adapted to your savings capacity.",
+      "s1Title": "Open your account",
+      "s1Desc": "Create your client area online in under 5 minutes. Identity verification compliant with KYC requirements.",
+      "s2Title": "Invest at your own pace",
+      "s2Desc": "Transfer from your bank account to the fund of your choice. No imposed minimum — adapted to your savings capacity.",
+      "s3Title": "Meet your advisor",
+      "s3Desc": "Above a certain balance, a dedicated Wealth Management Advisor reviews your situation, your goals and your tax profile to optimise your allocation.",
       "s4Title": "Your money goes to work",
       "s4Desc": "Interest credited every business day. Withdrawals available at any time, without penalty or notice. Real-time tracking in your client area."
     }
