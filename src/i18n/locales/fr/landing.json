@@ -4,7 +4,7 @@
     "title": "Votre épargne liquide, travaille chaque jour.",
     "subtitle": "Accédez à des fonds monétaires institutionnels, sélectionnés et suivis par votre <1>conseiller patrimonial</1>. Liquidité quotidienne, rendement net de frais.",
     "yieldsNote": "Rendements nets de frais, mis à jour chaque jour ouvré · au {{date}}",
-    "primaryCta": "Prendre rendez-vous",
+    "primaryCta": "Ouvrez votre compte",
     "secondaryCta": "Découvrir nos produits"
   },
   "yieldCard": {
@@ -18,14 +18,14 @@
   },
   "howItWorks": {
     "title": "Comment ça marche, concrètement",
-    "subtitle": "Quatre étapes simples, accompagnées par votre conseiller à chaque moment-clé.",
+    "subtitle": "Quatre étapes simples, avec un conseiller dédié dès que vos montants le justifient.",
     "steps": {
-      "s1Title": "Rencontrez votre conseiller",
-      "s1Desc": "Votre CGP analyse votre situation patrimoniale, vos objectifs et votre fiscalité, puis vous recommande les fonds les plus adaptés.",
-      "s2Title": "Ouvrez votre compte",
-      "s2Desc": "Création de votre espace client en ligne en moins de 5 minutes. Vérification d'identité conforme aux exigences réglementaires (KYC).",
-      "s3Title": "Investissez à votre rythme",
-      "s3Desc": "Effectuez un virement depuis votre compte bancaire vers le fonds de votre choix. Pas de montant minimum imposé — adapté à votre capacité d'épargne.",
+      "s1Title": "Ouvrez votre compte",
+      "s1Desc": "Création de votre espace client en ligne en moins de 5 minutes. Vérification d'identité conforme aux exigences réglementaires (KYC).",
+      "s2Title": "Investissez à votre rythme",
+      "s2Desc": "Effectuez un virement depuis votre compte bancaire vers le fonds de votre choix. Pas de montant minimum imposé — adapté à votre capacité d'épargne.",
+      "s3Title": "Rencontrez votre conseiller",
+      "s3Desc": "À partir d'un certain encours, un Conseiller en Gestion de Patrimoine dédié analyse votre situation, vos objectifs et votre fiscalité pour optimiser votre allocation.",
       "s4Title": "Votre argent travaille",
       "s4Desc": "Intérêts crédités chaque jour ouvré. Retraits disponibles à tout moment, sans pénalité ni préavis. Suivi en temps réel dans votre espace client."
     }

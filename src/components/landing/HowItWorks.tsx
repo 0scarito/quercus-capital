@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { Users, ShieldCheck, Wallet, TrendingUp } from "lucide-react";
 
-const ICONS = [Users, ShieldCheck, Wallet, TrendingUp];
+const ICONS = [ShieldCheck, Wallet, Users, TrendingUp];
 
 export function HowItWorks() {
   const { t } = useTranslation("landing");
