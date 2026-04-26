@@ -1,7 +1,7 @@
 {
   "actions": {
     "signIn": "Se connecter",
-    "openAccount": "Ouvrir un compte",
+    "openAccount": "Prendre rendez-vous",
     "bookMeeting": "Prendre rendez-vous",
     "subscribe": "S'inscrire",
     "register": "S'inscrire",
