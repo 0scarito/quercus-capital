@@ -550,9 +550,9 @@ export default function HelpCenter() {
     cat && articleSlug ? HELP_ARTICLES[`${cat.slug}/${articleSlug}`] : undefined;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <LandingNav />
-      <main className="pt-28 pb-24 max-w-6xl mx-auto px-4 md:px-8">
+      <main className="flex-1 pt-28 pb-24 max-w-6xl w-full mx-auto px-4 md:px-8">
         {cat && article && articleSlug ? (
           <ArticleView cat={cat} article={article} articleSlug={articleSlug} />
         ) : cat ? (
