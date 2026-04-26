@@ -82,7 +82,12 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
       <div className="px-6 md:px-10 h-16 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 shrink-0">
           <img src={quercusLogo} alt="Quercus" className="h-11 w-auto" />
-          <span className="text-xl font-serif tracking-widest">QUERCUS</span>
+          <div className="flex flex-col leading-none">
+            <span className="text-xl font-serif tracking-widest">QUERCUS</span>
+            <span className="hidden md:inline text-[10px] text-muted-foreground tracking-wide mt-0.5">
+              {t("nav:regulatoryLine")}
+            </span>
+          </div>
         </Link>
 
         {variant === "solutions" ? (
@@ -227,7 +232,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
             <Link to="/signin">{t("common:actions.signIn")}</Link>
           </Button>
           <Button size="sm" className="px-6 btn-glow" asChild>
-            <Link to="/open-account">{t("common:actions.openAccount")}</Link>
+            <Link to="/contact">{t("common:actions.bookMeeting")}</Link>
           </Button>
         </div>
       </div>
