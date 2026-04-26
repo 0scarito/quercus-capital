@@ -1,54 +1,38 @@
-import { useEffect, useState } from "react";
-import { CountUp } from "@/components/landing/CountUp";
 import { GlassCard } from "@/components/landing/GlassCard";
 import { useTranslation } from "react-i18next";
+import { PRIMARY_EUR_YIELD } from "@/data/liveYields";
 
 export function LiveNumbers() {
   const { t } = useTranslation("landing");
-  const [now, setNow] = useState(new Date());
 
-  useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  const nextPayout = new Date(now);
-  nextPayout.setUTCHours(23, 0, 0, 0);
-  if (nextPayout <= now) nextPayout.setDate(nextPayout.getDate() + 1);
-  const diff = nextPayout.getTime() - now.getTime();
-  const hh = String(Math.floor(diff / 3600000)).padStart(2, "0");
-  const mm = String(Math.floor((diff % 3600000) / 60000)).padStart(2, "0");
-  const ss = String(Math.floor((diff % 60000) / 1000)).padStart(2, "0");
+  const tiles: { value: string; label: string; note: string }[] = [
+    { value: PRIMARY_EUR_YIELD.rateLabel, label: t("live.rate"), note: t("live.rateNote") },
+    { value: t("yieldCard.liquidityValue"), label: t("live.liquidity"), note: t("live.liquidityNote") },
+    { value: "0 %", label: t("live.fees"), note: t("live.feesNote") },
+    { value: "AMF", label: t("live.regulator"), note: t("live.regulatorNote") },
+  ];
 
   return (
     <section className="py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-          <em>{t("live.title")}</em>
-        </h2>
+        <div className="text-center mb-14 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-serif">
+            <em>{t("live.title")}</em>
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">{t("live.subtitle")}</p>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-          <GlassCard className="p-8 md:p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("live.aum")}</p>
-            <p className="text-3xl md:text-4xl font-serif font-semibold">
-              €<CountUp end={424} suffix=" M" />
-            </p>
-          </GlassCard>
-          <GlassCard className="p-8 md:p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("live.interest")}</p>
-            <p className="text-3xl md:text-4xl font-serif font-semibold">
-              €<CountUp end={47.2} decimals={1} suffix=" M" />
-            </p>
-          </GlassCard>
-          <GlassCard className="p-8 md:p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("live.investors")}</p>
-            <p className="text-3xl md:text-4xl font-serif font-semibold">
-              <CountUp end={1280} suffix="+" />
-            </p>
-          </GlassCard>
-          <GlassCard className="p-8 md:p-10 text-center space-y-2">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("live.nextPayout")}</p>
-            <p className="text-3xl md:text-4xl font-serif font-semibold font-mono tracking-wider">{hh}:{mm}:{ss}</p>
-          </GlassCard>
+          {tiles.map((tile) => (
+            <GlassCard key={tile.label} className="p-8 md:p-10 text-center space-y-2">
+              <p className="text-3xl md:text-4xl font-serif font-semibold tabular-nums">
+                {tile.value}
+              </p>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                {tile.label}
+              </p>
+              <p className="text-[11px] text-muted-foreground/80">{tile.note}</p>
+            </GlassCard>
+          ))}
         </div>
       </div>
     </section>
