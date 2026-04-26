@@ -110,6 +110,15 @@
     "regulator": "French regulation",
     "regulatorNote": "AMF · ORIAS no. 24004789"
   },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "The three questions every advised investor asks.",
+    "categories": {
+      "security": "Is my money safe?",
+      "interest": "How do I earn interest?",
+      "advisor": "What is my advisor's role?"
+    }
+  },
   "partners": {
     "label": "Trusted institutional infrastructure"
   },
