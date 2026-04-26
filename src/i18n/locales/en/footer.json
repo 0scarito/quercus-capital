@@ -48,7 +48,8 @@
   "resources": {
     "about": "About",
     "press": "Press",
-    "contact": "Contact"
+    "contact": "Contact",
+    "help": "Help Center"
   },
   "legal": {
     "mentions": "Legal notice",
