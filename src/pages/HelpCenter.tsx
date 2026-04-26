@@ -162,7 +162,7 @@ function CategoryCard({ cat }: { cat: Category }) {
   return (
     <Link
       to={`/aide/${cat.slug}`}
-      className="group border border-border p-6 hover:border-foreground transition-colors flex flex-col h-full min-h-[180px]"
+      className="group border border-border p-6 hover:border-foreground transition-colors flex flex-col h-full w-full min-h-[180px]"
     >
       <div className="h-9 w-9 border border-border flex items-center justify-center mb-5 group-hover:border-foreground transition-colors">
         <BookOpen className="h-4 w-4 text-foreground" />
