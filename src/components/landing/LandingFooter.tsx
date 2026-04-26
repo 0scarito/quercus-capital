@@ -38,6 +38,7 @@ export function LandingFooter() {
     { label: t("footer:resources.about"), href: "/a-propos" },
     { label: t("footer:resources.press"), href: "/presse" },
     { label: t("footer:resources.contact"), href: "/contact" },
+    { label: t("footer:resources.help"), href: "/aide" },
   ];
 
   const legalLinks = [
