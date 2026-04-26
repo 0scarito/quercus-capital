@@ -7,8 +7,10 @@ import { YieldCards } from "@/components/landing/YieldCards";
 import { YieldCalculator } from "@/components/landing/YieldCalculator";
 import { LiveNumbers } from "@/components/landing/LiveNumbers";
 import { PartnersSection } from "@/components/landing/PartnersSection";
-import { SecuritySection } from "@/components/landing/SecuritySection";
-import { UseCases } from "@/components/landing/UseCases";
+import { TrustChain } from "@/components/landing/TrustChain";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { Testimonials } from "@/components/landing/Testimonials";
+import { LandingFaq } from "@/components/landing/LandingFaq";
 import { ClientSegmentsCards } from "@/components/landing/ClientSegmentsCards";
 import { PressStrip } from "@/components/landing/PressStrip";
 import { LandingFooter } from "@/components/landing/LandingFooter";
@@ -28,6 +30,10 @@ export default function LandingPage() {
           <HeroSection />
         </ScrollReveal>
         <TrustBadgeStrip />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
+          <HowItWorks />
+        </ScrollReveal>
         <DashboardPreview />
         <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
@@ -46,7 +52,7 @@ export default function LandingPage() {
           <LiveNumbers />
         </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
-        <SecuritySection />
+        <TrustChain />
         <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
           <div id="partners">
@@ -54,7 +60,13 @@ export default function LandingPage() {
           </div>
         </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
-        <UseCases />
+        <ScrollReveal>
+          <Testimonials />
+        </ScrollReveal>
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
+          <LandingFaq />
+        </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
           <PressStrip />
