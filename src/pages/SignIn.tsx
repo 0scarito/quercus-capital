@@ -63,9 +63,12 @@ export default function SignIn() {
             <img src={quercusLogo} alt="Quercus" className="h-10 w-auto" />
             <span className="text-2xl font-serif tracking-widest">QUERCUS</span>
           </div>
-          <p className="text-sm text-muted-foreground">
-            The Quest for Excellence in Liquidity Management.
-          </p>
+          <div className="space-y-1">
+            <p className="text-base font-serif"><em>Accéder à mon espace Quercus</em></p>
+            <p className="text-xs text-muted-foreground">
+              Suivi de vos investissements et communication avec votre conseiller.
+            </p>
+          </div>
         </div>
 
         <Separator />
@@ -145,9 +148,9 @@ export default function SignIn() {
           {googleLoading ? "Connexion…" : "Continuer avec Google"}
         </Button>
         <p className="text-center text-xs text-muted-foreground">
-          Pas encore de compte ?{" "}
-          <Link to="/open-account" className="underline hover:text-foreground">
-            Ouvrir un compte
+          Pas encore client ?{" "}
+          <Link to="/contact" className="underline hover:text-foreground">
+            Prenez rendez-vous avec un conseiller
           </Link>
         </p>
 

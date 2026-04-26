@@ -550,7 +550,7 @@ export default function TobamPage() {
               </p>
               <div className="flex items-center justify-center gap-4">
                 <Button size="lg" className="px-12 py-6 text-base btn-glow" asChild>
-                  <Link to="/open-account">Ouvrir un compte</Link>
+                  <Link to="/contact">Prendre rendez-vous</Link>
                 </Button>
                 <Button size="lg" variant="outline" className="px-12 py-6 text-base btn-glow" asChild>
                   <Link to="/contact">Nous contacter</Link>

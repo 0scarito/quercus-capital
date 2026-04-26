@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
-import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, Loader2, Search, ArrowDownLeft, ArrowUpRight, Coins } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, Loader2, Search, ArrowDownLeft, ArrowUpRight, Coins, MessageSquare } from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -112,6 +112,27 @@ export default function Dashboard() {
           </h1>
         </div>
       )}
+
+      {/* Advisor banner */}
+      <div className="shrink-0 border rounded-sm bg-card px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground text-xs font-serif shrink-0">
+            AB
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm">
+              Votre conseiller <span className="font-medium">Alexandre Bernard</span> est disponible pour répondre à vos questions.
+            </p>
+            <p className="text-[11px] text-muted-foreground">CGP — CIF ORIAS n° 24004789</p>
+          </div>
+        </div>
+        <Button asChild size="sm" variant="outline">
+          <Link to="/dashboard/conseiller">
+            <MessageSquare className="mr-2 h-3.5 w-3.5" /> Envoyer un message
+          </Link>
+        </Button>
+      </div>
+
       {/* Top row */}
       <div className="flex items-start justify-between gap-4 flex-wrap shrink-0">
         <AccountSwitcherPopover
@@ -124,7 +145,7 @@ export default function Dashboard() {
             <ArrowUpFromLine className="mr-2 h-4 w-4" /> Retirer
           </Button>
           <Button onClick={() => setDepositOpen(true)}>
-            <ArrowDownToLine className="mr-2 h-4 w-4" /> Déposer
+            <ArrowDownToLine className="mr-2 h-4 w-4" /> Investir
           </Button>
         </div>
       </div>
