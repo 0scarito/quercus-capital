@@ -10,16 +10,30 @@
     "error": "Subscription failed. Please check your email address."
   },
   "sections": {
+    "company": "Quercus Capital",
     "products": "Products",
+    "contactCol": "Contact",
     "useCases": "Use cases",
     "resources": "Resources",
     "legal": "Legal",
     "documentation": "Product documentation"
   },
+  "company": {
+    "mission": "Our mission",
+    "about": "About",
+    "careers": "Careers"
+  },
   "products": {
-    "velvet": "Velvet (Smart Cash)",
-    "tobam": "TOBAM Crypto Liquidity",
+    "velvet": "Quercus Smart Cash",
+    "tobam": "Quercus Cash & Carry",
+    "portefeuille": "Advisory Portfolio",
     "all": "All products"
+  },
+  "contactCol": {
+    "email": "contact@quercus-capital.fr",
+    "book": "Book a meeting",
+    "press": "Press",
+    "help": "Help Center"
   },
   "useCases": {
     "holdings": "Holdings",
@@ -39,7 +53,8 @@
   "legal": {
     "mentions": "Legal notice",
     "privacy": "Privacy",
-    "cookies": "Cookie policy"
+    "cookies": "Cookie policy",
+    "amf": "AMF disclosure"
   },
   "documents": {
     "velvetProspectus": "Velvet Prospectus",
