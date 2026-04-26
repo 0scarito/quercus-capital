@@ -17,6 +17,7 @@ export function LandingFooter() {
   const productLinks = [
     { label: t("footer:products.velvet"), href: "/products/velvet" },
     { label: t("footer:products.tobam"), href: "/products/tobam" },
+    { label: t("footer:products.portefeuille"), href: "/products" },
     { label: t("footer:products.all"), href: "/products" },
   ];
 
@@ -45,6 +46,20 @@ export function LandingFooter() {
     { label: t("footer:legal.mentions"), href: "/mentions-legales" },
     { label: t("footer:legal.privacy"), href: "/confidentialite" },
     { label: t("footer:legal.cookies"), href: "/charte-cookie" },
+    { label: t("footer:legal.amf"), href: "/mentions-legales" },
+  ];
+
+  const companyLinks = [
+    { label: t("footer:company.mission"), href: "/a-propos" },
+    { label: t("footer:company.about"), href: "/a-propos" },
+    { label: t("footer:company.careers"), href: "/contact" },
+  ];
+
+  const contactLinks = [
+    { label: t("footer:contactCol.email"), href: "mailto:contact@quercus-capital.fr" },
+    { label: t("footer:contactCol.book"), href: "/contact" },
+    { label: t("footer:contactCol.press"), href: "/presse" },
+    { label: t("footer:contactCol.help"), href: "/aide" },
   ];
 
   const documentLinks = [
