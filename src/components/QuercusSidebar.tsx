@@ -12,6 +12,7 @@ import {
   User,
   Check,
   PlusSquare,
+  UserCog,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useNavigate } from "react-router-dom";
@@ -44,12 +45,13 @@ import { useProfile } from "@/hooks/useProfile";
 
 const mainNav = [
   { title: "Tableau de bord", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Produits", url: "/produits", icon: Package },
+  { title: "Mes investissements", url: "/produits", icon: Package },
+  { title: "Mon conseiller", url: "/dashboard/conseiller", icon: UserCog },
   { title: "Paramètres de compte", url: "/parametres", icon: Settings },
 ];
 
 const secondaryNav = [
-  { title: "Relevés", url: "/releves", icon: FileText },
+  { title: "Mes mouvements", url: "/releves", icon: FileText },
   { title: "Intégrations", url: "/integrations", icon: Plug },
 ];
 

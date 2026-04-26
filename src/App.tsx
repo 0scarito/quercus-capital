@@ -29,6 +29,8 @@ import LegalPage from "@/pages/LegalPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import CookiePage from "@/pages/CookiePage";
 import HelpCenter from "@/pages/HelpCenter";
+import PortefeuilleConseillePage from "@/pages/PortefeuilleConseillePage";
+import MonConseiller from "@/pages/dashboard/MonConseiller";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +47,7 @@ const App = () => (
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/velvet" element={<VelvetPage />} />
             <Route path="/products/tobam" element={<TobamPage />} />
+            <Route path="/products/portefeuille-conseille" element={<PortefeuilleConseillePage />} />
             <Route path="/solutions" element={<SolutionsPage />} />
             <Route path="/solutions/:segment" element={<SolutionDetailPage />} />
             <Route path="/a-propos" element={<AboutPage />} />
@@ -62,6 +65,7 @@ const App = () => (
               <Route path="/complete-profile" element={<CompleteProfile />} />
               <Route element={<AppLayout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard/conseiller" element={<MonConseiller />} />
                 <Route path="/produits" element={<Products />} />
                 <Route path="/releves" element={<Statements />} />
                 <Route path="/parametres" element={<AccountSettings />} />
