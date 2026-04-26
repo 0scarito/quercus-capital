@@ -162,7 +162,7 @@ function CategoryCard({ cat }: { cat: Category }) {
   return (
     <Link
       to={`/aide/${cat.slug}`}
-      className="group border border-border p-6 hover:border-foreground transition-colors block"
+      className="group border border-border p-6 hover:border-foreground transition-colors flex flex-col h-full w-full min-h-[180px]"
     >
       <div className="h-9 w-9 border border-border flex items-center justify-center mb-5 group-hover:border-foreground transition-colors">
         <BookOpen className="h-4 w-4 text-foreground" />
@@ -174,20 +174,50 @@ function CategoryCard({ cat }: { cat: Category }) {
 }
 
 function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) => void }) {
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+  const q = query.trim().toLowerCase();
+
+  const allArticles = useMemo(() => {
+    const list: { catSlug: string; catTitle: string; section: string; item: string }[] = [];
+    for (const c of CATEGORIES) {
+      for (const s of c.sections) {
+        for (const it of s.items) {
+          list.push({ catSlug: c.slug, catTitle: c.title, section: s.title, item: it });
+        }
+      }
+    }
+    return list;
+  }, []);
+
+  const articleResults = useMemo(() => {
+    if (!q) return [];
+    return allArticles.filter(
+      (a) =>
+        a.item.toLowerCase().includes(q) ||
+        a.section.toLowerCase().includes(q) ||
+        a.catTitle.toLowerCase().includes(q),
+    );
+  }, [q, allArticles]);
+
+  const categoryResults = useMemo(() => {
     if (!q) return CATEGORIES;
     return CATEGORIES.filter(
       (c) =>
-        c.title.toLowerCase().includes(q) ||
-        c.description.toLowerCase().includes(q) ||
-        c.sections.some(
-          (s) =>
-            s.title.toLowerCase().includes(q) ||
-            s.items.some((i) => i.toLowerCase().includes(q)),
-        ),
+        c.title.toLowerCase().includes(q) || c.description.toLowerCase().includes(q),
     );
-  }, [query]);
+  }, [q]);
+
+  const highlight = (text: string) => {
+    if (!q) return text;
+    const idx = text.toLowerCase().indexOf(q);
+    if (idx === -1) return text;
+    return (
+      <>
+        {text.slice(0, idx)}
+        <mark className="bg-foreground/10 text-foreground">{text.slice(idx, idx + q.length)}</mark>
+        {text.slice(idx + q.length)}
+      </>
+    );
+  };
 
   return (
     <>
@@ -210,17 +240,47 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
           placeholder="Rechercher dans le centre d'aide…"
           className="pl-9 h-11 rounded-none border-border"
         />
+        {q && (
+          <div className="absolute left-0 right-0 top-full mt-2 z-20 border border-border bg-background shadow-lg max-h-[420px] overflow-y-auto">
+            {articleResults.length === 0 ? (
+              <p className="px-4 py-6 text-sm text-muted-foreground">
+                Aucun article ne correspond à « {query} ».
+              </p>
+            ) : (
+              <ul>
+                {articleResults.slice(0, 12).map((a) => (
+                  <li key={`${a.catSlug}-${a.item}`}>
+                    <Link
+                      to={`/aide/${a.catSlug}/${slugify(a.item)}`}
+                      className="flex flex-col gap-1 px-4 py-3 border-b border-border last:border-0 hover:bg-muted/40 transition-colors"
+                    >
+                      <span className="text-sm text-foreground">{highlight(a.item)}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {a.catTitle} › {a.section}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+                {articleResults.length > 12 && (
+                  <li className="px-4 py-2 text-xs text-muted-foreground bg-muted/30">
+                    +{articleResults.length - 12} autres résultats…
+                  </li>
+                )}
+              </ul>
+            )}
+          </div>
+        )}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
-        {filtered.map((cat) => (
-          <div key={cat.slug} className="bg-background">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border auto-rows-fr">
+        {categoryResults.map((cat) => (
+          <div key={cat.slug} className="bg-background flex">
             <CategoryCard cat={cat} />
           </div>
         ))}
       </div>
 
-      {filtered.length === 0 && (
+      {categoryResults.length === 0 && articleResults.length === 0 && (
         <p className="text-muted-foreground mt-8">Aucun résultat pour « {query} ».</p>
       )}
     </>
