@@ -110,6 +110,15 @@
     "regulator": "Régulation française",
     "regulatorNote": "AMF · ORIAS n°24004789"
   },
+  "faq": {
+    "title": "Questions fréquentes",
+    "subtitle": "Les réponses aux trois questions que se pose tout investisseur accompagné.",
+    "categories": {
+      "security": "Mon argent est-il en sécurité ?",
+      "interest": "Comment est-ce que je gagne des intérêts ?",
+      "advisor": "Quel est le rôle de mon conseiller ?"
+    }
+  },
   "partners": {
     "label": "Infrastructure institutionnelle de confiance"
   },
