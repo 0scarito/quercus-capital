@@ -99,11 +99,16 @@
     "annualised": "à {{rate}}% annualisé sur {{duration}} mois"
   },
   "live": {
-    "title": "Transparence en temps réel",
-    "aum": "Actifs sous gestion",
-    "interest": "Intérêts générés",
-    "investors": "Investisseurs actifs",
-    "nextPayout": "Prochain versement"
+    "title": "Une approche claire, des chiffres clairs",
+    "subtitle": "Ouverture de compte en 5 minutes, accompagné par votre conseiller.",
+    "rate": "Rendement net EUR",
+    "rateNote": "Actualisé quotidiennement",
+    "liquidity": "Liquidité des fonds",
+    "liquidityNote": "Quotidienne, sans préavis",
+    "fees": "Frais d'entrée et de sortie",
+    "feesNote": "0 % à tout moment",
+    "regulator": "Régulation française",
+    "regulatorNote": "AMF · ORIAS n°24004789"
   },
   "partners": {
     "label": "Infrastructure institutionnelle de confiance"
