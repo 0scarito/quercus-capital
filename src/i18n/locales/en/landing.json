@@ -1,8 +1,67 @@
 {
   "hero": {
-    "title": "The quest for excellence in treasury management.",
-    "subtitle": "For <1>holdings, SMEs and family offices</1>: access the finest money market and yield strategies, until now reserved for institutional investors. Daily liquidity, bank-grade security.",
-    "yieldsNote": "Yields net of fees, paid by banking counterparty · as of {{date}}"
+    "eyebrow": "Wealth management advisor · AMF-registered",
+    "title": "Your liquid savings, working every single day.",
+    "subtitle": "Access institutional money-market funds, hand-picked and monitored by your <1>wealth advisor</1>. Daily liquidity, yields net of fees.",
+    "yieldsNote": "Yields net of fees, refreshed every business day · as of {{date}}",
+    "primaryCta": "Book a meeting",
+    "secondaryCta": "Discover our products"
+  },
+  "yieldCard": {
+    "eyebrow": "Live yields",
+    "badge": "net / yr",
+    "rowEur": "Quercus Smart Cash · EUR",
+    "rowUsd": "Quercus Cash & Carry",
+    "rowLiquidity": "Liquidity",
+    "liquidityValue": "Daily",
+    "footer": "Refreshed every business day · Net of management fees"
+  },
+  "howItWorks": {
+    "title": "How it works, concretely",
+    "subtitle": "Four simple steps, supported by your advisor at every key moment.",
+    "steps": {
+      "s1Title": "Meet your advisor",
+      "s1Desc": "Your wealth advisor analyses your situation, your goals and your tax profile, then recommends the funds best suited to you.",
+      "s2Title": "Open your account",
+      "s2Desc": "Create your client area online in under 5 minutes. Identity verification compliant with KYC requirements.",
+      "s3Title": "Invest at your own pace",
+      "s3Desc": "Transfer from your bank account to the fund of your choice. No imposed minimum — adapted to your savings capacity.",
+      "s4Title": "Your money goes to work",
+      "s4Desc": "Interest credited every business day. Withdrawals available at any time, without penalty or notice. Real-time tracking in your client area."
+    }
+  },
+  "trustChain": {
+    "title": "Your savings, protected at every step",
+    "subtitle": "A chain of trust between regulation, segregation and transparency.",
+    "block1Title": "Authorised and supervised",
+    "block1Body": "Quercus Capital is registered as a CIF & COA with ORIAS (no. 24004789) and operates as a Wealth Management Advisor under AMF supervision. Your investment is governed by French regulation.",
+    "block2Title": "Your funds are segregated",
+    "block2Body": "Your money is never held by Quercus Capital. It is custodied by a top-tier depositary bank (BNP Paribas / CACEIS), part of a major European banking group. Quercus Capital's failure would have no impact on your assets.",
+    "block3Title": "Total transparency",
+    "block3Body": "Every fund is approved by the AMF, audited by an independent auditor (PwC), and its prospectus is publicly available. You know exactly what your money is invested in."
+  },
+  "testimonials": {
+    "title": "What our clients say about their experience",
+    "items": {
+      "sophie": {
+        "name": "Sophie M.",
+        "role": "Senior executive, 42",
+        "quote": "My advisor at Quercus showed me how my savings were sitting on a 3% account, while they could be working in a money-market fund with the same yield but full liquidity. I should have done it much sooner.",
+        "context": "Client for 8 months"
+      },
+      "laurent": {
+        "name": "Laurent B.",
+        "role": "Business owner, 55",
+        "quote": "I was looking for a way to place my company's cash without locking it up. Daily availability and the support of my wealth advisor changed everything for me.",
+        "context": "Client for 14 months"
+      },
+      "couple": {
+        "name": "Marie & Thomas D.",
+        "role": "Retired couple",
+        "quote": "We wanted to secure part of our savings while still earning interest. The human support from Quercus Capital reassured us at every step.",
+        "context": "Clients for 6 months"
+      }
+    }
   },
   "trust": {
     "custody": "Funds held by BNP Paribas & CACEIS",
@@ -40,11 +99,16 @@
     "annualised": "at {{rate}}% annualised over {{duration}} months"
   },
   "live": {
-    "title": "Real-time transparency",
-    "aum": "Assets under management",
-    "interest": "Interest generated",
-    "investors": "Active investors",
-    "nextPayout": "Next payout"
+    "title": "A clear approach, clear numbers",
+    "subtitle": "Account opening in 5 minutes, supported by your advisor.",
+    "rate": "Net EUR yield",
+    "rateNote": "Refreshed daily",
+    "liquidity": "Fund liquidity",
+    "liquidityNote": "Daily, no notice required",
+    "fees": "Entry & exit fees",
+    "feesNote": "0% at any time",
+    "regulator": "French regulation",
+    "regulatorNote": "AMF · ORIAS no. 24004789"
   },
   "partners": {
     "label": "Trusted institutional infrastructure"
