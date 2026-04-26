@@ -1,8 +1,67 @@
 {
   "hero": {
-    "title": "La quête de l'excellence en gestion de trésorerie.",
-    "subtitle": "Pour <1>holdings, PME et family offices</1> : accédez aux meilleures stratégies monétaires et de rendement, jusqu'ici réservées aux institutionnels. Liquidité quotidienne, sécurité bancaire.",
-    "yieldsNote": "Rendements nets de frais, payés par contrepartie bancaire · au {{date}}"
+    "eyebrow": "Conseiller en Gestion de Patrimoine · Agréé AMF",
+    "title": "Votre épargne liquide, travaille chaque jour.",
+    "subtitle": "Accédez à des fonds monétaires institutionnels, sélectionnés et suivis par votre <1>conseiller patrimonial</1>. Liquidité quotidienne, rendement net de frais.",
+    "yieldsNote": "Rendements nets de frais, mis à jour chaque jour ouvré · au {{date}}",
+    "primaryCta": "Prendre rendez-vous",
+    "secondaryCta": "Découvrir nos produits"
+  },
+  "yieldCard": {
+    "eyebrow": "Rendements en direct",
+    "badge": "net / an",
+    "rowEur": "Quercus Smart Cash · EUR",
+    "rowUsd": "Quercus Cash & Carry",
+    "rowLiquidity": "Liquidité",
+    "liquidityValue": "Quotidienne",
+    "footer": "Mis à jour chaque jour ouvré · Net de frais de gestion"
+  },
+  "howItWorks": {
+    "title": "Comment ça marche, concrètement",
+    "subtitle": "Quatre étapes simples, accompagnées par votre conseiller à chaque moment-clé.",
+    "steps": {
+      "s1Title": "Rencontrez votre conseiller",
+      "s1Desc": "Votre CGP analyse votre situation patrimoniale, vos objectifs et votre fiscalité, puis vous recommande les fonds les plus adaptés.",
+      "s2Title": "Ouvrez votre compte",
+      "s2Desc": "Création de votre espace client en ligne en moins de 5 minutes. Vérification d'identité conforme aux exigences réglementaires (KYC).",
+      "s3Title": "Investissez à votre rythme",
+      "s3Desc": "Effectuez un virement depuis votre compte bancaire vers le fonds de votre choix. Pas de montant minimum imposé — adapté à votre capacité d'épargne.",
+      "s4Title": "Votre argent travaille",
+      "s4Desc": "Intérêts crédités chaque jour ouvré. Retraits disponibles à tout moment, sans pénalité ni préavis. Suivi en temps réel dans votre espace client."
+    }
+  },
+  "trustChain": {
+    "title": "Votre épargne, protégée à chaque étape",
+    "subtitle": "Une chaîne de confiance entre régulation, ségrégation et transparence.",
+    "block1Title": "Agréé et supervisé",
+    "block1Body": "Quercus Capital est enregistré comme CIF & COA auprès de l'ORIAS (n°24004789) et opère également en qualité de Conseiller en Gestion de Patrimoine sous la supervision de l'AMF. Votre investissement est encadré par la réglementation française.",
+    "block2Title": "Vos fonds sont ségrégués",
+    "block2Body": "Votre argent n'est jamais conservé par Quercus Capital. Il est directement confié à une banque dépositaire de premier rang (BNP Paribas / CACEIS), filiale d'un groupe bancaire européen majeur. La défaillance de Quercus Capital n'aurait aucun impact sur vos avoirs.",
+    "block3Title": "Transparence totale",
+    "block3Body": "Chaque fonds est approuvé par l'AMF, audité par un commissaire aux comptes indépendant (PwC), et son prospectus est disponible publiquement. Vous savez exactement dans quoi votre argent est investi."
+  },
+  "testimonials": {
+    "title": "Ce que nos clients disent de leur expérience",
+    "items": {
+      "sophie": {
+        "name": "Sophie M.",
+        "role": "Cadre supérieure, 42 ans",
+        "quote": "Mon conseiller chez Quercus m'a expliqué comment mon épargne dormait sur un Livret A à 3 %, alors qu'elle pouvait travailler dans un fonds monétaire à rendement équivalent mais avec une liquidité totale. J'aurais dû le faire bien avant.",
+        "context": "Cliente depuis 8 mois"
+      },
+      "laurent": {
+        "name": "Laurent B.",
+        "role": "Chef d'entreprise, 55 ans",
+        "quote": "Je cherchais une solution pour placer la trésorerie de mon entreprise sans la bloquer. La disponibilité quotidienne et le suivi par mon conseiller patrimonial ont tout changé pour moi.",
+        "context": "Client depuis 14 mois"
+      },
+      "couple": {
+        "name": "Marie & Thomas D.",
+        "role": "Couple de retraités",
+        "quote": "Nous souhaitions sécuriser une partie de nos économies tout en continuant à percevoir des intérêts. L'accompagnement humain de Quercus Capital nous a rassurés à chaque étape.",
+        "context": "Clients depuis 6 mois"
+      }
+    }
   },
   "trust": {
     "custody": "Fonds détenus par BNP Paribas & CACEIS",
@@ -40,11 +99,25 @@
     "annualised": "à {{rate}}% annualisé sur {{duration}} mois"
   },
   "live": {
-    "title": "Transparence en temps réel",
-    "aum": "Actifs sous gestion",
-    "interest": "Intérêts générés",
-    "investors": "Investisseurs actifs",
-    "nextPayout": "Prochain versement"
+    "title": "Une approche claire, des chiffres clairs",
+    "subtitle": "Ouverture de compte en 5 minutes, accompagné par votre conseiller.",
+    "rate": "Rendement net EUR",
+    "rateNote": "Actualisé quotidiennement",
+    "liquidity": "Liquidité des fonds",
+    "liquidityNote": "Quotidienne, sans préavis",
+    "fees": "Frais d'entrée et de sortie",
+    "feesNote": "0 % à tout moment",
+    "regulator": "Régulation française",
+    "regulatorNote": "AMF · ORIAS n°24004789"
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "subtitle": "Les réponses aux trois questions que se pose tout investisseur accompagné.",
+    "categories": {
+      "security": "Mon argent est-il en sécurité ?",
+      "interest": "Comment est-ce que je gagne des intérêts ?",
+      "advisor": "Quel est le rôle de mon conseiller ?"
+    }
   },
   "partners": {
     "label": "Infrastructure institutionnelle de confiance"

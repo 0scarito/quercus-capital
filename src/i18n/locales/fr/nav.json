@@ -1,7 +1,9 @@
 {
-  "products": "Produits",
-  "solutions": "Solutions",
-  "resources": "Ressources",
+  "approach": "Notre approche",
+  "products": "Nos produits",
+  "solutions": "Sécurité & régulation",
+  "resources": "À propos",
+  "regulatoryLine": "CGP enregistré — CIF n° ORIAS 24004789 — Membre CNCEF",
   "viewAllProducts": "Voir tous les produits",
   "allSolutions": "Toutes les solutions",
   "productsList": {

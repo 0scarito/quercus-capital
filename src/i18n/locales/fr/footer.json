@@ -10,16 +10,30 @@
     "error": "Inscription impossible. Vérifiez votre adresse e-mail."
   },
   "sections": {
+    "company": "Quercus Capital",
     "products": "Produits",
+    "contactCol": "Contact",
     "useCases": "Cas d'usage",
     "resources": "Ressources",
     "legal": "Légal",
     "documentation": "Documentation produit"
   },
+  "company": {
+    "mission": "Notre mission",
+    "about": "À propos",
+    "careers": "Carrières"
+  },
   "products": {
-    "velvet": "Velvet (Smart Cash)",
-    "tobam": "TOBAM Crypto Liquidity",
+    "velvet": "Quercus Smart Cash",
+    "tobam": "Quercus Cash & Carry",
+    "portefeuille": "Portefeuille Conseillé",
     "all": "Tous les produits"
+  },
+  "contactCol": {
+    "email": "contact@quercus-capital.fr",
+    "book": "Prendre rendez-vous",
+    "press": "Presse",
+    "help": "Centre d'aide"
   },
   "useCases": {
     "holdings": "Holdings",
