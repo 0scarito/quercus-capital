@@ -34,7 +34,8 @@
   "resources": {
     "about": "À propos",
     "press": "Presse",
-    "contact": "Contact"
+    "contact": "Contact",
+    "help": "Centre d'aide"
   },
   "legal": {
     "mentions": "Mentions légales",
