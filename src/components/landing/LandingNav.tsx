@@ -49,6 +49,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
     { name: t("nav:resourcesList.about"), href: "/a-propos", desc: t("nav:resourcesList.aboutDesc") },
     { name: t("nav:resourcesList.press"), href: "/presse", desc: t("nav:resourcesList.pressDesc") },
     { name: t("nav:resourcesList.contact"), href: "/contact", desc: t("nav:resourcesList.contactDesc") },
+    { name: t("nav:resourcesList.help"), href: "/aide", desc: t("nav:resourcesList.helpDesc") },
     { name: t("nav:resourcesList.legal"), href: "/mentions-legales", desc: t("nav:resourcesList.legalDesc") },
   ];
 
