@@ -8,14 +8,24 @@
   "allSolutions": "All solutions",
   "productsList": {
     "velvetSubtitle": "Smart Cash · UCITS Fund",
-    "tobamSubtitle": "Cash & Carry · AIF FPS"
+    "tobamSubtitle": "Cash & Carry · AIF FPS",
+    "advisedName": "Advised Portfolio",
+    "advisedSubtitle": "Tailored allocation",
+    "advisedYield": "On request"
   },
   "solutionsList": {
     "holdings": "Holdings & Family Offices",
     "pme": "SMEs & Start-ups",
     "crypto": "Crypto Businesses",
     "freelances": "Independent Professionals",
-    "particuliers": "Private Clients"
+    "particuliers": "Private Clients",
+    "holdingsDesc": "Structured wealth management",
+    "pmeDesc": "Optimized corporate treasury",
+    "cryptoDesc": "Fiat & digital assets",
+    "freelancesDesc": "Doctors, lawyers, notaries",
+    "particuliersDesc": "Personal liquid savings",
+    "allTitle": "All solutions",
+    "allDesc": "Complete view of our offering"
   },
   "resourcesList": {
     "about": "About",
