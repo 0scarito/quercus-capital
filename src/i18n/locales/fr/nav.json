@@ -8,14 +8,24 @@
   "allSolutions": "Toutes les solutions",
   "productsList": {
     "velvetSubtitle": "Smart Cash · FCP UCITS",
-    "tobamSubtitle": "Cash & Carry · FIA FPS"
+    "tobamSubtitle": "Cash & Carry · FIA FPS",
+    "advisedName": "Portefeuille Conseillé",
+    "advisedSubtitle": "Allocation sur-mesure",
+    "advisedYield": "Sur devis"
   },
   "solutionsList": {
     "holdings": "Holdings & Family Offices",
     "pme": "PME & Start-ups",
     "crypto": "Entreprises Crypto",
     "freelances": "Professions libérales",
-    "particuliers": "Particuliers"
+    "particuliers": "Particuliers",
+    "holdingsDesc": "Gestion patrimoniale structurée",
+    "pmeDesc": "Trésorerie d'entreprise optimisée",
+    "cryptoDesc": "Fiat & actifs numériques",
+    "freelancesDesc": "Médecins, avocats, notaires",
+    "particuliersDesc": "Épargne liquide personnelle",
+    "allTitle": "Toutes les solutions",
+    "allDesc": "Vue complète de notre offre"
   },
   "resourcesList": {
     "about": "À propos",
