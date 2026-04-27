@@ -13,7 +13,7 @@ interface LandingNavProps {
   currentSlug?: string;
 }
 
-type MenuKey = "products" | "solutions" | "resources" | null;
+type MenuKey = "products" | "solutions" | "security" | "resources" | null;
 
 const NAV_HEIGHT = 64;
 
@@ -241,6 +241,12 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
     { icon: "❓", href: "/aide", title: t("nav:resourcesList.help"), desc: t("nav:resourcesList.helpDesc") },
   ];
 
+  const securityItems = [
+    { icon: "🛡", href: "/securite", title: t("nav:securityList.security"), desc: t("nav:securityList.securityDesc") },
+    { icon: "⚖️", href: "/regulation", title: t("nav:securityList.regulation"), desc: t("nav:securityList.regulationDesc") },
+    { icon: "📋", href: "/securite#audits", title: t("nav:securityList.audit"), desc: t("nav:securityList.auditDesc") },
+  ];
+
   const overlayTop = (bannerVisible ? 36 : 0) + NAV_HEIGHT;
 
   const triggerClass = (key: MenuKey) =>
@@ -397,6 +403,30 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                   >
                     {t("nav:resourcesList.legal")}
                   </Link>
+                </DropdownPanel>
+              </div>
+
+              {/* Security & Regulation */}
+              <div className="relative" onMouseEnter={() => open("security")} onMouseLeave={scheduleClose}>
+                <button className={triggerClass("security")}>{t("nav:security")}</button>
+                <DropdownPanel
+                  open={openMenuKey === "security"}
+                  width={480}
+                  onMouseEnter={cancelClose}
+                  onMouseLeave={scheduleClose}
+                >
+                  <div className="flex flex-col">
+                    {securityItems.map((r) => (
+                      <Row
+                        key={r.href}
+                        to={r.href}
+                        onClick={close}
+                        icon={r.icon}
+                        title={r.title}
+                        subtitle={r.desc}
+                      />
+                    ))}
+                  </div>
                 </DropdownPanel>
               </div>
             </div>
