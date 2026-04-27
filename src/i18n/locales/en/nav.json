@@ -2,6 +2,7 @@
   "approach": "Our approach",
   "products": "Products",
   "solutions": "Solutions",
+  "security": "Security & regulation",
   "resources": "Resources",
   "regulatoryLine": "Registered IFA — CIF no. ORIAS 24004789 — CNCEF Member",
   "viewAllProducts": "View all products",
@@ -38,6 +39,16 @@
     "helpDesc": "Guides and answers to your questions",
     "legal": "Legal notice",
     "legalDesc": "Regulatory information"
+  },
+  "securityList": {
+    "security": "Security",
+    "securityDesc": "Fund segregation, custodians, chain of trust",
+    "regulation": "Regulation",
+    "regulationDesc": "AMF, ORIAS, CNCEF — our regulatory framework",
+    "audit": "Audits & controls",
+    "auditDesc": "Independent auditors and reporting",
+    "legal": "Legal notice",
+    "legalDesc": "Legal & compliance information"
   },
   "banner": "Quercus Capital — Platform now open to <1>holdings</1> and <3>family offices</3>."
 }
