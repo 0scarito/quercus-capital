@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 import { segments } from "@/components/solutions/segmentData";
 import { useAnnouncementVisible } from "@/components/landing/AnnouncementBanner";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { NavDropdownOverlay } from "@/components/landing/NavDropdownOverlay";
 
 interface LandingNavProps {
   variant?: "default" | "solutions";
@@ -15,43 +15,169 @@ interface LandingNavProps {
 
 type MenuKey = "products" | "solutions" | "resources" | null;
 
+const NAV_HEIGHT = 64;
+
+function IconBubble({ children, size = 36 }: { children: React.ReactNode; size?: number }) {
+  return (
+    <div
+      className="flex items-center justify-center shrink-0 rounded-full"
+      style={{
+        width: size,
+        height: size,
+        background: "hsl(40 50% 78%)",
+        fontSize: size === 36 ? 16 : 14,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function DropdownPanel({
+  open,
+  width,
+  children,
+  onMouseEnter,
+  onMouseLeave,
+}: {
+  open: boolean;
+  width: number;
+  children: React.ReactNode;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}) {
+  const [render, setRender] = useState(open);
+  useEffect(() => {
+    if (open) setRender(true);
+    else {
+      const t = setTimeout(() => setRender(false), 160);
+      return () => clearTimeout(t);
+    }
+  }, [open]);
+  if (!render) return null;
+  return (
+    <div
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      style={{
+        position: "absolute",
+        top: "calc(100% + 8px)",
+        left: "50%",
+        transform: "translateX(-50%)",
+        background: "#FFFFFF",
+        border: "1px solid hsl(var(--border))",
+        borderRadius: 16,
+        boxShadow: "0 8px 40px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06)",
+        padding: 8,
+        zIndex: 50,
+        minWidth: width,
+        width,
+        animation: open
+          ? "nav-dropdown-in 180ms ease forwards"
+          : "nav-dropdown-out 140ms ease forwards",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Row({
+  to,
+  onClick,
+  icon,
+  title,
+  subtitle,
+  rate,
+  iconSize = 36,
+  alwaysBg = false,
+}: {
+  to: string;
+  onClick: () => void;
+  icon: React.ReactNode;
+  title: string;
+  subtitle?: string;
+  rate?: string;
+  iconSize?: number;
+  alwaysBg?: boolean;
+}) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className="group flex items-start gap-3 px-3 py-2.5 rounded-[10px] transition-colors"
+      style={{
+        background: alwaysBg ? "hsl(var(--background))" : "transparent",
+      }}
+      onMouseEnter={(e) => {
+        if (!alwaysBg) e.currentTarget.style.background = "hsl(var(--background))";
+      }}
+      onMouseLeave={(e) => {
+        if (!alwaysBg) e.currentTarget.style.background = "transparent";
+      }}
+    >
+      <IconBubble size={iconSize}>{icon}</IconBubble>
+      <div className="flex-1 min-w-0">
+        <div className="text-[14px] font-serif text-foreground leading-tight">{title}</div>
+        {subtitle && (
+          <div className="text-[11px] text-muted-foreground mt-0.5 leading-snug uppercase tracking-[0.05em]">
+            {subtitle}
+          </div>
+        )}
+      </div>
+      {rate && (
+        <div className="text-[13px] font-medium shrink-0 self-center" style={{ color: "hsl(var(--success))" }}>
+          {rate}
+        </div>
+      )}
+    </Link>
+  );
+}
+
+function SolutionRow({
+  to,
+  onClick,
+  icon,
+  title,
+  subtitle,
+  alwaysBg = false,
+}: {
+  to: string;
+  onClick: () => void;
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+  alwaysBg?: boolean;
+}) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className="flex items-start gap-3 px-3 py-2.5 rounded-[10px] transition-colors"
+      style={{ background: alwaysBg ? "hsl(var(--background))" : "transparent" }}
+      onMouseEnter={(e) => {
+        if (!alwaysBg) e.currentTarget.style.background = "hsl(var(--background))";
+      }}
+      onMouseLeave={(e) => {
+        if (!alwaysBg) e.currentTarget.style.background = "transparent";
+      }}
+    >
+      <IconBubble size={32}>{icon}</IconBubble>
+      <div className="flex-1 min-w-0">
+        <div className="text-[13px] font-medium text-foreground leading-tight">{title}</div>
+        <div className="text-[12px] text-muted-foreground mt-0.5 leading-snug">{subtitle}</div>
+      </div>
+    </Link>
+  );
+}
+
 export function LandingNav({ variant = "default", currentSlug }: LandingNavProps = {}) {
   const { t } = useTranslation(["nav", "common"]);
   const [scrolled, setScrolled] = useState(false);
   const [openMenuKey, setOpenMenuKey] = useState<MenuKey>(null);
+  const openTimer = useRef<number | null>(null);
   const closeTimer = useRef<number | null>(null);
   const bannerVisible = useAnnouncementVisible();
-
-  const productItems = [
-    {
-      name: "Velvet",
-      subtitle: t("nav:productsList.velvetSubtitle"),
-      yield: "€STR + 0,30%",
-      href: "/products/velvet",
-    },
-    {
-      name: "TOBAM Crypto Liquidity",
-      subtitle: t("nav:productsList.tobamSubtitle"),
-      yield: "~7–8% p.a.",
-      href: "/products/tobam",
-    },
-  ];
-
-  const solutionItems = [
-    { name: t("nav:solutionsList.holdings"), slug: "holdings" },
-    { name: t("nav:solutionsList.pme"), slug: "pme" },
-    { name: t("nav:solutionsList.crypto"), slug: "crypto" },
-    { name: t("nav:solutionsList.freelances"), slug: "freelances" },
-    { name: t("nav:solutionsList.particuliers"), slug: "particuliers" },
-  ];
-
-  const resourceItems = [
-    { name: t("nav:resourcesList.about"), href: "/a-propos", desc: t("nav:resourcesList.aboutDesc") },
-    { name: t("nav:resourcesList.press"), href: "/presse", desc: t("nav:resourcesList.pressDesc") },
-    { name: t("nav:resourcesList.contact"), href: "/contact", desc: t("nav:resourcesList.contactDesc") },
-    { name: t("nav:resourcesList.help"), href: "/aide", desc: t("nav:resourcesList.helpDesc") },
-    { name: t("nav:resourcesList.legal"), href: "/mentions-legales", desc: t("nav:resourcesList.legalDesc") },
-  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -61,176 +187,232 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
 
   const open = (key: MenuKey) => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
-    setOpenMenuKey(key);
+    if (openTimer.current) window.clearTimeout(openTimer.current);
+    openTimer.current = window.setTimeout(() => setOpenMenuKey(key), 120);
   };
   const scheduleClose = () => {
+    if (openTimer.current) window.clearTimeout(openTimer.current);
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
-    closeTimer.current = window.setTimeout(() => setOpenMenuKey(null), 120);
+    closeTimer.current = window.setTimeout(() => setOpenMenuKey(null), 80);
   };
+  const cancelClose = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+  };
+  const close = () => setOpenMenuKey(null);
+
+  const productItems = [
+    {
+      icon: "💵",
+      name: "Quercus Smart Cash",
+      subtitle: t("nav:productsList.velvetSubtitle"),
+      yield: "€STR + 0,30 %",
+      href: "/products/velvet",
+    },
+    {
+      icon: "🔄",
+      name: "Quercus Cash & Carry",
+      subtitle: t("nav:productsList.tobamSubtitle"),
+      yield: "~7–8 % p.a.",
+      href: "/products/tobam",
+    },
+    {
+      icon: "📋",
+      name: t("nav:productsList.advisedName"),
+      subtitle: t("nav:productsList.advisedSubtitle"),
+      yield: t("nav:productsList.advisedYield"),
+      href: "/portefeuille-conseille",
+    },
+  ];
+
+  const solutionLeft = [
+    { icon: "🛡", slug: "holdings", title: t("nav:solutionsList.holdings"), desc: t("nav:solutionsList.holdingsDesc") },
+    { icon: "🏢", slug: "pme", title: t("nav:solutionsList.pme"), desc: t("nav:solutionsList.pmeDesc") },
+    { icon: "🔐", slug: "crypto", title: t("nav:solutionsList.crypto"), desc: t("nav:solutionsList.cryptoDesc") },
+  ];
+  const solutionRight = [
+    { icon: "⚖️", slug: "freelances", title: t("nav:solutionsList.freelances"), desc: t("nav:solutionsList.freelancesDesc") },
+    { icon: "👤", slug: "particuliers", title: t("nav:solutionsList.particuliers"), desc: t("nav:solutionsList.particuliersDesc") },
+  ];
+
+  const resourceItems = [
+    { icon: "🌿", href: "/a-propos", title: t("nav:resourcesList.about"), desc: t("nav:resourcesList.aboutDesc") },
+    { icon: "📰", href: "/presse", title: t("nav:resourcesList.press"), desc: t("nav:resourcesList.pressDesc") },
+    { icon: "📞", href: "/contact", title: t("nav:resourcesList.contact"), desc: t("nav:resourcesList.contactDesc") },
+    { icon: "❓", href: "/aide", title: t("nav:resourcesList.help"), desc: t("nav:resourcesList.helpDesc") },
+  ];
+
+  const overlayTop = (bannerVisible ? 36 : 0) + NAV_HEIGHT;
+
+  const triggerClass = (key: MenuKey) =>
+    `text-sm transition-colors py-4 inline-flex items-center gap-1 border-b-2 ${
+      openMenuKey === key
+        ? "text-primary border-accent"
+        : "text-muted-foreground hover:text-foreground border-transparent"
+    }`;
 
   return (
-    <nav
-      className="fixed left-0 right-0 z-50 transition-all duration-500"
-      style={{
-        top: bannerVisible ? "36px" : "0",
-        backgroundColor: scrolled ? "rgba(255,255,255,0.3)" : "transparent",
-        backdropFilter: scrolled ? "blur(16px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.2)" : "1px solid transparent",
-      }}
-    >
-      <div className="px-6 md:px-10 h-16 flex items-center justify-between gap-4 relative">
-        <Link to="/" className="flex items-center gap-3 shrink-0">
-          <img src={quercusLogo} alt="Quercus" className="h-11 w-auto" />
-          <span className="text-xl font-serif tracking-widest">QUERCUS</span>
-        </Link>
+    <>
+      <NavDropdownOverlay open={openMenuKey !== null} top={overlayTop} />
+      <nav
+        className="fixed left-0 right-0 z-50 transition-all duration-500"
+        style={{
+          top: bannerVisible ? "36px" : "0",
+          height: NAV_HEIGHT,
+          backgroundColor: scrolled || openMenuKey ? "rgba(255,255,255,0.85)" : "transparent",
+          backdropFilter: scrolled || openMenuKey ? "blur(16px)" : "none",
+          WebkitBackdropFilter: scrolled || openMenuKey ? "blur(16px)" : "none",
+          borderBottom: "1px solid hsl(var(--border))",
+        }}
+      >
+        <div className="px-6 md:px-10 h-full flex items-center justify-between gap-4 relative">
+          <Link to="/" className="flex items-center gap-3 shrink-0">
+            <img src={quercusLogo} alt="Quercus" className="h-11 w-auto" />
+            <span className="text-xl font-serif tracking-widest">QUERCUS</span>
+          </Link>
 
-        {variant === "solutions" ? (
-          <div className="hidden md:flex items-center gap-1.5 flex-1 justify-center overflow-x-auto">
-            {segments.map((s) => (
-              <Link
-                key={s.slug}
-                to={`/solutions/${s.slug}`}
-                className={`px-4 py-1.5 text-xs font-medium tracking-wide transition-all duration-300 border whitespace-nowrap ${
-                  s.slug === currentSlug
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-white/40 backdrop-blur-sm text-muted-foreground border-white/30 hover:bg-white/60 hover:text-foreground"
-                }`}
-              >
-                {s.name}
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            <div className="relative" onMouseEnter={() => open("products")} onMouseLeave={scheduleClose}>
-              <Link
-                to="/products"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4 inline-flex items-center gap-1"
-              >
-                {t("nav:products")}
-              </Link>
-              <div
-                className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${
-                  openMenuKey === "products"
-                    ? "opacity-100 translate-y-0 pointer-events-auto"
-                    : "opacity-0 -translate-y-1 pointer-events-none"
-                }`}
-              >
-                <div className="w-[520px] bg-background/95 backdrop-blur-xl border border-border shadow-xl">
-                  <div className="grid grid-cols-2 gap-px bg-border">
+          {variant === "solutions" ? (
+            <div className="hidden md:flex items-center gap-1.5 flex-1 justify-center overflow-x-auto">
+              {segments.map((s) => (
+                <Link
+                  key={s.slug}
+                  to={`/solutions/${s.slug}`}
+                  className={`px-4 py-1.5 text-xs font-medium tracking-wide transition-all duration-300 border whitespace-nowrap ${
+                    s.slug === currentSlug
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-white/40 backdrop-blur-sm text-muted-foreground border-white/30 hover:bg-white/60 hover:text-foreground"
+                  }`}
+                >
+                  {s.name}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+              {/* Products */}
+              <div className="relative" onMouseEnter={() => open("products")} onMouseLeave={scheduleClose}>
+                <Link to="/products" className={triggerClass("products")}>
+                  {t("nav:products")}
+                </Link>
+                <DropdownPanel
+                  open={openMenuKey === "products"}
+                  width={600}
+                  onMouseEnter={cancelClose}
+                  onMouseLeave={scheduleClose}
+                >
+                  <div className="flex flex-col">
                     {productItems.map((p) => (
-                      <Link
+                      <Row
                         key={p.name}
                         to={p.href}
-                        onClick={() => setOpenMenuKey(null)}
-                        className="group bg-background p-5 hover:bg-muted/40 transition-colors flex flex-col gap-2"
-                      >
-                        <div className="flex items-start justify-between gap-2">
-                          <span className="text-base font-serif font-semibold">
-                            <em>{p.name}</em>
-                          </span>
-                          <ArrowUpRight className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                        <span className="text-[11px] uppercase tracking-widest text-muted-foreground">
-                          {p.subtitle}
-                        </span>
-                        <span className="text-sm font-mono text-success mt-1">{p.yield}</span>
-                      </Link>
+                        onClick={close}
+                        icon={p.icon}
+                        title={p.name}
+                        subtitle={p.subtitle}
+                        rate={p.yield}
+                      />
                     ))}
                   </div>
-                  <div className="p-3 bg-background border-t border-border">
-                    <Button asChild size="sm" className="w-full btn-glow">
-                      <Link to="/products" onClick={() => setOpenMenuKey(null)}>
-                        {t("nav:viewAllProducts")}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
+                  <div style={{ borderTop: "1px solid hsl(var(--border))", margin: "4px 0" }} />
+                  <Link
+                    to="/products"
+                    onClick={close}
+                    className="flex items-center justify-between px-3 py-2.5 rounded-[10px] transition-colors hover:bg-background"
+                  >
+                    <span className="text-[13px] font-medium text-primary">{t("nav:viewAllProducts")}</span>
+                    <span className="text-[13px] text-primary">→</span>
+                  </Link>
+                </DropdownPanel>
               </div>
-            </div>
 
-            <div className="relative" onMouseEnter={() => open("solutions")} onMouseLeave={scheduleClose}>
-              <Link
-                to="/solutions"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4"
-              >
-                {t("nav:solutions")}
-              </Link>
-              <div
-                className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${
-                  openMenuKey === "solutions"
-                    ? "opacity-100 translate-y-0 pointer-events-auto"
-                    : "opacity-0 -translate-y-1 pointer-events-none"
-                }`}
-              >
-                <div className="w-[320px] bg-background/95 backdrop-blur-xl border border-border shadow-xl">
-                  <div className="flex flex-col">
-                    {solutionItems.map((s) => (
-                      <Link
+              {/* Solutions */}
+              <div className="relative" onMouseEnter={() => open("solutions")} onMouseLeave={scheduleClose}>
+                <Link to="/solutions" className={triggerClass("solutions")}>
+                  {t("nav:solutions")}
+                </Link>
+                <DropdownPanel
+                  open={openMenuKey === "solutions"}
+                  width={560}
+                  onMouseEnter={cancelClose}
+                  onMouseLeave={scheduleClose}
+                >
+                  <div className="grid grid-cols-2 gap-1">
+                    {solutionLeft.map((s) => (
+                      <SolutionRow
                         key={s.slug}
                         to={`/solutions/${s.slug}`}
-                        onClick={() => setOpenMenuKey(null)}
-                        className="group px-5 py-3 hover:bg-muted/40 transition-colors flex items-center justify-between border-b border-border last:border-0"
-                      >
-                        <span className="text-sm">{s.name}</span>
-                        <ArrowUpRight className="h-3.5 w-3.5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </Link>
+                        onClick={close}
+                        icon={s.icon}
+                        title={s.title}
+                        subtitle={s.desc}
+                      />
+                    ))}
+                    {solutionRight.map((s) => (
+                      <SolutionRow
+                        key={s.slug}
+                        to={`/solutions/${s.slug}`}
+                        onClick={close}
+                        icon={s.icon}
+                        title={s.title}
+                        subtitle={s.desc}
+                      />
+                    ))}
+                    <SolutionRow
+                      to="/solutions"
+                      onClick={close}
+                      icon="🌐"
+                      title={`${t("nav:solutionsList.allTitle")} →`}
+                      subtitle={t("nav:solutionsList.allDesc")}
+                      alwaysBg
+                    />
+                  </div>
+                </DropdownPanel>
+              </div>
+
+              {/* Resources / À propos */}
+              <div className="relative" onMouseEnter={() => open("resources")} onMouseLeave={scheduleClose}>
+                <button className={triggerClass("resources")}>{t("nav:resources")}</button>
+                <DropdownPanel
+                  open={openMenuKey === "resources"}
+                  width={480}
+                  onMouseEnter={cancelClose}
+                  onMouseLeave={scheduleClose}
+                >
+                  <div className="flex flex-col">
+                    {resourceItems.map((r) => (
+                      <Row
+                        key={r.href}
+                        to={r.href}
+                        onClick={close}
+                        icon={r.icon}
+                        title={r.title}
+                        subtitle={r.desc}
+                      />
                     ))}
                   </div>
-                  <div className="p-3 border-t border-border">
-                    <Button asChild size="sm" variant="outline" className="w-full">
-                      <Link to="/solutions" onClick={() => setOpenMenuKey(null)}>
-                        {t("nav:allSolutions")}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
+                  <div style={{ borderTop: "1px solid hsl(var(--border))", margin: "4px 0" }} />
+                  <Link
+                    to="/mentions-legales"
+                    onClick={close}
+                    className="block px-3 py-2 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {t("nav:resourcesList.legal")}
+                  </Link>
+                </DropdownPanel>
               </div>
             </div>
+          )}
 
-            <div className="relative" onMouseEnter={() => open("resources")} onMouseLeave={scheduleClose}>
-              <button className="text-sm text-muted-foreground hover:text-foreground transition-colors py-4">
-                {t("nav:resources")}
-              </button>
-              <div
-                className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-200 ${
-                  openMenuKey === "resources"
-                    ? "opacity-100 translate-y-0 pointer-events-auto"
-                    : "opacity-0 -translate-y-1 pointer-events-none"
-                }`}
-              >
-                <div className="w-[340px] bg-background/95 backdrop-blur-xl border border-border shadow-xl">
-                  {resourceItems.map((r) => (
-                    <Link
-                      key={r.href}
-                      to={r.href}
-                      onClick={() => setOpenMenuKey(null)}
-                      className="group block px-5 py-3 hover:bg-muted/40 transition-colors border-b border-border last:border-0"
-                    >
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-sm font-medium">{r.name}</span>
-                        <ArrowUpRight className="h-3.5 w-3.5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </div>
-                      <p className="text-[11px] text-muted-foreground mt-0.5">{r.desc}</p>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <LanguageSwitcher />
+            <Button variant="ghost" size="sm" className="btn-glow" asChild>
+              <Link to="/signin">{t("common:actions.signIn")}</Link>
+            </Button>
+            <Button size="sm" className="px-6 btn-glow" asChild>
+              <Link to="/contact">{t("common:actions.bookMeeting")}</Link>
+            </Button>
           </div>
-        )}
-
-        <div className="flex items-center gap-3 shrink-0">
-          <LanguageSwitcher />
-          <Button variant="ghost" size="sm" className="btn-glow" asChild>
-            <Link to="/signin">{t("common:actions.signIn")}</Link>
-          </Button>
-          <Button size="sm" className="px-6 btn-glow" asChild>
-            <Link to="/contact">{t("common:actions.bookMeeting")}</Link>
-          </Button>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
