@@ -17,18 +17,25 @@ type MenuKey = "products" | "solutions" | "security" | "resources" | null;
 
 const NAV_HEIGHT = 64;
 
-function IconBubble({ children, size = 36 }: { children: React.ReactNode; size?: number }) {
+function IconBubble() {
   return (
     <div
       className="flex items-center justify-center shrink-0 rounded-full"
       style={{
-        width: size,
-        height: size,
-        background: "hsl(40 50% 78%)",
-        fontSize: size === 36 ? 16 : 14,
+        width: 36,
+        height: 36,
+        background: "#E8D5A3",
       }}
     >
-      {children}
+      <span
+        style={{
+          display: "block",
+          width: 14,
+          height: 1.5,
+          background: "#1A3A2A",
+          borderRadius: 1,
+        }}
+      />
     </div>
   );
 }
@@ -85,87 +92,51 @@ function DropdownPanel({
 function Row({
   to,
   onClick,
-  icon,
   title,
   subtitle,
-  rate,
-  iconSize = 36,
-  alwaysBg = false,
 }: {
   to: string;
   onClick: () => void;
-  icon: React.ReactNode;
   title: string;
   subtitle?: string;
-  rate?: string;
-  iconSize?: number;
-  alwaysBg?: boolean;
 }) {
   return (
     <Link
       to={to}
       onClick={onClick}
-      className="group flex items-start gap-3 px-3 py-2.5 rounded-[10px] transition-colors"
+      className="group flex items-center gap-3 rounded-[10px] transition-colors"
       style={{
-        background: alwaysBg ? "hsl(var(--background))" : "transparent",
+        padding: "10px 12px",
+        background: "transparent",
       }}
       onMouseEnter={(e) => {
-        if (!alwaysBg) e.currentTarget.style.background = "hsl(var(--background))";
+        e.currentTarget.style.background = "#F9F7F3";
       }}
       onMouseLeave={(e) => {
-        if (!alwaysBg) e.currentTarget.style.background = "transparent";
+        e.currentTarget.style.background = "transparent";
       }}
     >
-      <IconBubble size={iconSize}>{icon}</IconBubble>
+      <IconBubble />
       <div className="flex-1 min-w-0">
-        <div className="text-[14px] font-serif text-foreground leading-tight">{title}</div>
+        <div
+          className="font-serif italic leading-tight"
+          style={{ fontSize: 15, color: "#1C1C1C" }}
+        >
+          {title}
+        </div>
         {subtitle && (
-          <div className="text-[11px] text-muted-foreground mt-0.5 leading-snug uppercase tracking-[0.05em]">
+          <div
+            className="mt-1 leading-snug uppercase"
+            style={{
+              fontSize: 10,
+              letterSpacing: "0.07em",
+              color: "#9A9A9A",
+              fontFamily: "'DM Sans', sans-serif",
+            }}
+          >
             {subtitle}
           </div>
         )}
-      </div>
-      {rate && (
-        <div className="text-[13px] font-medium shrink-0 self-center" style={{ color: "hsl(var(--success))" }}>
-          {rate}
-        </div>
-      )}
-    </Link>
-  );
-}
-
-function SolutionRow({
-  to,
-  onClick,
-  icon,
-  title,
-  subtitle,
-  alwaysBg = false,
-}: {
-  to: string;
-  onClick: () => void;
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  alwaysBg?: boolean;
-}) {
-  return (
-    <Link
-      to={to}
-      onClick={onClick}
-      className="flex items-start gap-3 px-3 py-2.5 rounded-[10px] transition-colors"
-      style={{ background: alwaysBg ? "hsl(var(--background))" : "transparent" }}
-      onMouseEnter={(e) => {
-        if (!alwaysBg) e.currentTarget.style.background = "hsl(var(--background))";
-      }}
-      onMouseLeave={(e) => {
-        if (!alwaysBg) e.currentTarget.style.background = "transparent";
-      }}
-    >
-      <IconBubble size={32}>{icon}</IconBubble>
-      <div className="flex-1 min-w-0">
-        <div className="text-[13px] font-medium text-foreground leading-tight">{title}</div>
-        <div className="text-[12px] text-muted-foreground mt-0.5 leading-snug">{subtitle}</div>
       </div>
     </Link>
   );
