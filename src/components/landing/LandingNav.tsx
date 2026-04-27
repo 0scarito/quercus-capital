@@ -79,7 +79,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.2)" : "1px solid transparent",
       }}
     >
-      <div className="px-6 md:px-10 h-16 flex items-center justify-between gap-4">
+      <div className="px-6 md:px-10 h-16 flex items-center justify-between gap-4 relative">
         <Link to="/" className="flex items-center gap-3 shrink-0">
           <img src={quercusLogo} alt="Quercus" className="h-11 w-auto" />
           <span className="text-xl font-serif tracking-widest">QUERCUS</span>
@@ -102,7 +102,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
             ))}
           </div>
         ) : (
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             <div className="relative" onMouseEnter={() => open("products")} onMouseLeave={scheduleClose}>
               <Link
                 to="/products"
