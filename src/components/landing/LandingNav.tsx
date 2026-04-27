@@ -17,18 +17,25 @@ type MenuKey = "products" | "solutions" | "security" | "resources" | null;
 
 const NAV_HEIGHT = 64;
 
-function IconBubble({ children, size = 36 }: { children: React.ReactNode; size?: number }) {
+function IconBubble() {
   return (
     <div
       className="flex items-center justify-center shrink-0 rounded-full"
       style={{
-        width: size,
-        height: size,
-        background: "hsl(40 50% 78%)",
-        fontSize: size === 36 ? 16 : 14,
+        width: 36,
+        height: 36,
+        background: "#E8D5A3",
       }}
     >
-      {children}
+      <span
+        style={{
+          display: "block",
+          width: 14,
+          height: 1.5,
+          background: "#1A3A2A",
+          borderRadius: 1,
+        }}
+      />
     </div>
   );
 }
@@ -85,87 +92,51 @@ function DropdownPanel({
 function Row({
   to,
   onClick,
-  icon,
   title,
   subtitle,
-  rate,
-  iconSize = 36,
-  alwaysBg = false,
 }: {
   to: string;
   onClick: () => void;
-  icon: React.ReactNode;
   title: string;
   subtitle?: string;
-  rate?: string;
-  iconSize?: number;
-  alwaysBg?: boolean;
 }) {
   return (
     <Link
       to={to}
       onClick={onClick}
-      className="group flex items-start gap-3 px-3 py-2.5 rounded-[10px] transition-colors"
+      className="group flex items-center gap-3 rounded-[10px] transition-colors"
       style={{
-        background: alwaysBg ? "hsl(var(--background))" : "transparent",
+        padding: "10px 12px",
+        background: "transparent",
       }}
       onMouseEnter={(e) => {
-        if (!alwaysBg) e.currentTarget.style.background = "hsl(var(--background))";
+        e.currentTarget.style.background = "#F9F7F3";
       }}
       onMouseLeave={(e) => {
-        if (!alwaysBg) e.currentTarget.style.background = "transparent";
+        e.currentTarget.style.background = "transparent";
       }}
     >
-      <IconBubble size={iconSize}>{icon}</IconBubble>
+      <IconBubble />
       <div className="flex-1 min-w-0">
-        <div className="text-[14px] font-serif text-foreground leading-tight">{title}</div>
+        <div
+          className="font-serif italic leading-tight"
+          style={{ fontSize: 15, color: "#1C1C1C" }}
+        >
+          {title}
+        </div>
         {subtitle && (
-          <div className="text-[11px] text-muted-foreground mt-0.5 leading-snug uppercase tracking-[0.05em]">
+          <div
+            className="mt-1 leading-snug uppercase"
+            style={{
+              fontSize: 10,
+              letterSpacing: "0.07em",
+              color: "#9A9A9A",
+              fontFamily: "'DM Sans', sans-serif",
+            }}
+          >
             {subtitle}
           </div>
         )}
-      </div>
-      {rate && (
-        <div className="text-[13px] font-medium shrink-0 self-center" style={{ color: "hsl(var(--success))" }}>
-          {rate}
-        </div>
-      )}
-    </Link>
-  );
-}
-
-function SolutionRow({
-  to,
-  onClick,
-  icon,
-  title,
-  subtitle,
-  alwaysBg = false,
-}: {
-  to: string;
-  onClick: () => void;
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  alwaysBg?: boolean;
-}) {
-  return (
-    <Link
-      to={to}
-      onClick={onClick}
-      className="flex items-start gap-3 px-3 py-2.5 rounded-[10px] transition-colors"
-      style={{ background: alwaysBg ? "hsl(var(--background))" : "transparent" }}
-      onMouseEnter={(e) => {
-        if (!alwaysBg) e.currentTarget.style.background = "hsl(var(--background))";
-      }}
-      onMouseLeave={(e) => {
-        if (!alwaysBg) e.currentTarget.style.background = "transparent";
-      }}
-    >
-      <IconBubble size={32}>{icon}</IconBubble>
-      <div className="flex-1 min-w-0">
-        <div className="text-[13px] font-medium text-foreground leading-tight">{title}</div>
-        <div className="text-[12px] text-muted-foreground mt-0.5 leading-snug">{subtitle}</div>
       </div>
     </Link>
   );
@@ -202,49 +173,41 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
 
   const productItems = [
     {
-      icon: "💵",
-      name: "Quercus Smart Cash",
+      name: "Velvet",
       subtitle: t("nav:productsList.velvetSubtitle"),
-      yield: "€STR + 0,30 %",
       href: "/products/velvet",
     },
     {
-      icon: "🔄",
-      name: "Quercus Cash & Carry",
+      name: "TOBAM Crypto Liquidity",
       subtitle: t("nav:productsList.tobamSubtitle"),
-      yield: "~7–8 % p.a.",
       href: "/products/tobam",
     },
     {
-      icon: "📋",
       name: t("nav:productsList.advisedName"),
       subtitle: t("nav:productsList.advisedSubtitle"),
-      yield: t("nav:productsList.advisedYield"),
       href: "/portefeuille-conseille",
     },
   ];
 
-  const solutionLeft = [
-    { icon: "🛡", slug: "holdings", title: t("nav:solutionsList.holdings"), desc: t("nav:solutionsList.holdingsDesc") },
-    { icon: "🏢", slug: "pme", title: t("nav:solutionsList.pme"), desc: t("nav:solutionsList.pmeDesc") },
-    { icon: "🔐", slug: "crypto", title: t("nav:solutionsList.crypto"), desc: t("nav:solutionsList.cryptoDesc") },
-  ];
-  const solutionRight = [
-    { icon: "⚖️", slug: "freelances", title: t("nav:solutionsList.freelances"), desc: t("nav:solutionsList.freelancesDesc") },
-    { icon: "👤", slug: "particuliers", title: t("nav:solutionsList.particuliers"), desc: t("nav:solutionsList.particuliersDesc") },
+  const solutionItems = [
+    { slug: "holdings", title: t("nav:solutionsList.holdings"), desc: t("nav:solutionsList.holdingsDesc") },
+    { slug: "pme", title: t("nav:solutionsList.pme"), desc: t("nav:solutionsList.pmeDesc") },
+    { slug: "crypto", title: t("nav:solutionsList.crypto"), desc: t("nav:solutionsList.cryptoDesc") },
+    { slug: "freelances", title: t("nav:solutionsList.freelances"), desc: t("nav:solutionsList.freelancesDesc") },
+    { slug: "particuliers", title: t("nav:solutionsList.particuliers"), desc: t("nav:solutionsList.particuliersDesc") },
   ];
 
   const resourceItems = [
-    { icon: "🌿", href: "/a-propos", title: t("nav:resourcesList.about"), desc: t("nav:resourcesList.aboutDesc") },
-    { icon: "📰", href: "/presse", title: t("nav:resourcesList.press"), desc: t("nav:resourcesList.pressDesc") },
-    { icon: "📞", href: "/contact", title: t("nav:resourcesList.contact"), desc: t("nav:resourcesList.contactDesc") },
-    { icon: "❓", href: "/aide", title: t("nav:resourcesList.help"), desc: t("nav:resourcesList.helpDesc") },
+    { href: "/a-propos", title: t("nav:resourcesList.about"), desc: t("nav:resourcesList.aboutDesc") },
+    { href: "/presse", title: t("nav:resourcesList.press"), desc: t("nav:resourcesList.pressDesc") },
+    { href: "/contact", title: t("nav:resourcesList.contact"), desc: t("nav:resourcesList.contactDesc") },
+    { href: "/aide", title: t("nav:resourcesList.help"), desc: t("nav:resourcesList.helpDesc") },
   ];
 
   const securityItems = [
-    { icon: "🛡", href: "/securite", title: t("nav:securityList.security"), desc: t("nav:securityList.securityDesc") },
-    { icon: "⚖️", href: "/regulation", title: t("nav:securityList.regulation"), desc: t("nav:securityList.regulationDesc") },
-    { icon: "📋", href: "/securite#audits", title: t("nav:securityList.audit"), desc: t("nav:securityList.auditDesc") },
+    { href: "/securite", title: t("nav:securityList.security"), desc: t("nav:securityList.securityDesc") },
+    { href: "/regulation", title: t("nav:securityList.regulation"), desc: t("nav:securityList.regulationDesc") },
+    { href: "/securite#audits", title: t("nav:securityList.audit"), desc: t("nav:securityList.auditDesc") },
   ];
 
   const overlayTop = (bannerVisible ? 36 : 0) + NAV_HEIGHT;
@@ -301,7 +264,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                 </Link>
                 <DropdownPanel
                   open={openMenuKey === "products"}
-                  width={600}
+                  width={480}
                   onMouseEnter={cancelClose}
                   onMouseLeave={scheduleClose}
                 >
@@ -311,10 +274,8 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                         key={p.name}
                         to={p.href}
                         onClick={close}
-                        icon={p.icon}
                         title={p.name}
                         subtitle={p.subtitle}
-                        rate={p.yield}
                       />
                     ))}
                   </div>
@@ -322,10 +283,14 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                   <Link
                     to="/products"
                     onClick={close}
-                    className="flex items-center justify-between px-3 py-2.5 rounded-[10px] transition-colors hover:bg-background"
+                    className="flex items-center justify-between rounded-[10px] transition-colors"
+                    style={{ padding: "10px 12px" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = "#F9F7F3")}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                   >
-                    <span className="text-[13px] font-medium text-primary">{t("nav:viewAllProducts")}</span>
-                    <span className="text-[13px] text-primary">→</span>
+                    <span style={{ fontSize: 13, color: "#1A3A2A", fontFamily: "'DM Sans', sans-serif" }}>
+                      {t("nav:viewAllProducts")} →
+                    </span>
                   </Link>
                 </DropdownPanel>
               </div>
@@ -337,40 +302,34 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                 </Link>
                 <DropdownPanel
                   open={openMenuKey === "solutions"}
-                  width={560}
+                  width={480}
                   onMouseEnter={cancelClose}
                   onMouseLeave={scheduleClose}
                 >
-                  <div className="grid grid-cols-2 gap-1">
-                    {solutionLeft.map((s) => (
-                      <SolutionRow
+                  <div className="flex flex-col">
+                    {solutionItems.map((s) => (
+                      <Row
                         key={s.slug}
                         to={`/solutions/${s.slug}`}
                         onClick={close}
-                        icon={s.icon}
                         title={s.title}
                         subtitle={s.desc}
                       />
                     ))}
-                    {solutionRight.map((s) => (
-                      <SolutionRow
-                        key={s.slug}
-                        to={`/solutions/${s.slug}`}
-                        onClick={close}
-                        icon={s.icon}
-                        title={s.title}
-                        subtitle={s.desc}
-                      />
-                    ))}
-                    <SolutionRow
-                      to="/solutions"
-                      onClick={close}
-                      icon="🌐"
-                      title={`${t("nav:solutionsList.allTitle")} →`}
-                      subtitle={t("nav:solutionsList.allDesc")}
-                      alwaysBg
-                    />
                   </div>
+                  <div style={{ borderTop: "1px solid hsl(var(--border))", margin: "4px 0" }} />
+                  <Link
+                    to="/solutions"
+                    onClick={close}
+                    className="flex items-center justify-between rounded-[10px] transition-colors"
+                    style={{ padding: "10px 12px" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = "#F9F7F3")}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  >
+                    <span style={{ fontSize: 13, color: "#1A3A2A", fontFamily: "'DM Sans', sans-serif" }}>
+                      {t("nav:allSolutions")} →
+                    </span>
+                  </Link>
                 </DropdownPanel>
               </div>
 
@@ -389,7 +348,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                         key={r.href}
                         to={r.href}
                         onClick={close}
-                        icon={r.icon}
                         title={r.title}
                         subtitle={r.desc}
                       />
@@ -413,7 +371,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                         key={r.href}
                         to={r.href}
                         onClick={close}
-                        icon={r.icon}
                         title={r.title}
                         subtitle={r.desc}
                       />
@@ -423,7 +380,8 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                   <Link
                     to="/mentions-legales"
                     onClick={close}
-                    className="block px-3 py-2 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                    className="block transition-colors"
+                    style={{ padding: "8px 12px", fontSize: 11, color: "#9A9A9A" }}
                   >
                     {t("nav:resourcesList.legal")}
                   </Link>
