@@ -396,7 +396,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
               <Link to="/signin">{t("common:actions.signIn")}</Link>
             </Button>
             <Button size="sm" className="px-6 btn-glow" asChild>
-              <Link to="/contact">{t("common:actions.bookMeeting")}</Link>
+              <Link to="/open-account">{t("common:actions.openAccount")}</Link>
             </Button>
           </div>
         </div>
