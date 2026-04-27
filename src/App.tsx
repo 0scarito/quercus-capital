@@ -30,6 +30,8 @@ import PrivacyPage from "@/pages/PrivacyPage";
 import CookiePage from "@/pages/CookiePage";
 import HelpCenter from "@/pages/HelpCenter";
 import PortefeuilleConseillePage from "@/pages/PortefeuilleConseillePage";
+import SecurityPage from "@/pages/SecurityPage";
+import RegulationPage from "@/pages/RegulationPage";
 import MonConseiller from "@/pages/dashboard/MonConseiller";
 
 const queryClient = new QueryClient();
@@ -56,6 +58,8 @@ const App = () => (
             <Route path="/mentions-legales" element={<LegalPage />} />
             <Route path="/confidentialite" element={<PrivacyPage />} />
             <Route path="/charte-cookie" element={<CookiePage />} />
+            <Route path="/securite" element={<SecurityPage />} />
+            <Route path="/regulation" element={<RegulationPage />} />
             <Route path="/aide" element={<HelpCenter />} />
             <Route path="/aide/:slug" element={<HelpCenter />} />
             <Route path="/aide/:slug/:articleSlug" element={<HelpCenter />} />
