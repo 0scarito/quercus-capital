@@ -1,7 +1,8 @@
 {
   "approach": "Notre approche",
   "products": "Nos produits",
-  "solutions": "Sécurité & régulation",
+  "solutions": "Nos solutions",
+  "security": "Sécurité & régulation",
   "resources": "À propos",
   "regulatoryLine": "CGP enregistré — CIF n° ORIAS 24004789 — Membre CNCEF",
   "viewAllProducts": "Voir tous les produits",
@@ -38,6 +39,16 @@
     "helpDesc": "Guides et réponses à vos questions",
     "legal": "Mentions légales",
     "legalDesc": "Information réglementaire"
+  },
+  "securityList": {
+    "security": "Sécurité",
+    "securityDesc": "Ségrégation des fonds, dépositaires, chaîne de confiance",
+    "regulation": "Régulation",
+    "regulationDesc": "AMF, ORIAS, CNCEF — notre cadre réglementaire",
+    "audit": "Audits & contrôles",
+    "auditDesc": "Auditeurs indépendants et reporting",
+    "legal": "Mentions légales",
+    "legalDesc": "Information légale et conformité"
   },
   "banner": "Quercus Capital — Plateforme désormais ouverte aux <1>holdings</1> et <3>family offices</3>."
 }
