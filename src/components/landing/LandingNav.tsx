@@ -374,6 +374,30 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                 </DropdownPanel>
               </div>
 
+              {/* Security & Regulation */}
+              <div className="relative" onMouseEnter={() => open("security")} onMouseLeave={scheduleClose}>
+                <button className={triggerClass("security")}>{t("nav:security")}</button>
+                <DropdownPanel
+                  open={openMenuKey === "security"}
+                  width={480}
+                  onMouseEnter={cancelClose}
+                  onMouseLeave={scheduleClose}
+                >
+                  <div className="flex flex-col">
+                    {securityItems.map((r) => (
+                      <Row
+                        key={r.href}
+                        to={r.href}
+                        onClick={close}
+                        icon={r.icon}
+                        title={r.title}
+                        subtitle={r.desc}
+                      />
+                    ))}
+                  </div>
+                </DropdownPanel>
+              </div>
+
               {/* Resources / À propos */}
               <div className="relative" onMouseEnter={() => open("resources")} onMouseLeave={scheduleClose}>
                 <button className={triggerClass("resources")}>{t("nav:resources")}</button>
@@ -403,30 +427,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
                   >
                     {t("nav:resourcesList.legal")}
                   </Link>
-                </DropdownPanel>
-              </div>
-
-              {/* Security & Regulation */}
-              <div className="relative" onMouseEnter={() => open("security")} onMouseLeave={scheduleClose}>
-                <button className={triggerClass("security")}>{t("nav:security")}</button>
-                <DropdownPanel
-                  open={openMenuKey === "security"}
-                  width={480}
-                  onMouseEnter={cancelClose}
-                  onMouseLeave={scheduleClose}
-                >
-                  <div className="flex flex-col">
-                    {securityItems.map((r) => (
-                      <Row
-                        key={r.href}
-                        to={r.href}
-                        onClick={close}
-                        icon={r.icon}
-                        title={r.title}
-                        subtitle={r.desc}
-                      />
-                    ))}
-                  </div>
                 </DropdownPanel>
               </div>
             </div>
