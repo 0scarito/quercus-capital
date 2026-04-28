@@ -47,7 +47,6 @@ export default function SolutionsPage() {
                     <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-background">
-                    <p className="text-xs font-mono text-success/90 mb-1">{s.yields}</p>
                     <p className="text-sm leading-snug opacity-90 line-clamp-2">
                       {s.heroDescription.split(".")[0]}.
                     </p>
