@@ -335,7 +335,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
 
               {/* Security & Regulation */}
               <div className="relative" onMouseEnter={() => open("security")} onMouseLeave={scheduleClose}>
-                <button className={triggerClass("security")}>{t("nav:security")}</button>
+                <Link to="/securite" className={triggerClass("security")}>{t("nav:security")}</Link>
                 <DropdownPanel
                   open={openMenuKey === "security"}
                   width={480}
@@ -358,7 +358,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
 
               {/* Resources / À propos */}
               <div className="relative" onMouseEnter={() => open("resources")} onMouseLeave={scheduleClose}>
-                <button className={triggerClass("resources")}>{t("nav:resources")}</button>
+                <Link to="/a-propos" className={triggerClass("resources")}>{t("nav:resources")}</Link>
                 <DropdownPanel
                   open={openMenuKey === "resources"}
                   width={480}
