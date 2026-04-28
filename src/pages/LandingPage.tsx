@@ -6,6 +6,7 @@ import { DashboardPreview } from "@/components/landing/DashboardPreview";
 import { YieldCards } from "@/components/landing/YieldCards";
 import { YieldCalculator } from "@/components/landing/YieldCalculator";
 import { LiveNumbers } from "@/components/landing/LiveNumbers";
+import { ForEveryoneSection } from "@/components/landing/ForEveryoneSection";
 import { PartnersSection } from "@/components/landing/PartnersSection";
 import { TrustChain } from "@/components/landing/TrustChain";
 import { SecuritySection } from "@/components/landing/SecuritySection";
@@ -51,6 +52,10 @@ export default function LandingPage() {
           <div id="calculator">
             <YieldCalculator />
           </div>
+        </ScrollReveal>
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
+          <ForEveryoneSection />
         </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
