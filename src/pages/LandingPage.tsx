@@ -44,7 +44,7 @@ export default function LandingPage() {
         </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
-          <SecuritySection />
+          <LiveNumbers />
         </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
@@ -54,7 +54,7 @@ export default function LandingPage() {
         </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
         <ScrollReveal>
-          <LiveNumbers />
+          <SecuritySection />
         </ScrollReveal>
         <Separator className="max-w-7xl mx-auto opacity-60" />
         <TrustChain />
