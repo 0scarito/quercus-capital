@@ -162,12 +162,15 @@ function CategoryCard({ cat }: { cat: Category }) {
   return (
     <Link
       to={`/aide/${cat.slug}`}
-      className="group border border-border p-6 hover:border-foreground transition-colors flex flex-col h-full w-full min-h-[180px]"
+      className="group relative border border-border p-6 hover:border-primary/60 hover:bg-primary/[0.03] transition-all flex flex-col h-full w-full min-h-[180px] overflow-hidden"
     >
-      <div className="h-9 w-9 border border-border flex items-center justify-center mb-5 group-hover:border-foreground transition-colors">
-        <BookOpen className="h-4 w-4 text-foreground" />
+      <span className="absolute top-0 left-0 h-[2px] w-12 bg-primary group-hover:w-full transition-all duration-500" />
+      <div className="h-10 w-10 bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 group-hover:border-primary/40 transition-colors">
+        <BookOpen className="h-4 w-4 text-primary" />
       </div>
-      <h3 className="text-xl font-serif text-foreground mb-2">{cat.title}</h3>
+      <h3 className="text-xl font-serif text-foreground mb-2 group-hover:text-primary transition-colors">
+        <em>{cat.title}</em>
+      </h3>
       <p className="text-sm text-muted-foreground leading-relaxed">{cat.description}</p>
     </Link>
   );
