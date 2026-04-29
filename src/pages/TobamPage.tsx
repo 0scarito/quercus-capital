@@ -20,16 +20,6 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 
-const backtest = [
-  { metric: "Rendement annualisé", tobam: "7,6%", credit: "1,1%", cash: "2,1%" },
-  { metric: "Volatilité hebdomadaire", tobam: "4,9%", credit: "1,8%", cash: "0,3%" },
-  { metric: "Volatilité trimestrielle", tobam: "2,8%", credit: "2,8%", cash: "1,2%" },
-  { metric: "Ratio rendement/risque", tobam: "1,5", credit: "0,6", cash: "6,7" },
-  { metric: "Hit ratio (hebdo)", tobam: "63%", credit: "60%", cash: "59%" },
-  { metric: "Max drawdown (quotidien)", tobam: "-5,9%", credit: "-6,6%", cash: "-0,9%" },
-  { metric: "Max drawdown (trimestriel)", tobam: "0%", credit: "-6,0%", cash: "-0,8%" },
-];
-
 const characteristics = [
   { field: "Nom officiel", value: "TOBAM Crypto Liquidity Fund" },
   { field: "Structure juridique", value: "FIA — Fonds Professionnel Spécialisé (FPS)" },
