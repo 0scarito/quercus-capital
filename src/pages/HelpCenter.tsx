@@ -216,7 +216,7 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
     return (
       <>
         {text.slice(0, idx)}
-        <mark className="bg-foreground/10 text-foreground">{text.slice(idx, idx + q.length)}</mark>
+        <mark className="bg-primary/15 text-primary font-medium">{text.slice(idx, idx + q.length)}</mark>
         {text.slice(idx + q.length)}
       </>
     );
@@ -236,12 +236,12 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
       </div>
 
       <div className="relative mb-12 max-w-xl">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Rechercher dans le centre d'aide…"
-          className="pl-9 h-11 rounded-none border-border"
+          className="pl-9 h-11 rounded-none border-border focus-visible:border-primary focus-visible:ring-primary/20"
         />
         {q && (
           <div className="absolute left-0 right-0 top-full mt-2 z-20 border border-border bg-background shadow-lg max-h-[420px] overflow-y-auto">
@@ -255,10 +255,10 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
                   <li key={`${a.catSlug}-${a.item}`}>
                     <Link
                       to={`/aide/${a.catSlug}/${slugify(a.item)}`}
-                      className="flex flex-col gap-1 px-4 py-3 border-b border-border last:border-0 hover:bg-muted/40 transition-colors"
+                      className="flex flex-col gap-1 px-4 py-3 border-b border-border last:border-0 hover:bg-primary/5 hover:border-l-2 hover:border-l-primary transition-all"
                     >
                       <span className="text-sm text-foreground">{highlight(a.item)}</span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-xs text-primary/70 font-mono">
                         {a.catTitle} › {a.section}
                       </span>
                     </Link>
