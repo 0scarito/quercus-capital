@@ -249,64 +249,86 @@ export default function TobamPage() {
           </div>
         </section>
 
-        {/* Worked example + CME chart */}
-        <section className="py-14 md:py-16 px-4 md:px-8">
+        {/* Le basis trade en chiffres — exemple + animation de convergence */}
+        <section className="py-14 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto space-y-10">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-4">
                 <em>Le basis trade en chiffres</em>
               </h2>
               <p className="text-center text-muted-foreground max-w-2xl mx-auto text-lg">
-                Un exemple concret + 5 ans de prime CME observée.
+                Un exemple chiffré à 1 mois et la convergence Spot ↔ Future à l'échéance.
               </p>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
               <ScrollReveal>
-                <GlassCard className="p-8 h-full space-y-5">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">Exemple à 1 mois</p>
-                  <h3 className="text-2xl font-serif">
-                    <em>Bitcoin spot vs futures CME</em>
+                <GlassCard className="p-8 h-full lg:col-span-2 flex flex-col">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground">Exemple à 1 mois</p>
+                    <span
+                      className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border"
+                      style={{
+                        borderColor: "hsl(var(--primary) / 0.4)",
+                        color: "hsl(var(--primary))",
+                      }}
+                    >
+                      BTC · CME
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-serif mb-5">
+                    <em>Bitcoin spot vs futures</em>
                   </h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex justify-between border-b border-white/30 pb-2">
-                      <span className="text-muted-foreground">BTC spot (long ETF)</span>
-                      <span className="font-mono">$ 109 042</span>
+
+                  <div className="grid grid-cols-2 gap-3 mb-5">
+                    <div className="border border-white/30 p-4">
+                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Long Spot</p>
+                      <p className="font-mono text-lg">$ 109 042</p>
+                      <p className="text-[10px] text-muted-foreground mt-1">via ETF NASDAQ</p>
                     </div>
-                    <div className="flex justify-between border-b border-white/30 pb-2">
-                      <span className="text-muted-foreground">BTC futures CME (short, 1 mois)</span>
-                      <span className="font-mono">$ 109 920</span>
+                    <div className="border border-white/30 p-4">
+                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Short Future</p>
+                      <p className="font-mono text-lg">$ 109 920</p>
+                      <p className="text-[10px] text-muted-foreground mt-1">CME · 1 mois</p>
                     </div>
-                    <div className="flex justify-between border-b border-white/30 pb-2">
+                  </div>
+
+                  <div className="space-y-3 text-sm flex-1">
+                    <div className="flex justify-between items-baseline border-b border-white/30 pb-2">
                       <span className="text-muted-foreground">Spread capturé</span>
                       <span className="font-mono text-success">+ $ 878</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/30 pb-2">
+                    <div className="flex justify-between items-baseline border-b border-white/30 pb-2">
                       <span className="text-muted-foreground">Rendement mensuel</span>
                       <span className="font-mono text-success">≈ 0,80 %</span>
                     </div>
-                    <div className="flex justify-between pt-2">
-                      <span className="font-semibold">Annualisé (composé)</span>
-                      <span className="font-mono text-success font-semibold">≈ 10,0 %</span>
+                    <div className="flex justify-between items-baseline pt-2">
+                      <span className="font-serif italic text-base">Annualisé (composé)</span>
+                      <span className="font-mono text-success font-semibold text-lg">≈ 10,0 %</span>
                     </div>
                   </div>
-                  <p className="text-[11px] text-muted-foreground pt-2 border-t border-white/30">
-                    Position non-directionnelle. Si BTC monte ou baisse, les deux jambes bougent ensemble — seul le spread est capté.
+
+                  <p className="text-[11px] text-muted-foreground pt-4 mt-4 border-t border-white/30 leading-relaxed">
+                    Position non-directionnelle. Si BTC monte ou baisse, les deux jambes
+                    bougent ensemble — seul le spread est capté.
                   </p>
                 </GlassCard>
               </ScrollReveal>
 
-              <ScrollReveal>
-                <GlassCard className="p-6 md:p-8 h-full flex flex-col">
-                  <div className="flex items-baseline justify-between mb-3">
+              <ScrollReveal delay={120}>
+                <GlassCard className="p-6 md:p-8 h-full lg:col-span-3 flex flex-col">
+                  <div className="flex items-baseline justify-between mb-4">
                     <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                      Prime CME futures BTC · 5 ans
+                      Convergence Spot ↔ Future
                     </p>
-                    <p className="text-[11px] text-muted-foreground">Annualisée, mensuelle</p>
+                    <p className="text-[11px] text-muted-foreground font-mono">T0 → T+1M</p>
                   </div>
-                  <CMEPremiumChart />
-                  <p className="text-[11px] text-muted-foreground mt-3 leading-relaxed">
-                    Moyenne sur 5 ans : ~8 % p.a. — la prime est restée au-dessus de 3 % pendant 76 % du temps.
+                  <div className="flex-1 flex items-center">
+                    <BasisConvergenceChart />
+                  </div>
+                  <p className="text-[11px] text-muted-foreground mt-4 leading-relaxed border-t border-white/30 pt-3">
+                    Moyenne sur 5 ans : <span className="font-mono text-foreground">~8 % p.a.</span> —
+                    la prime est restée au-dessus de 3 % pendant <span className="font-mono text-foreground">76 %</span> du temps.
                   </p>
                 </GlassCard>
               </ScrollReveal>
