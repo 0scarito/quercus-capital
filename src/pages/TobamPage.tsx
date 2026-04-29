@@ -485,12 +485,19 @@ export default function TobamPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <ScrollReveal>
-                <GlassCard className="p-8 h-full">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Indicateur de risque</p>
+                <GlassCard className="p-8 h-full" id="risk-detail">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+                    Indicateur de risque · SRRI / SRI
+                  </p>
                   <RiskScale
                     level={2}
                     label="Stratégie non-directionnelle. Volatilité hebdomadaire ~5 %, max drawdown trimestriel 0 % sur le backtest 2019–2024."
                   />
+                  <p className="text-[11px] text-muted-foreground mt-4 leading-relaxed">
+                    Le <em>Summary Risk Indicator</em> (SRI / SRRI) est l'échelle réglementaire
+                    européenne de 1 (risque le plus faible) à 7 (risque le plus élevé), publiée
+                    dans le Document d'Information Clé (KID) de chaque fonds.
+                  </p>
                 </GlassCard>
               </ScrollReveal>
 
