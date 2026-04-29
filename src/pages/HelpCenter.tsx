@@ -294,29 +294,29 @@ function CategoryDetail({ cat }: { cat: Category }) {
   return (
     <>
       <nav className="mb-10 text-sm flex items-center gap-2 text-muted-foreground">
-        <Link to="/aide" className="hover:text-foreground underline-offset-4 hover:underline">
+        <Link to="/aide" className="hover:text-primary underline-offset-4 hover:underline transition-colors">
           Quercus
         </Link>
-        <ChevronRight className="h-3.5 w-3.5" />
-        <span className="text-foreground">{cat.title}</span>
+        <ChevronRight className="h-3.5 w-3.5 text-primary/50" />
+        <span className="text-primary font-medium">{cat.title}</span>
       </nav>
 
-      <h1 className="text-4xl md:text-5xl font-serif italic mb-3">{cat.title}</h1>
+      <h1 className="text-4xl md:text-5xl font-serif italic mb-3 text-primary">{cat.title}</h1>
       <p className="text-muted-foreground mb-12 max-w-2xl leading-relaxed">{cat.description}</p>
 
       <div className="grid md:grid-cols-2 gap-6">
         {cat.sections.map((sec) => (
-          <div key={sec.title} className="border border-border p-6">
-            <h2 className="text-lg font-serif text-foreground pb-3 mb-4 border-b border-border">
-              {sec.title}
+          <div key={sec.title} className="border border-border p-6 hover:border-primary/40 transition-colors bg-gradient-to-br from-transparent to-primary/[0.02]">
+            <h2 className="text-lg font-serif text-foreground pb-3 mb-4 border-b border-primary/20">
+              <em>{sec.title}</em>
             </h2>
             <ul className="space-y-3">
               {sec.items.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 flex-shrink-0" />
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
                   <Link
                     to={`/aide/${cat.slug}/${slugify(item)}`}
-                    className="text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                    className="text-muted-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
                   >
                     {item}
                   </Link>
@@ -327,13 +327,13 @@ function CategoryDetail({ cat }: { cat: Category }) {
         ))}
       </div>
 
-      <div className="mt-16 border-t border-border pt-8 flex flex-wrap items-center justify-between gap-4">
+      <div className="mt-16 border-t border-primary/20 pt-8 flex flex-wrap items-center justify-between gap-4">
         <p className="text-sm text-muted-foreground">
           Vous ne trouvez pas la réponse à votre question ?
         </p>
         <Link
           to="/contact"
-          className="text-sm font-serif italic text-foreground underline underline-offset-4"
+          className="text-sm font-serif italic text-primary underline underline-offset-4 hover:text-primary/80"
         >
           Contacter notre équipe →
         </Link>
