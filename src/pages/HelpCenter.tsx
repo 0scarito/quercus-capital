@@ -451,40 +451,40 @@ function ArticleView({
   return (
     <>
       <nav className="mb-10 text-sm flex items-center gap-2 text-muted-foreground flex-wrap">
-        <Link to="/aide" className="hover:text-foreground underline-offset-4 hover:underline">
+        <Link to="/aide" className="hover:text-primary underline-offset-4 hover:underline transition-colors">
           Quercus
         </Link>
-        <ChevronRight className="h-3.5 w-3.5" />
+        <ChevronRight className="h-3.5 w-3.5 text-primary/50" />
         <Link
           to={`/aide/${cat.slug}`}
-          className="hover:text-foreground underline-offset-4 hover:underline"
+          className="hover:text-primary underline-offset-4 hover:underline transition-colors"
         >
           {cat.title}
         </Link>
-        <ChevronRight className="h-3.5 w-3.5" />
-        <span className="text-foreground">{article.title}</span>
+        <ChevronRight className="h-3.5 w-3.5 text-primary/50" />
+        <span className="text-primary font-medium">{article.title}</span>
       </nav>
 
       <div className="grid md:grid-cols-[1fr_240px] gap-12">
         <article className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
+          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4 font-mono">
             {article.categoryTitle}
           </p>
           <h1 className="text-3xl md:text-4xl font-serif italic mb-5 leading-tight">
             {article.title}
           </h1>
-          <div className="flex items-center gap-5 text-xs text-muted-foreground mb-8 pb-8 border-b border-border">
+          <div className="flex items-center gap-5 text-xs text-muted-foreground mb-8 pb-8 border-b border-primary/20">
             <span className="flex items-center gap-2">
-              <Calendar className="h-3.5 w-3.5" />
+              <Calendar className="h-3.5 w-3.5 text-primary/70" />
               Mis à jour le {article.updatedAt}
             </span>
             <span className="flex items-center gap-2">
-              <Clock className="h-3.5 w-3.5" />
+              <Clock className="h-3.5 w-3.5 text-primary/70" />
               {article.readTime}
             </span>
           </div>
 
-          <p className="text-foreground/90 text-lg font-serif italic leading-relaxed mb-10">
+          <p className="text-foreground/90 text-lg font-serif italic leading-relaxed mb-10 pl-4 border-l-2 border-primary/40">
             {article.intro}
           </p>
 
@@ -492,15 +492,15 @@ function ArticleView({
             <Block key={i} block={b} />
           ))}
 
-          <div className="mt-14 border-t border-border pt-8">
+          <div className="mt-14 border-t border-primary/20 pt-8">
             <p className="text-sm text-foreground mb-4 font-serif italic">
               Cet article vous a-t-il été utile ?
             </p>
             <div className="flex gap-3 mb-10">
-              <button className="px-5 py-2 text-sm border border-border hover:border-foreground transition-colors">
+              <button className="px-5 py-2 text-sm border border-border hover:border-primary hover:bg-primary/5 hover:text-primary transition-colors">
                 Oui
               </button>
-              <button className="px-5 py-2 text-sm border border-border hover:border-foreground transition-colors">
+              <button className="px-5 py-2 text-sm border border-border hover:border-primary hover:bg-primary/5 hover:text-primary transition-colors">
                 Non
               </button>
             </div>
