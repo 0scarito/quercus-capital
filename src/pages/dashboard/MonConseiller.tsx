@@ -1,15 +1,23 @@
 import { useState } from "react";
-import { Mail, Phone, ShieldCheck, Send } from "lucide-react";
+import { Mail, Phone, ShieldCheck, Send, Lock, Sparkles, ArrowDownToLine } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { useUserSubscriptions } from "@/hooks/useProducts";
 
 export default function MonConseiller() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
+  const { data: subscriptions } = useUserSubscriptions();
+  const totalWealth = (subscriptions ?? []).reduce((acc, s) => acc + Number(s.amount), 0);
+  const ADVISOR_THRESHOLD = 3_000_000;
+  const hasAdvisorAccess = totalWealth >= ADVISOR_THRESHOLD;
+  const remainingToUnlock = Math.max(0, ADVISOR_THRESHOLD - totalWealth);
+  const progress = Math.min(100, (totalWealth / ADVISOR_THRESHOLD) * 100);
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +29,68 @@ export default function MonConseiller() {
       setSending(false);
     }, 600);
   };
+
+  if (!hasAdvisorAccess) {
+    return (
+      <div className="h-full overflow-auto p-6 max-w-4xl mx-auto w-full animate-fade-in space-y-6">
+        <div>
+          <h1 className="font-serif text-2xl"><em>Mon conseiller</em></h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Un service réservé à nos clients investissant 3 M€ ou plus.
+          </p>
+        </div>
+
+        <div className="border rounded-sm bg-gradient-to-br from-primary/5 to-primary/10 p-10 text-center space-y-6">
+          <div className="mx-auto h-14 w-14 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
+            <Lock className="h-6 w-6" />
+          </div>
+          <div className="space-y-3 max-w-xl mx-auto">
+            <h2 className="font-serif text-2xl"><em>Un conseiller dédié, rien que pour vous.</em></h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Dès <span className="font-medium text-foreground">3 M€ investis</span>, un Conseiller en Gestion de Patrimoine vous accompagne personnellement :
+              allocation sur-mesure, optimisation fiscale et suivi prioritaire par téléphone, e-mail ou rendez-vous.
+            </p>
+          </div>
+
+          <div className="max-w-md mx-auto space-y-2">
+            <div className="h-2 bg-muted/60 rounded-sm overflow-hidden">
+              <div
+                className="h-full bg-primary transition-all"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            <p className="text-xs text-muted-foreground font-mono">
+              {totalWealth.toLocaleString("fr-FR")} € / 3 000 000 € — encore{" "}
+              <span className="text-foreground font-medium">{remainingToUnlock.toLocaleString("fr-FR")} €</span> à investir
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center gap-3 pt-2">
+            <Button asChild>
+              <Link to="/produits"><ArrowDownToLine className="mr-2 h-4 w-4" />Investir maintenant</Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link to="/contact">Nous contacter</Link>
+            </Button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          {[
+            { icon: Sparkles, title: "Allocation sur-mesure", desc: "Une stratégie pensée pour votre situation patrimoniale globale." },
+            { icon: ShieldCheck, title: "Suivi prioritaire", desc: "Réponse garantie sous 24h ouvrées par votre CGP dédié." },
+            { icon: Phone, title: "Joignable directement", desc: "Téléphone, e-mail, rendez-vous physique ou visioconférence." },
+          ].map((f) => (
+            <div key={f.title} className="border rounded-sm bg-card p-5">
+              <f.icon className="h-5 w-5 text-primary mb-3" />
+              <p className="font-serif"><em>{f.title}</em></p>
+              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-full overflow-auto p-6 max-w-5xl mx-auto w-full animate-fade-in space-y-6">
