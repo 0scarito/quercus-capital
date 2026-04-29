@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, Loader2, Search, ArrowDownLeft, ArrowUpRight, Coins, MessageSquare } from "lucide-react";
+import { ArrowDownToLine, ArrowUpFromLine, TrendingUp, Loader2, Search, ArrowDownLeft, ArrowUpRight, Coins, MessageSquare, Lock, Sparkles } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,6 +42,10 @@ export default function Dashboard() {
     .reduce((acc, s) => acc + Number(s.amount), 0);
 
   const totalAmount = accountSubs.reduce((acc, s) => acc + Number(s.amount), 0);
+  const totalWealth = (subscriptions ?? []).reduce((acc, s) => acc + Number(s.amount), 0);
+  const ADVISOR_THRESHOLD = 3_000_000;
+  const hasAdvisorAccess = totalWealth >= ADVISOR_THRESHOLD;
+  const remainingToUnlock = Math.max(0, ADVISOR_THRESHOLD - totalWealth);
   const weightedYield = totalAmount > 0
     ? accountSubs.reduce((acc, s) => acc + Number(s.amount) * Number(s.product?.yield_rate ?? 0), 0) / totalAmount
     : 0;
@@ -114,24 +118,45 @@ export default function Dashboard() {
       )}
 
       {/* Advisor banner */}
-      <div className="shrink-0 border rounded-sm bg-card px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground text-xs font-serif shrink-0">
-            AB
+      {hasAdvisorAccess ? (
+        <div className="shrink-0 border rounded-sm bg-card px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground text-xs font-serif shrink-0">
+              AB
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm">
+                Votre conseiller <span className="font-medium">Alexandre Bernard</span> est disponible pour répondre à vos questions.
+              </p>
+              <p className="text-[11px] text-muted-foreground">CGP — CIF ORIAS n° 24004789</p>
+            </div>
           </div>
-          <div className="min-w-0">
-            <p className="text-sm">
-              Votre conseiller <span className="font-medium">Alexandre Bernard</span> est disponible pour répondre à vos questions.
-            </p>
-            <p className="text-[11px] text-muted-foreground">CGP — CIF ORIAS n° 24004789</p>
-          </div>
+          <Button asChild size="sm" variant="outline">
+            <Link to="/dashboard/conseiller">
+              <MessageSquare className="mr-2 h-3.5 w-3.5" /> Envoyer un message
+            </Link>
+          </Button>
         </div>
-        <Button asChild size="sm" variant="outline">
-          <Link to="/dashboard/conseiller">
-            <MessageSquare className="mr-2 h-3.5 w-3.5" /> Envoyer un message
-          </Link>
-        </Button>
-      </div>
+      ) : (
+        <div className="shrink-0 border rounded-sm bg-gradient-to-r from-primary/5 to-primary/10 px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="h-9 w-9 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center text-primary shrink-0">
+              <Sparkles className="h-4 w-4" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm">
+                Bénéficiez d'un <span className="font-medium">Conseiller en Gestion de Patrimoine dédié</span> dès 3 M€ investis.
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                Encore <span className="font-mono">{remainingToUnlock.toLocaleString("fr-FR")} €</span> pour débloquer ce service.
+              </p>
+            </div>
+          </div>
+          <Button onClick={() => setDepositOpen(true)} size="sm">
+            <ArrowDownToLine className="mr-2 h-3.5 w-3.5" /> Investir maintenant
+          </Button>
+        </div>
+      )}
 
       {/* Top row */}
       <div className="flex items-start justify-between gap-4 flex-wrap shrink-0">
