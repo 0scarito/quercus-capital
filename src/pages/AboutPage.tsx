@@ -6,11 +6,32 @@ import { GlassCard } from "@/components/landing/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ShieldCheck, Sparkles, Users, ExternalLink } from "lucide-react";
+import audreyPhoto from "@/assets/team-audrey.jpg";
+import davidPhoto from "@/assets/team-david.png";
+import thomasPhoto from "@/assets/team-thomas.jpg";
 
 const team = [
-  { initials: "AB", name: "Alexandre Bernard", role: "Conseiller en Gestion de Patrimoine", reg: "CIF ORIAS 24004789" },
-  { initials: "CL", name: "Claire Laurent", role: "Conseillère en Gestion de Patrimoine", reg: "CIF ORIAS 24004789" },
-  { initials: "JM", name: "Julien Marchand", role: "Responsable Conformité", reg: "Membre CNCEF" },
+  {
+    photo: audreyPhoto,
+    name: "Audrey Gary Nicolaou",
+    role: "Présidente — Fondatrice",
+    reg: "CIF ORIAS 24004789",
+    bio: "Fondatrice de Quercus Capital, Audrey conjugue plus de 20 ans d'expérience dans la finance institutionnelle pour offrir une gestion patrimoniale d'exception, alliant rigueur, indépendance et vision long terme.",
+  },
+  {
+    photo: davidPhoto,
+    name: "David Niddam",
+    role: "Directeur Général",
+    reg: "Diplômé HEC Paris",
+    bio: "David pilote la stratégie et le développement de Quercus. Fort d'une carrière dans la gestion d'actifs et le conseil aux dirigeants, il garantit la qualité de service et la performance des solutions proposées.",
+  },
+  {
+    photo: thomasPhoto,
+    name: "Thomas Bazin",
+    role: "Directeur des Opérations",
+    reg: "Membre CNCEF",
+    bio: "Thomas supervise l'ensemble des opérations, de la conformité à l'expérience client. Son expertise opérationnelle assure une exécution sans faille de chaque mandat confié à Quercus.",
+  },
 ];
 
 const values = [
@@ -79,19 +100,48 @@ export default function AboutPage() {
             <ScrollReveal>
               <h2 className="text-3xl md:text-4xl font-serif text-center mb-12"><em>Notre équipe</em></h2>
             </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 [perspective:1500px]">
               {team.map((m, i) => (
                 <ScrollReveal key={m.name} delay={i * 80}>
-                  <GlassCard className="p-8 h-full text-center">
-                    <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground text-2xl font-serif mx-auto mb-4">
-                      {m.initials}
+                  <button
+                    type="button"
+                    onClick={(e) => e.currentTarget.classList.toggle("is-flipped")}
+                    className="group relative w-full h-[420px] [transform-style:preserve-3d] transition-transform duration-700 ease-out hover:[transform:rotateY(180deg)] [&.is-flipped]:[transform:rotateY(180deg)] focus:outline-none"
+                    aria-label={`Voir plus d'informations sur ${m.name}`}
+                  >
+                    {/* Front */}
+                    <div className="absolute inset-0 [backface-visibility:hidden]">
+                      <GlassCard className="p-6 h-full text-center flex flex-col">
+                        <div className="h-40 w-40 rounded-full overflow-hidden mx-auto mb-5 ring-2 ring-white/40 shadow-md">
+                          <img
+                            src={m.photo}
+                            alt={m.name}
+                            className="h-full w-full object-cover object-top"
+                            loading="lazy"
+                          />
+                        </div>
+                        <h3 className="text-lg font-serif font-semibold"><em>{m.name}</em></h3>
+                        <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">{m.role}</p>
+                        <p className="text-[11px] font-mono text-muted-foreground mt-3 border-t border-white/30 pt-3">
+                          {m.reg}
+                        </p>
+                        <p className="text-[10px] uppercase tracking-widest text-primary/70 mt-auto pt-4">
+                          Cliquez pour en savoir plus
+                        </p>
+                      </GlassCard>
                     </div>
-                    <h3 className="text-lg font-serif font-semibold"><em>{m.name}</em></h3>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">{m.role}</p>
-                    <p className="text-[11px] font-mono text-muted-foreground mt-3 border-t border-white/30 pt-3">
-                      {m.reg}
-                    </p>
-                  </GlassCard>
+                    {/* Back */}
+                    <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                      <GlassCard className="p-8 h-full text-left flex flex-col bg-primary/95 text-primary-foreground">
+                        <h3 className="text-xl font-serif font-semibold"><em>{m.name}</em></h3>
+                        <p className="text-xs uppercase tracking-wider opacity-80 mt-1 mb-5">{m.role}</p>
+                        <p className="text-sm leading-relaxed opacity-95">{m.bio}</p>
+                        <p className="text-[11px] font-mono opacity-70 mt-auto pt-4 border-t border-primary-foreground/20">
+                          {m.reg}
+                        </p>
+                      </GlassCard>
+                    </div>
+                  </button>
                 </ScrollReveal>
               ))}
             </div>
