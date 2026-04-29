@@ -13,6 +13,9 @@ import { RiskScale } from "@/components/landing/RiskScale";
 import { SecurityArchitecture } from "@/components/landing/SecurityArchitecture";
 import { CashAndCarryDiagram } from "@/components/landing/CashAndCarryDiagram";
 import { TobamAnalytics } from "@/components/landing/TobamAnalytics";
+import strategyPositionImg from "@/assets/tobam-strategy-position.jpg";
+import strategyThresholdImg from "@/assets/tobam-strategy-threshold.jpg";
+import strategyCarbonImg from "@/assets/tobam-strategy-carbon.jpg";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -233,28 +236,88 @@ export default function TobamPage() {
         <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-                <em>La stratégie TOBAM en détail</em>
-              </h2>
+              <div className="text-center mb-14 max-w-2xl mx-auto">
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono mb-3">
+                  Méthodologie
+                </p>
+                <h2 className="text-4xl md:text-5xl font-serif">
+                  <em>La stratégie TOBAM en détail</em>
+                </h2>
+              </div>
             </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            {/* Pillars zigzag — image + texte alternés */}
+            <div className="space-y-16 md:space-y-24">
               {[
-                { title: "Position", desc: "Long Bitcoin ETF (NASDAQ) + Short Bitcoin CME futures → capture du spread de contango. Utilise aussi Ethereum quand l'opportunité est meilleure." },
-                { title: "Seuil d'entrée", desc: "La stratégie entre en position uniquement lorsque le rendement du basis dépasse le taux cash + 2%. Optimisation constante du timing." },
-                { title: "Rolling mensuel", desc: "Futures rollés mensuellement. Position moyenne d'un mois maintenue en permanence. Levier opportuniste jusqu'à 125% quand le basis est large." },
-                { title: "Compensation carbone", desc: "TOBAM calcule l'empreinte carbone annuelle du BTC et la compense via des certificats CO2 (VER — Verified Emission Reductions)." },
-              ].map((item, i) => (
-                <ScrollReveal key={item.title} delay={i * 80}>
-                  <GlassCard className="p-8 h-full flex items-start gap-4">
-                    {i === 3 && <Leaf className="h-6 w-6 text-success shrink-0 mt-1" />}
-                    <div>
-                      <h3 className="text-xl font-serif font-semibold mb-3"><em>{item.title}</em></h3>
-                      <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                {
+                  step: "01",
+                  title: "Position",
+                  desc: "Long Bitcoin ETF (NASDAQ) + Short Bitcoin CME futures → capture du spread de contango. La stratégie utilise aussi Ethereum lorsque l'opportunité est meilleure.",
+                  img: strategyPositionImg,
+                  alt: "Illustration éditoriale de deux piliers parallèles symbolisant les positions longue et courte de la stratégie cash & carry",
+                  reverse: false,
+                },
+                {
+                  step: "02",
+                  title: "Seuil d'entrée",
+                  desc: "La stratégie n'entre en position que lorsque le rendement du basis dépasse le taux cash + 2 %. Discipline mathématique, optimisation constante du timing.",
+                  img: strategyThresholdImg,
+                  alt: "Balance de précision avec une goutte dorée au point d'équilibre, symbolisant le seuil d'entrée de la stratégie",
+                  reverse: true,
+                },
+                {
+                  step: "03",
+                  title: "Compensation carbone",
+                  desc: "TOBAM calcule l'empreinte carbone annuelle de l'exposition Bitcoin et la compense via des certificats CO₂ (VER — Verified Emission Reductions).",
+                  img: strategyCarbonImg,
+                  alt: "Feuille de chêne aux veines dorées sur un treillis moléculaire, symbolisant la compensation carbone du fonds",
+                  reverse: false,
+                  icon: <Leaf className="h-5 w-5 text-success shrink-0" />,
+                },
+              ].map((item) => (
+                <ScrollReveal key={item.title}>
+                  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center ${item.reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
+                    <div className="relative aspect-[4/3] overflow-hidden border border-primary/10">
+                      <img
+                        src={item.img}
+                        alt={item.alt}
+                        loading="lazy"
+                        width={1024}
+                        height={768}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                  </GlassCard>
+                    <div className="space-y-4">
+                      <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">
+                        Étape {item.step}
+                      </p>
+                      <h3 className="text-3xl md:text-4xl font-serif leading-tight flex items-center gap-3">
+                        {item.icon}
+                        <em>{item.title}</em>
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed text-lg">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
                 </ScrollReveal>
               ))}
             </div>
+
+            {/* Rolling mensuel — bandeau technique sobre */}
+            <ScrollReveal delay={80}>
+              <GlassCard className="mt-16 md:mt-20 p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+                <div className="md:w-1/3">
+                  <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground mb-2">
+                    Étape 04 · Exécution
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-serif"><em>Rolling mensuel</em></h3>
+                </div>
+                <p className="md:w-2/3 text-muted-foreground leading-relaxed">
+                  Futures rollés mensuellement. Position moyenne d'un mois maintenue en permanence. Levier opportuniste jusqu'à <span className="font-mono text-foreground">125 %</span> lorsque le basis est large.
+                </p>
+              </GlassCard>
+            </ScrollReveal>
           </div>
         </section>
 
