@@ -116,42 +116,42 @@ export default function TobamPage() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {/* Rendement cible — EUR + USD */}
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Rendement cible net</p>
-                <div className="grid grid-cols-2 gap-2 pt-2">
-                  <div className="flex flex-col items-center border-r border-white/30 pr-2">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">EUR</span>
-                    <span className="text-2xl md:text-3xl font-serif font-semibold text-success leading-tight">~7–8 %</span>
-                  </div>
-                  <div className="flex flex-col items-center pl-2">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">USD</span>
-                    <span className="text-2xl md:text-3xl font-serif font-semibold text-success leading-tight">~9–10 %</span>
-                  </div>
-                </div>
-                <p className="text-[10px] text-muted-foreground pt-1">p.a. · net de frais</p>
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Rendement cible net</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold text-success leading-none">
+                  ~7–10 %
+                </p>
+                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-2">
+                  EUR 7–8 % · USD 9–10 %
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-1">p.a. · net de frais</p>
               </GlassCard>
 
               {/* Liquidité quotidienne */}
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Liquidité</p>
-                <p className="text-4xl font-serif font-semibold">Quotidienne</p>
-                <p className="text-xs text-muted-foreground">Retrait en 24h · Règlement D+1</p>
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Liquidité</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold leading-none">
+                  Quotidienne
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-3">Retrait 24h · Règlement D+1</p>
               </GlassCard>
 
               {/* 0 Exposition crypto */}
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Exposition crypto</p>
-                <p className="text-4xl font-serif font-semibold text-success">0 %</p>
-                <p className="text-xs text-muted-foreground">Position entièrement couverte</p>
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Exposition crypto</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold text-success leading-none">
+                  0 %
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-3">Position entièrement couverte</p>
               </GlassCard>
 
               {/* Niveau de risque 2/7 */}
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Niveau de risque</p>
-                <p className="text-4xl font-serif font-semibold">
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Niveau de risque</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold leading-none">
                   2<span className="text-muted-foreground/60 text-2xl">/7</span>
                 </p>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-[11px] text-muted-foreground mt-3">
                   SRRI / SRI
                   <a
                     href="#risk-detail"
