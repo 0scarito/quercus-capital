@@ -510,7 +510,7 @@ function ArticleView({
               </p>
               <Link
                 to="/contact"
-                className="text-sm font-serif italic text-foreground underline underline-offset-4"
+                className="text-sm font-serif italic text-primary underline underline-offset-4 hover:text-primary/80"
               >
                 Contacter notre équipe →
               </Link>
@@ -520,8 +520,8 @@ function ArticleView({
 
         <aside className="hidden md:block">
           <div className="sticky top-28 space-y-8">
-            <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-foreground mb-4">
+            <div className="border-l-2 border-primary/30 pl-4">
+              <p className="text-xs uppercase tracking-[0.18em] text-primary mb-4 font-mono">
                 Articles liés
               </p>
               <ul className="space-y-3">
@@ -529,7 +529,7 @@ function ArticleView({
                   <li key={it}>
                     <Link
                       to={`/aide/${cat.slug}/${slugify(it)}`}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors leading-relaxed block"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors leading-relaxed block"
                     >
                       {it}
                     </Link>
@@ -539,7 +539,7 @@ function ArticleView({
             </div>
             <Link
               to={`/aide/${cat.slug}`}
-              className="text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground inline-flex items-center gap-2"
+              className="text-xs uppercase tracking-[0.18em] text-primary/70 hover:text-primary inline-flex items-center gap-2 font-mono"
             >
               ← Retour à {cat.title}
             </Link>
