@@ -348,7 +348,8 @@ function Block({ block }: { block: ArticleBlock }) {
       return <p className="text-muted-foreground leading-relaxed mb-5">{block.text}</p>;
     case "h2":
       return (
-        <h2 className="text-xl md:text-2xl font-serif italic text-foreground mt-10 mb-4">
+        <h2 className="text-xl md:text-2xl font-serif italic text-foreground mt-10 mb-4 flex items-baseline gap-3">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary translate-y-[-3px]" />
           {block.text}
         </h2>
       );
@@ -357,7 +358,7 @@ function Block({ block }: { block: ArticleBlock }) {
         <ul className="space-y-2.5 mb-6">
           {block.items.map((it) => (
             <li key={it} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-muted-foreground/60 flex-shrink-0" />
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/70 flex-shrink-0" />
               <span>{it}</span>
             </li>
           ))}
@@ -368,7 +369,7 @@ function Block({ block }: { block: ArticleBlock }) {
         <ol className="space-y-3 mb-6 counter-reset">
           {block.items.map((it, i) => (
             <li key={it} className="flex items-start gap-4 text-sm text-muted-foreground leading-relaxed">
-              <span className="flex-shrink-0 h-7 w-7 border border-border flex items-center justify-center text-xs font-serif text-foreground">
+              <span className="flex-shrink-0 h-7 w-7 border border-primary/30 bg-primary/5 flex items-center justify-center text-xs font-serif text-primary">
                 {i + 1}
               </span>
               <span className="pt-1">{it}</span>
@@ -379,12 +380,16 @@ function Block({ block }: { block: ArticleBlock }) {
     case "callout":
       return (
         <div
-          className={`border-l-2 ${
-            block.tone === "warning" ? "border-foreground" : "border-muted-foreground/40"
-          } pl-5 py-3 my-6 bg-muted/30`}
+          className={`border-l-2 pl-5 py-4 my-6 ${
+            block.tone === "warning"
+              ? "border-amber-600 bg-amber-50/40"
+              : "border-primary bg-primary/[0.05]"
+          }`}
         >
           {block.title && (
-            <p className="text-xs uppercase tracking-[0.18em] text-foreground mb-1.5">
+            <p className={`text-xs uppercase tracking-[0.18em] mb-1.5 font-mono ${
+              block.tone === "warning" ? "text-amber-700" : "text-primary"
+            }`}>
               {block.title}
             </p>
           )}
@@ -393,14 +398,14 @@ function Block({ block }: { block: ArticleBlock }) {
       );
     case "table":
       return (
-        <div className="border border-border my-6 overflow-x-auto">
+        <div className="border border-primary/20 my-6 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-border bg-muted/30">
+              <tr className="border-b border-primary/20 bg-primary/5">
                 {block.head.map((h) => (
                   <th
                     key={h}
-                    className="text-left px-4 py-3 font-serif italic text-foreground text-xs uppercase tracking-wider"
+                    className="text-left px-4 py-3 font-serif italic text-primary text-xs uppercase tracking-wider"
                   >
                     {h}
                   </th>
@@ -409,12 +414,12 @@ function Block({ block }: { block: ArticleBlock }) {
             </thead>
             <tbody>
               {block.rows.map((row, i) => (
-                <tr key={i} className="border-b border-border last:border-0">
+                <tr key={i} className="border-b border-border last:border-0 hover:bg-primary/[0.03] transition-colors">
                   {row.map((c, j) => (
                     <td
                       key={j}
                       className={`px-4 py-3 ${
-                        j === 0 ? "text-foreground" : "text-muted-foreground"
+                        j === 0 ? "text-foreground font-medium" : "text-muted-foreground"
                       }`}
                     >
                       {c}
