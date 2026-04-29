@@ -3,6 +3,7 @@ import { LandingFooter } from "@/components/landing/LandingFooter";
 import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GlassCard } from "@/components/landing/GlassCard";
+import { AdvisorThresholdSection } from "@/components/landing/AdvisorThresholdSection";
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -559,6 +560,8 @@ export default function TobamPage() {
             </div>
           </ScrollReveal>
         </section>
+
+        <AdvisorThresholdSection />
 
         <LandingFooter />
       </div>
