@@ -404,12 +404,7 @@ function ConvergenceChart() {
 
 export function CashAndCarryDiagram() {
   return (
-    <div className="space-y-10">
-      <MagneticFlow />
-      <div
-        className="h-px w-full"
-        style={{ background: "hsl(var(--primary) / 0.15)" }}
-      />
+    <div>
       <ConvergenceChart />
     </div>
   );

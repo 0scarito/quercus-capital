@@ -116,42 +116,42 @@ export default function TobamPage() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {/* Rendement cible — EUR + USD */}
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Rendement cible net</p>
-                <div className="grid grid-cols-2 gap-2 pt-2">
-                  <div className="flex flex-col items-center border-r border-white/30 pr-2">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">EUR</span>
-                    <span className="text-2xl md:text-3xl font-serif font-semibold text-success leading-tight">~7–8 %</span>
-                  </div>
-                  <div className="flex flex-col items-center pl-2">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">USD</span>
-                    <span className="text-2xl md:text-3xl font-serif font-semibold text-success leading-tight">~9–10 %</span>
-                  </div>
-                </div>
-                <p className="text-[10px] text-muted-foreground pt-1">p.a. · net de frais</p>
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Rendement cible net</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold text-success leading-none">
+                  ~7–10 %
+                </p>
+                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-2">
+                  EUR 7–8 % · USD 9–10 %
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-1">p.a. · net de frais</p>
               </GlassCard>
 
               {/* Liquidité quotidienne */}
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Liquidité</p>
-                <p className="text-4xl font-serif font-semibold">Quotidienne</p>
-                <p className="text-xs text-muted-foreground">Retrait en 24h · Règlement D+1</p>
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Liquidité</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold leading-none">
+                  Quotidienne
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-3">Retrait 24h · Règlement D+1</p>
               </GlassCard>
 
               {/* 0 Exposition crypto */}
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Exposition crypto</p>
-                <p className="text-4xl font-serif font-semibold text-success">0 %</p>
-                <p className="text-xs text-muted-foreground">Position entièrement couverte</p>
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Exposition crypto</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold text-success leading-none">
+                  0 %
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-3">Position entièrement couverte</p>
               </GlassCard>
 
               {/* Niveau de risque 2/7 */}
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Niveau de risque</p>
-                <p className="text-4xl font-serif font-semibold">
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Niveau de risque</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold leading-none">
                   2<span className="text-muted-foreground/60 text-2xl">/7</span>
                 </p>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-[11px] text-muted-foreground mt-3">
                   SRRI / SRI
                   <a
                     href="#risk-detail"
@@ -169,52 +169,63 @@ export default function TobamPage() {
         {/* What is Cash & Carry — 2 columns layout */}
         <section className="py-14 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               {/* Colonne gauche — texte pédagogique */}
-              <ScrollReveal>
+              <ScrollReveal className="lg:col-span-7">
                 <div className="space-y-6">
+                  <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono">
+                    Mécanisme · Cash &amp; Carry
+                  </p>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
                     <em>L'art de l'arbitrage : générer du rendement sans subir la volatilité.</em>
                   </h2>
 
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                     Le mécanisme de <em>« Cash and Carry »</em> (ou arbitrage de base) exploite
                     une anomalie structurelle du marché crypto : les contrats Futures (prix
                     futur) s'échangent presque toujours à un prix plus élevé que le Spot
                     (prix actuel).
                   </p>
 
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                     Chez Quercus, via le fonds TOBAM, nous capturons cet écart de prix de
                     manière mathématique et sécurisée :
                   </p>
 
-                  <div className="space-y-4 pl-1 border-l border-primary/30 pl-5">
-                    <div>
-                      <h3 className="font-serif italic text-base mb-1">L'Achat (Long Spot).</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Nous achetons du Bitcoin via des ETF régulés au NASDAQ.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="font-serif italic text-base mb-1">La Vente (Short Future).</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Simultanément, nous vendons un contrat futur sur le CME (Chicago
-                        Mercantile Exchange) pour une échéance à un mois.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="font-serif italic text-base mb-1">Le Profit (Le Contango).</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        En verrouillant ces deux positions, nous annulons totalement
-                        l'exposition au prix du Bitcoin. Que le marché monte ou baisse, nous
-                        empochons la différence (la prime) qui converge vers zéro à
-                        l'échéance.
-                      </p>
-                    </div>
-                  </div>
+                  <ol className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                    {[
+                      {
+                        n: "01",
+                        t: "L'Achat (Long Spot)",
+                        d: "Nous achetons du Bitcoin via des ETF régulés au NASDAQ.",
+                      },
+                      {
+                        n: "02",
+                        t: "La Vente (Short Future)",
+                        d: "Simultanément, nous vendons un contrat futur sur le CME pour une échéance à un mois.",
+                      },
+                      {
+                        n: "03",
+                        t: "Le Profit (Contango)",
+                        d: "En verrouillant ces positions, nous annulons l'exposition au prix du BTC et empochons la prime qui converge vers zéro.",
+                      },
+                    ].map((s) => (
+                      <li
+                        key={s.n}
+                        className="border-l border-primary/30 pl-4 py-1"
+                      >
+                        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary/70">
+                          Étape {s.n}
+                        </span>
+                        <h3 className="font-serif italic text-base mt-1 mb-1">{s.t}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {s.d}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
 
-                  <p className="text-foreground/90 leading-relaxed pt-2">
+                  <p className="text-foreground/90 leading-relaxed pt-2 text-base md:text-lg">
                     <span className="font-serif italic">Le résultat : </span>
                     une performance décorrélée, une volatilité minimale et aucune exposition
                     aux fluctuations de prix du marché crypto.
@@ -223,7 +234,7 @@ export default function TobamPage() {
               </ScrollReveal>
 
               {/* Colonne droite — diagramme interactif */}
-              <ScrollReveal delay={120}>
+              <ScrollReveal delay={120} className="lg:col-span-5">
                 <GlassCard className="p-6 md:p-8 h-full">
                   <CashAndCarryDiagram />
                 </GlassCard>
