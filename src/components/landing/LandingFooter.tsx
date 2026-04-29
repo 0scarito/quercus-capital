@@ -144,11 +144,11 @@ export function LandingFooter() {
 
           <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             <div className="space-y-4">
-              <h4 className="text-xl font-serif">{t("footer:sections.products")}</h4>
-              <ul className="space-y-3">
+              <h4 className="text-3xl md:text-4xl font-sans font-bold tracking-tight mb-6">{t("footer:sections.products")}</h4>
+              <ul className="space-y-4">
                 {productLinks.map((item) => (
                   <li key={item.label}>
-                    <Link to={item.href} className="text-base text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                    <Link to={item.href} className="text-base font-sans text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                       {item.label}
                     </Link>
                   </li>
@@ -157,21 +157,21 @@ export function LandingFooter() {
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-xl font-serif">{t("footer:sections.useCases")}</h4>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-left">
-                <ul className="space-y-3">
+              <h4 className="text-3xl md:text-4xl font-sans font-bold tracking-tight mb-6">{t("footer:sections.useCases")}</h4>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-4 text-left">
+                <ul className="space-y-4">
                   {useCaseLinksLeft.map((item) => (
                     <li key={item.label}>
-                      <Link to={item.href} className="text-base text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                      <Link to={item.href} className="text-base font-sans text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                         {item.label}
                       </Link>
                     </li>
                   ))}
                 </ul>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {useCaseLinksRight.map((item) => (
                     <li key={item.label}>
-                      <Link to={item.href} className="text-base text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                      <Link to={item.href} className="text-base font-sans text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                         {item.label}
                       </Link>
                     </li>
@@ -181,11 +181,11 @@ export function LandingFooter() {
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-xl font-serif">{t("footer:sections.resources")}</h4>
-              <ul className="space-y-3">
+              <h4 className="text-3xl md:text-4xl font-sans font-bold tracking-tight mb-6">{t("footer:sections.resources")}</h4>
+              <ul className="space-y-4">
                 {resourceLinks.map((item) => (
                   <li key={item.label}>
-                    <Link to={item.href} className="text-base text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                    <Link to={item.href} className="text-base font-sans text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                       {item.label}
                     </Link>
                   </li>
