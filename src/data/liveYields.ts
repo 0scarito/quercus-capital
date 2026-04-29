@@ -5,7 +5,7 @@
 // perfectly synchronised — as required by the spec.
 
 export type LiveYield = {
-  productKey: "smart-cash" | "cash-and-carry" | "portefeuille-conseille";
+  productKey: "smart-cash" | "cash-and-carry";
   productName: string;
   subtitle: string;
   rateLabel: string; // formatted, ex: "3,42 %" or "Sur devis"
@@ -41,18 +41,6 @@ export const LIVE_YIELDS: LiveYield[] = [
     liquidityTone: "success",
     risk: "Très faible",
     href: "/products/tobam",
-  },
-  {
-    productKey: "portefeuille-conseille",
-    productName: "Portefeuille Conseillé",
-    subtitle: "Allocation sur-mesure définie avec votre CGP",
-    rateLabel: "Sur devis",
-    rateNumeric: null,
-    currency: "Multi-devises",
-    liquidity: "Variable",
-    liquidityTone: "info",
-    risk: "Adapté à votre profil",
-    href: "/products/portefeuille-conseille",
   },
 ];
 

@@ -182,11 +182,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
       subtitle: t("nav:productsList.tobamSubtitle"),
       href: "/products/tobam",
     },
-    {
-      name: t("nav:productsList.advisedName"),
-      subtitle: t("nav:productsList.advisedSubtitle"),
-      href: "/portefeuille-conseille",
-    },
   ];
 
   const solutionItems = [

@@ -4,6 +4,7 @@ import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GlassCard } from "@/components/landing/GlassCard";
 import { CountUp } from "@/components/landing/CountUp";
+import { AdvisorThresholdSection } from "@/components/landing/AdvisorThresholdSection";
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -541,6 +542,8 @@ export default function VelvetPage() {
             </div>
           </ScrollReveal>
         </section>
+
+        <AdvisorThresholdSection />
 
         <LandingFooter />
       </div>
