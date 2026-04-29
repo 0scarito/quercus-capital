@@ -12,32 +12,13 @@ import { Leaf, ExternalLink } from "lucide-react";
 import { RiskScale } from "@/components/landing/RiskScale";
 import { SecurityArchitecture } from "@/components/landing/SecurityArchitecture";
 import { CashAndCarryDiagram } from "@/components/landing/CashAndCarryDiagram";
+import { TobamAnalytics } from "@/components/landing/TobamAnalytics";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
-
-const backtest = [
-  { metric: "Rendement annualisé", tobam: "7,6%", credit: "1,1%", cash: "2,1%" },
-  { metric: "Volatilité hebdomadaire", tobam: "4,9%", credit: "1,8%", cash: "0,3%" },
-  { metric: "Volatilité trimestrielle", tobam: "2,8%", credit: "2,8%", cash: "1,2%" },
-  { metric: "Ratio rendement/risque", tobam: "1,5", credit: "0,6", cash: "6,7" },
-  { metric: "Hit ratio (hebdo)", tobam: "63%", credit: "60%", cash: "59%" },
-  { metric: "Max drawdown (quotidien)", tobam: "-5,9%", credit: "-6,6%", cash: "-0,9%" },
-  { metric: "Max drawdown (trimestriel)", tobam: "0%", credit: "-6,0%", cash: "-0,8%" },
-];
-
-const shareClasses = [
-  { cls: "A1", isin: "FR00140100J0", ccy: "EUR", min: "10 000 000 €", fees: "Max 0,9% p.a." },
-  { cls: "A2", isin: "FR00140100K8", ccy: "USD", min: "$10 000 000", fees: "Max 0,9% p.a." },
-  { cls: "B1", isin: "FR00140100M4", ccy: "EUR", min: "100 000 €", fees: "Max 1,8% p.a." },
-  { cls: "B2", isin: "FR00140100N2", ccy: "USD", min: "$100 000", fees: "Max 1,8% p.a." },
-  { cls: "R1", isin: "FR00140100P7", ccy: "EUR", min: "1 000 000 €", fees: "Max 1,3% p.a." },
-  { cls: "R2", isin: "FR00140100O0", ccy: "USD", min: "$1 000 000", fees: "Max 1,3% p.a." },
-  { cls: "P1", isin: "FR00140100L6", ccy: "EUR", min: "10 000 €", fees: "0,3% + 20% perf fee > €STER" },
-];
 
 const characteristics = [
   { field: "Nom officiel", value: "TOBAM Crypto Liquidity Fund" },
@@ -277,76 +258,25 @@ export default function TobamPage() {
           </div>
         </section>
 
-        {/* Backtest performance */}
+        {/* Strategy Analytics — graphiques interactifs */}
         <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
-                <em>Performance backtestée</em>
-              </h2>
-              <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto text-lg">
-                Décembre 2019 — Décembre 2024
-              </p>
-              <GlassCard className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="text-xs uppercase tracking-wider min-w-[220px]">Métrique</TableHead>
-                      <TableHead className="text-xs uppercase tracking-wider">
-                        <span className="text-primary font-semibold">TOBAM</span>
-                      </TableHead>
-                      <TableHead className="text-xs uppercase tracking-wider">Short Term IG Credit</TableHead>
-                      <TableHead className="text-xs uppercase tracking-wider">Cash</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {backtest.map((row) => (
-                      <TableRow key={row.metric}>
-                        <TableCell className="font-medium">{row.metric}</TableCell>
-                        <TableCell className="text-success font-semibold font-mono">{row.tobam}</TableCell>
-                        <TableCell className="font-mono text-muted-foreground">{row.credit}</TableCell>
-                        <TableCell className="font-mono text-muted-foreground">{row.cash}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </GlassCard>
+              <div className="text-center mb-12 max-w-2xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-serif">
+                  <em>Strategy Analytics</em>
+                </h2>
+                <p className="text-muted-foreground mt-4 text-lg">
+                  Performance backtestée · Décembre 2019 — Mars 2025
+                </p>
+              </div>
             </ScrollReveal>
-          </div>
-        </section>
-
-        {/* Share classes */}
-        <section className="py-14 md:py-16 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-                <em>Classes de parts</em>
-              </h2>
-              <GlassCard className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="text-xs uppercase tracking-wider">Classe</TableHead>
-                      <TableHead className="text-xs uppercase tracking-wider">ISIN</TableHead>
-                      <TableHead className="text-xs uppercase tracking-wider">Devise</TableHead>
-                      <TableHead className="text-xs uppercase tracking-wider">Souscription min.</TableHead>
-                      <TableHead className="text-xs uppercase tracking-wider">Frais</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {shareClasses.map((sc) => (
-                      <TableRow key={sc.cls}>
-                        <TableCell className="font-semibold">Part {sc.cls}</TableCell>
-                        <TableCell className="font-mono text-sm">{sc.isin}</TableCell>
-                        <TableCell className="font-mono">{sc.ccy}</TableCell>
-                        <TableCell className="font-mono text-sm">{sc.min}</TableCell>
-                        <TableCell className="text-sm">{sc.fees}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </GlassCard>
+            <ScrollReveal delay={120}>
+              <TobamAnalytics />
             </ScrollReveal>
+            <p className="text-[11px] text-muted-foreground text-center mt-6 max-w-3xl mx-auto leading-relaxed">
+              Les performances passées ne préjugent pas des performances futures. Données issues du backtest TOBAM Crypto Liquidity, à titre illustratif.
+            </p>
           </div>
         </section>
 
