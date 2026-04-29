@@ -158,7 +158,7 @@ export function LandingFooter() {
 
             <div className="space-y-6">
               <h4 className="text-2xl md:text-3xl font-serif">{t("footer:sections.useCases")}</h4>
-              <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+              <div className="grid grid-cols-2 gap-x-2 gap-y-4">
                 <ul className="space-y-4">
                   {useCaseLinksLeft.map((item) => (
                     <li key={item.label}>
