@@ -382,49 +382,6 @@ export default function TobamPage() {
           </div>
         </section>
 
-        {/* Partners */}
-        <section className="py-14 md:py-16 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-                <em>Partenaires</em>
-              </h2>
-            </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                {
-                  role: "Gérant",
-                  name: "TOBAM",
-                  desc: "Agréé AMF GP 06 000019, $2 Mds d'actifs, fondée en 2005, 92% détenue par ses employés, 8% Amundi. Pionnier crypto depuis 2016.",
-                },
-                {
-                  role: "Dépositaire & Administrateur",
-                  name: "CACEIS Bank",
-                  desc: "Groupe Crédit Agricole. Enregistré PSAN auprès de l'AMF depuis juin 2023.",
-                },
-                {
-                  role: "Courtiers crypto",
-                  name: "Taurus, BitGo, Binance",
-                  desc: "Exécution spot et dérivés. Infrastructure institutionnelle multi-venues.",
-                },
-                {
-                  role: "Auditeur",
-                  name: "PwC",
-                  desc: "Audit annuel des comptes et contrôle indépendant de la valorisation.",
-                },
-              ].map((p, i) => (
-                <ScrollReveal key={p.name} delay={i * 100}>
-                  <GlassCard className="p-8 h-full">
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">{p.role}</p>
-                    <h3 className="text-xl font-serif font-semibold mb-4"><em>{p.name}</em></h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">{p.desc}</p>
-                  </GlassCard>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* FAQ */}
         <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
