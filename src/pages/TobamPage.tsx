@@ -13,9 +13,9 @@ import { RiskScale } from "@/components/landing/RiskScale";
 import { SecurityArchitecture } from "@/components/landing/SecurityArchitecture";
 import { CashAndCarryDiagram } from "@/components/landing/CashAndCarryDiagram";
 import { TobamAnalytics } from "@/components/landing/TobamAnalytics";
-import strategyPositionImg from "@/assets/tobam-strategy-position.jpg";
-import strategyThresholdImg from "@/assets/tobam-strategy-threshold.jpg";
-import strategyCarbonImg from "@/assets/tobam-strategy-carbon.jpg";
+import strategyPositionImg from "@/assets/strategy-position.jpg";
+import strategyThresholdImg from "@/assets/strategy-threshold.jpg";
+import strategyCarbonImg from "@/assets/strategy-carbon.jpg";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -276,18 +276,20 @@ export default function TobamPage() {
                 },
               ].map((item) => (
                 <ScrollReveal key={item.title}>
-                  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center ${item.reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
-                    <div className="relative aspect-[4/3] overflow-hidden border border-primary/10">
-                      <img
-                        src={item.img}
-                        alt={item.alt}
-                        loading="lazy"
-                        width={1024}
-                        height={768}
-                        className="w-full h-full object-cover"
-                      />
+                  <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${item.reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
+                    <div className="lg:col-span-4 max-w-[320px] mx-auto lg:mx-0 w-full">
+                      <div className="relative aspect-square overflow-hidden border border-primary/10">
+                        <img
+                          src={item.img}
+                          alt={item.alt}
+                          loading="lazy"
+                          width={512}
+                          height={512}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     </div>
-                    <div className="space-y-4">
+                    <div className="lg:col-span-8 space-y-4">
                       <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">
                         Étape {item.step}
                       </p>
