@@ -263,11 +263,14 @@ export default function TobamPage() {
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-12 max-w-2xl mx-auto">
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono mb-3">
+                  Key Stats
+                </p>
                 <h2 className="text-4xl md:text-5xl font-serif">
-                  <em>Strategy Analytics</em>
+                  <em>Les chiffres clés de la stratégie</em>
                 </h2>
                 <p className="text-muted-foreground mt-4 text-lg">
-                  Performance backtestée · Décembre 2019 — Mars 2025
+                  Backtest CME Bitcoin Carry · Décembre 2019 — Mars 2025
                 </p>
               </div>
             </ScrollReveal>
