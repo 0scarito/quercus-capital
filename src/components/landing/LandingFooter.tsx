@@ -17,7 +17,6 @@ export function LandingFooter() {
   const productLinks = [
     { label: t("footer:products.velvet"), href: "/products/velvet" },
     { label: t("footer:products.tobam"), href: "/products/tobam" },
-    { label: t("footer:products.portefeuille"), href: "/products" },
     { label: t("footer:products.all"), href: "/products" },
   ];
 
