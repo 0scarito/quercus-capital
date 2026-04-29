@@ -162,12 +162,15 @@ function CategoryCard({ cat }: { cat: Category }) {
   return (
     <Link
       to={`/aide/${cat.slug}`}
-      className="group border border-border p-6 hover:border-foreground transition-colors flex flex-col h-full w-full min-h-[180px]"
+      className="group relative border border-border p-6 hover:border-primary/60 hover:bg-primary/[0.03] transition-all flex flex-col h-full w-full min-h-[180px] overflow-hidden"
     >
-      <div className="h-9 w-9 border border-border flex items-center justify-center mb-5 group-hover:border-foreground transition-colors">
-        <BookOpen className="h-4 w-4 text-foreground" />
+      <span className="absolute top-0 left-0 h-[2px] w-12 bg-primary group-hover:w-full transition-all duration-500" />
+      <div className="h-10 w-10 bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 group-hover:border-primary/40 transition-colors">
+        <BookOpen className="h-4 w-4 text-primary" />
       </div>
-      <h3 className="text-xl font-serif text-foreground mb-2">{cat.title}</h3>
+      <h3 className="text-xl font-serif text-foreground mb-2 group-hover:text-primary transition-colors">
+        <em>{cat.title}</em>
+      </h3>
       <p className="text-sm text-muted-foreground leading-relaxed">{cat.description}</p>
     </Link>
   );
@@ -213,7 +216,7 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
     return (
       <>
         {text.slice(0, idx)}
-        <mark className="bg-foreground/10 text-foreground">{text.slice(idx, idx + q.length)}</mark>
+        <mark className="bg-primary/15 text-primary font-medium">{text.slice(idx, idx + q.length)}</mark>
         {text.slice(idx + q.length)}
       </>
     );
@@ -233,12 +236,12 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
       </div>
 
       <div className="relative mb-12 max-w-xl">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Rechercher dans le centre d'aide…"
-          className="pl-9 h-11 rounded-none border-border"
+          className="pl-9 h-11 rounded-none border-border focus-visible:border-primary focus-visible:ring-primary/20"
         />
         {q && (
           <div className="absolute left-0 right-0 top-full mt-2 z-20 border border-border bg-background shadow-lg max-h-[420px] overflow-y-auto">
@@ -252,10 +255,10 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
                   <li key={`${a.catSlug}-${a.item}`}>
                     <Link
                       to={`/aide/${a.catSlug}/${slugify(a.item)}`}
-                      className="flex flex-col gap-1 px-4 py-3 border-b border-border last:border-0 hover:bg-muted/40 transition-colors"
+                      className="flex flex-col gap-1 px-4 py-3 border-b border-border last:border-0 hover:bg-primary/5 hover:border-l-2 hover:border-l-primary transition-all"
                     >
                       <span className="text-sm text-foreground">{highlight(a.item)}</span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-xs text-primary/70 font-mono">
                         {a.catTitle} › {a.section}
                       </span>
                     </Link>
@@ -291,29 +294,29 @@ function CategoryDetail({ cat }: { cat: Category }) {
   return (
     <>
       <nav className="mb-10 text-sm flex items-center gap-2 text-muted-foreground">
-        <Link to="/aide" className="hover:text-foreground underline-offset-4 hover:underline">
+        <Link to="/aide" className="hover:text-primary underline-offset-4 hover:underline transition-colors">
           Quercus
         </Link>
-        <ChevronRight className="h-3.5 w-3.5" />
-        <span className="text-foreground">{cat.title}</span>
+        <ChevronRight className="h-3.5 w-3.5 text-primary/50" />
+        <span className="text-primary font-medium">{cat.title}</span>
       </nav>
 
-      <h1 className="text-4xl md:text-5xl font-serif italic mb-3">{cat.title}</h1>
+      <h1 className="text-4xl md:text-5xl font-serif italic mb-3 text-primary">{cat.title}</h1>
       <p className="text-muted-foreground mb-12 max-w-2xl leading-relaxed">{cat.description}</p>
 
       <div className="grid md:grid-cols-2 gap-6">
         {cat.sections.map((sec) => (
-          <div key={sec.title} className="border border-border p-6">
-            <h2 className="text-lg font-serif text-foreground pb-3 mb-4 border-b border-border">
-              {sec.title}
+          <div key={sec.title} className="border border-border p-6 hover:border-primary/40 transition-colors bg-gradient-to-br from-transparent to-primary/[0.02]">
+            <h2 className="text-lg font-serif text-foreground pb-3 mb-4 border-b border-primary/20">
+              <em>{sec.title}</em>
             </h2>
             <ul className="space-y-3">
               {sec.items.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 flex-shrink-0" />
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
                   <Link
                     to={`/aide/${cat.slug}/${slugify(item)}`}
-                    className="text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                    className="text-muted-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
                   >
                     {item}
                   </Link>
@@ -324,13 +327,13 @@ function CategoryDetail({ cat }: { cat: Category }) {
         ))}
       </div>
 
-      <div className="mt-16 border-t border-border pt-8 flex flex-wrap items-center justify-between gap-4">
+      <div className="mt-16 border-t border-primary/20 pt-8 flex flex-wrap items-center justify-between gap-4">
         <p className="text-sm text-muted-foreground">
           Vous ne trouvez pas la réponse à votre question ?
         </p>
         <Link
           to="/contact"
-          className="text-sm font-serif italic text-foreground underline underline-offset-4"
+          className="text-sm font-serif italic text-primary underline underline-offset-4 hover:text-primary/80"
         >
           Contacter notre équipe →
         </Link>
@@ -345,7 +348,8 @@ function Block({ block }: { block: ArticleBlock }) {
       return <p className="text-muted-foreground leading-relaxed mb-5">{block.text}</p>;
     case "h2":
       return (
-        <h2 className="text-xl md:text-2xl font-serif italic text-foreground mt-10 mb-4">
+        <h2 className="text-xl md:text-2xl font-serif italic text-foreground mt-10 mb-4 flex items-baseline gap-3">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary translate-y-[-3px]" />
           {block.text}
         </h2>
       );
@@ -354,7 +358,7 @@ function Block({ block }: { block: ArticleBlock }) {
         <ul className="space-y-2.5 mb-6">
           {block.items.map((it) => (
             <li key={it} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-muted-foreground/60 flex-shrink-0" />
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/70 flex-shrink-0" />
               <span>{it}</span>
             </li>
           ))}
@@ -365,7 +369,7 @@ function Block({ block }: { block: ArticleBlock }) {
         <ol className="space-y-3 mb-6 counter-reset">
           {block.items.map((it, i) => (
             <li key={it} className="flex items-start gap-4 text-sm text-muted-foreground leading-relaxed">
-              <span className="flex-shrink-0 h-7 w-7 border border-border flex items-center justify-center text-xs font-serif text-foreground">
+              <span className="flex-shrink-0 h-7 w-7 border border-primary/30 bg-primary/5 flex items-center justify-center text-xs font-serif text-primary">
                 {i + 1}
               </span>
               <span className="pt-1">{it}</span>
@@ -376,12 +380,16 @@ function Block({ block }: { block: ArticleBlock }) {
     case "callout":
       return (
         <div
-          className={`border-l-2 ${
-            block.tone === "warning" ? "border-foreground" : "border-muted-foreground/40"
-          } pl-5 py-3 my-6 bg-muted/30`}
+          className={`border-l-2 pl-5 py-4 my-6 ${
+            block.tone === "warning"
+              ? "border-amber-600 bg-amber-50/40"
+              : "border-primary bg-primary/[0.05]"
+          }`}
         >
           {block.title && (
-            <p className="text-xs uppercase tracking-[0.18em] text-foreground mb-1.5">
+            <p className={`text-xs uppercase tracking-[0.18em] mb-1.5 font-mono ${
+              block.tone === "warning" ? "text-amber-700" : "text-primary"
+            }`}>
               {block.title}
             </p>
           )}
@@ -390,14 +398,14 @@ function Block({ block }: { block: ArticleBlock }) {
       );
     case "table":
       return (
-        <div className="border border-border my-6 overflow-x-auto">
+        <div className="border border-primary/20 my-6 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-border bg-muted/30">
+              <tr className="border-b border-primary/20 bg-primary/5">
                 {block.head.map((h) => (
                   <th
                     key={h}
-                    className="text-left px-4 py-3 font-serif italic text-foreground text-xs uppercase tracking-wider"
+                    className="text-left px-4 py-3 font-serif italic text-primary text-xs uppercase tracking-wider"
                   >
                     {h}
                   </th>
@@ -406,12 +414,12 @@ function Block({ block }: { block: ArticleBlock }) {
             </thead>
             <tbody>
               {block.rows.map((row, i) => (
-                <tr key={i} className="border-b border-border last:border-0">
+                <tr key={i} className="border-b border-border last:border-0 hover:bg-primary/[0.03] transition-colors">
                   {row.map((c, j) => (
                     <td
                       key={j}
                       className={`px-4 py-3 ${
-                        j === 0 ? "text-foreground" : "text-muted-foreground"
+                        j === 0 ? "text-foreground font-medium" : "text-muted-foreground"
                       }`}
                     >
                       {c}
@@ -443,40 +451,40 @@ function ArticleView({
   return (
     <>
       <nav className="mb-10 text-sm flex items-center gap-2 text-muted-foreground flex-wrap">
-        <Link to="/aide" className="hover:text-foreground underline-offset-4 hover:underline">
+        <Link to="/aide" className="hover:text-primary underline-offset-4 hover:underline transition-colors">
           Quercus
         </Link>
-        <ChevronRight className="h-3.5 w-3.5" />
+        <ChevronRight className="h-3.5 w-3.5 text-primary/50" />
         <Link
           to={`/aide/${cat.slug}`}
-          className="hover:text-foreground underline-offset-4 hover:underline"
+          className="hover:text-primary underline-offset-4 hover:underline transition-colors"
         >
           {cat.title}
         </Link>
-        <ChevronRight className="h-3.5 w-3.5" />
-        <span className="text-foreground">{article.title}</span>
+        <ChevronRight className="h-3.5 w-3.5 text-primary/50" />
+        <span className="text-primary font-medium">{article.title}</span>
       </nav>
 
       <div className="grid md:grid-cols-[1fr_240px] gap-12">
         <article className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
+          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4 font-mono">
             {article.categoryTitle}
           </p>
           <h1 className="text-3xl md:text-4xl font-serif italic mb-5 leading-tight">
             {article.title}
           </h1>
-          <div className="flex items-center gap-5 text-xs text-muted-foreground mb-8 pb-8 border-b border-border">
+          <div className="flex items-center gap-5 text-xs text-muted-foreground mb-8 pb-8 border-b border-primary/20">
             <span className="flex items-center gap-2">
-              <Calendar className="h-3.5 w-3.5" />
+              <Calendar className="h-3.5 w-3.5 text-primary/70" />
               Mis à jour le {article.updatedAt}
             </span>
             <span className="flex items-center gap-2">
-              <Clock className="h-3.5 w-3.5" />
+              <Clock className="h-3.5 w-3.5 text-primary/70" />
               {article.readTime}
             </span>
           </div>
 
-          <p className="text-foreground/90 text-lg font-serif italic leading-relaxed mb-10">
+          <p className="text-foreground/90 text-lg font-serif italic leading-relaxed mb-10 pl-4 border-l-2 border-primary/40">
             {article.intro}
           </p>
 
@@ -484,15 +492,15 @@ function ArticleView({
             <Block key={i} block={b} />
           ))}
 
-          <div className="mt-14 border-t border-border pt-8">
+          <div className="mt-14 border-t border-primary/20 pt-8">
             <p className="text-sm text-foreground mb-4 font-serif italic">
               Cet article vous a-t-il été utile ?
             </p>
             <div className="flex gap-3 mb-10">
-              <button className="px-5 py-2 text-sm border border-border hover:border-foreground transition-colors">
+              <button className="px-5 py-2 text-sm border border-border hover:border-primary hover:bg-primary/5 hover:text-primary transition-colors">
                 Oui
               </button>
-              <button className="px-5 py-2 text-sm border border-border hover:border-foreground transition-colors">
+              <button className="px-5 py-2 text-sm border border-border hover:border-primary hover:bg-primary/5 hover:text-primary transition-colors">
                 Non
               </button>
             </div>
@@ -502,7 +510,7 @@ function ArticleView({
               </p>
               <Link
                 to="/contact"
-                className="text-sm font-serif italic text-foreground underline underline-offset-4"
+                className="text-sm font-serif italic text-primary underline underline-offset-4 hover:text-primary/80"
               >
                 Contacter notre équipe →
               </Link>
@@ -512,8 +520,8 @@ function ArticleView({
 
         <aside className="hidden md:block">
           <div className="sticky top-28 space-y-8">
-            <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-foreground mb-4">
+            <div className="border-l-2 border-primary/30 pl-4">
+              <p className="text-xs uppercase tracking-[0.18em] text-primary mb-4 font-mono">
                 Articles liés
               </p>
               <ul className="space-y-3">
@@ -521,7 +529,7 @@ function ArticleView({
                   <li key={it}>
                     <Link
                       to={`/aide/${cat.slug}/${slugify(it)}`}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors leading-relaxed block"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors leading-relaxed block"
                     >
                       {it}
                     </Link>
@@ -531,7 +539,7 @@ function ArticleView({
             </div>
             <Link
               to={`/aide/${cat.slug}`}
-              className="text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground inline-flex items-center gap-2"
+              className="text-xs uppercase tracking-[0.18em] text-primary/70 hover:text-primary inline-flex items-center gap-2 font-mono"
             >
               ← Retour à {cat.title}
             </Link>
