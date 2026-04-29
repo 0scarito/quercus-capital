@@ -9,7 +9,7 @@ import { AdvisorThresholdSection } from "@/components/landing/AdvisorThresholdSe
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+import { Anchor, ExternalLink } from "lucide-react";
 import { RiskScale } from "@/components/landing/RiskScale";
 import { VelvetSecurityArchitecture } from "@/components/landing/VelvetSecurityArchitecture";
 import { VelvetMirrorSwap } from "@/components/landing/VelvetMirrorSwap";
@@ -89,7 +89,12 @@ export default function VelvetPage() {
               <Badge variant="outline" className="text-sm px-4 py-1 font-mono tracking-wider">
                 FCP UCITS · AMF n° FCP20230197
               </Badge>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-semibold leading-[1.1]">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-semibold leading-[1.1] flex items-center justify-center gap-4">
+                <Anchor
+                  className="hidden md:block h-10 w-10 text-primary/40"
+                  strokeWidth={1.2}
+                  aria-hidden
+                />
                 <em>La puissance institutionnelle pour votre trésorerie au quotidien.</em>
               </h1>
               <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
