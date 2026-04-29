@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Plus, Check, Loader2 } from "lucide-react";
+import { Plus, Check, Loader2, Lock, Compass, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { Progress } from "@/components/ui/progress";
 import {
   Table,
   TableBody,
@@ -27,6 +29,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
+const ADVISED_PORTFOLIO_THRESHOLD = 3_000_000;
+
 export default function Products() {
   const { data: products, isLoading } = useProducts();
   const { data: subscriptions } = useUserSubscriptions();
@@ -40,6 +44,24 @@ export default function Products() {
   const [submitting, setSubmitting] = useState(false);
 
   const subscribedIds = new Set(subscriptions?.map((s) => s.product_id));
+
+  // Encours total (somme brute toutes devises confondues, v1).
+  const totalEncours = (subscriptions ?? []).reduce(
+    (sum, s) => sum + Number(s.amount ?? 0),
+    0,
+  );
+  const advisedUnlocked = totalEncours >= ADVISED_PORTFOLIO_THRESHOLD;
+  const progressPct = Math.min(
+    100,
+    (totalEncours / ADVISED_PORTFOLIO_THRESHOLD) * 100,
+  );
+
+  const formatEUR = (n: number) =>
+    new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR",
+      maximumFractionDigits: 0,
+    }).format(n);
 
   const handleOpen = (product: Product) => {
     setSelected(product);
@@ -159,6 +181,91 @@ export default function Products() {
       <p className="text-xs text-muted-foreground">
         Liquidité T+0 pour les ordres passés avant 12h25 CET. Les rendements affichés sont indicatifs et nets de frais de gestion.
       </p>
+
+      {/* Portefeuille Conseillé — verrouillé tant que l'encours n'atteint pas 3 M€ */}
+      <div>
+        <h2 className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-4">
+          Allocation patrimoniale
+        </h2>
+        <div
+          className={`border rounded-sm p-6 md:p-8 transition-opacity ${
+            advisedUnlocked ? "" : "bg-muted/30"
+          }`}
+        >
+          <div className="flex flex-col md:flex-row md:items-start gap-6">
+            <div
+              className="flex items-center justify-center rounded-full shrink-0"
+              style={{
+                width: 56,
+                height: 56,
+                background: advisedUnlocked
+                  ? "hsl(var(--accent) / 0.15)"
+                  : "hsl(var(--muted))",
+              }}
+            >
+              {advisedUnlocked ? (
+                <Compass className="h-6 w-6 text-primary" />
+              ) : (
+                <Lock className="h-5 w-5 text-muted-foreground" />
+              )}
+            </div>
+
+            <div className="flex-1 space-y-3">
+              <div className="flex items-center gap-3 flex-wrap">
+                <h3 className="text-xl font-serif font-semibold">
+                  <em>Portefeuille Conseillé</em>
+                </h3>
+                {advisedUnlocked ? (
+                  <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-sm bg-success/15 text-success">
+                    <Sparkles className="h-3 w-3" /> Disponible
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-sm bg-muted text-muted-foreground">
+                    <Lock className="h-3 w-3" /> Verrouillé
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Allocation patrimoniale sur-mesure construite avec votre
+                conseiller dédié — combine Smart Cash, Cash & Carry,
+                obligations, actions et solutions alternatives.
+              </p>
+
+              {!advisedUnlocked && (
+                <div className="space-y-2 pt-2">
+                  <div className="flex items-baseline justify-between text-xs">
+                    <span className="text-muted-foreground">
+                      Disponible à partir de{" "}
+                      <span className="font-mono text-foreground">
+                        {formatEUR(ADVISED_PORTFOLIO_THRESHOLD)}
+                      </span>{" "}
+                      d'encours
+                    </span>
+                    <span className="font-mono text-foreground">
+                      {formatEUR(totalEncours)} / {formatEUR(ADVISED_PORTFOLIO_THRESHOLD)}
+                    </span>
+                  </div>
+                  <Progress value={progressPct} className="h-1.5" />
+                </div>
+              )}
+            </div>
+
+            <div className="shrink-0">
+              {advisedUnlocked ? (
+                <Button asChild size="sm">
+                  <Link to="/dashboard/conseiller">
+                    Prendre rendez-vous
+                  </Link>
+                </Button>
+              ) : (
+                <Button size="sm" variant="outline" disabled>
+                  <Lock className="mr-1 h-3 w-3" /> Indisponible
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
 
       <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
         <DialogContent className="sm:max-w-md">
