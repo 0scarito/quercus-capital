@@ -225,6 +225,12 @@ export function TobamAnalytics() {
                   strokeWidth={1.5}
                   label={{ value: "Moyenne · 8 %", position: "insideTopLeft", fill: ACCENT, fontSize: 10, fontFamily: "var(--font-mono)" }}
                 />
+                <ReferenceLine
+                  y={0}
+                  stroke="hsl(var(--foreground))"
+                  strokeWidth={0.6}
+                  strokeOpacity={0.85}
+                />
                 <Line type="monotone" dataKey="yield" stroke={TEAL} strokeWidth={1.2} dot={false} />
                 <ReferenceDot x="Mars-25" y={5} r={5} fill={SUCCESS} stroke={TEAL} strokeWidth={1.5}
                   label={{ value: "Mars 25 · 5 %", position: "right", fill: TEAL, fontSize: 11, fontFamily: "var(--font-mono)", offset: 8 }}
