@@ -9,9 +9,15 @@ import { AdvisorThresholdSection } from "@/components/landing/AdvisorThresholdSe
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { Shield, Banknote, FileText, ExternalLink } from "lucide-react";
+import { Anchor, ExternalLink } from "lucide-react";
 import { RiskScale } from "@/components/landing/RiskScale";
-import { useEffect, useState } from "react";
+import { VelvetSecurityArchitecture } from "@/components/landing/VelvetSecurityArchitecture";
+import { VelvetMirrorSwap } from "@/components/landing/VelvetMirrorSwap";
+import { VelvetPerformanceChart } from "@/components/landing/VelvetPerformanceChart";
+import { VelvetCollateralDonut } from "@/components/landing/VelvetCollateralDonut";
+import velvetAnchorImg from "@/assets/velvet-anchor.jpg";
+import velvetPedestalImg from "@/assets/velvet-pedestal.jpg";
+import velvetMirrorImg from "@/assets/velvet-mirror.jpg";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -19,70 +25,42 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 
-const counterparties = [
-  "BNP Paribas", "Société Générale", "Crédit Agricole CIB", "Natixis",
-  "Goldman Sachs", "J.P. Morgan", "Citi", "Morgan Stanley",
-  "Barclays", "UBS", "BBVA", "HSBC", "Santander", "Bank of America",
-];
-
-const collateral = [
-  { sector: "Technology", pct: 34 },
-  { sector: "Financials", pct: 18 },
-  { sector: "Healthcare", pct: 12 },
-  { sector: "Consumer Discretionary", pct: 10 },
-  { sector: "Communications", pct: 8 },
-  { sector: "Industrials", pct: 7 },
-  { sector: "Energy", pct: 5 },
-  { sector: "Others", pct: 6 },
-];
-
 const characteristics = [
   { field: "Nom officiel", i2: "FCP Velvet", i3: "FCP Velvet" },
-  { field: "ISIN", i2: "FR0014010AT3", i3: "FR0014010IJ7" },
+  { field: "Code ISIN", i2: "FR0014010AT3", i3: "FR0014010IJ7" },
   { field: "Bloomberg", i2: "FCPVVI2 FP Equity", i3: "FCPVVI3 FP Equity" },
-  { field: "Mandat", i2: "TRS avec banques de premier rang", i3: "Idem" },
+  { field: "Forme juridique", i2: "FCP — UCITS (OPCVM)", i3: "FCP — UCITS (OPCVM)" },
+  { field: "Domicile", i2: "France", i3: "France" },
+  { field: "Date de création", i2: "07/12/2023", i3: "07/12/2023" },
   { field: "Devise de référence", i2: "EUR", i3: "EUR" },
-  { field: "Frais de gestion", i2: "0,15% p.a. (max 0,25%)", i3: "0,10% p.a. (max 0,20%)" },
-  { field: "Traitement des revenus", i2: "Capitalisation", i3: "Capitalisation" },
+  { field: "Frais de gestion (max)", i2: "0,25 %", i3: "0,20 %" },
   { field: "Souscription minimale", i2: "500 000 €", i3: "1 000 000 €" },
   { field: "Investisseurs éligibles", i2: "Clients professionnels", i3: "Idem" },
-  { field: "Règlement", i2: "J+2 ouvrés", i3: "J+2 ouvrés" },
-  { field: "Heure de coupure", i2: "J avant 14h00 Paris", i3: "J avant 14h00 Paris" },
+  { field: "Heure de coupure", i2: "J avant 14h00 (Paris)", i3: "Idem" },
   { field: "Publication VL", i2: "J+1 ouvré", i3: "J+1 ouvré" },
-  { field: "Domicile", i2: "France", i3: "France" },
-  { field: "Forme juridique", i2: "FCP — UCITS", i3: "FCP — UCITS" },
-  { field: "Date de création", i2: "07/12/2023", i3: "07/12/2023" },
-  { field: "Gérant", i2: "LFIS Capital", i3: "LFIS Capital" },
-  { field: "Dépositaire", i2: "BNP Paribas SA", i3: "BNP Paribas SA" },
-  { field: "Auditeur", i2: "PwC", i3: "PwC" },
-  { field: "Régulateur", i2: "AMF (n° FCP20230197)", i3: "Idem" },
-  { field: "SFDR", i2: "Article 6", i3: "Article 6" },
-  { field: "Indicateur de risque", i2: "1/7 (le plus bas)", i3: "1/7 (le plus bas)" },
-  { field: "Durée recommandée", i2: "3 mois", i3: "3 mois" },
-];
-
-const performance = [
-  { period: "2024 année complète", velvet: "4,01%", estr: "3,73%" },
-  { period: "YTD 2025 (au 30 mai)", velvet: "1,31%", estr: "1,07%" },
-  { period: "Cumulé (jan. 2024 – mai 2025)", velvet: "5,38%", estr: "4,84%" },
+  { field: "Règlement", i2: "J+2 ouvrés", i3: "J+2 ouvrés" },
+  { field: "Traitement des revenus", i2: "Capitalisation", i3: "Capitalisation" },
+  { field: "Classification SFDR", i2: "Article 6", i3: "Article 6" },
+  { field: "Indicateur de risque", i2: "1 / 7", i3: "1 / 7" },
+  { field: "Régulateur", i2: "AMF n° FCP20230197", i3: "Idem" },
 ];
 
 const faqItems = [
   {
     q: "Quels sont les frais ?",
-    a: "Frais de gestion uniquement : 0,15% p.a. pour la Part I2, 0,10% pour la Part I3. Aucun frais d'entrée, de sortie ou de souscription. Les rendements affichés sont toujours nets de frais.",
+    a: "Frais de gestion uniquement : 0,25 % p.a. (max) pour la Part I2, 0,20 % pour la Part I3. Aucun frais d'entrée, de sortie ou de souscription. Les rendements affichés sont toujours nets de frais.",
   },
   {
     q: "Quels sont les risques et comment mes fonds sont-ils protégés ?",
-    a: "Vos fonds sont adossés à une banque de premier rang (BNP Paribas). Le risque principal est celui du défaut de la contrepartie, atténué par le portefeuille de collatéral (actions liquides) détenu par le fonds et liquidable immédiatement. Le fonds dispose d'une créance senior sur la banque en cas de pertes résiduelles. Cette stratégie n'a jamais connu de défaut depuis 2014.",
+    a: "Vos fonds sont adossés à une banque de premier rang (BNP Paribas). Le risque principal est celui du défaut de la contrepartie, atténué par le portefeuille de collatéral (actions liquides Tier-1) détenu par le fonds et liquidable immédiatement. Cette stratégie n'a jamais connu de défaut depuis 2014.",
   },
   {
     q: "Que se passe-t-il si LFIS Capital fait faillite ?",
-    a: "Aucune exposition financière à l'insolvabilité de LFIS. Les actifs sont détenus par BNP Paribas en tant que dépositaire, séparés du bilan de LFIS. Vous pouvez toujours soumettre vos ordres de rachat directement auprès du gérant par téléphone ou e-mail.",
+    a: "Aucune exposition financière à l'insolvabilité du gérant. Les actifs sont détenus par BNP Paribas en tant que dépositaire, séparés du bilan de LFIS. Vous pouvez toujours soumettre vos ordres de rachat directement.",
   },
   {
     q: "Pourquoi les banques paient-elles au-dessus du taux sans risque ?",
-    a: "Détenir des actifs financiers au bilan est coûteux pour les banques en raison des exigences réglementaires en fonds propres. Les banques paient une prime à des institutions comme Velvet pour détenir ces actifs hors bilan via un TRS — un arrangement mutuellement bénéfique.",
+    a: "Détenir des actifs financiers au bilan est coûteux pour les banques en raison des exigences réglementaires en fonds propres. Les banques paient une prime à des fonds comme Velvet pour détenir ces actifs hors bilan via un TRS — un arrangement mutuellement bénéfique.",
   },
   {
     q: "Comment fonctionnent les flux financiers quotidiens ?",
@@ -99,308 +77,309 @@ const faqItems = [
 ];
 
 export default function VelvetPage() {
-  const [now, setNow] = useState(new Date());
-  useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  const nextAccrual = new Date(now);
-  nextAccrual.setUTCHours(23, 0, 0, 0);
-  if (nextAccrual <= now) nextAccrual.setDate(nextAccrual.getDate() + 1);
-  const diff = nextAccrual.getTime() - now.getTime();
-  const hh = String(Math.floor(diff / 3600000)).padStart(2, "0");
-  const mm = String(Math.floor((diff % 3600000) / 60000)).padStart(2, "0");
-  const ss = String(Math.floor((diff % 60000) / 1000)).padStart(2, "0");
-
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-16 relative z-10">
-        {/* Hero */}
+        {/* ===================== HERO ===================== */}
         <section className="py-20 md:py-28 px-4 md:px-8">
           <ScrollReveal>
-            <div className="max-w-6xl mx-auto text-center space-y-8">
+            <div className="max-w-5xl mx-auto text-center space-y-8">
               <Badge variant="outline" className="text-sm px-4 py-1 font-mono tracking-wider">
                 FCP UCITS · AMF n° FCP20230197
               </Badge>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-semibold leading-tight">
-                <em>Velvet</em>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-semibold leading-[1.1] flex items-center justify-center gap-4">
+                <Anchor
+                  className="hidden md:block h-10 w-10 text-primary/40"
+                  strokeWidth={1.2}
+                  aria-hidden
+                />
+                <em>La puissance institutionnelle pour votre trésorerie au quotidien.</em>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Générez un rendement quotidien garanti par les plus grandes banques mondiales.
-                Vos fonds, détenus par BNP Paribas, ne sont jamais au bilan de Quercus.
+              <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+                Maximisez vos excédents de trésorerie avec <em className="font-serif">Velvet</em>.
+                Un rendement cible de <span className="font-mono">€STR + 0,30 %</span>, une sécurité
+                UCITS de grade institutionnel, et une liquidité quotidienne sans frais d'entrée
+                ni de sortie.
               </p>
-            </div>
-          </ScrollReveal>
-        </section>
-
-        {/* Key Metrics */}
-        <section className="pb-12 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Rendement net actuel</p>
-                <p className="text-4xl font-serif font-semibold text-success">€STR + 0,30%</p>
-              </GlassCard>
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Fréquence des intérêts</p>
-                <p className="text-4xl font-serif font-semibold">Quotidien</p>
-              </GlassCard>
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Prochain calcul</p>
-                <p className="text-4xl font-serif font-semibold font-mono tracking-wider">{hh}:{mm}:{ss}</p>
-              </GlassCard>
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Disponibilité</p>
-                <p className="text-4xl font-serif font-semibold">T+1</p>
-                <p className="text-xs text-muted-foreground">Règlement J+2 · Coupure 14h00</p>
-              </GlassCard>
-            </div>
-          </div>
-        </section>
-
-        {/* Counterparty Logos */}
-        <section className="py-10 px-4 md:px-8">
-          <ScrollReveal>
-            <div className="max-w-7xl mx-auto text-center">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-8">Contreparties bancaires</p>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-                {counterparties.map((name) => (
-                  <span key={name} className="text-sm font-medium text-muted-foreground/70 hover:text-foreground transition-colors">
-                    {name}
-                  </span>
-                ))}
+              <div className="flex justify-center pt-2">
+                <Button asChild size="lg" className="px-10 py-6 text-base btn-glow">
+                  <Link to="/open-account">Commencer à investir</Link>
+                </Button>
               </div>
             </div>
           </ScrollReveal>
         </section>
 
-        {/* How it works */}
-        <section className="py-14 md:py-10 px-4 md:px-8">
+        {/* ===================== KEY METRICS ===================== */}
+        <section className="pb-12 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Rendement net</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold text-success leading-none">
+                  3,5 – 3,8 %
+                </p>
+                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-2">
+                  €STR + 0,30 %
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-1">temps réel · net de frais</p>
+              </GlassCard>
+
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Indicateur de risque</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold leading-none">
+                  1<span className="text-muted-foreground/60 text-2xl">/7</span>
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-3">
+                  Le plus faible du marché
+                  <a href="#risk-detail" className="text-success hover:underline ml-0.5">*</a>
+                </p>
+              </GlassCard>
+
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Liquidité</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold leading-none">
+                  Quotidienne
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-3">VL J+1 · Règlement J+2</p>
+              </GlassCard>
+
+              <GlassCard className="p-6 min-h-[180px] flex flex-col items-center justify-center text-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Sécurité</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold leading-none">
+                  UCITS
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-3">Agréé par l'AMF</p>
+              </GlassCard>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== MIRROR SWAP — 2 col layout ===================== */}
+        <section className="py-14 md:py-20 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              <ScrollReveal className="lg:col-span-7">
+                <div className="space-y-6">
+                  <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono">
+                    Mécanisme · Mirror Swap
+                  </p>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
+                    <em>Transformer la performance des actions en un rendement monétaire stable.</em>
+                  </h2>
+
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                    Velvet utilise un <em>Total Return Swap (TRS)</em> — un contrat d'échange de
+                    performance avec les plus grandes banques mondiales. Le résultat : un rendement
+                    monétaire garanti, protégé des fluctuations boursières.
+                  </p>
+
+                  <ol className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                    {[
+                      {
+                        n: "01",
+                        t: "Le panier de collatéral",
+                        d: "Velvet détient un portefeuille diversifié d'actions internationales Tier-1 qui servent de garantie.",
+                      },
+                      {
+                        n: "02",
+                        t: "L'échange (le swap)",
+                        d: "Velvet échange la performance de ce panier contre un taux monétaire garanti (€STR + spread) auprès de banques de premier plan.",
+                      },
+                      {
+                        n: "03",
+                        t: "La capture du taux",
+                        d: "L'investisseur reçoit un rendement stable, protégé des fluctuations boursières par le contrat d'échange.",
+                      },
+                    ].map((s) => (
+                      <li key={s.n} className="border-l border-primary/30 pl-4 py-1">
+                        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary/70">
+                          Étape {s.n}
+                        </span>
+                        <h3 className="font-serif italic text-base mt-1 mb-1">{s.t}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{s.d}</p>
+                      </li>
+                    ))}
+                  </ol>
+
+                  <p className="text-foreground/90 leading-relaxed pt-2 text-base md:text-lg">
+                    <span className="font-serif italic">Le résultat : </span>
+                    un rendement quotidien régulier, indépendant des marchés actions, garanti
+                    contractuellement par BNP Paribas.
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={120} className="lg:col-span-5">
+                <GlassCard className="p-6 md:p-8 h-full">
+                  <VelvetMirrorSwap />
+                </GlassCard>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== STRATEGY ZIGZAG — éditorial avec photos ===================== */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
-                <em>Comment ça fonctionne</em>
-              </h2>
-              <p className="text-center text-muted-foreground mb-16 max-w-3xl mx-auto text-lg">
-                Le mécanisme du Total Return Swap expliqué en 3 étapes.
-              </p>
+              <div className="text-center mb-14 max-w-2xl mx-auto">
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono mb-3">
+                  Méthodologie
+                </p>
+                <h2 className="text-4xl md:text-5xl font-serif">
+                  <em>La stratégie Velvet en détail</em>
+                </h2>
+              </div>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-16 md:space-y-24">
               {[
                 {
                   step: "01",
-                  title: "Les banques allègent leur bilan",
-                  desc: "Pour limiter les coûts en fonds propres réglementaires, les banques cherchent à s'exposer à des actifs financiers (actions, obligations) sans les détenir directement.",
-                  icon: Banknote,
+                  title: "Stabilité",
+                  desc: "Velvet ne prend aucun pari directionnel sur les marchés actions. Le swap transforme la volatilité du panier en un rendement monétaire fixe garanti par BNP Paribas — l'ancrage absolu de votre trésorerie.",
+                  img: velvetAnchorImg,
+                  alt: "Ancre marine en laiton sur parchemin avec rubans deep teal — symbole de stabilité",
+                  reverse: false,
                 },
                 {
                   step: "02",
-                  title: "Velvet achète et entre en TRS",
-                  desc: "Velvet détient un panier diversifié d'actifs liquides et échange sa performance avec BNP Paribas via un Total Return Swap. En retour, Velvet reçoit un rendement monétaire quotidien garanti.",
-                  icon: FileText,
+                  title: "Surperformance régulière",
+                  desc: "La prime de 0,30 % au-dessus de l'€STR est captée chaque jour, sans frais d'entrée ni de sortie. +5,38 % cumulés contre +4,84 % pour l'€STR sur 17 mois.",
+                  img: velvetPedestalImg,
+                  alt: "Pièce dorée en équilibre sur un piédestal de marbre — symbole de rendement stable",
+                  reverse: true,
                 },
                 {
                   step: "03",
-                  title: "Vous percevez des intérêts quotidiens",
-                  desc: "Chaque jour, BNP Paribas verse €STR + spread à Velvet. En cas de défaut hypothétique, Velvet liquiderait le portefeuille de collatéral. Aucun défaut depuis 2014.",
-                  icon: Shield,
+                  title: "Symétrie & garantie",
+                  desc: "Chaque jour, BNP Paribas et Velvet échangent la performance. Quelles que soient les conditions de marché, le rendement contractuel €STR + spread est versé. Aucun défaut depuis 2014.",
+                  img: velvetMirrorImg,
+                  alt: "Balance de précision en équilibre avec piles de pièces — symbole de l'échange équilibré du Total Return Swap",
+                  reverse: false,
                 },
-              ].map((s, i) => (
-                <ScrollReveal key={s.step} delay={i * 120}>
-                  <GlassCard className="p-8 h-full">
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="text-5xl font-serif font-semibold text-primary/20">{s.step}</span>
-                      <s.icon className="h-6 w-6 text-primary" />
+              ].map((item) => (
+                <ScrollReveal key={item.title}>
+                  <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${item.reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
+                    <div className="lg:col-span-4 max-w-[320px] mx-auto lg:mx-0 w-full">
+                      <div className="relative aspect-square overflow-hidden border border-primary/10">
+                        <img
+                          src={item.img}
+                          alt={item.alt}
+                          loading="lazy"
+                          width={512}
+                          height={512}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     </div>
-                    <h3 className="text-xl font-serif font-semibold mb-4"><em>{s.title}</em></h3>
-                    <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
-                  </GlassCard>
+                    <div className="lg:col-span-8 space-y-4">
+                      <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">
+                        Étape {item.step}
+                      </p>
+                      <h3 className="text-3xl md:text-4xl font-serif leading-tight">
+                        <em>{item.title}</em>
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed text-lg">{item.desc}</p>
+                    </div>
+                  </div>
                 </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Worked example + Risk + AMF */}
-        <section className="py-14 md:py-10 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* ===================== KEY STATS — chart + AUM ===================== */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto">
             <ScrollReveal>
-              <GlassCard className="p-8 h-full space-y-5">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Exemple chiffré</p>
-                <h3 className="text-2xl md:text-3xl font-serif">
-                  <em>1 M€ placé sur 12 mois</em>
-                </h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between border-b border-white/30 pb-2">
-                    <span className="text-muted-foreground">Capital placé</span>
-                    <span className="font-mono">1 000 000 €</span>
-                  </div>
-                  <div className="flex justify-between border-b border-white/30 pb-2">
-                    <span className="text-muted-foreground">€STR moyen estimé</span>
-                    <span className="font-mono">2,90 %</span>
-                  </div>
-                  <div className="flex justify-between border-b border-white/30 pb-2">
-                    <span className="text-muted-foreground">Spread Velvet</span>
-                    <span className="font-mono text-success">+ 0,30 %</span>
-                  </div>
-                  <div className="flex justify-between border-b border-white/30 pb-2">
-                    <span className="text-muted-foreground">Frais de gestion (Part I2)</span>
-                    <span className="font-mono">− 0,15 %</span>
-                  </div>
-                  <div className="flex justify-between pt-2">
-                    <span className="font-semibold">Rendement net annuel</span>
-                    <span className="font-mono text-success font-semibold">≈ 3,05 %</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-semibold">Intérêts perçus (12 mois)</span>
-                    <span className="font-mono text-success font-semibold">≈ 30 500 €</span>
-                  </div>
-                </div>
-                <p className="text-[11px] text-muted-foreground pt-2 border-t border-white/30">
-                  Estimation indicative basée sur le €STR au 30 mai 2025. Les rendements passés ne préjugent pas des rendements futurs.
+              <div className="text-center mb-12 max-w-2xl mx-auto">
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono mb-3">
+                  Key Stats
                 </p>
-              </GlassCard>
+                <h2 className="text-4xl md:text-5xl font-serif">
+                  <em>Les chiffres clés du fonds</em>
+                </h2>
+                <p className="text-muted-foreground mt-4 text-lg">
+                  Performance & transparence — données Velvet en temps réel
+                </p>
+              </div>
             </ScrollReveal>
 
-            <ScrollReveal>
-              <GlassCard className="p-8 h-full flex flex-col gap-6">
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Indicateur de risque</p>
-                  <RiskScale level={1} label="Velvet est noté 1/7 sur l'échelle synthétique de risque (SRI). Aucun défaut depuis 2014." />
-                </div>
-                <div className="border-t border-white/30 pt-6 space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">Notation BNP Paribas</p>
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div>
-                      <p className="text-2xl font-serif font-semibold text-primary">AA-</p>
-                      <p className="text-[11px] text-muted-foreground mt-1">Fitch</p>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-serif font-semibold text-primary">A1</p>
-                      <p className="text-[11px] text-muted-foreground mt-1">Moody's</p>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-serif font-semibold text-primary">A+</p>
-                      <p className="text-[11px] text-muted-foreground mt-1">S&amp;P</p>
-                    </div>
-                  </div>
-                </div>
-                <a
-                  href="https://geco.amf-france.org/Bio/rech_opcvm.aspx"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto inline-flex items-center gap-2 text-sm text-primary hover:underline"
-                >
-                  Vérifier l'agrément AMF n° FCP20230197
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
-              </GlassCard>
-            </ScrollReveal>
-          </div>
-        </section>
-        <section className="py-14 md:py-10 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
-                <em>Portefeuille de collatéral</em>
-              </h2>
-              <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto text-lg">
-                Contrepartie : BNP Paribas · 100% actions US liquides
-              </p>
-            </ScrollReveal>
-            <ScrollReveal>
-              <GlassCard className="p-8">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  {collateral.map((c) => (
-                    <div key={c.sector} className="text-center">
-                      <p className="text-3xl font-serif font-semibold text-primary">
-                        <CountUp end={c.pct} suffix="%" />
-                      </p>
-                      <p className="text-sm text-muted-foreground mt-1">{c.sector}</p>
-                    </div>
-                  ))}
-                </div>
-              </GlassCard>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        {/* Live stats */}
-        <section className="py-14 md:py-10 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-                <em>Transparence en temps réel</em>
-              </h2>
-            </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              <GlassCard className="p-10 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Actifs sous gestion</p>
-                <p className="text-4xl font-serif font-semibold">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8">
+              <GlassCard className="p-8 text-center min-h-[160px] flex flex-col items-center justify-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Actifs sous gestion</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold leading-none">
                   €<CountUp end={424.35} decimals={2} suffix=" M" />
                 </p>
               </GlassCard>
-              <GlassCard className="p-10 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Rendement net actuel</p>
-                <p className="text-4xl font-serif font-semibold text-success">€STR + 0,30%</p>
-              </GlassCard>
-              <GlassCard className="p-10 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Intérêts générés</p>
-                <p className="text-4xl font-serif font-semibold">
+              <GlassCard className="p-8 text-center min-h-[160px] flex flex-col items-center justify-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Intérêts générés (cumul)</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold text-success leading-none">
                   €<CountUp end={47.2} decimals={1} suffix=" M" />
                 </p>
               </GlassCard>
+              <GlassCard className="p-8 text-center min-h-[160px] flex flex-col items-center justify-center">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Surperformance / €STR</p>
+                <p className="text-3xl md:text-[2.25rem] font-serif font-semibold text-success leading-none">
+                  +<CountUp end={54} decimals={0} suffix=" bps" />
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-3">Cumul 17 mois</p>
+              </GlassCard>
             </div>
+
+            <ScrollReveal delay={120}>
+              <GlassCard className="p-6 md:p-10">
+                <VelvetPerformanceChart />
+              </GlassCard>
+            </ScrollReveal>
+
+            <p className="text-[11px] text-muted-foreground text-center mt-6 max-w-3xl mx-auto leading-relaxed">
+              Les performances passées ne préjugent pas des performances futures. Données Velvet (Part I), nettes de frais.
+            </p>
           </div>
         </section>
 
-        {/* Performance */}
-        <section className="py-14 md:py-10 px-4 md:px-8">
+        {/* ===================== COLLATERAL DONUT ===================== */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-                <em>Performance</em>
-              </h2>
-              <GlassCard className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="text-xs uppercase tracking-wider">Période</TableHead>
-                      <TableHead className="text-xs uppercase tracking-wider">Velvet (Part I)</TableHead>
-                      <TableHead className="text-xs uppercase tracking-wider">€STR</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {performance.map((p) => (
-                      <TableRow key={p.period}>
-                        <TableCell className="font-medium">{p.period}</TableCell>
-                        <TableCell className="text-success font-semibold font-mono">{p.velvet}</TableCell>
-                        <TableCell className="font-mono text-muted-foreground">{p.estr}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+              <div className="text-center mb-12 max-w-2xl mx-auto">
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono mb-3">
+                  Composition
+                </p>
+                <h2 className="text-4xl md:text-5xl font-serif">
+                  <em>Le panier de collatéral</em>
+                </h2>
+                <p className="text-muted-foreground mt-4 text-lg">
+                  100 % actions internationales Tier-1, diversifiées par secteur.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={100}>
+              <GlassCard className="p-8 md:p-10">
+                <VelvetCollateralDonut />
               </GlassCard>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* Product characteristics */}
-        <section className="py-14 md:py-10 px-4 md:px-8">
+        {/* ===================== CHARACTERISTICS TABLE ===================== */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-                <em>Caractéristiques du produit</em>
+                <em>Caractéristiques du fonds</em>
               </h2>
               <GlassCard className="overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="text-xs uppercase tracking-wider min-w-[200px]">Caractéristique</TableHead>
+                      <TableHead className="text-xs uppercase tracking-wider min-w-[220px]">Caractéristique</TableHead>
                       <TableHead className="text-xs uppercase tracking-wider">Part I2 EUR</TableHead>
                       <TableHead className="text-xs uppercase tracking-wider">Part I3 EUR</TableHead>
                     </TableRow>
@@ -420,84 +399,91 @@ export default function VelvetPage() {
           </div>
         </section>
 
-        {/* Partners */}
-        <section className="py-14 md:py-10 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
+        {/* ===================== SECURITY ARCHITECTURE ===================== */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto space-y-10">
             <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-                <em>Partenaires institutionnels</em>
+              <h2 className="text-4xl md:text-5xl font-serif text-center mb-4">
+                <em>Architecture de sécurité</em>
               </h2>
+              <p className="text-center text-muted-foreground max-w-2xl mx-auto text-lg">
+                Cinq acteurs régulés, séparés et indépendants — vos fonds ne sont jamais au bilan
+                de LFIS ni de Quercus.
+              </p>
             </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  role: "Gérant",
-                  name: "LFIS Capital",
-                  desc: "Détenue par ses collaborateurs, agréée AMF GP13000004, > 5 Mds$ d'actifs, Paris & Montréal.",
-                },
-                {
-                  role: "Contrepartie & Dépositaire",
-                  name: "BNP Paribas SA",
-                  desc: "Notée Fitch AA- / Moody's A1 / S&P A+. Première banque de la zone euro.",
-                },
-                {
-                  role: "Auditeur",
-                  name: "PricewaterhouseCoopers",
-                  desc: "4 audits annuels. Contrôle indépendant des comptes et de la valorisation.",
-                },
-              ].map((p, i) => (
-                <ScrollReveal key={p.name} delay={i * 100}>
-                  <GlassCard className="p-8 h-full">
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">{p.role}</p>
-                    <h3 className="text-2xl font-serif font-semibold mb-4"><em>{p.name}</em></h3>
-                    <p className="text-muted-foreground leading-relaxed">{p.desc}</p>
-                  </GlassCard>
-                </ScrollReveal>
-              ))}
+
+            <ScrollReveal>
+              <VelvetSecurityArchitecture />
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ScrollReveal>
+                <GlassCard className="p-8 h-full" id="risk-detail">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+                    Indicateur de risque · SRI
+                  </p>
+                  <RiskScale
+                    level={1}
+                    label="Velvet est noté 1/7 sur l'échelle synthétique de risque (SRI). Aucun défaut depuis 2014."
+                  />
+                  <p className="text-[11px] text-muted-foreground mt-4 leading-relaxed">
+                    Le <em>Summary Risk Indicator</em> (SRI) est l'échelle réglementaire européenne
+                    de 1 (risque le plus faible) à 7 (risque le plus élevé), publiée dans le
+                    Document d'Information Clé (KID) de chaque fonds.
+                  </p>
+                </GlassCard>
+              </ScrollReveal>
+
+              <ScrollReveal>
+                <GlassCard className="p-8 h-full flex flex-col">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+                    Notation BNP Paribas
+                  </p>
+                  <div className="grid grid-cols-3 gap-4 text-center mb-6">
+                    <div>
+                      <p className="text-2xl font-serif font-semibold text-primary">AA-</p>
+                      <p className="text-[11px] text-muted-foreground mt-1">Fitch</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-serif font-semibold text-primary">A1</p>
+                      <p className="text-[11px] text-muted-foreground mt-1">Moody's</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-serif font-semibold text-primary">A+</p>
+                      <p className="text-[11px] text-muted-foreground mt-1">S&amp;P</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-3 text-sm flex-1">
+                    <li className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Structure</span>
+                      <span className="font-mono">FCP · UCITS</span>
+                    </li>
+                    <li className="flex justify-between border-b border-white/30 pb-2">
+                      <span className="text-muted-foreground">Gérant</span>
+                      <span className="font-mono">LFIS · GP13000004</span>
+                    </li>
+                    <li className="flex justify-between pb-2">
+                      <span className="text-muted-foreground">Auditeur</span>
+                      <span className="font-mono">PwC · trimestriel</span>
+                    </li>
+                  </ul>
+                  <a
+                    href="https://geco.amf-france.org/Bio/rech_opcvm.aspx"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                  >
+                    Vérifier l'agrément AMF n° FCP20230197
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </GlassCard>
+              </ScrollReveal>
             </div>
           </div>
         </section>
 
-        {/* Security pillars */}
-        <section className="py-14 md:py-10 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-                <em>Sécurité & Régulation</em>
-              </h2>
-            </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                {
-                  title: "Régulé & supervisé",
-                  desc: "Fonds UCITS agréé par l'AMF sous le n° FCP20230197. Gérant LFIS Capital agréé AMF sous le n° GP13000004.",
-                },
-                {
-                  title: "Conservation & transparence",
-                  desc: "Fonds détenus par BNP Paribas (dépositaire + administrateur). Jamais au bilan de LFIS.",
-                },
-                {
-                  title: "Partenaires institutionnels",
-                  desc: "LFIS Capital (gérant), BNP Paribas (contrepartie, dépositaire), PwC (auditeur statutaire, 4x/an).",
-                },
-                {
-                  title: "Risque minimal",
-                  desc: "Indicateur de risque 1/7 (le plus bas). Aucun défaut de la stratégie depuis sa création en 2014.",
-                },
-              ].map((p, i) => (
-                <ScrollReveal key={p.title} delay={i * 80}>
-                  <GlassCard className="p-8 h-full">
-                    <h3 className="text-xl font-serif font-semibold mb-3"><em>{p.title}</em></h3>
-                    <p className="text-muted-foreground leading-relaxed">{p.desc}</p>
-                  </GlassCard>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section className="py-14 md:py-10 px-4 md:px-8">
+        {/* ===================== FAQ ===================== */}
+        <section className="py-14 md:py-16 px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
@@ -521,15 +507,15 @@ export default function VelvetPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-20 md:py-14 md:py-10 px-4 md:px-8">
+        {/* ===================== CTA ===================== */}
+        <section className="py-20 md:py-16 px-4 md:px-8">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <h2 className="text-4xl md:text-5xl font-serif">
-                <em>Commencez à générer du rendement avec Velvet.</em>
+                <em>Faites travailler votre trésorerie chaque jour.</em>
               </h2>
               <p className="text-lg text-muted-foreground">
-                Vos fonds détenus par BNP Paribas. Rendement quotidien net de frais.
+                Vos fonds détenus par BNP Paribas. Rendement quotidien net de frais. Liquidité quotidienne.
               </p>
               <div className="flex items-center justify-center gap-4">
                 <Button size="lg" className="px-12 py-6 text-base btn-glow" asChild>
