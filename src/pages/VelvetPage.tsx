@@ -9,10 +9,9 @@ import { AdvisorThresholdSection } from "@/components/landing/AdvisorThresholdSe
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+import { Anchor, ExternalLink } from "lucide-react";
 import { RiskScale } from "@/components/landing/RiskScale";
 import { VelvetSecurityArchitecture } from "@/components/landing/VelvetSecurityArchitecture";
-import { VelvetMirrorSwap } from "@/components/landing/VelvetMirrorSwap";
 import { VelvetPerformanceChart } from "@/components/landing/VelvetPerformanceChart";
 import { VelvetCollateralDonut } from "@/components/landing/VelvetCollateralDonut";
 import velvetAnchorImg from "@/assets/velvet-anchor.jpg";
@@ -89,7 +88,12 @@ export default function VelvetPage() {
               <Badge variant="outline" className="text-sm px-4 py-1 font-mono tracking-wider">
                 FCP UCITS · AMF n° FCP20230197
               </Badge>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-semibold leading-[1.1]">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-semibold leading-[1.1] flex items-center justify-center gap-4">
+                <Anchor
+                  className="hidden md:block h-10 w-10 text-primary/40"
+                  strokeWidth={1.2}
+                  aria-hidden
+                />
                 <em>La puissance institutionnelle pour votre trésorerie au quotidien.</em>
               </h1>
               <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
@@ -155,8 +159,8 @@ export default function VelvetPage() {
         {/* ===================== MIRROR SWAP — 2 col layout ===================== */}
         <section className="py-14 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <ScrollReveal className="lg:col-span-7">
+            <div className="max-w-4xl mx-auto">
+              <ScrollReveal>
                 <div className="space-y-6">
                   <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono">
                     Mécanisme · Mirror Swap
@@ -205,12 +209,6 @@ export default function VelvetPage() {
                     contractuellement par BNP Paribas.
                   </p>
                 </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={120} className="lg:col-span-5">
-                <GlassCard className="p-6 md:p-8 h-full">
-                  <VelvetMirrorSwap />
-                </GlassCard>
               </ScrollReveal>
             </div>
           </div>
