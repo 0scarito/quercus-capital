@@ -8,10 +8,11 @@ import { AdvisorThresholdSection } from "@/components/landing/AdvisorThresholdSe
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, ArrowDownUp, Lock, Leaf, ExternalLink } from "lucide-react";
+import { Leaf, ExternalLink } from "lucide-react";
 import { RiskScale } from "@/components/landing/RiskScale";
-import { CMEPremiumChart } from "@/components/landing/CMEPremiumChart";
 import { SecurityArchitecture } from "@/components/landing/SecurityArchitecture";
+import { CashAndCarryDiagram } from "@/components/landing/CashAndCarryDiagram";
+import { BasisConvergenceChart } from "@/components/landing/BasisConvergenceChart";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -97,16 +98,32 @@ export default function TobamPage() {
         {/* Hero */}
         <section className="py-20 md:py-28 px-4 md:px-8">
           <ScrollReveal>
-            <div className="max-w-6xl mx-auto text-center space-y-8">
+            <div className="max-w-5xl mx-auto text-center space-y-8">
               <Badge variant="outline" className="text-sm px-4 py-1 font-mono tracking-wider">
                 FIA · Fonds Professionnel Spécialisé
               </Badge>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-semibold leading-tight">
-                <em>TOBAM Crypto<br />Liquidity Fund</em>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-semibold leading-[1.1]">
+                <em>Captez des rendements élevés<br className="hidden md:block" /> sur les marchés crypto.</em>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Captez des rendements élevés sur les marchés crypto — sans aucune exposition au prix des crypto-actifs.
+              <p className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
+                <span>sans</span>
+                <span
+                  className="font-mono font-semibold tracking-[0.18em] px-3 py-1 rounded-full text-sm md:text-base"
+                  style={{
+                    background: "hsl(var(--success))",
+                    color: "hsl(var(--background))",
+                    boxShadow: "0 0 24px hsl(var(--success) / 0.4)",
+                  }}
+                >
+                  AUCUNE
+                </span>
+                <span>exposition au prix des crypto-actifs.</span>
               </p>
+              <div className="flex justify-center pt-2">
+                <Button asChild size="lg" className="px-10 py-6 text-base btn-glow">
+                  <Link to="/open-account">Commencer à investir</Link>
+                </Button>
+              </div>
             </div>
           </ScrollReveal>
         </section>
@@ -115,161 +132,203 @@ export default function TobamPage() {
         <section className="pb-12 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {/* Rendement cible — EUR + USD */}
               <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Rendement cible net (EUR)</p>
-                <p className="text-4xl font-serif font-semibold text-success">~7–8% p.a.</p>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">Rendement cible net</p>
+                <div className="grid grid-cols-2 gap-2 pt-2">
+                  <div className="flex flex-col items-center border-r border-white/30 pr-2">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">EUR</span>
+                    <span className="text-2xl md:text-3xl font-serif font-semibold text-success leading-tight">~7–8 %</span>
+                  </div>
+                  <div className="flex flex-col items-center pl-2">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">USD</span>
+                    <span className="text-2xl md:text-3xl font-serif font-semibold text-success leading-tight">~9–10 %</span>
+                  </div>
+                </div>
+                <p className="text-[10px] text-muted-foreground pt-1">p.a. · net de frais</p>
               </GlassCard>
-              <GlassCard className="p-8 text-center space-y-2">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Niveau de risque</p>
-                <p className="text-4xl font-serif font-semibold">Faible</p>
-                <p className="text-xs text-muted-foreground">Vol. 2-3% · Max DD &lt; -4%</p>
-              </GlassCard>
+
+              {/* Liquidité quotidienne */}
               <GlassCard className="p-8 text-center space-y-2">
                 <p className="text-xs uppercase tracking-widest text-muted-foreground">Liquidité</p>
                 <p className="text-4xl font-serif font-semibold">Quotidienne</p>
-                <p className="text-xs text-muted-foreground">Règlement D+1</p>
+                <p className="text-xs text-muted-foreground">Retrait en 24h · Règlement D+1</p>
               </GlassCard>
+
+              {/* 0 Exposition crypto */}
               <GlassCard className="p-8 text-center space-y-2">
                 <p className="text-xs uppercase tracking-widest text-muted-foreground">Exposition crypto</p>
-                <p className="text-4xl font-serif font-semibold text-success">0%</p>
-                <p className="text-xs text-muted-foreground">Entièrement couvert</p>
+                <p className="text-4xl font-serif font-semibold text-success">0 %</p>
+                <p className="text-xs text-muted-foreground">Position entièrement couverte</p>
+              </GlassCard>
+
+              {/* Niveau de risque 2/7 */}
+              <GlassCard className="p-8 text-center space-y-2">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">Niveau de risque</p>
+                <p className="text-4xl font-serif font-semibold">
+                  2<span className="text-muted-foreground/60 text-2xl">/7</span>
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  SRRI / SRI
+                  <a
+                    href="#risk-detail"
+                    className="text-success hover:underline ml-0.5"
+                    aria-label="Plus d'information sur l'indicateur de risque"
+                  >
+                    *
+                  </a>
+                </p>
               </GlassCard>
             </div>
           </div>
         </section>
 
-        {/* What is Cash & Carry */}
-        <section className="py-14 md:py-16 px-4 md:px-8">
+        {/* What is Cash & Carry — 2 columns layout */}
+        <section className="py-14 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
-                <em>Qu'est-ce que le Cash & Carry ?</em>
-              </h2>
-              <p className="text-center text-muted-foreground mb-16 max-w-3xl mx-auto text-lg">
-                Une stratégie d'arbitrage non-directionnelle qui capture la prime des futures crypto.
-              </p>
-            </ScrollReveal>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Colonne gauche — texte pédagogique */}
+              <ScrollReveal>
+                <div className="space-y-6">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
+                    <em>L'art de l'arbitrage : générer du rendement sans subir la volatilité.</em>
+                  </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  step: "01",
-                  title: "Achat de Bitcoin via ETF (long spot)",
-                  desc: "Acquérir une exposition au Bitcoin via un ETF régulé coté sur le NASDAQ. Aucune détention directe de crypto, aucun risque de piratage.",
-                  icon: TrendingUp,
-                },
-                {
-                  step: "02",
-                  title: "Vente simultanée de futures (short CME)",
-                  desc: "Vendre des contrats futures Bitcoin sur le CME expirant dans environ un mois à un prix supérieur au spot. Le CME est une bourse régulée avec mécanisme de clearing.",
-                  icon: ArrowDownUp,
-                },
-                {
-                  step: "03",
-                  title: "Capturer le spread (le « basis »)",
-                  desc: "Conserver les deux positions jusqu'à l'expiration. La différence entre le prix du futures et le prix spot constitue votre rendement. La position est non-directionnelle — si Bitcoin monte ou baisse, les deux jambes bougent ensemble.",
-                  icon: Lock,
-                },
-              ].map((s, i) => (
-                <ScrollReveal key={s.step} delay={i * 120}>
-                  <GlassCard className="p-8 h-full">
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="text-5xl font-serif font-semibold text-primary/20">{s.step}</span>
-                      <s.icon className="h-6 w-6 text-primary" />
+                  <p className="text-muted-foreground leading-relaxed">
+                    Le mécanisme de <em>« Cash and Carry »</em> (ou arbitrage de base) exploite
+                    une anomalie structurelle du marché crypto : les contrats Futures (prix
+                    futur) s'échangent presque toujours à un prix plus élevé que le Spot
+                    (prix actuel).
+                  </p>
+
+                  <p className="text-muted-foreground leading-relaxed">
+                    Chez Quercus, via le fonds TOBAM, nous capturons cet écart de prix de
+                    manière mathématique et sécurisée :
+                  </p>
+
+                  <div className="space-y-4 pl-1 border-l border-primary/30 pl-5">
+                    <div>
+                      <h3 className="font-serif italic text-base mb-1">L'Achat (Long Spot).</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Nous achetons du Bitcoin via des ETF régulés au NASDAQ.
+                      </p>
                     </div>
-                    <h3 className="text-xl font-serif font-semibold mb-4"><em>{s.title}</em></h3>
-                    <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
-                  </GlassCard>
-                </ScrollReveal>
-              ))}
+                    <div>
+                      <h3 className="font-serif italic text-base mb-1">La Vente (Short Future).</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Simultanément, nous vendons un contrat futur sur le CME (Chicago
+                        Mercantile Exchange) pour une échéance à un mois.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-serif italic text-base mb-1">Le Profit (Le Contango).</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        En verrouillant ces deux positions, nous annulons totalement
+                        l'exposition au prix du Bitcoin. Que le marché monte ou baisse, nous
+                        empochons la différence (la prime) qui converge vers zéro à
+                        l'échéance.
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="text-foreground/90 leading-relaxed pt-2">
+                    <span className="font-serif italic">Le résultat : </span>
+                    une performance décorrélée, une volatilité minimale et aucune exposition
+                    aux fluctuations de prix du marché crypto.
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              {/* Colonne droite — diagramme interactif */}
+              <ScrollReveal delay={120}>
+                <GlassCard className="p-6 md:p-8 h-full">
+                  <CashAndCarryDiagram />
+                </GlassCard>
+              </ScrollReveal>
             </div>
           </div>
         </section>
 
-        {/* Why crypto */}
-        <section className="py-14 md:py-16 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-4xl md:text-5xl font-serif text-center mb-14">
-                <em>Pourquoi les crypto-futures ?</em>
-              </h2>
-            </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { stat: "~8%", label: "Prime annualisée historique des futures BTC CME depuis 2017" },
-                { stat: "76%", label: "Du temps, la prime est restée au-dessus de 3% sur 5 ans" },
-                { stat: "6×", label: "Capitalisation du Bitcoin vs Ethereum" },
-                { stat: "$16 Mds", label: "Volume mensuel de futures BTC sur le CME" },
-              ].map((item, i) => (
-                <ScrollReveal key={i} delay={i * 80}>
-                  <GlassCard className="p-8 text-center h-full">
-                    <p className="text-4xl font-serif font-semibold text-success mb-3">{item.stat}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.label}</p>
-                  </GlassCard>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Worked example + CME chart */}
-        <section className="py-14 md:py-16 px-4 md:px-8">
+        {/* Le basis trade en chiffres — exemple + animation de convergence */}
+        <section className="py-14 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto space-y-10">
             <ScrollReveal>
               <h2 className="text-4xl md:text-5xl font-serif text-center mb-4">
                 <em>Le basis trade en chiffres</em>
               </h2>
               <p className="text-center text-muted-foreground max-w-2xl mx-auto text-lg">
-                Un exemple concret + 5 ans de prime CME observée.
+                Un exemple chiffré à 1 mois et la convergence Spot ↔ Future à l'échéance.
               </p>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
               <ScrollReveal>
-                <GlassCard className="p-8 h-full space-y-5">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">Exemple à 1 mois</p>
-                  <h3 className="text-2xl font-serif">
-                    <em>Bitcoin spot vs futures CME</em>
+                <GlassCard className="p-8 h-full lg:col-span-2 flex flex-col">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground">Exemple à 1 mois</p>
+                    <span
+                      className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border"
+                      style={{
+                        borderColor: "hsl(var(--primary) / 0.4)",
+                        color: "hsl(var(--primary))",
+                      }}
+                    >
+                      BTC · CME
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-serif mb-5">
+                    <em>Bitcoin spot vs futures</em>
                   </h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex justify-between border-b border-white/30 pb-2">
-                      <span className="text-muted-foreground">BTC spot (long ETF)</span>
-                      <span className="font-mono">$ 109 042</span>
+
+                  <div className="grid grid-cols-2 gap-3 mb-5">
+                    <div className="border border-white/30 p-4">
+                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Long Spot</p>
+                      <p className="font-mono text-lg">$ 109 042</p>
+                      <p className="text-[10px] text-muted-foreground mt-1">via ETF NASDAQ</p>
                     </div>
-                    <div className="flex justify-between border-b border-white/30 pb-2">
-                      <span className="text-muted-foreground">BTC futures CME (short, 1 mois)</span>
-                      <span className="font-mono">$ 109 920</span>
+                    <div className="border border-white/30 p-4">
+                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Short Future</p>
+                      <p className="font-mono text-lg">$ 109 920</p>
+                      <p className="text-[10px] text-muted-foreground mt-1">CME · 1 mois</p>
                     </div>
-                    <div className="flex justify-between border-b border-white/30 pb-2">
+                  </div>
+
+                  <div className="space-y-3 text-sm flex-1">
+                    <div className="flex justify-between items-baseline border-b border-white/30 pb-2">
                       <span className="text-muted-foreground">Spread capturé</span>
                       <span className="font-mono text-success">+ $ 878</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/30 pb-2">
+                    <div className="flex justify-between items-baseline border-b border-white/30 pb-2">
                       <span className="text-muted-foreground">Rendement mensuel</span>
                       <span className="font-mono text-success">≈ 0,80 %</span>
                     </div>
-                    <div className="flex justify-between pt-2">
-                      <span className="font-semibold">Annualisé (composé)</span>
-                      <span className="font-mono text-success font-semibold">≈ 10,0 %</span>
+                    <div className="flex justify-between items-baseline pt-2">
+                      <span className="font-serif italic text-base">Annualisé (composé)</span>
+                      <span className="font-mono text-success font-semibold text-lg">≈ 10,0 %</span>
                     </div>
                   </div>
-                  <p className="text-[11px] text-muted-foreground pt-2 border-t border-white/30">
-                    Position non-directionnelle. Si BTC monte ou baisse, les deux jambes bougent ensemble — seul le spread est capté.
+
+                  <p className="text-[11px] text-muted-foreground pt-4 mt-4 border-t border-white/30 leading-relaxed">
+                    Position non-directionnelle. Si BTC monte ou baisse, les deux jambes
+                    bougent ensemble — seul le spread est capté.
                   </p>
                 </GlassCard>
               </ScrollReveal>
 
-              <ScrollReveal>
-                <GlassCard className="p-6 md:p-8 h-full flex flex-col">
-                  <div className="flex items-baseline justify-between mb-3">
+              <ScrollReveal delay={120}>
+                <GlassCard className="p-6 md:p-8 h-full lg:col-span-3 flex flex-col">
+                  <div className="flex items-baseline justify-between mb-4">
                     <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                      Prime CME futures BTC · 5 ans
+                      Convergence Spot ↔ Future
                     </p>
-                    <p className="text-[11px] text-muted-foreground">Annualisée, mensuelle</p>
+                    <p className="text-[11px] text-muted-foreground font-mono">T0 → T+1M</p>
                   </div>
-                  <CMEPremiumChart />
-                  <p className="text-[11px] text-muted-foreground mt-3 leading-relaxed">
-                    Moyenne sur 5 ans : ~8 % p.a. — la prime est restée au-dessus de 3 % pendant 76 % du temps.
+                  <div className="flex-1 flex items-center">
+                    <BasisConvergenceChart />
+                  </div>
+                  <p className="text-[11px] text-muted-foreground mt-4 leading-relaxed border-t border-white/30 pt-3">
+                    Moyenne sur 5 ans : <span className="font-mono text-foreground">~8 % p.a.</span> —
+                    la prime est restée au-dessus de 3 % pendant <span className="font-mono text-foreground">76 %</span> du temps.
                   </p>
                 </GlassCard>
               </ScrollReveal>
@@ -426,12 +485,19 @@ export default function TobamPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <ScrollReveal>
-                <GlassCard className="p-8 h-full">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Indicateur de risque</p>
+                <GlassCard className="p-8 h-full" id="risk-detail">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+                    Indicateur de risque · SRRI / SRI
+                  </p>
                   <RiskScale
                     level={2}
                     label="Stratégie non-directionnelle. Volatilité hebdomadaire ~5 %, max drawdown trimestriel 0 % sur le backtest 2019–2024."
                   />
+                  <p className="text-[11px] text-muted-foreground mt-4 leading-relaxed">
+                    Le <em>Summary Risk Indicator</em> (SRI / SRRI) est l'échelle réglementaire
+                    européenne de 1 (risque le plus faible) à 7 (risque le plus élevé), publiée
+                    dans le Document d'Information Clé (KID) de chaque fonds.
+                  </p>
                 </GlassCard>
               </ScrollReveal>
 
