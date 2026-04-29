@@ -169,52 +169,63 @@ export default function TobamPage() {
         {/* What is Cash & Carry — 2 columns layout */}
         <section className="py-14 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               {/* Colonne gauche — texte pédagogique */}
-              <ScrollReveal>
+              <ScrollReveal className="lg:col-span-7">
                 <div className="space-y-6">
+                  <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono">
+                    Mécanisme · Cash &amp; Carry
+                  </p>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
                     <em>L'art de l'arbitrage : générer du rendement sans subir la volatilité.</em>
                   </h2>
 
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                     Le mécanisme de <em>« Cash and Carry »</em> (ou arbitrage de base) exploite
                     une anomalie structurelle du marché crypto : les contrats Futures (prix
                     futur) s'échangent presque toujours à un prix plus élevé que le Spot
                     (prix actuel).
                   </p>
 
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                     Chez Quercus, via le fonds TOBAM, nous capturons cet écart de prix de
                     manière mathématique et sécurisée :
                   </p>
 
-                  <div className="space-y-4 pl-1 border-l border-primary/30 pl-5">
-                    <div>
-                      <h3 className="font-serif italic text-base mb-1">L'Achat (Long Spot).</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Nous achetons du Bitcoin via des ETF régulés au NASDAQ.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="font-serif italic text-base mb-1">La Vente (Short Future).</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Simultanément, nous vendons un contrat futur sur le CME (Chicago
-                        Mercantile Exchange) pour une échéance à un mois.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="font-serif italic text-base mb-1">Le Profit (Le Contango).</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        En verrouillant ces deux positions, nous annulons totalement
-                        l'exposition au prix du Bitcoin. Que le marché monte ou baisse, nous
-                        empochons la différence (la prime) qui converge vers zéro à
-                        l'échéance.
-                      </p>
-                    </div>
-                  </div>
+                  <ol className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                    {[
+                      {
+                        n: "01",
+                        t: "L'Achat (Long Spot)",
+                        d: "Nous achetons du Bitcoin via des ETF régulés au NASDAQ.",
+                      },
+                      {
+                        n: "02",
+                        t: "La Vente (Short Future)",
+                        d: "Simultanément, nous vendons un contrat futur sur le CME pour une échéance à un mois.",
+                      },
+                      {
+                        n: "03",
+                        t: "Le Profit (Contango)",
+                        d: "En verrouillant ces positions, nous annulons l'exposition au prix du BTC et empochons la prime qui converge vers zéro.",
+                      },
+                    ].map((s) => (
+                      <li
+                        key={s.n}
+                        className="border-l border-primary/30 pl-4 py-1"
+                      >
+                        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary/70">
+                          Étape {s.n}
+                        </span>
+                        <h3 className="font-serif italic text-base mt-1 mb-1">{s.t}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {s.d}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
 
-                  <p className="text-foreground/90 leading-relaxed pt-2">
+                  <p className="text-foreground/90 leading-relaxed pt-2 text-base md:text-lg">
                     <span className="font-serif italic">Le résultat : </span>
                     une performance décorrélée, une volatilité minimale et aucune exposition
                     aux fluctuations de prix du marché crypto.
@@ -223,7 +234,7 @@ export default function TobamPage() {
               </ScrollReveal>
 
               {/* Colonne droite — diagramme interactif */}
-              <ScrollReveal delay={120}>
+              <ScrollReveal delay={120} className="lg:col-span-5">
                 <GlassCard className="p-6 md:p-8 h-full">
                   <CashAndCarryDiagram />
                 </GlassCard>
