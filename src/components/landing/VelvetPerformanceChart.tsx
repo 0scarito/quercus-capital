@@ -10,6 +10,7 @@ import {
   Area,
   ComposedChart,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 
 /**
  * "The Stability Line" — cumulative net performance of Velvet vs €STR.
@@ -40,19 +41,20 @@ const C_VELVET = "#15803D"; // forêt
 const C_ESTR = "hsl(var(--muted-foreground))";
 
 export function VelvetPerformanceChart() {
+  const { t } = useTranslation("landing");
   return (
     <div className="w-full">
       <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            Performance nette cumulée
+            {t("perfChart.eyebrow")}
           </p>
           <h3 className="font-serif text-xl mt-1">
-            <em>La ligne de confiance</em>
+            <em>{t("perfChart.title")}</em>
           </h3>
         </div>
         <p className="text-[11px] text-muted-foreground font-mono">
-          Janv. 2024 → Mai 2025 · base 100
+          {t("perfChart.range")}
         </p>
       </div>
 
@@ -102,7 +104,7 @@ export function VelvetPerformanceChart() {
             <Line
               type="monotone"
               dataKey="velvet"
-              name="Velvet (net)"
+              name={t("perfChart.velvet")}
               stroke={C_VELVET}
               strokeWidth={2.5}
               dot={false}
@@ -111,7 +113,7 @@ export function VelvetPerformanceChart() {
             <Line
               type="monotone"
               dataKey="estr"
-              name="€STR capitalisé"
+              name={t("perfChart.estr")}
               stroke={C_ESTR}
               strokeWidth={1.5}
               strokeDasharray="4 4"
@@ -123,24 +125,24 @@ export function VelvetPerformanceChart() {
 
       <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/30">
         <div>
-          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">2024</p>
+          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">{t("perfChart.y2024")}</p>
           <p className="font-serif text-lg mt-1">
             <span className="text-success font-semibold">4,01 %</span>
-            <span className="text-muted-foreground text-xs ml-2">vs 3,73 %</span>
+            <span className="text-muted-foreground text-xs ml-2">{t("perfChart.vs")} 3,73 %</span>
           </p>
         </div>
         <div>
-          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">YTD 2025</p>
+          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">{t("perfChart.ytd2025")}</p>
           <p className="font-serif text-lg mt-1">
             <span className="text-success font-semibold">1,31 %</span>
-            <span className="text-muted-foreground text-xs ml-2">vs 1,07 %</span>
+            <span className="text-muted-foreground text-xs ml-2">{t("perfChart.vs")} 1,07 %</span>
           </p>
         </div>
         <div>
-          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Cumulé 17 mois</p>
+          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">{t("perfChart.cumulative")}</p>
           <p className="font-serif text-lg mt-1">
             <span className="text-success font-semibold">5,38 %</span>
-            <span className="text-muted-foreground text-xs ml-2">vs 4,84 %</span>
+            <span className="text-muted-foreground text-xs ml-2">{t("perfChart.vs")} 4,84 %</span>
           </p>
         </div>
       </div>

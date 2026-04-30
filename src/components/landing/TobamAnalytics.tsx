@@ -4,6 +4,7 @@ import {
   ReferenceDot,
 } from "recharts";
 import { GlassCard } from "@/components/landing/GlassCard";
+import { useTranslation } from "react-i18next";
 
 // Backtest TOBAM — données mensuelles réelles (CSV fourni, Janv 2020 → Déc 2024)
 // Orange = Strategy, Bleu = Short Term IG Credit, Vert = Cash
@@ -95,14 +96,6 @@ const yieldSeries: { date: string; yield: number }[] = (() => {
 
 const AVG_YIELD = 8;
 
-const keyStats = [
-  { label: "Prime moyenne 5 ans", value: "8 %" },
-  { label: "Temps avec prime > 3 %", value: "76 %" },
-  { label: "Prime au 31 mars 2025", value: "5 %" },
-  { label: "Durée max prime < 0 %", value: "43 jours" },
-  { label: "Temps avec prime > 10 %", value: "37 %" },
-];
-
 const TEAL = "hsl(var(--primary))";
 const SUCCESS = "hsl(var(--success))";
 const MUTED = "hsl(var(--muted-foreground))";
@@ -123,6 +116,14 @@ const tooltipStyle: React.CSSProperties = {
 };
 
 export function TobamAnalytics() {
+  const { t } = useTranslation("landing");
+  const keyStats = [
+    { label: t("tobamAnalytics.stat1"), value: "8 %" },
+    { label: t("tobamAnalytics.stat2"), value: "76 %" },
+    { label: t("tobamAnalytics.stat3"), value: "5 %" },
+    { label: t("tobamAnalytics.stat4"), value: t("tobamAnalytics.stat4Value") },
+    { label: t("tobamAnalytics.stat5"), value: "37 %" },
+  ];
   return (
     <div className="space-y-8">
       {/* Key Stats — cartes chiffres */}
@@ -145,10 +146,10 @@ export function TobamAnalytics() {
         <GlassCard className="p-6 md:p-8 h-[460px] flex flex-col">
           <div className="mb-4">
             <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-mono">
-              CME Bitcoin Carry · Leveraged strategy
+              {t("tobamAnalytics.carryEyebrow")}
             </p>
             <h3 className="text-xl font-serif mt-1">
-              <em>Stratégie simulée CME Future / NASDAQ BTC ETF</em>
+              <em>{t("tobamAnalytics.carryTitle")}</em>
             </h3>
           </div>
           <div className="flex-1">
@@ -174,12 +175,12 @@ export function TobamAnalytics() {
                 <Tooltip
                   contentStyle={tooltipStyle}
                   formatter={(v: number) => v.toFixed(3)}
-                  labelFormatter={(v: string) => `Mois · ${v}`}
+                  labelFormatter={(v: string) => `${t("tobamAnalytics.monthLabel")} · ${v}`}
                 />
                 <Legend verticalAlign="bottom" height={28} iconType="plainline" wrapperStyle={{ fontSize: 11, fontFamily: "var(--font-mono)" }} />
-                <Line type="monotone" dataKey="strategy" name="Strategy" stroke={C_STRATEGY} strokeWidth={2.4} dot={false} connectNulls />
-                <Line type="monotone" dataKey="credit" name="Short Term IG Credit" stroke={C_CREDIT} strokeWidth={1.8} dot={false} connectNulls />
-                <Line type="monotone" dataKey="cash" name="Cash" stroke={C_CASH} strokeWidth={1.8} dot={false} connectNulls />
+                <Line type="monotone" dataKey="strategy" name={t("tobamAnalytics.strategy")} stroke={C_STRATEGY} strokeWidth={2.4} dot={false} connectNulls />
+                <Line type="monotone" dataKey="credit" name={t("tobamAnalytics.credit")} stroke={C_CREDIT} strokeWidth={1.8} dot={false} connectNulls />
+                <Line type="monotone" dataKey="cash" name={t("tobamAnalytics.cash")} stroke={C_CASH} strokeWidth={1.8} dot={false} connectNulls />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -189,10 +190,10 @@ export function TobamAnalytics() {
         <GlassCard className="p-6 md:p-8 h-[460px] flex flex-col">
           <div className="mb-4">
             <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-mono">
-              Annualized implicit funding yield
+              {t("tobamAnalytics.yieldEyebrow")}
             </p>
             <h3 className="text-xl font-serif mt-1">
-              <em>Stratégie — futures roulés à 1 mois</em>
+              <em>{t("tobamAnalytics.yieldTitle")}</em>
             </h3>
           </div>
           <div className="flex-1">
@@ -216,14 +217,14 @@ export function TobamAnalytics() {
                 />
                 <Tooltip
                   contentStyle={tooltipStyle}
-                  formatter={(v: number) => [`${v.toFixed(1)} %`, "Yield"]}
+                  formatter={(v: number) => [`${v.toFixed(1)} %`, t("tobamAnalytics.yieldLabel")]}
                 />
                 <ReferenceLine
                   y={AVG_YIELD}
                   stroke={ACCENT}
                   strokeDasharray="5 5"
                   strokeWidth={1.5}
-                  label={{ value: "Moyenne · 8 %", position: "insideTopLeft", fill: ACCENT, fontSize: 10, fontFamily: "var(--font-mono)" }}
+                  label={{ value: t("tobamAnalytics.averageLabel"), position: "insideTopLeft", fill: ACCENT, fontSize: 10, fontFamily: "var(--font-mono)" }}
                 />
                 <ReferenceLine
                   y={0}
@@ -233,13 +234,13 @@ export function TobamAnalytics() {
                 />
                 <Line type="monotone" dataKey="yield" stroke={TEAL} strokeWidth={1.2} dot={false} />
                 <ReferenceDot x="Mars-25" y={5} r={5} fill={SUCCESS} stroke={TEAL} strokeWidth={1.5}
-                  label={{ value: "Mars 25 · 5 %", position: "right", fill: TEAL, fontSize: 11, fontFamily: "var(--font-mono)", offset: 8 }}
+                  label={{ value: t("tobamAnalytics.march25Label"), position: "right", fill: TEAL, fontSize: 11, fontFamily: "var(--font-mono)", offset: 8 }}
                 />
               </LineChart>
             </ResponsiveContainer>
           </div>
           <p className="text-[10px] italic text-muted-foreground mt-2">
-            * Rendement courant fluctuant entre 6 % et 13 %. La stratégie ne prend position que si le basis &gt; cash + 2 %.
+            {t("tobamAnalytics.footnote")}
           </p>
         </GlassCard>
       </div>

@@ -10,36 +10,24 @@ import { Calendar, Compass, ShieldCheck, Users } from "lucide-react";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useTranslation } from "react-i18next";
 
-const metrics = [
-  { label: "Devises", value: "Multi-devises" },
-  { label: "Liquidité", value: "Variable" },
-  { label: "Frais", value: "Sur devis" },
-  { label: "Risque", value: "Adapté à votre profil" },
-];
-
-const steps = [
-  { icon: Calendar, title: "Prenez rendez-vous", desc: "Échange initial avec votre conseiller pour cerner vos objectifs et votre horizon." },
-  { icon: Compass, title: "Co-construction de l'allocation", desc: "Votre CGP propose une allocation sur-mesure : monétaire, obligataire, actions, alternatifs." },
-  { icon: ShieldCheck, title: "Mise en place et suivi", desc: "Souscriptions exécutées via nos partenaires régulés. Reporting régulier et points trimestriels." },
-];
-
-const faq = [
-  {
-    q: "À qui s'adresse le Portefeuille Conseillé ?",
-    a: "Aux clients souhaitant une allocation patrimoniale sur-mesure, au-delà du simple placement de trésorerie. Ticket d'entrée et frais sont définis avec votre conseiller.",
-  },
-  {
-    q: "Quel est mon rôle dans la gestion ?",
-    a: "Vous restez décisionnaire. Votre CGP vous propose des arbitrages que vous validez. Aucune opération n'est effectuée sans votre accord.",
-  },
-  {
-    q: "Quelle est la régulation applicable ?",
-    a: "Quercus Capital intervient en qualité de Conseiller en Investissements Financiers (CIF) enregistré ORIAS n° 24004789, et de CGP membre de la CNCEF, sous supervision de l'AMF.",
-  },
-];
+const STEP_ICONS = [Calendar, Compass, ShieldCheck];
 
 export default function PortefeuilleConseillePage() {
+  const { t } = useTranslation("products");
+  const metrics = [
+    { label: t("portefeuille.metrics.currencies"), value: t("portefeuille.metrics.currenciesValue") },
+    { label: t("portefeuille.metrics.liquidity"), value: t("portefeuille.metrics.liquidityValue") },
+    { label: t("portefeuille.metrics.fees"), value: t("portefeuille.metrics.feesValue") },
+    { label: t("portefeuille.metrics.risk"), value: t("portefeuille.metrics.riskValue") },
+  ];
+  const steps = [1, 2, 3].map((n, i) => ({
+    icon: STEP_ICONS[i],
+    title: t(`portefeuille.steps.s${n}Title`),
+    desc: t(`portefeuille.steps.s${n}Desc`),
+  }));
+  const faqItems = (t("portefeuille.faq", { returnObjects: true }) as Array<{ q: string; a: string }>) || [];
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <FloatingBlobs />
@@ -49,21 +37,20 @@ export default function PortefeuilleConseillePage() {
           <ScrollReveal>
             <div className="max-w-5xl mx-auto text-center space-y-8">
               <Badge variant="outline" className="text-sm px-4 py-1 font-mono tracking-wider">
-                CGP · Allocation sur-mesure · CIF ORIAS 24004789
+                {t("portefeuille.badge")}
               </Badge>
               <h1 className="text-5xl md:text-7xl font-serif font-semibold leading-tight">
-                <em>Portefeuille Conseillé</em>
+                <em>{t("portefeuille.title")}</em>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Une allocation patrimoniale construite avec votre Conseiller en Gestion de Patrimoine,
-                adaptée à votre profil de risque, votre horizon et vos objectifs.
+                {t("portefeuille.subtitle")}
               </p>
               <div className="flex items-center justify-center gap-4 pt-4 flex-wrap">
                 <Button size="lg" className="px-10 btn-glow" asChild>
-                  <Link to="/contact">Prendre rendez-vous</Link>
+                  <Link to="/contact">{t("portefeuille.ctaBook")}</Link>
                 </Button>
                 <Button size="lg" variant="outline" className="px-10" asChild>
-                  <Link to="/products">Voir tous les produits</Link>
+                  <Link to="/products">{t("portefeuille.ctaProducts")}</Link>
                 </Button>
               </div>
             </div>
@@ -84,12 +71,10 @@ export default function PortefeuilleConseillePage() {
         <section className="py-14 px-4 md:px-8">
           <div className="max-w-5xl mx-auto space-y-6">
             <ScrollReveal>
-              <h2 className="text-3xl md:text-4xl font-serif text-center mb-4"><em>Une approche patrimoniale globale</em></h2>
+              <h2 className="text-3xl md:text-4xl font-serif text-center mb-4"><em>{t("portefeuille.approachTitle")}</em></h2>
             </ScrollReveal>
             <p className="text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto text-center">
-              Au-delà des fonds monétaires Smart Cash et Cash &amp; Carry, votre conseiller peut vous proposer
-              une allocation sur-mesure intégrant obligations, actions, fonds alternatifs et diversification
-              géographique. Chaque proposition est documentée, justifiée et adaptée à votre profil MIF.
+              {t("portefeuille.approachBody")}
             </p>
           </div>
         </section>
@@ -97,14 +82,14 @@ export default function PortefeuilleConseillePage() {
         <section className="py-14 px-4 md:px-8">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-3xl md:text-4xl font-serif text-center mb-12"><em>Comment investir</em></h2>
+              <h2 className="text-3xl md:text-4xl font-serif text-center mb-12"><em>{t("portefeuille.stepsTitle")}</em></h2>
             </ScrollReveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {steps.map((s, i) => (
                 <ScrollReveal key={s.title} delay={i * 100}>
                   <GlassCard className="p-8 h-full">
                     <s.icon className="h-6 w-6 text-primary mb-4" />
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Étape {i + 1}</p>
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">{t("common.stepLabel", { n: i + 1 })}</p>
                     <h3 className="text-xl font-serif font-semibold mb-3"><em>{s.title}</em></h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">{s.desc}</p>
                   </GlassCard>
@@ -113,7 +98,7 @@ export default function PortefeuilleConseillePage() {
             </div>
             <div className="text-center mt-10">
               <Button size="lg" className="px-12 btn-glow" asChild>
-                <Link to="/contact">Prendre rendez-vous</Link>
+                <Link to="/contact">{t("common.bookMeeting")}</Link>
               </Button>
             </div>
           </div>
@@ -122,10 +107,10 @@ export default function PortefeuilleConseillePage() {
         <section className="py-14 px-4 md:px-8">
           <div className="max-w-3xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-3xl md:text-4xl font-serif text-center mb-10"><em>Questions fréquentes</em></h2>
+              <h2 className="text-3xl md:text-4xl font-serif text-center mb-10"><em>{t("portefeuille.faqTitle")}</em></h2>
               <GlassCard className="p-8">
                 <Accordion type="single" collapsible className="w-full">
-                  {faq.map((item, i) => (
+                  {faqItems.map((item, i) => (
                     <AccordionItem key={i} value={`faq-${i}`}>
                       <AccordionTrigger className="text-left text-lg font-serif">
                         <em>{item.q}</em>
@@ -144,12 +129,12 @@ export default function PortefeuilleConseillePage() {
         <section className="py-20 px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <Users className="h-10 w-10 text-primary mx-auto" />
-            <h2 className="text-3xl md:text-4xl font-serif"><em>Construisons votre allocation ensemble.</em></h2>
+            <h2 className="text-3xl md:text-4xl font-serif"><em>{t("portefeuille.ctaTitle")}</em></h2>
             <p className="text-muted-foreground">
-              Performances passées non garanties · Risque de perte en capital · Net de frais de gestion.
+              {t("portefeuille.ctaDisclaimer")}
             </p>
             <Button size="lg" className="px-12 btn-glow" asChild>
-              <Link to="/contact">Prendre rendez-vous</Link>
+              <Link to="/contact">{t("common.bookMeeting")}</Link>
             </Button>
           </div>
         </section>

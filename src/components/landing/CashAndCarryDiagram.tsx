@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUp, ArrowDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /**
  * CashAndCarryDiagram — Deux schémas empilés, scroll-driven :
@@ -199,6 +200,7 @@ function Pillar({
 /* -------------------------------------------------------------------------- */
 
 function ConvergenceChart() {
+  const { t } = useTranslation("landing");
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0); // 0 → 1 selon scroll
   const [hover, setHover] = useState(false);
@@ -338,19 +340,19 @@ function ConvergenceChart() {
 
           {/* Labels */}
           <text x={ML - 10} y={futureY0 + 4} textAnchor="end" fontSize="11" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={1} fontWeight={500}>
-            Prix Future
+            {t("cashCarry.futureLabel")}
           </text>
           <text x={ML - 10} y={spotY0 + 4} textAnchor="end" fontSize="11" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={1} fontWeight={500}>
-            Prix Spot
+            {t("cashCarry.spotLabel")}
           </text>
           <text x={CX + 10} y={CY + 4} fontSize="11" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--success))" opacity={progress > 0.6 ? 1 : 0} fontWeight={500} style={{ transition: "opacity 0.5s" }}>
-            Maturité
+            {t("cashCarry.maturityLabel")}
           </text>
           <text x={ML} y={H - MB + 16} fontSize="10" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={0.7}>
             T0
           </text>
           <text x={CX} y={H - MB + 16} textAnchor="end" fontSize="10" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={0.7}>
-            T+1M · Maturité
+            {t("cashCarry.convergenceLabel")}
           </text>
         </svg>
 
@@ -377,10 +379,10 @@ function ConvergenceChart() {
             }}
           >
             <div className="font-mono text-[9px] uppercase tracking-[0.22em] text-primary/80">
-              Spread capturé
+              {t("cashCarry.spreadEyebrow")}
             </div>
             <div className="font-serif italic text-success text-base leading-tight mt-0.5">
-              +7,6&nbsp;% <span className="font-mono not-italic text-[10px] text-muted-foreground">(Ann.)</span>
+              {t("cashCarry.spreadValue")} <span className="font-mono not-italic text-[10px] text-muted-foreground">{t("cashCarry.spreadSuffix")}</span>
             </div>
           </div>
         </div>

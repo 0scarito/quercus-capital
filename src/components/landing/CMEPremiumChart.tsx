@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -23,6 +24,7 @@ const RAW = [
 const startYear = 2020;
 
 export function CMEPremiumChart() {
+  const { t } = useTranslation("landing");
   const data = useMemo(
     () =>
       RAW.map((v, i) => {
@@ -72,15 +74,15 @@ export function CMEPremiumChart() {
               borderRadius: 0,
               fontSize: 12,
             }}
-            formatter={(value: number) => [`${value.toFixed(1)}%`, "Prime annualisée"]}
-            labelFormatter={(v) => `Mois : ${v}`}
+            formatter={(value: number) => [`${value.toFixed(1)}%`, t("premiumChart.tooltipLabel")]}
+            labelFormatter={(v) => `${t("premiumChart.monthLabel")} : ${v}`}
           />
           <ReferenceLine
             y={3}
             stroke="hsl(var(--muted-foreground))"
             strokeDasharray="4 4"
             label={{
-              value: "Seuil 3 %",
+              value: t("premiumChart.threshold"),
               position: "right",
               fontSize: 10,
               fill: "hsl(var(--muted-foreground))",
@@ -91,7 +93,7 @@ export function CMEPremiumChart() {
             stroke="hsl(var(--success))"
             strokeDasharray="4 4"
             label={{
-              value: "Moyenne 8 %",
+              value: t("premiumChart.average"),
               position: "right",
               fontSize: 10,
               fill: "hsl(var(--success))",

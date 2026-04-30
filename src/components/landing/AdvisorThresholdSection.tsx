@@ -3,6 +3,7 @@ import { Compass, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/landing/GlassCard";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
+import { useTranslation } from "react-i18next";
 
 /**
  * Section affichée en bas des pages produits pour expliquer
@@ -10,6 +11,7 @@ import { ScrollReveal } from "@/components/landing/ScrollReveal";
  * conseiller dédié et d'un Portefeuille Conseillé sur-mesure.
  */
 export function AdvisorThresholdSection() {
+  const { t } = useTranslation("landing");
   return (
     <section className="py-14 md:py-16 px-4 md:px-8">
       <div className="max-w-5xl mx-auto">
@@ -30,29 +32,24 @@ export function AdvisorThresholdSection() {
               <div className="space-y-3">
                 <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
                   <Sparkles className="h-3.5 w-3.5" />
-                  Au-delà d'un certain encours
+                  {t("advisorThreshold.eyebrow")}
                 </div>
                 <h3 className="text-2xl md:text-3xl font-serif">
-                  <em>Un conseiller dédié pour vous accompagner.</em>
+                  <em>{t("advisorThreshold.title")}</em>
                 </h3>
                 <p className="text-muted-foreground leading-relaxed max-w-2xl">
-                  À partir d'un certain niveau d'encours sur la plateforme, un
-                  Conseiller en Gestion de Patrimoine vous est attribué. Il
-                  construit avec vous un <em>Portefeuille Conseillé</em> sur-mesure :
-                  une allocation patrimoniale qui combine Smart Cash, Cash & Carry,
-                  obligations, actions et solutions alternatives, calibrée selon
-                  vos objectifs et votre horizon.
+                  {t("advisorThreshold.body")}
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 shrink-0">
                 <Button asChild size="lg" className="btn-glow">
                   <Link to="/products/portefeuille-conseille">
-                    Découvrir le Portefeuille Conseillé
+                    {t("advisorThreshold.discover")}
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="btn-glow">
-                  <Link to="/contact">Prendre rendez-vous</Link>
+                  <Link to="/contact">{t("advisorThreshold.book")}</Link>
                 </Button>
               </div>
             </div>

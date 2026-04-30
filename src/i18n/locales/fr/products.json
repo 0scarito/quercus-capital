@@ -98,14 +98,20 @@
       "s3Desc": "Souscriptions exécutées via nos partenaires régulés. Reporting régulier et points trimestriels."
     },
     "faqTitle": "Questions fréquentes",
-    "faq": {
-      "q1": "À qui s'adresse le Portefeuille Conseillé ?",
-      "a1": "Aux clients souhaitant une allocation patrimoniale sur-mesure, au-delà du simple placement de trésorerie. Ticket d'entrée et frais sont définis avec votre conseiller.",
-      "q2": "Quel est mon rôle dans la gestion ?",
-      "a2": "Vous restez décisionnaire. Votre CGP vous propose des arbitrages que vous validez. Aucune opération n'est effectuée sans votre accord.",
-      "q3": "Quelle est la régulation applicable ?",
-      "a3": "Quercus Capital intervient en qualité de Conseiller en Investissements Financiers (CIF) enregistré ORIAS n° 24004789, et de CGP membre de la CNCEF, sous supervision de l'AMF."
-    },
+    "faq": [
+      {
+        "q": "À qui s'adresse le Portefeuille Conseillé ?",
+        "a": "Aux clients souhaitant une allocation patrimoniale sur-mesure, au-delà du simple placement de trésorerie. Ticket d'entrée et frais sont définis avec votre conseiller."
+      },
+      {
+        "q": "Quel est mon rôle dans la gestion ?",
+        "a": "Vous restez décisionnaire. Votre CGP vous propose des arbitrages que vous validez. Aucune opération n'est effectuée sans votre accord."
+      },
+      {
+        "q": "Quelle est la régulation applicable ?",
+        "a": "Quercus Capital intervient en qualité de Conseiller en Investissements Financiers (CIF) enregistré ORIAS n° 24004789, et de CGP membre de la CNCEF, sous supervision de l'AMF."
+      }
+    ],
     "ctaTitle": "Construisons votre allocation ensemble.",
     "ctaDisclaimer": "Performances passées non garanties · Risque de perte en capital · Net de frais de gestion."
   },
@@ -173,21 +179,66 @@
       "header": "Caractéristique",
       "detail": "Détail",
       "rows": {
-        "name": ["Nom officiel", "TOBAM Crypto Liquidity Fund"],
-        "structure": ["Structure juridique", "FIA — Fonds Professionnel Spécialisé (FPS)"],
-        "domicile": ["Domicile", "France"],
-        "creation": ["Date de création", "27 juin 2025"],
-        "duration": ["Durée", "99 ans"],
-        "objective": ["Objectif", "Maximiser les revenus du basis trade BTC/ETH avec exposition nulle aux prix crypto"],
-        "benchEur": ["Benchmark (EUR)", "€STER (ESTCINDX Index)"],
-        "benchUsd": ["Benchmark (USD)", "SOFR (SOFRINDX Index)"],
-        "currencies": ["Devises disponibles", "EUR et USD"],
-        "liquidity": ["Liquidité", "Quotidienne"],
-        "cutoff": ["Heure de coupure", "13h00 Paris (D)"],
-        "settle": ["Règlement", "D+1 avant 13h00"],
-        "income": ["Traitement des revenus", "Capitalisation"],
-        "leverage": ["Levier brut max", "300%"],
-        "drawdown": ["Drawdown max cible", "< -2% sur deux trimestres"]
+        "name": [
+          "Nom officiel",
+          "TOBAM Crypto Liquidity Fund"
+        ],
+        "structure": [
+          "Structure juridique",
+          "FIA — Fonds Professionnel Spécialisé (FPS)"
+        ],
+        "domicile": [
+          "Domicile",
+          "France"
+        ],
+        "creation": [
+          "Date de création",
+          "27 juin 2025"
+        ],
+        "duration": [
+          "Durée",
+          "99 ans"
+        ],
+        "objective": [
+          "Objectif",
+          "Maximiser les revenus du basis trade BTC/ETH avec exposition nulle aux prix crypto"
+        ],
+        "benchEur": [
+          "Benchmark (EUR)",
+          "€STER (ESTCINDX Index)"
+        ],
+        "benchUsd": [
+          "Benchmark (USD)",
+          "SOFR (SOFRINDX Index)"
+        ],
+        "currencies": [
+          "Devises disponibles",
+          "EUR et USD"
+        ],
+        "liquidity": [
+          "Liquidité",
+          "Quotidienne"
+        ],
+        "cutoff": [
+          "Heure de coupure",
+          "13h00 Paris (D)"
+        ],
+        "settle": [
+          "Règlement",
+          "D+1 avant 13h00"
+        ],
+        "income": [
+          "Traitement des revenus",
+          "Capitalisation"
+        ],
+        "leverage": [
+          "Levier brut max",
+          "300%"
+        ],
+        "drawdown": [
+          "Drawdown max cible",
+          "< -2% sur deux trimestres"
+        ]
       }
     },
     "secTitle": "Architecture de sécurité",
@@ -207,22 +258,36 @@
       "auditorValue": "PwC · annuel"
     },
     "faqTitle": "Questions fréquentes",
-    "faq": {
-      "q1": "Quels sont les risques ?",
-      "a1": "Risque directionnel faible (exposition crypto entièrement couverte). Risques principaux : risque de base (le spread entre futures et spot peut temporairement diverger), risque d'appel de marge, risque de contrepartie (défaut d'exchange ou broker), risque de levier, risque cyber (atténué — pas de détention directe de BTC, exposition via ETF uniquement), risque de concentration.",
-      "q2": "Comment ce produit est-il structuré juridiquement ?",
-      "a2": "FIA de catégorie Fonds Professionnel Spécialisé (FPS) de droit français. Déclaré auprès de l'AMF mais non agréé. Accessible aux investisseurs professionnels et aux investisseurs dont la souscription initiale est ≥ 100 000 €.",
-      "q3": "Pourquoi Bitcoin en particulier ?",
-      "a3": "Bitcoin est l'actif crypto le plus grand et le plus liquide (~6x la capitalisation d'Ethereum), avec le marché de futures le plus actif sur le CME. Le basis trade a historiquement rapporté ~8% p.a. annualisé et la prime est restée au-dessus de 3% pendant 76% des 5 dernières années.",
-      "q4": "Quelles plateformes sont utilisées ?",
-      "a4": "Position longue : Bitcoin ETF sur NASDAQ (pas de détention directe de crypto, pas de risque de piratage). Position courte : CME Bitcoin futures (bourse régulée avec mécanisme de clearing). Conservation crypto si nécessaire : CACEIS Bank (PSAN enregistré AMF), Taurus, BitGo.",
-      "q5": "Qui peut investir ?",
-      "a5": "Investisseurs professionnels (au sens de l'article L533-16 du Code monétaire et financier) et investisseurs avec souscription initiale ≥ 100 000 €. Durée minimale de détention recommandée : 1 an.",
-      "q6": "Qu'en est-il de l'ESG ?",
-      "a6": "TOBAM calcule l'empreinte carbone annuelle de l'exposition Bitcoin et la compense à 100% via des certificats CO2 (VER — Verified Emission Reductions).",
-      "q7": "Où trouver la documentation légale ?",
-      "a7": "Le prospectus complet est disponible sur tobam.fr. La VL est disponible sur demande."
-    },
+    "faq": [
+      {
+        "q": "Quels sont les risques ?",
+        "a": "Risque directionnel faible (exposition crypto entièrement couverte). Risques principaux : risque de base (le spread entre futures et spot peut temporairement diverger), risque d'appel de marge, risque de contrepartie (défaut d'exchange ou broker), risque de levier, risque cyber (atténué — pas de détention directe de BTC, exposition via ETF uniquement), risque de concentration."
+      },
+      {
+        "q": "Comment ce produit est-il structuré juridiquement ?",
+        "a": "FIA de catégorie Fonds Professionnel Spécialisé (FPS) de droit français. Déclaré auprès de l'AMF mais non agréé. Accessible aux investisseurs professionnels et aux investisseurs dont la souscription initiale est ≥ 100 000 €."
+      },
+      {
+        "q": "Pourquoi Bitcoin en particulier ?",
+        "a": "Bitcoin est l'actif crypto le plus grand et le plus liquide (~6x la capitalisation d'Ethereum), avec le marché de futures le plus actif sur le CME. Le basis trade a historiquement rapporté ~8% p.a. annualisé et la prime est restée au-dessus de 3% pendant 76% des 5 dernières années."
+      },
+      {
+        "q": "Quelles plateformes sont utilisées ?",
+        "a": "Position longue : Bitcoin ETF sur NASDAQ (pas de détention directe de crypto, pas de risque de piratage). Position courte : CME Bitcoin futures (bourse régulée avec mécanisme de clearing). Conservation crypto si nécessaire : CACEIS Bank (PSAN enregistré AMF), Taurus, BitGo."
+      },
+      {
+        "q": "Qui peut investir ?",
+        "a": "Investisseurs professionnels (au sens de l'article L533-16 du Code monétaire et financier) et investisseurs avec souscription initiale ≥ 100 000 €. Durée minimale de détention recommandée : 1 an."
+      },
+      {
+        "q": "Qu'en est-il de l'ESG ?",
+        "a": "TOBAM calcule l'empreinte carbone annuelle de l'exposition Bitcoin et la compense à 100% via des certificats CO2 (VER — Verified Emission Reductions)."
+      },
+      {
+        "q": "Où trouver la documentation légale ?",
+        "a": "Le prospectus complet est disponible sur tobam.fr. La VL est disponible sur demande."
+      }
+    ],
     "ctaTitle": "Accédez au rendement du basis trade crypto.",
     "ctaSubtitle": "Stratégie institutionnelle. Liquidité quotidienne. Zéro exposition au prix des crypto-actifs."
   },
@@ -289,23 +354,91 @@
       "i2": "Part I2 EUR",
       "i3": "Part I3 EUR",
       "rows": {
-        "name": ["Nom officiel", "FCP Velvet", "FCP Velvet"],
-        "isin": ["Code ISIN", "FR0014010AT3", "FR0014010IJ7"],
-        "bbg": ["Bloomberg", "FCPVVI2 FP Equity", "FCPVVI3 FP Equity"],
-        "form": ["Forme juridique", "FCP — UCITS (OPCVM)", "FCP — UCITS (OPCVM)"],
-        "domicile": ["Domicile", "France", "France"],
-        "creation": ["Date de création", "07/12/2023", "07/12/2023"],
-        "currency": ["Devise de référence", "EUR", "EUR"],
-        "fees": ["Frais de gestion (max)", "0,25 %", "0,20 %"],
-        "min": ["Souscription minimale", "500 000 €", "1 000 000 €"],
-        "eligible": ["Investisseurs éligibles", "Clients professionnels", "Idem"],
-        "cutoff": ["Heure de coupure", "J avant 14h00 (Paris)", "Idem"],
-        "nav": ["Publication VL", "J+1 ouvré", "J+1 ouvré"],
-        "settle": ["Règlement", "J+2 ouvrés", "J+2 ouvrés"],
-        "income": ["Traitement des revenus", "Capitalisation", "Capitalisation"],
-        "sfdr": ["Classification SFDR", "Article 6", "Article 6"],
-        "risk": ["Indicateur de risque", "1 / 7", "1 / 7"],
-        "regulator": ["Régulateur", "AMF n° FCP20230197", "Idem"]
+        "name": [
+          "Nom officiel",
+          "FCP Velvet",
+          "FCP Velvet"
+        ],
+        "isin": [
+          "Code ISIN",
+          "FR0014010AT3",
+          "FR0014010IJ7"
+        ],
+        "bbg": [
+          "Bloomberg",
+          "FCPVVI2 FP Equity",
+          "FCPVVI3 FP Equity"
+        ],
+        "form": [
+          "Forme juridique",
+          "FCP — UCITS (OPCVM)",
+          "FCP — UCITS (OPCVM)"
+        ],
+        "domicile": [
+          "Domicile",
+          "France",
+          "France"
+        ],
+        "creation": [
+          "Date de création",
+          "07/12/2023",
+          "07/12/2023"
+        ],
+        "currency": [
+          "Devise de référence",
+          "EUR",
+          "EUR"
+        ],
+        "fees": [
+          "Frais de gestion (max)",
+          "0,25 %",
+          "0,20 %"
+        ],
+        "min": [
+          "Souscription minimale",
+          "500 000 €",
+          "1 000 000 €"
+        ],
+        "eligible": [
+          "Investisseurs éligibles",
+          "Clients professionnels",
+          "Idem"
+        ],
+        "cutoff": [
+          "Heure de coupure",
+          "J avant 14h00 (Paris)",
+          "Idem"
+        ],
+        "nav": [
+          "Publication VL",
+          "J+1 ouvré",
+          "J+1 ouvré"
+        ],
+        "settle": [
+          "Règlement",
+          "J+2 ouvrés",
+          "J+2 ouvrés"
+        ],
+        "income": [
+          "Traitement des revenus",
+          "Capitalisation",
+          "Capitalisation"
+        ],
+        "sfdr": [
+          "Classification SFDR",
+          "Article 6",
+          "Article 6"
+        ],
+        "risk": [
+          "Indicateur de risque",
+          "1 / 7",
+          "1 / 7"
+        ],
+        "regulator": [
+          "Régulateur",
+          "AMF n° FCP20230197",
+          "Idem"
+        ]
       }
     },
     "secTitle": "Architecture de sécurité",
@@ -324,22 +457,36 @@
       "verifyAmf": "Vérifier l'agrément AMF n° FCP20230197"
     },
     "faqTitle": "Questions fréquentes",
-    "faq": {
-      "q1": "Quels sont les frais ?",
-      "a1": "Frais de gestion uniquement : 0,25 % p.a. (max) pour la Part I2, 0,20 % pour la Part I3. Aucun frais d'entrée, de sortie ou de souscription. Les rendements affichés sont toujours nets de frais.",
-      "q2": "Quels sont les risques et comment mes fonds sont-ils protégés ?",
-      "a2": "Vos fonds sont adossés à une banque de premier rang (BNP Paribas). Le risque principal est celui du défaut de la contrepartie, atténué par le portefeuille de collatéral (actions liquides Tier-1) détenu par le fonds et liquidable immédiatement. Cette stratégie n'a jamais connu de défaut depuis 2014.",
-      "q3": "Que se passe-t-il si LFIS Capital fait faillite ?",
-      "a3": "Aucune exposition financière à l'insolvabilité du gérant. Les actifs sont détenus par BNP Paribas en tant que dépositaire, séparés du bilan de LFIS. Vous pouvez toujours soumettre vos ordres de rachat directement.",
-      "q4": "Pourquoi les banques paient-elles au-dessus du taux sans risque ?",
-      "a4": "Détenir des actifs financiers au bilan est coûteux pour les banques en raison des exigences réglementaires en fonds propres. Les banques paient une prime à des fonds comme Velvet pour détenir ces actifs hors bilan via un TRS — un arrangement mutuellement bénéfique.",
-      "q5": "Comment fonctionnent les flux financiers quotidiens ?",
-      "a5": "Chaque jour, Velvet et BNP Paribas échangent la performance. Si le panier d'actions monte, Velvet paie le gain à BNP. S'il baisse, BNP paie la différence à Velvet. Quelles que soient les conditions de marché, BNP paie €STR + spread à Velvet quotidiennement.",
-      "q6": "Y a-t-il un risque de change ?",
-      "a6": "Non. La contrepartie paie le rendement quotidien en EUR, indépendamment de la devise des actifs sous-jacents du panier.",
-      "q7": "Où trouver la documentation légale ?",
-      "a7": "Le prospectus et le KID sont disponibles sur lfis.com."
-    },
+    "faq": [
+      {
+        "q": "Quels sont les frais ?",
+        "a": "Frais de gestion uniquement : 0,25 % p.a. (max) pour la Part I2, 0,20 % pour la Part I3. Aucun frais d'entrée, de sortie ou de souscription. Les rendements affichés sont toujours nets de frais."
+      },
+      {
+        "q": "Quels sont les risques et comment mes fonds sont-ils protégés ?",
+        "a": "Vos fonds sont adossés à une banque de premier rang (BNP Paribas). Le risque principal est celui du défaut de la contrepartie, atténué par le portefeuille de collatéral (actions liquides Tier-1) détenu par le fonds et liquidable immédiatement. Cette stratégie n'a jamais connu de défaut depuis 2014."
+      },
+      {
+        "q": "Que se passe-t-il si LFIS Capital fait faillite ?",
+        "a": "Aucune exposition financière à l'insolvabilité du gérant. Les actifs sont détenus par BNP Paribas en tant que dépositaire, séparés du bilan de LFIS. Vous pouvez toujours soumettre vos ordres de rachat directement."
+      },
+      {
+        "q": "Pourquoi les banques paient-elles au-dessus du taux sans risque ?",
+        "a": "Détenir des actifs financiers au bilan est coûteux pour les banques en raison des exigences réglementaires en fonds propres. Les banques paient une prime à des fonds comme Velvet pour détenir ces actifs hors bilan via un TRS — un arrangement mutuellement bénéfique."
+      },
+      {
+        "q": "Comment fonctionnent les flux financiers quotidiens ?",
+        "a": "Chaque jour, Velvet et BNP Paribas échangent la performance. Si le panier d'actions monte, Velvet paie le gain à BNP. S'il baisse, BNP paie la différence à Velvet. Quelles que soient les conditions de marché, BNP paie €STR + spread à Velvet quotidiennement."
+      },
+      {
+        "q": "Y a-t-il un risque de change ?",
+        "a": "Non. La contrepartie paie le rendement quotidien en EUR, indépendamment de la devise des actifs sous-jacents du panier."
+      },
+      {
+        "q": "Où trouver la documentation légale ?",
+        "a": "Le prospectus et le KID sont disponibles sur lfis.com."
+      }
+    ],
     "ctaTitle": "Faites travailler votre trésorerie chaque jour.",
     "ctaSubtitle": "Vos fonds détenus par BNP Paribas. Rendement quotidien net de frais. Liquidité quotidienne."
   },
@@ -392,7 +539,9 @@
       "heroDescription": "L'épargne institutionnelle accessible. Accédez aux mêmes instruments souverains que les institutions. Rendement quotidien, liquidité immédiate."
     }
   },
-  "segmentHero": { "register": "S'inscrire" },
+  "segmentHero": {
+    "register": "S'inscrire"
+  },
   "comparison": {
     "title": "Pourquoi choisir Quercus ?",
     "headers": {
@@ -429,16 +578,24 @@
   },
   "roadmap": {
     "title": "Démarrez avec Quercus en quelques minutes",
-    "steps": {
-      "s1Title": "Devenez membre Quercus en quelques clics.",
-      "s1Text": "Renseignez vos informations, sécurisez votre accès via la double authentification (2FA) et validez votre identité. Un processus fluide, digital, et conforme aux plus hautes exigences de sécurité.",
-      "s2Title": "Déposez vos fonds en toute sérénité.",
-      "s2Text": "Effectuez un virement vers votre compte Quercus. Vos fonds sont déposés auprès de notre banque dépositaire (CACEIS / Crédit Agricole), garantissant une ségrégation totale et une protection maximale de votre capital.",
-      "s3Title": "Observez vos intérêts croître chaque jour.",
-      "s3Text": "Dès le premier jour, votre capital génère des intérêts. Les gains sont automatiquement capitalisés et réinvestis quotidiennement, maximisant ainsi l'effet des intérêts composés sans aucune action de votre part.",
-      "s4Title": "Disposez de vos liquidités sans contrainte.",
-      "s4Text": "Retirez tout ou partie de vos fonds à tout moment, sans frais de sortie. Pour toute demande effectuée avant 12h25, vos fonds sont disponibles le jour même (T+0). L'excellence, c'est aussi la liberté."
-    },
+    "steps": [
+      {
+        "title": "Devenez membre Quercus en quelques clics.",
+        "text": "Renseignez vos informations, sécurisez votre accès via la double authentification (2FA) et validez votre identité. Un processus fluide, digital, et conforme aux plus hautes exigences de sécurité."
+      },
+      {
+        "title": "Déposez vos fonds en toute sérénité.",
+        "text": "Effectuez un virement vers votre compte Quercus. Vos fonds sont déposés auprès de notre banque dépositaire (CACEIS / Crédit Agricole), garantissant une ségrégation totale et une protection maximale de votre capital."
+      },
+      {
+        "title": "Observez vos intérêts croître chaque jour.",
+        "text": "Dès le premier jour, votre capital génère des intérêts. Les gains sont automatiquement capitalisés et réinvestis quotidiennement, maximisant ainsi l'effet des intérêts composés sans aucune action de votre part."
+      },
+      {
+        "title": "Disposez de vos liquidités sans contrainte.",
+        "text": "Retirez tout ou partie de vos fonds à tout moment, sans frais de sortie. Pour toute demande effectuée avant 12h25, vos fonds sont disponibles le jour même (T+0). L'excellence, c'est aussi la liberté."
+      }
+    ],
     "openAccount": "Ouvrir mon compte"
   },
   "securityBlock": {
@@ -451,16 +608,24 @@
   },
   "solutionsFaq": {
     "title": "Questions fréquentes",
-    "items": {
-      "q1": "Quels sont les frais réels ?",
-      "a1": "Quercus applique des frais de gestion de 0,25% par an, déjà déduits du rendement net affiché. Il n'y a aucun frais d'entrée, de sortie, de tenue de compte ou de retrait. Le rendement que vous voyez est le rendement que vous percevez.",
-      "q2": "Comment mon argent est-il protégé ?",
-      "a2": "Vos fonds ne sont jamais détenus par Quercus. Ils sont conservés par CACEIS, filiale du groupe Crédit Agricole et premier dépositaire européen. Cette ségrégation totale signifie que votre capital reste protégé même en cas de défaillance de Quercus.",
-      "q3": "Puis-je retirer mon argent un dimanche ?",
-      "a3": "Vous pouvez soumettre une demande de retrait à tout moment, y compris le week-end. Les demandes sont traitées les jours ouvrés. Pour toute demande effectuée avant 12h25 un jour ouvré, vos fonds sont disponibles le jour même (liquidité T+0).",
-      "q4": "Quercus est-il régulé ?",
-      "a4": "Oui. Quercus est enregistré en tant que Conseiller en Investissements Financiers (CIF) et Courtier en Assurance (COA) auprès de l'ORIAS (n°24004789). Nous sommes soumis à la supervision de l'AMF et respectons les obligations réglementaires en matière de lutte anti-blanchiment (LCB-FT)."
-    }
+    "items": [
+      {
+        "q": "Quels sont les frais réels ?",
+        "a": "Quercus applique des frais de gestion de 0,25% par an, déjà déduits du rendement net affiché. Il n'y a aucun frais d'entrée, de sortie, de tenue de compte ou de retrait. Le rendement que vous voyez est le rendement que vous percevez."
+      },
+      {
+        "q": "Comment mon argent est-il protégé ?",
+        "a": "Vos fonds ne sont jamais détenus par Quercus. Ils sont conservés par CACEIS, filiale du groupe Crédit Agricole et premier dépositaire européen. Cette ségrégation totale signifie que votre capital reste protégé même en cas de défaillance de Quercus."
+      },
+      {
+        "q": "Puis-je retirer mon argent un dimanche ?",
+        "a": "Vous pouvez soumettre une demande de retrait à tout moment, y compris le week-end. Les demandes sont traitées les jours ouvrés. Pour toute demande effectuée avant 12h25 un jour ouvré, vos fonds sont disponibles le jour même (liquidité T+0)."
+      },
+      {
+        "q": "Quercus est-il régulé ?",
+        "a": "Oui. Quercus est enregistré en tant que Conseiller en Investissements Financiers (CIF) et Courtier en Assurance (COA) auprès de l'ORIAS (n°24004789). Nous sommes soumis à la supervision de l'AMF et respectons les obligations réglementaires en matière de lutte anti-blanchiment (LCB-FT)."
+      }
+    ]
   },
   "riskScale": {
     "low": "Risque le plus bas",

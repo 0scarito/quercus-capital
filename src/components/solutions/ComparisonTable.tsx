@@ -3,45 +3,27 @@ import { GlassCard } from "@/components/landing/GlassCard";
 import { Badge } from "@/components/ui/badge";
 import { Check, X } from "lucide-react";
 import { SegmentInfo } from "./segmentData";
+import { useTranslation } from "react-i18next";
 
 interface ComparisonTableProps {
   segment: SegmentInfo;
 }
 
-const rows = [
-  {
-    label: "Période d'immobilisation",
-    courant: { text: "Pas de blocage", good: true },
-    terme: { text: "> 1 mois", good: false },
-    quercus: { text: "Pas de blocage", good: true },
-  },
-  {
-    label: "Frais de retrait",
-    courant: { text: "Aucun", good: true },
-    terme: { text: "Retrait anticipé pénalisé", good: false },
-    quercus: { text: "Aucun", good: true },
-  },
-  {
-    label: "Frais de tenue de compte",
-    courant: { text: "Oui", good: false },
-    terme: { text: "Oui", good: false },
-    quercus: { text: "Aucun", good: true },
-  },
-  {
-    label: "Rendement net actuel",
-    courant: { text: "0%", good: false },
-    terme: { text: "1,60% – 2,20%", good: false },
-    quercus: { text: "EU 2,20% / US 4,00%", good: true, highlight: true },
-  },
-];
-
 export function ComparisonTable({ segment }: ComparisonTableProps) {
+  const { t } = useTranslation("products");
+  const rawRows = (t("comparison.rows", { returnObjects: true }) as Array<{
+    label: string;
+    courant: { text: string; good: boolean };
+    terme: { text: string; good: boolean };
+    quercus: { text: string; good: boolean; highlight?: boolean };
+  }>) || [];
+  const headers = (t("comparison.headers", { returnObjects: true }) as { courant: string; terme: string; quercus: string; recommended: string }) || { courant: "Compte Courant", terme: "Compte à Terme", quercus: "Quercus", recommended: "Recommandé" };
   return (
     <section className="py-24 px-4 md:px-8">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto space-y-10">
           <h2 className="text-4xl md:text-5xl font-serif text-center">
-            <em>Pourquoi choisir Quercus ?</em>
+            <em>{t("comparison.title")}</em>
           </h2>
 
           {/* Desktop table */}
@@ -50,18 +32,18 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
               <thead>
                 <tr className="border-b border-border/50">
                   <th className="text-left p-5 font-medium text-muted-foreground w-1/4"></th>
-                  <th className="text-center p-5 font-medium text-muted-foreground w-1/4">Compte Courant</th>
-                  <th className="text-center p-5 font-medium text-muted-foreground w-1/4">Compte à Terme</th>
+                  <th className="text-center p-5 font-medium text-muted-foreground w-1/4">{headers.courant}</th>
+                  <th className="text-center p-5 font-medium text-muted-foreground w-1/4">{headers.terme}</th>
                   <th className="text-center p-5 w-1/4 border-x-2 border-primary/30">
                     <div className="flex flex-col items-center gap-1">
-                      <Badge className="bg-primary text-primary-foreground text-xs">Recommandé</Badge>
-                      <span className="font-serif text-base text-primary">Quercus</span>
+                      <Badge className="bg-primary text-primary-foreground text-xs">{headers.recommended}</Badge>
+                      <span className="font-serif text-base text-primary">{headers.quercus}</span>
                     </div>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {rows.map((row, i) => (
+                {rawRows.map((row, i) => (
                   <tr key={i} className="border-b border-border/30 last:border-0">
                     <td className="p-5 font-medium">{row.label}</td>
                     <td className="p-5 text-center">
@@ -81,20 +63,20 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
 
           {/* Mobile cards */}
           <div className="md:hidden space-y-4">
-            {rows.map((row, i) => (
+            {rawRows.map((row, i) => (
               <GlassCard key={i} className="p-5 space-y-3">
                 <p className="font-medium text-sm">{row.label}</p>
                 <div className="grid grid-cols-3 gap-2 text-xs">
                   <div className="text-center">
-                    <p className="text-muted-foreground mb-1">Courant</p>
+                    <p className="text-muted-foreground mb-1">{headers.courant}</p>
                     <CellContent {...row.courant} />
                   </div>
                   <div className="text-center">
-                    <p className="text-muted-foreground mb-1">À Terme</p>
+                    <p className="text-muted-foreground mb-1">{headers.terme}</p>
                     <CellContent {...row.terme} />
                   </div>
                   <div className="text-center border border-primary/30 p-2 -m-1">
-                    <p className="text-primary font-medium mb-1">Quercus</p>
+                    <p className="text-primary font-medium mb-1">{headers.quercus}</p>
                     <CellContent {...row.quercus} />
                   </div>
                 </div>

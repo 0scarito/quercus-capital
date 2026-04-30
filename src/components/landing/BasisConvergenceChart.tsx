@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 /**
  * BasisConvergenceChart — Animation SVG illustrant la convergence
@@ -8,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
  * dans le viewport.
  */
 export function BasisConvergenceChart() {
+  const { t } = useTranslation("landing");
   const ref = useRef<SVGSVGElement | null>(null);
   const [animate, setAnimate] = useState(false);
 
@@ -165,7 +167,7 @@ export function BasisConvergenceChart() {
           fill="hsl(var(--primary))"
           opacity={0.7}
         >
-          FUTURE
+          {t("basisChart.future")}
         </text>
         <text
           x={ML - 6}
@@ -176,7 +178,7 @@ export function BasisConvergenceChart() {
           fill="hsl(var(--success))"
           opacity={0.8}
         >
-          SPOT
+          {t("basisChart.spot")}
         </text>
         <text
           x={ML}
@@ -197,7 +199,7 @@ export function BasisConvergenceChart() {
           fill="hsl(var(--primary))"
           opacity={0.6}
         >
-          T+1M · Échéance
+          {t("basisChart.maturity")}
         </text>
 
         {/* Étiquette "Profit capté" au milieu de l'aire */}
@@ -213,7 +215,7 @@ export function BasisConvergenceChart() {
             transition: "opacity 0.8s ease-out 1.4s",
           }}
         >
-          PROFIT CAPTÉ
+          {t("basisChart.profitCaptured")}
         </text>
       </svg>
     </div>
