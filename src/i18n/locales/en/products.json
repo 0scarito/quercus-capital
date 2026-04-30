@@ -578,16 +578,7 @@
   },
   "roadmap": {
     "title": "Get started with Quercus in minutes",
-    "steps": {
-      "s1Title": "Become a Quercus member in a few clicks.",
-      "s1Text": "Provide your details, secure your access via two-factor authentication (2FA) and verify your identity. A smooth, digital process compliant with the highest security standards.",
-      "s2Title": "Deposit your funds with peace of mind.",
-      "s2Text": "Make a transfer to your Quercus account. Your funds are deposited with our depositary bank (CACEIS / Crédit Agricole), guaranteeing full segregation and maximum protection of your capital.",
-      "s3Title": "Watch your interest grow every day.",
-      "s3Text": "From day one, your capital generates interest. Gains are automatically capitalised and reinvested daily, maximising the effect of compound interest with no action on your part.",
-      "s4Title": "Access your liquidity without constraints.",
-      "s4Text": "Withdraw all or part of your funds at any time, with no exit fees. For any request submitted before 12:25, your funds are available the same day (T+0). Excellence is also freedom."
-    },
+    "steps": [],
     "openAccount": "Open my account"
   },
   "securityBlock": {
