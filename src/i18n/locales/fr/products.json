@@ -493,7 +493,14 @@
       }
     ],
     "ctaTitle": "Faites travailler votre trésorerie chaque jour.",
-    "ctaSubtitle": "Vos fonds détenus par BNP Paribas. Rendement quotidien net de frais. Liquidité quotidienne."
+    "ctaSubtitle": "Vos fonds détenus par BNP Paribas. Rendement quotidien net de frais. Liquidité quotidienne.",
+    "swapP2": "Velvet utilise un Total Return Swap (TRS) — un contrat d'échange de performance avec les plus grandes banques mondiales. Le résultat : un rendement monétaire garanti, protégé des fluctuations boursières.",
+    "ctaInvest": "Commencer à investir",
+    "stepLabel": "Étape {{n}}",
+    "verifyAmf": "Vérifier l'agrément AMF n° FCP20230197",
+    "ctaBookMeeting": "Prendre rendez-vous",
+    "ctaContactUs": "Nous contacter",
+    "ratingTitle": "Notation BNP Paribas"
   },
   "solutionsList": {
     "heroTitle": "À qui s'adresse Quercus ?",
