@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Shield, CreditCard, MapPin, AlertTriangle, Loader2, Users, Globe, Pencil, Save, X, Wallet } from "lucide-react";
+import { Shield, CreditCard, MapPin, AlertTriangle, Loader2, Users, Globe, Pencil, Save, X, Wallet, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -12,6 +12,7 @@ import { useProfile, useOnboardingDetails, type Profile } from "@/hooks/useProfi
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export default function AccountSettings() {
   const { t } = useTranslation("dashboard");
@@ -267,6 +268,17 @@ export default function AccountSettings() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <Label className="text-sm font-medium flex items-center gap-1.5">
+                <Languages className="h-3.5 w-3.5" />
+                {t("settings.language.title")}
+              </Label>
+              <p className="text-xs text-muted-foreground mt-0.5">{t("settings.language.desc")}</p>
+            </div>
+            <LanguageSwitcher />
+          </div>
+          <Separator />
           <div className="flex items-center justify-between">
             <div>
               <Label className="text-sm font-medium">{t("settings.security.twoFA")}</Label>

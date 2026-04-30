@@ -128,6 +128,10 @@
       "closeTitle": "Close account",
       "closeDesc": "Your Quercus account will be permanently deleted. This action is irreversible.",
       "closeCta": "Close my account"
+    },
+    "language": {
+      "title": "Language",
+      "desc": "Choose the display language of the platform."
     }
   },
   "statements": {
