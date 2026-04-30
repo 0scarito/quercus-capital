@@ -1,27 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
-const steps = [
-  {
-    title: "Devenez membre Quercus en quelques clics.",
-    text: "Renseignez vos informations, sécurisez votre accès via la double authentification (2FA) et validez votre identité. Un processus fluide, digital, et conforme aux plus hautes exigences de sécurité.",
-  },
-  {
-    title: "Déposez vos fonds en toute sérénité.",
-    text: "Effectuez un virement vers votre compte Quercus. Vos fonds sont déposés auprès de notre banque dépositaire (CACEIS / Crédit Agricole), garantissant une ségrégation totale et une protection maximale de votre capital.",
-  },
-  {
-    title: "Observez vos intérêts croître chaque jour.",
-    text: "Dès le premier jour, votre capital génère des intérêts. Les gains sont automatiquement capitalisés et réinvestis quotidiennement, maximisant ainsi l'effet des intérêts composés sans aucune action de votre part.",
-  },
-  {
-    title: "Disposez de vos liquidités sans contrainte.",
-    text: "Retirez tout ou partie de vos fonds à tout moment, sans frais de sortie. Pour toute demande effectuée avant 12h25, vos fonds sont disponibles le jour même (T+0). L'excellence, c'est aussi la liberté.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export function IntegrationRoadmap() {
+  const { t } = useTranslation("products");
+  const steps = (t("roadmap.steps", { returnObjects: true }) as Array<{ title: string; text: string }>) || [];
   const containerRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const [lineProgress, setLineProgress] = useState(0);
@@ -106,7 +90,7 @@ export function IntegrationRoadmap() {
     <section className="py-24 px-2">
       <div className="max-w-7xl mx-auto">
         <h2 className="font-serif text-center mb-20 whitespace-nowrap text-[clamp(1.75rem,4.2vw,3.25rem)]">
-          <em>Démarrez avec Quercus en quelques minutes</em>
+          <em>{t("roadmap.title")}</em>
         </h2>
 
         <div ref={containerRef} className="relative">
@@ -209,7 +193,7 @@ export function IntegrationRoadmap() {
                     className="text-xs font-mono mb-2 transition-colors duration-500"
                     style={{ color: lit ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))" }}
                   >
-                    Étape {i + 1}
+                    {t("common.stepLabel", { n: i + 1 })}
                   </p>
                   <h3
                     className="font-serif mb-2 whitespace-nowrap text-[clamp(1rem,1.7vw,1.5rem)] transition-colors duration-500"
@@ -247,7 +231,7 @@ export function IntegrationRoadmap() {
               }}
               asChild
             >
-              <Link to="/open-account">Ouvrir mon compte</Link>
+              <Link to="/open-account">{t("roadmap.openAccount")}</Link>
             </Button>
           </div>
         </div>
