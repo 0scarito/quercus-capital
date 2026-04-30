@@ -11,6 +11,7 @@ import frDashboard from "./locales/fr/dashboard.json";
 import frOnboarding from "./locales/fr/onboarding.json";
 import frPages from "./locales/fr/pages.json";
 import frProducts from "./locales/fr/products.json";
+import frHelp from "./locales/fr/help.json";
 
 import enCommon from "./locales/en/common.json";
 import enNav from "./locales/en/nav.json";
@@ -21,6 +22,7 @@ import enDashboard from "./locales/en/dashboard.json";
 import enOnboarding from "./locales/en/onboarding.json";
 import enPages from "./locales/en/pages.json";
 import enProducts from "./locales/en/products.json";
+import enHelp from "./locales/en/help.json";
 
 export const resources = {
   fr: {
@@ -33,6 +35,7 @@ export const resources = {
     onboarding: frOnboarding,
     pages: frPages,
     products: frProducts,
+    help: frHelp,
   },
   en: {
     common: enCommon,
@@ -44,6 +47,7 @@ export const resources = {
     onboarding: enOnboarding,
     pages: enPages,
     products: enProducts,
+    help: enHelp,
   },
 } as const;
 
@@ -54,7 +58,7 @@ i18n
     resources,
     fallbackLng: "fr",
     supportedLngs: ["fr", "en"],
-    ns: ["common", "nav", "landing", "footer", "auth", "dashboard", "onboarding", "pages", "products"],
+    ns: ["common", "nav", "landing", "footer", "auth", "dashboard", "onboarding", "pages", "products", "help"],
     defaultNS: "common",
     interpolation: { escapeValue: false },
     detection: {
