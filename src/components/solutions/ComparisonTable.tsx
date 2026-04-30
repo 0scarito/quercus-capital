@@ -11,13 +11,36 @@ interface ComparisonTableProps {
 
 export function ComparisonTable({ segment }: ComparisonTableProps) {
   const { t } = useTranslation("products");
-  const rawRows = (t("comparison.rows", { returnObjects: true }) as Array<{
-    label: string;
-    courant: { text: string; good: boolean };
-    terme: { text: string; good: boolean };
-    quercus: { text: string; good: boolean; highlight?: boolean };
-  }>) || [];
-  const headers = (t("comparison.headers", { returnObjects: true }) as { courant: string; terme: string; quercus: string; recommended: string }) || { courant: "Compte Courant", terme: "Compte à Terme", quercus: "Quercus", recommended: "Recommandé" };
+  const rowsObj = (t("comparison.rows", { returnObjects: true }) as Record<
+    string,
+    { label: string; current: string; term: string; quercus: string }
+  >) || {};
+  const headers = (t("comparison.headers", { returnObjects: true }) as {
+    current: string;
+    term: string;
+    quercus?: string;
+    recommended: string;
+  }) || { current: "Compte Courant", term: "Compte à Terme", quercus: "Quercus", recommended: "Recommandé" };
+
+  // Per-row good/bad + highlight semantics live in code, not translations.
+  const rowMeta: Record<string, { current: boolean; term: boolean; quercus: boolean; highlight?: boolean }> = {
+    lockup: { current: true, term: false, quercus: true },
+    withdrawalFees: { current: true, term: false, quercus: true },
+    accountFees: { current: false, term: false, quercus: true },
+    yield: { current: false, term: true, quercus: true, highlight: true },
+  };
+
+  const rawRows = Object.entries(rowsObj).map(([key, row]) => {
+    const meta = rowMeta[key] || { current: true, term: true, quercus: true };
+    return {
+      label: row.label,
+      courant: { text: row.current, good: meta.current },
+      terme: { text: row.term, good: meta.term },
+      quercus: { text: row.quercus, good: meta.quercus, highlight: meta.highlight },
+    };
+  });
+
+  const quercusHeader = headers.quercus || "Quercus";
   return (
     <section className="py-24 px-4 md:px-8">
       <ScrollReveal>
@@ -32,12 +55,12 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
               <thead>
                 <tr className="border-b border-border/50">
                   <th className="text-left p-5 font-medium text-muted-foreground w-1/4"></th>
-                  <th className="text-center p-5 font-medium text-muted-foreground w-1/4">{headers.courant}</th>
-                  <th className="text-center p-5 font-medium text-muted-foreground w-1/4">{headers.terme}</th>
+                  <th className="text-center p-5 font-medium text-muted-foreground w-1/4">{headers.current}</th>
+                  <th className="text-center p-5 font-medium text-muted-foreground w-1/4">{headers.term}</th>
                   <th className="text-center p-5 w-1/4 border-x-2 border-primary/30">
                     <div className="flex flex-col items-center gap-1">
                       <Badge className="bg-primary text-primary-foreground text-xs">{headers.recommended}</Badge>
-                      <span className="font-serif text-base text-primary">{headers.quercus}</span>
+                      <span className="font-serif text-base text-primary">{quercusHeader}</span>
                     </div>
                   </th>
                 </tr>
@@ -68,15 +91,15 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
                 <p className="font-medium text-sm">{row.label}</p>
                 <div className="grid grid-cols-3 gap-2 text-xs">
                   <div className="text-center">
-                    <p className="text-muted-foreground mb-1">{headers.courant}</p>
+                    <p className="text-muted-foreground mb-1">{headers.current}</p>
                     <CellContent {...row.courant} />
                   </div>
                   <div className="text-center">
-                    <p className="text-muted-foreground mb-1">{headers.terme}</p>
+                    <p className="text-muted-foreground mb-1">{headers.term}</p>
                     <CellContent {...row.terme} />
                   </div>
                   <div className="text-center border border-primary/30 p-2 -m-1">
-                    <p className="text-primary font-medium mb-1">{headers.quercus}</p>
+                    <p className="text-primary font-medium mb-1">{quercusHeader}</p>
                     <CellContent {...row.quercus} />
                   </div>
                 </div>
