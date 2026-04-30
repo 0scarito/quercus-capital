@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 import {
   Sidebar,
@@ -42,30 +43,32 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProfile } from "@/hooks/useProfile";
-
-const mainNav = [
-  { title: "Tableau de bord", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Mes investissements", url: "/produits", icon: Package },
-  { title: "Mon conseiller", url: "/dashboard/conseiller", icon: UserCog },
-  { title: "Paramètres de compte", url: "/parametres", icon: Settings },
-];
-
-const secondaryNav = [
-  { title: "Mes mouvements", url: "/releves", icon: FileText },
-  { title: "Intégrations", url: "/integrations", icon: Plug },
-];
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function QuercusSidebar() {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
   const { data: profile } = useProfile();
+  const { t } = useTranslation("dashboard");
 
-  const fullName = [profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || "Mon compte";
+  const mainNav = [
+    { title: t("sidebar.dashboard"), url: "/dashboard", icon: LayoutDashboard },
+    { title: t("sidebar.investments"), url: "/produits", icon: Package },
+    { title: t("sidebar.advisor"), url: "/dashboard/conseiller", icon: UserCog },
+    { title: t("sidebar.settings"), url: "/parametres", icon: Settings },
+  ];
+
+  const secondaryNav = [
+    { title: t("sidebar.statements"), url: "/releves", icon: FileText },
+    { title: t("sidebar.integrations"), url: "/integrations", icon: Plug },
+  ];
+
+  const fullName = [profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || t("sidebar.myAccount");
   const initials = ((profile?.first_name?.[0] ?? "") + (profile?.last_name?.[0] ?? "")).toUpperCase() || "Q";
   const accountTypeLabel =
     profile?.account_type === "moral" || profile?.account_type === "corporate"
-      ? "Compte entreprise"
-      : "Compte personnel";
+      ? t("sidebar.corporateAccount")
+      : t("sidebar.personalAccount");
 
   const handleSignOut = async () => {
     await signOut();
@@ -111,7 +114,7 @@ export function QuercusSidebar() {
                   className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/60 transition-colors text-left"
                 >
                   <PlusSquare className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">Ouvrir un compte professionnel</span>
+                  <span className="text-sm">{t("sidebar.openCorporate")}</span>
                 </button>
               </>
             )}
@@ -181,6 +184,10 @@ export function QuercusSidebar() {
           <p className="text-xs text-sidebar-foreground truncate">{user?.email}</p>
         </div>
 
+        <div className="px-2 py-1 flex justify-end">
+          <LanguageSwitcher />
+        </div>
+
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
@@ -188,7 +195,7 @@ export function QuercusSidebar() {
                 <SidebarMenuButton className="h-10 text-sidebar-foreground/80 hover:bg-sidebar-accent">
                   <User className="h-[18px] w-[18px]" />
                   <>
-                    <span className="text-sm flex-1">Paramètres personnels</span>
+                    <span className="text-sm flex-1">{t("sidebar.personalSettings")}</span>
                     <ChevronRight className="h-4 w-4 text-sidebar-foreground/40" />
                   </>
                 </SidebarMenuButton>
@@ -196,7 +203,7 @@ export function QuercusSidebar() {
               <DropdownMenuContent side="right" align="end" className="w-56">
                 <DropdownMenuItem onClick={() => navigate("/parametres")}>
                   <Settings className="mr-2 h-4 w-4" />
-                  Paramètres du compte
+                  {t("sidebar.accountSettings")}
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <button
@@ -205,17 +212,17 @@ export function QuercusSidebar() {
                     className="w-full flex items-center"
                   >
                     <HelpCircle className="mr-2 h-4 w-4" />
-                    Centre d'aide
+                    {t("sidebar.helpCenter")}
                   </button>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => navigate("/contact")}>
                   <Mail className="mr-2 h-4 w-4" />
-                  Nous contacter
+                  {t("sidebar.contactUs")}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleSignOut} className="text-destructive focus:text-destructive">
                   <LogOut className="mr-2 h-4 w-4" />
-                  Se déconnecter
+                  {t("sidebar.signOut")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -228,7 +235,7 @@ export function QuercusSidebar() {
             >
               <LogOut className="h-[18px] w-[18px]" />
               <>
-                <span className="text-sm flex-1">Se déconnecter</span>
+                <span className="text-sm flex-1">{t("sidebar.signOut")}</span>
                 <ChevronRight className="h-4 w-4 text-sidebar-foreground/40" />
               </>
             </SidebarMenuButton>
