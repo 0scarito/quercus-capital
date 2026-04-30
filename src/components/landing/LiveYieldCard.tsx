@@ -7,11 +7,20 @@ export function LiveYieldCard() {
 
   return (
     <div className="relative w-full max-w-md mx-auto">
-      <div className="absolute -inset-3 bg-gradient-to-br from-primary/8 to-transparent blur-2xl pointer-events-none" />
-      <div className="relative bg-background border border-border p-7 md:p-8 shadow-sm">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-5">
-          {t("yieldCard.eyebrow")}
-        </p>
+      <div className="absolute -inset-4 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent blur-3xl pointer-events-none" />
+      <div className="relative bg-background border border-border p-7 md:p-8 shadow-[0_24px_60px_-30px_hsl(var(--primary)/0.4),0_8px_20px_-12px_hsl(var(--foreground)/0.12)]">
+        <div className="flex items-center justify-between mb-5">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+            {t("yieldCard.eyebrow")}
+          </p>
+          <span className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-success">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inset-0 rounded-full bg-success animate-ping opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+            </span>
+            Live
+          </span>
+        </div>
         <div className="flex items-end gap-3 mb-6">
           <span className="text-5xl md:text-6xl font-serif font-semibold leading-none tabular-nums">
             {PRIMARY_EUR_YIELD.rateLabel}

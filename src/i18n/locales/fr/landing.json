@@ -487,5 +487,29 @@
     "title": "Spécifications produit",
     "subtitle": "Données techniques complètes pour la due diligence institutionnelle.",
     "specification": "Spécification"
+  },
+  "sectionEyebrows": {
+    "method": "Méthode",
+    "preview": "Plateforme",
+    "products": "Rendement",
+    "live": "En direct",
+    "calculator": "Simulation",
+    "audience": "Pour qui",
+    "security": "Sécurité",
+    "trust": "Chaîne de confiance",
+    "partners": "Partenaires",
+    "voices": "Témoignages",
+    "questions": "Questions fréquentes",
+    "press": "Presse"
+  },
+  "footerStatement": "Conserver. Faire fructifier. Transmettre.",
+  "backToTop": "Retour en haut",
+  "notFound": {
+    "code": "404",
+    "eyebrow": "Égarée dans la forêt",
+    "title": "Cette page n'a pas pris racine.",
+    "subtitle": "L'adresse demandée n'existe pas ou a été déplacée. Revenons sur le sentier principal.",
+    "ctaHome": "Retour à l'accueil",
+    "ctaHelp": "Centre d'aide"
   }
 }

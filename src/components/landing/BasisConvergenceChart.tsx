@@ -46,8 +46,37 @@ export function BasisConvergenceChart() {
   // Aire entre les deux (profit accumulé)
   const areaPath = `${futurePath} L ${W - MR} ${H - MB} L ${ML} ${H - MB - 10} Z`;
 
+  // Magnifier (cursor-driven readout)
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const [lens, setLens] = useState<{ x: number; y: number; visible: boolean; spread: number }>({
+    x: 0,
+    y: 0,
+    visible: false,
+    spread: 0,
+  });
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const rect = wrap.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    // Convert px → viewBox X
+    const svgX = (x / rect.width) * W;
+    const t = Math.max(0, Math.min(1, (svgX - ML) / (W - MR - ML)));
+    // Spread closes from ~80 bps at T0 to 0 at maturity (cosmetic)
+    const spread = +(0.8 * (1 - t)).toFixed(2);
+    setLens({ x, y, visible: true, spread });
+  };
+  const onMouseLeave = () => setLens((l) => ({ ...l, visible: false }));
+
   return (
-    <div className="w-full">
+    <div
+      ref={wrapRef}
+      className="w-full relative"
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+    >
       <svg
         ref={ref}
         viewBox={`0 0 ${W} ${H}`}
@@ -218,6 +247,33 @@ export function BasisConvergenceChart() {
           {t("basisChart.profitCaptured")}
         </text>
       </svg>
+
+      {/* Magnifier readout — follows the cursor */}
+      <div
+        aria-hidden
+        className="absolute pointer-events-none transition-opacity duration-200"
+        style={{
+          left: lens.x,
+          top: lens.y,
+          transform: "translate(-50%, -130%)",
+          opacity: lens.visible && animate ? 1 : 0,
+        }}
+      >
+        <div
+          className="px-3 py-1.5 text-center font-mono text-[10px] uppercase tracking-widest whitespace-nowrap"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(var(--background) / 0.92), hsl(var(--success) / 0.16))",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            border: "0.5px solid hsl(var(--success) / 0.55)",
+            boxShadow: "0 6px 18px hsl(var(--success) / 0.2)",
+          }}
+        >
+          <span className="text-muted-foreground">Spread </span>
+          <span className="text-success font-semibold">+{lens.spread}%</span>
+        </div>
+      </div>
     </div>
   );
 }
