@@ -1,58 +1,45 @@
 import { LandingNav } from "@/components/landing/LandingNav";
 import { LandingFooter } from "@/components/landing/LandingFooter";
+import { useTranslation } from "react-i18next";
 
 export default function PrivacyPage() {
+  const { t } = useTranslation("pages");
+  const s2Items = t("privacy.s2Items", { returnObjects: true }) as string[];
+  const s3Items = t("privacy.s3Items", { returnObjects: true }) as string[];
   return (
     <div className="min-h-screen bg-background">
       <LandingNav />
       <main className="pt-28 pb-24 max-w-6xl mx-auto px-4 md:px-8">
-        <h1 className="text-5xl md:text-6xl font-serif italic mb-10">Politique de confidentialité</h1>
+        <h1 className="text-5xl md:text-6xl font-serif italic mb-10">{t("privacy.title")}</h1>
 
         <section className="space-y-6 text-muted-foreground leading-relaxed text-base">
-          <p>Dernière mise à jour : avril 2025</p>
+          <p>{t("privacy.lastUpdate")}</p>
 
-          <h2 className="text-xl font-serif text-foreground">1. Responsable du traitement</h2>
-          <p>
-            Quercus Capital SAS, 231 Rue Saint-Honoré, 75001 Paris, est responsable du traitement de vos données personnelles conformément au Règlement Général sur la Protection des Données (RGPD).
-          </p>
+          <h2 className="text-xl font-serif text-foreground">{t("privacy.s1Title")}</h2>
+          <p>{t("privacy.s1Body")}</p>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">2. Données collectées</h2>
-          <p>Nous collectons les données suivantes :</p>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("privacy.s2Title")}</h2>
+          <p>{t("privacy.s2Intro")}</p>
           <ul className="list-disc pl-6 space-y-1">
-            <li>Données d'identification : nom, prénom, date de naissance, nationalité</li>
-            <li>Coordonnées : adresse postale, email, téléphone</li>
-            <li>Données financières : informations fiscales, documents d'identité (KYC)</li>
-            <li>Données de connexion : adresse IP, logs de connexion</li>
+            {s2Items.map((it) => <li key={it}>{it}</li>)}
           </ul>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">3. Finalités du traitement</h2>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("privacy.s3Title")}</h2>
           <ul className="list-disc pl-6 space-y-1">
-            <li>Création et gestion de votre compte</li>
-            <li>Respect des obligations réglementaires (KYC, LCB-FT)</li>
-            <li>Fourniture de nos services de gestion financière</li>
-            <li>Communication relative à votre compte et nos services</li>
-            <li>Amélioration de notre plateforme</li>
+            {s3Items.map((it) => <li key={it}>{it}</li>)}
           </ul>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">4. Base légale</h2>
-          <p>
-            Le traitement de vos données repose sur l'exécution du contrat, le respect de nos obligations légales (notamment en matière de lutte contre le blanchiment), votre consentement et notre intérêt légitime.
-          </p>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("privacy.s4Title")}</h2>
+          <p>{t("privacy.s4Body")}</p>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">5. Durée de conservation</h2>
-          <p>
-            Vos données sont conservées pendant la durée de la relation contractuelle, puis archivées conformément aux obligations légales applicables (5 ans après la clôture du compte pour les données KYC).
-          </p>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("privacy.s5Title")}</h2>
+          <p>{t("privacy.s5Body")}</p>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">6. Vos droits</h2>
-          <p>
-            Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, de portabilité et d'opposition. Pour exercer ces droits, contactez-nous à : <a href="mailto:dpo@quercus-capital.com" className="text-foreground underline">dpo@quercus-capital.com</a>.
-          </p>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("privacy.s6Title")}</h2>
+          <p>{t("privacy.s6Body")} <a href="mailto:dpo@quercus-capital.com" className="text-foreground underline">dpo@quercus-capital.com</a>.</p>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">7. Sécurité</h2>
-          <p>
-            Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, modification, divulgation ou destruction.
-          </p>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("privacy.s7Title")}</h2>
+          <p>{t("privacy.s7Body")}</p>
         </section>
       </main>
       <LandingFooter />
