@@ -17,59 +17,171 @@
     "backToCategory": "Back to",
     "notFoundTitle": "Article not found",
     "notFoundBody": "This article isn't available. Return to the help center or contact our team.",
-    "backToHelp": "Back to the help center"
+    "backToHelp": "Back to the help center",
+    "helpfulQuestion": "Was this article helpful?",
+    "yes": "Yes",
+    "no": "No",
+    "needMoreInfo": "Need more information?",
+    "relatedArticles": "Related articles",
+    "backTo": "Back to"
   },
   "categories": {
     "ouvrir-un-compte": {
       "title": "Open an account",
       "description": "Everything you need to know to open a Quercus account.",
       "sections": {
-        "individuals": "Open an account as an individual",
-        "corporates": "Open an account as a legal entity",
-        "countries": "Eligible countries"
+        "individuals": {
+          "title": "Open an account as an individual",
+          "items": {
+            "creer-un-compte-pour-particulier": "Create an individual account",
+            "pieces-d-identite-acceptees": "Accepted identity documents",
+            "justificatif-de-domicile": "Proof of address",
+            "justificatif-d-origine-des-fonds-pour-les-particuliers": "Proof of source of funds for individuals"
+          }
+        },
+        "corporates": {
+          "title": "Open an account as a legal entity",
+          "items": {
+            "creer-un-compte-pour-une-entreprise": "Create a business account",
+            "creer-un-compte-pour-une-association-francaise": "Create an account for a French association",
+            "creer-un-compte-pour-une-entreprise-individuelle": "Create an account for a sole proprietorship",
+            "creer-un-compte-pour-un-syndicat-des-coproprietaires-en-france": "Create an account for a French co-ownership association",
+            "justificatif-de-fonds-acceptes-pour-les-personnes-morales": "Accepted source-of-funds documents for legal entities"
+          }
+        },
+        "countries": {
+          "title": "Eligible countries",
+          "items": {
+            "restrictions-geographiques": "Geographic restrictions"
+          }
+        }
       }
     },
     "produits": {
       "title": "Quercus products",
       "description": "Discover the products offered by Quercus.",
       "sections": {
-        "treasury": "Quercus Treasury bills",
-        "smartCash": "Quercus Smart Cash",
-        "cashCarry": "Quercus Cash & Carry",
-        "fees": "Fees"
+        "treasury": {
+          "title": "Quercus Treasury bills",
+          "items": {
+            "fiche-technique-des-fonds-monetaires-quercus": "Money-market funds factsheet",
+            "documentation-des-fonds-monetaires-quercus": "Money-market funds documentation"
+          }
+        },
+        "smartCash": {
+          "title": "Quercus Smart Cash",
+          "items": {
+            "fiche-technique-quercus-smart-cash": "Quercus Smart Cash factsheet",
+            "documentation-de-quercus-smart-cash": "Quercus Smart Cash documentation"
+          }
+        },
+        "cashCarry": {
+          "title": "Quercus Cash & Carry",
+          "items": {
+            "fiche-technique-quercus-cash-and-carry": "Quercus Cash & Carry factsheet",
+            "documentation-de-quercus-cash-and-carry": "Quercus Cash & Carry documentation"
+          }
+        },
+        "fees": {
+          "title": "Fees",
+          "items": {
+            "comprendre-les-frais-sur-quercus": "Understanding Quercus fees"
+          }
+        }
       }
     },
     "depots-et-retraits": {
       "title": "Deposits and withdrawals",
       "description": "How to deposit and withdraw funds from your Quercus account.",
       "sections": {
-        "deposit": "Make a deposit",
-        "withdraw": "Make a withdrawal",
-        "fx": "Currency conversion"
+        "deposit": {
+          "title": "Make a deposit",
+          "items": {
+            "depot-depuis-un-compte-tiers": "Deposit from a third-party account",
+            "effectuer-un-depot": "Make a deposit",
+            "virement-non-arrive": "Transfer not received",
+            "comptes-ouverts-avant-septembre-2025": "Accounts opened before September 2025"
+          }
+        },
+        "withdraw": {
+          "title": "Make a withdrawal",
+          "items": {
+            "effectuer-un-retrait-standard": "Make a standard withdrawal",
+            "effectuer-un-retrait-instantane": "Make an instant withdrawal"
+          }
+        },
+        "fx": {
+          "title": "Currency conversion",
+          "items": {
+            "conversion-de-devises": "Currency conversion"
+          }
+        }
       }
     },
     "gerer-mon-compte": {
       "title": "Manage my account",
       "description": "Settings, security and management of your personal space.",
       "sections": {
-        "platform": "Platform features",
-        "security": "Security and login"
+        "platform": {
+          "title": "Platform features",
+          "items": {
+            "applications-tierces": "Third-party applications",
+            "acces-multi-utilisateurs": "Multi-user access",
+            "ouvrir-plusieurs-comptes-quercus": "Open several Quercus accounts",
+            "mode-quatre-yeux": "Four-eyes mode"
+          }
+        },
+        "security": {
+          "title": "Security and login",
+          "items": {
+            "modifier-mon-mot-de-passe": "Change my password",
+            "modifier-mon-email": "Change my email",
+            "authentification-a-deux-facteurs": "Two-factor authentication"
+          }
+        }
       }
     },
     "fiscalite-et-comptabilite": {
       "title": "Tax and accounting",
       "description": "Find information on tax and accounting.",
       "sections": {
-        "tax": "Taxation",
-        "accounting": "Accounting"
+        "tax": {
+          "title": "Taxation",
+          "items": {
+            "fiscalite-pour-les-particuliers": "Taxation for individuals",
+            "fiscalite-pour-les-personnes-morales": "Taxation for legal entities",
+            "imprime-fiscal-unique-ifu": "Single Tax Statement (IFU)"
+          }
+        },
+        "accounting": {
+          "title": "Accounting",
+          "items": {
+            "traitement-comptable-des-fonds-monetaires": "Accounting treatment of money-market funds",
+            "releves-comptables-et-exports": "Accounting statements and exports"
+          }
+        }
       }
     },
     "a-propos": {
       "title": "About Quercus",
       "description": "Learn about Quercus and our partners, and access our legal documentation.",
       "sections": {
-        "quercus": "Quercus",
-        "legalDocs": "Legal documentation"
+        "quercus": {
+          "title": "Quercus",
+          "items": {
+            "notre-mission": "Our mission",
+            "nos-partenaires": "Our partners",
+            "securite-de-vos-fonds": "Security of your funds"
+          }
+        },
+        "legalDocs": {
+          "title": "Legal documentation",
+          "items": {
+            "conditions-generales-d-utilisation": "Terms and conditions",
+            "politique-de-confidentialite": "Privacy policy",
+            "mentions-legales": "Legal notices"
+          }
+        }
       }
     }
   }

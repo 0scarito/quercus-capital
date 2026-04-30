@@ -117,6 +117,58 @@
       "security": "Is my money safe?",
       "interest": "How do I earn interest?",
       "advisor": "What is my advisor's role?"
+    },
+    "items": {
+      "security": [
+        {
+          "q": "What happens if Quercus Capital fails?",
+          "a": "Your money is never held by Quercus Capital. It is custodied directly by an authorised depositary bank (BNP Paribas / CACEIS), independent from our structure. If Quercus Capital were to default, your funds would not be affected and would remain fully accessible via the fund's management company."
+        },
+        {
+          "q": "Are the funds guaranteed?",
+          "a": "Money-market funds are not strictly guaranteed products. However, they invest exclusively in government securities (Treasury bills), considered the safest assets in the world. The risk of capital loss is extremely low — it would only materialise in the event of a sovereign default of the Eurozone or US states."
+        },
+        {
+          "q": "What regulation applies to these funds?",
+          "a": "The funds distributed by Quercus Capital are approved and supervised by the French Financial Markets Authority (AMF). Quercus Capital is registered as a CIF & COA with ORIAS (no. 24004789) and also operates as a Wealth Management Advisor (CGP). We are members of CNCEF."
+        },
+        {
+          "q": "Who is the depositary bank?",
+          "a": "The funds are held by a top-tier depositary bank — BNP Paribas for Velvet (Smart Cash) and CACEIS for TOBAM (Cash & Carry) — both subsidiaries of major European banking groups. Each depositary is approved by the European Central Bank and supervises the fund's accounting independently."
+        }
+      ],
+      "interest": [
+        {
+          "q": "How is interest calculated?",
+          "a": "Every business day, the fund administrator computes the value of the Treasury bills in the portfolio. The valuation difference between two days constitutes the daily interest. This amount is automatically reinvested in the fund (capitalisation), increasing the value of your shares."
+        },
+        {
+          "q": "Is the interest paid out or reinvested?",
+          "a": "The funds work by capitalisation: interest increases the value of your shares every day. You do not receive a daily payment, but the value of your investment grows continuously. You realise your gain at the time of withdrawal."
+        },
+        {
+          "q": "What are the fees?",
+          "a": "Fund management fees are deducted daily from the gross interest. The rate displayed on our site is always the rate net of fees — what you actually receive. There are no entry or exit fees. Your wealth advisor's advisory fees are subject to a separate agreement."
+        },
+        {
+          "q": "What happens on weekends?",
+          "a": "Since financial markets are closed on weekends, Friday's interest is tripled to cover Saturday and Sunday. It appears in your client area on the following Monday."
+        }
+      ],
+      "advisor": [
+        {
+          "q": "Why do I need an advisor to invest in these funds?",
+          "a": "Money-market funds are simple instruments, but integrating them into your overall wealth requires an analysis of your tax situation, investment horizon and goals. Your Quercus Capital advisor ensures that the chosen fund is the most suitable for your profile and optimises the tax aspect of your investment."
+        },
+        {
+          "q": "Does my advisor have access to my account?",
+          "a": "Your advisor has read-only access to your client area to track the evolution of your investment and alert you to market changes. They cannot perform any transactions on your account without your explicit approval."
+        },
+        {
+          "q": "How often does my advisor contact me?",
+          "a": "Your advisor contacts you at least once per quarter for a review meeting. They may also alert you to significant changes in market conditions or wealth opportunities. You can reach out to them at any time via your client area."
+        }
+      ]
     }
   },
   "partners": {

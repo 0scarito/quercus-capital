@@ -289,7 +289,12 @@
       }
     ],
     "ctaTitle": "Access the yield of the crypto basis trade.",
-    "ctaSubtitle": "Institutional strategy. Daily liquidity. Zero exposure to crypto-asset prices."
+    "ctaSubtitle": "Institutional strategy. Daily liquidity. Zero exposure to crypto-asset prices.",
+    "ctaInvest": "Start investing",
+    "stepLabel": "Step {{n}}",
+    "verifyAmf": "Verify AMF authorisation",
+    "ctaBookMeeting": "Book a meeting",
+    "ctaContactUs": "Contact us"
   },
   "velvet": {
     "badge": "FCP UCITS · AMF no. FCP20230197",
@@ -488,7 +493,14 @@
       }
     ],
     "ctaTitle": "Put your treasury to work every day.",
-    "ctaSubtitle": "Your funds held by BNP Paribas. Daily yield net of fees. Daily liquidity."
+    "ctaSubtitle": "Your funds held by BNP Paribas. Daily yield net of fees. Daily liquidity.",
+    "swapP2": "Velvet uses a Total Return Swap (TRS) — a performance-exchange contract with the world's largest banks. The result: a guaranteed money-market return, protected from equity-market swings.",
+    "ctaInvest": "Start investing",
+    "stepLabel": "Step {{n}}",
+    "verifyAmf": "Verify AMF authorisation no. FCP20230197",
+    "ctaBookMeeting": "Book a meeting",
+    "ctaContactUs": "Contact us",
+    "ratingTitle": "BNP Paribas rating"
   },
   "solutionsList": {
     "heroTitle": "Who is Quercus for?",

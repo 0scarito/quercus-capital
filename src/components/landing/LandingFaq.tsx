@@ -6,10 +6,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { LANDING_FAQ } from "@/data/landingFaq";
 
 export function LandingFaq() {
   const { t } = useTranslation("landing");
+  const itemsByCategory = (t("faq.items", { returnObjects: true }) as Record<
+    string,
+    Array<{ q: string; a: string }>
+  >) || {};
+  const categoryOrder: Array<"security" | "interest" | "advisor"> = [
+    "security",
+    "interest",
+    "advisor",
+  ];
 
   return (
     <section className="py-20 md:py-24 px-4 md:px-8">
@@ -24,21 +32,23 @@ export function LandingFaq() {
         </ScrollReveal>
 
         <div className="space-y-12">
-          {LANDING_FAQ.map((cat, ci) => (
-            <div key={cat.key}>
+          {categoryOrder.map((key, ci) => {
+            const items = Array.isArray(itemsByCategory[key]) ? itemsByCategory[key] : [];
+            return (
+            <div key={key}>
               <div className="flex items-baseline gap-3 mb-4">
                 <span className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
                   0{ci + 1}
                 </span>
                 <h3 className="text-xl md:text-2xl font-serif italic text-foreground">
-                  {t(`faq.categories.${cat.key}`)}
+                  {t(`faq.categories.${key}`)}
                 </h3>
               </div>
               <Accordion type="single" collapsible className="space-y-2">
-                {cat.items.map((item, i) => (
+                {items.map((item, i) => (
                   <AccordionItem
                     key={i}
-                    value={`${cat.key}-${i}`}
+                    value={`${key}-${i}`}
                     className="bg-white/40 backdrop-blur-sm border border-white/20 px-6"
                   >
                     <AccordionTrigger className="text-left font-serif text-base md:text-lg hover:no-underline">
@@ -51,7 +61,8 @@ export function LandingFaq() {
                 ))}
               </Accordion>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
