@@ -1,0 +1,76 @@
+{
+  "ui": {
+    "eyebrow": "Help Center",
+    "title": "How can we help you?",
+    "intro": "Browse our guides or search for a precise answer about your account, our products and how to use the Quercus platform.",
+    "searchPlaceholder": "Search the help center…",
+    "noMatchPrefix": "No article matches “",
+    "noMatchSuffix": "”.",
+    "moreResults": "more results…",
+    "noResultsPrefix": "No results for “",
+    "noResultsSuffix": "”.",
+    "breadcrumbHome": "Quercus",
+    "ctaQuestion": "Can't find the answer to your question?",
+    "ctaContact": "Contact our team →",
+    "updatedOn": "Updated on",
+    "relatedTitle": "Related articles",
+    "backToCategory": "Back to",
+    "notFoundTitle": "Article not found",
+    "notFoundBody": "This article isn't available. Return to the help center or contact our team.",
+    "backToHelp": "Back to the help center"
+  },
+  "categories": {
+    "ouvrir-un-compte": {
+      "title": "Open an account",
+      "description": "Everything you need to know to open a Quercus account.",
+      "sections": {
+        "individuals": "Open an account as an individual",
+        "corporates": "Open an account as a legal entity",
+        "countries": "Eligible countries"
+      }
+    },
+    "produits": {
+      "title": "Quercus products",
+      "description": "Discover the products offered by Quercus.",
+      "sections": {
+        "treasury": "Quercus Treasury bills",
+        "smartCash": "Quercus Smart Cash",
+        "cashCarry": "Quercus Cash & Carry",
+        "fees": "Fees"
+      }
+    },
+    "depots-et-retraits": {
+      "title": "Deposits and withdrawals",
+      "description": "How to deposit and withdraw funds from your Quercus account.",
+      "sections": {
+        "deposit": "Make a deposit",
+        "withdraw": "Make a withdrawal",
+        "fx": "Currency conversion"
+      }
+    },
+    "gerer-mon-compte": {
+      "title": "Manage my account",
+      "description": "Settings, security and management of your personal space.",
+      "sections": {
+        "platform": "Platform features",
+        "security": "Security and login"
+      }
+    },
+    "fiscalite-et-comptabilite": {
+      "title": "Tax and accounting",
+      "description": "Find information on tax and accounting.",
+      "sections": {
+        "tax": "Taxation",
+        "accounting": "Accounting"
+      }
+    },
+    "a-propos": {
+      "title": "About Quercus",
+      "description": "Learn about Quercus and our partners, and access our legal documentation.",
+      "sections": {
+        "quercus": "Quercus",
+        "legalDocs": "Legal documentation"
+      }
+    }
+  }
+}

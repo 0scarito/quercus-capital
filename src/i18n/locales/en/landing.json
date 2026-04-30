@@ -191,5 +191,203 @@
     "yield": "Yield",
     "targetYield": "Target yield",
     "performance30d": "Performance · 30 days"
+  },
+  "forEveryone": {
+    "eyebrow": "One platform, every profile",
+    "titleLeft": "Built for",
+    "titleEm1": "everyone",
+    "titleMid": ", from",
+    "titleEm2": "€1",
+    "titleRight": "invested.",
+    "subtitle": "Whether you're an individual growing your savings or a company optimising its treasury — Quercus adapts to your scale, with no minimum imposed.",
+    "discover": "Discover the solution",
+    "individuals": {
+      "eyebrow": "Private clients",
+      "title": "Your savings, like an institution",
+      "body": "Sovereign money-market funds accessible from €1. Daily liquidity, interest credited every business day."
+    },
+    "treasuries": {
+      "eyebrow": "Corporate treasuries",
+      "title": "Put your surplus to work",
+      "body": "Holdings, SMEs, real-estate vehicles, fintechs, crypto: invest your cash without locking it up. Bank segregation and institutional reporting."
+    }
+  },
+  "advisorThreshold": {
+    "eyebrow": "Above a certain balance",
+    "title": "A dedicated advisor to support you.",
+    "body": "Above a certain level of assets on the platform, a Wealth Management Advisor is assigned to you. They build with you a tailor-made Advised Portfolio: an asset allocation combining Smart Cash, Cash & Carry, bonds, equities and alternative solutions, calibrated to your goals and your horizon.",
+    "discover": "Discover the Advised Portfolio",
+    "book": "Book a meeting"
+  },
+  "riskScale": {
+    "low": "Lowest risk",
+    "high": "Highest risk"
+  },
+  "securityArch": {
+    "tobam": {
+      "manager": { "role": "Manager", "name": "TOBAM", "desc": "Strategy & execution" },
+      "depositary": { "role": "Depositary", "name": "CACEIS Bank", "desc": "Asset custody · AMF-registered DASP" },
+      "admin": { "role": "Administrator", "name": "CACEIS", "desc": "Valuation & accounting" },
+      "auditor": { "role": "Auditor", "name": "PwC", "desc": "Independent annual audit" },
+      "brokers": { "role": "Regulated brokers", "name": "Taurus · BitGo · Binance", "desc": "Multi-venue execution" }
+    },
+    "velvet": {
+      "manager": { "role": "Manager", "name": "LFIS Capital", "desc": "AMF GP13000004 · > $5 bn AUM" },
+      "depositary": { "role": "Depositary", "name": "BNP Paribas SA", "desc": "Full asset segregation" },
+      "admin": { "role": "Administrator", "name": "BNP Paribas", "desc": "Valuation & accounting" },
+      "auditor": { "role": "Auditor", "name": "PwC", "desc": "Independent quarterly audits" },
+      "swap": { "role": "Swap counterparties", "name": "BNPP · SG · GS · JPM", "desc": "Network of systemic banks" }
+    }
+  },
+  "cashCarry": {
+    "headerEyebrow": "Magnetic flow diagram",
+    "headerBadge": "Non-directional",
+    "leftLabel": "Buy Spot",
+    "leftSub": "(NASDAQ ETF)",
+    "rightLabel": "Sell Future",
+    "rightSub": "(CME)",
+    "centerEyebrow": "Yield",
+    "centerWord": "Secured",
+    "centerSub": "(The “Basis”)",
+    "convergenceLabel": "Convergence over time",
+    "futureLabel": "Future price",
+    "spotLabel": "Spot price",
+    "maturityLabel": "Maturity",
+    "spreadEyebrow": "Captured spread",
+    "spreadValue": "+7.6%",
+    "spreadSuffix": "(Ann.)"
+  },
+  "mirrorSwap": {
+    "ariaLabel": "Total Return Swap diagram: equity basket exchanged for a stable money-market yield",
+    "basketLabel": "BASKET · EQUITIES",
+    "yieldLabel": "YIELD · €STR + 0.30%",
+    "marketVol": "MARKET VOLATILITY",
+    "guaranteed": "GUARANTEED YIELD",
+    "swapBadge": "TRS SWAP",
+    "step1": "The basket",
+    "step2": "The swap",
+    "step3": "The yield"
+  },
+  "basisChart": {
+    "future": "FUTURE",
+    "spot": "SPOT",
+    "maturity": "T+1M · Maturity",
+    "profitCaptured": "PROFIT CAPTURED"
+  },
+  "premiumChart": {
+    "tooltipLabel": "Annualised premium",
+    "monthLabel": "Month",
+    "threshold": "3% threshold",
+    "average": "Average 8%"
+  },
+  "collateralDonut": {
+    "centerLabel": "Collateral",
+    "centerSub": "Tier-1 equities",
+    "sectors": {
+      "tech": "Technology",
+      "finance": "Financial Services",
+      "health": "Healthcare",
+      "consumer": "Consumer",
+      "comms": "Communications",
+      "industry": "Industrials",
+      "energy": "Energy",
+      "other": "Other"
+    }
+  },
+  "perfChart": {
+    "eyebrow": "Cumulative net performance",
+    "title": "The line of trust",
+    "range": "Jan 2024 → May 2025 · base 100",
+    "velvet": "Velvet (net)",
+    "estr": "€STR capitalised",
+    "y2024": "2024",
+    "ytd2025": "YTD 2025",
+    "cumulative": "17-month cumulative",
+    "vs": "vs"
+  },
+  "tobamAnalytics": {
+    "stat1": "5-year average premium",
+    "stat2": "Time with premium > 3%",
+    "stat3": "Premium as of 31 March 2025",
+    "stat4": "Max duration premium < 0%",
+    "stat5": "Time with premium > 10%",
+    "stat4Value": "43 days",
+    "carryEyebrow": "CME Bitcoin Carry · Leveraged strategy",
+    "carryTitle": "Simulated CME Future / NASDAQ BTC ETF strategy",
+    "yieldEyebrow": "Annualized implicit funding yield",
+    "yieldTitle": "Strategy — futures rolled monthly",
+    "averageLabel": "Average · 8%",
+    "march25Label": "Mar 25 · 5%",
+    "monthLabel": "Month",
+    "yieldLabel": "Yield",
+    "footnote": "* Current yield fluctuates between 6% and 13%. The strategy only enters a position if the basis > cash + 2%.",
+    "strategy": "Strategy",
+    "credit": "Short Term IG Credit",
+    "cash": "Cash"
+  },
+  "comparison": {
+    "title": "Why choose Quercus?",
+    "headerCurrent": "Current account",
+    "headerTerm": "Term deposit",
+    "recommended": "Recommended",
+    "labelCurrent": "Current",
+    "labelTerm": "Term",
+    "labelQuercus": "Quercus",
+    "rows": {
+      "lockup": "Lock-up period",
+      "withdrawalFees": "Withdrawal fees",
+      "accountFees": "Account-keeping fees",
+      "yield": "Current net yield"
+    },
+    "values": {
+      "noLock": "No lock-up",
+      "termLock": "> 1 month",
+      "none": "None",
+      "earlyPenalty": "Early-withdrawal penalty",
+      "yes": "Yes",
+      "zero": "0%",
+      "termRange": "1.60% – 2.20%",
+      "quercusYield": "EU 2.20% / US 4.00%"
+    }
+  },
+  "roadmap": {
+    "title": "Get started with Quercus in minutes",
+    "stepLabel": "Step {{n}}",
+    "openAccount": "Open my account",
+    "steps": {
+      "s1Title": "Become a Quercus member in a few clicks.",
+      "s1Text": "Provide your details, secure your access via two-factor authentication (2FA) and verify your identity. A smooth, digital process compliant with the highest security standards.",
+      "s2Title": "Deposit your funds with peace of mind.",
+      "s2Text": "Make a transfer to your Quercus account. Your funds are deposited with our depositary bank (CACEIS / Crédit Agricole), guaranteeing full segregation and maximum protection of your capital.",
+      "s3Title": "Watch your interest grow every day.",
+      "s3Text": "From day one, your capital generates interest. Gains are automatically capitalised and reinvested daily, maximising the effect of compound interest with no action on your part.",
+      "s4Title": "Access your liquidity without constraints.",
+      "s4Text": "Withdraw all or part of your funds at any time, with no exit fees. For any request submitted before 12:25, your funds are available the same day (T+0). Excellence is also freedom."
+    }
+  },
+  "securityBlock": {
+    "title": "Your security is our absolute priority.",
+    "bodyPrefix": "Quercus never holds your funds. They are kept by",
+    "depositaryName": "CACEIS",
+    "bodyMid": ", a subsidiary of the",
+    "groupName": "Crédit Agricole",
+    "bodySuffix": "group, Europe's leading depositary. This full segregation guarantees that your capital remains protected, no matter what happens.",
+    "depositary": "Depositary bank",
+    "group": "Banking group",
+    "segregation": "Segregation",
+    "segregationNote": "Funds never on balance sheet"
+  },
+  "solutionsFaq": {
+    "title": "Frequently asked questions",
+    "items": {
+      "q1": "What are the actual fees?",
+      "a1": "Quercus charges a 0.25% management fee per year, already deducted from the net yield shown. There are no entry, exit, account-keeping or withdrawal fees. The yield you see is the yield you receive.",
+      "q2": "How is my money protected?",
+      "a2": "Your funds are never held by Quercus. They are kept by CACEIS, a subsidiary of the Crédit Agricole group and Europe's leading depositary. This full segregation means your capital remains protected even if Quercus were to fail.",
+      "q3": "Can I withdraw my money on a Sunday?",
+      "a3": "You can submit a withdrawal request at any time, including weekends. Requests are processed on business days. For any request submitted before 12:25 on a business day, your funds are available the same day (T+0 liquidity).",
+      "q4": "Is Quercus regulated?",
+      "a4": "Yes. Quercus is registered as a Financial Investment Advisor (CIF) and Insurance Broker (COA) with ORIAS (no. 24004789). We are supervised by the AMF and comply with anti-money-laundering (AML/CFT) regulatory obligations."
+    }
   }
 }
