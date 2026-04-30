@@ -10,6 +10,7 @@ import { AccountSwitcherPopover } from "@/components/AccountSwitcherPopover";
 import { useUserSubscriptions } from "@/hooks/useProducts";
 import { useAccounts } from "@/hooks/useAccounts";
 import { useProfile } from "@/hooks/useProfile";
+import { useTranslation } from "react-i18next";
 
 type TxType = "deposit" | "withdrawal" | "interest";
 
@@ -26,6 +27,7 @@ interface Transaction {
 export default function Dashboard() {
   const navigate = useNavigate();
   const [depositOpen, setDepositOpen] = useState(false);
+  const { t } = useTranslation("dashboard");
 
   const { data: subscriptions, isLoading } = useUserSubscriptions();
   const { data: accounts } = useAccounts();
@@ -102,9 +104,9 @@ export default function Dashboard() {
   });
 
   const typeLabel: Record<TxType, string> = {
-    deposit: "Dépôt",
-    withdrawal: "Retrait",
-    interest: "Intérêts",
+    deposit: t("dashboardPage.transactions.types.deposit"),
+    withdrawal: t("dashboardPage.transactions.types.withdrawal"),
+    interest: t("dashboardPage.transactions.types.interest"),
   };
 
   return (
@@ -112,7 +114,7 @@ export default function Dashboard() {
       {profile?.first_name && (
         <div className="shrink-0">
           <h1 className="font-serif text-2xl">
-            Bonjour, <em>{profile.first_name}</em>
+            {t("dashboardPage.greeting", { name: "" }).replace(/\{?\{?name\}?\}?/, "")}<em>{profile.first_name}</em>
           </h1>
         </div>
       )}
@@ -126,14 +128,14 @@ export default function Dashboard() {
             </div>
             <div className="min-w-0">
               <p className="text-sm">
-                Votre conseiller <span className="font-medium">Alexandre Bernard</span> est disponible pour répondre à vos questions.
+                {t("dashboardPage.advisor.available", { name: "Alexandre Bernard" })}
               </p>
-              <p className="text-[11px] text-muted-foreground">CGP — CIF ORIAS n° 24004789</p>
+              <p className="text-[11px] text-muted-foreground">{t("dashboardPage.advisor.credentials")}</p>
             </div>
           </div>
           <Button asChild size="sm" variant="outline">
             <Link to="/dashboard/conseiller">
-              <MessageSquare className="mr-2 h-3.5 w-3.5" /> Envoyer un message
+              <MessageSquare className="mr-2 h-3.5 w-3.5" /> {t("dashboardPage.advisor.sendMessage")}
             </Link>
           </Button>
         </div>
@@ -145,15 +147,15 @@ export default function Dashboard() {
             </div>
             <div className="min-w-0">
               <p className="text-sm">
-                Bénéficiez d'un <span className="font-medium">Conseiller en Gestion de Patrimoine dédié</span> dès 3 M€ investis.
+                {t("dashboardPage.advisor.unlock")}
               </p>
               <p className="text-[11px] text-muted-foreground">
-                Encore <span className="font-mono">{remainingToUnlock.toLocaleString("fr-FR")} €</span> pour débloquer ce service.
+                {t("dashboardPage.advisor.remaining", { amount: `${remainingToUnlock.toLocaleString("fr-FR")} €` })}
               </p>
             </div>
           </div>
           <Button onClick={() => setDepositOpen(true)} size="sm">
-            <ArrowDownToLine className="mr-2 h-3.5 w-3.5" /> Investir maintenant
+            <ArrowDownToLine className="mr-2 h-3.5 w-3.5" /> {t("dashboardPage.advisor.investNow")}
           </Button>
         </div>
       )}
@@ -167,10 +169,10 @@ export default function Dashboard() {
         />
         <div className="flex gap-2">
           <Button variant="outline" size="default">
-            <ArrowUpFromLine className="mr-2 h-4 w-4" /> Retirer
+            <ArrowUpFromLine className="mr-2 h-4 w-4" /> {t("dashboardPage.actions.withdraw")}
           </Button>
           <Button onClick={() => setDepositOpen(true)}>
-            <ArrowDownToLine className="mr-2 h-4 w-4" /> Investir
+            <ArrowDownToLine className="mr-2 h-4 w-4" /> {t("dashboardPage.actions.invest")}
           </Button>
         </div>
       </div>
@@ -179,7 +181,7 @@ export default function Dashboard() {
       <div className="border rounded-sm p-5 bg-card shrink-0">
         <div className="flex items-start justify-between gap-6 flex-wrap">
           <div>
-            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Solde total</p>
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{t("dashboardPage.balance.total")}</p>
             <h1 className="text-3xl font-serif font-semibold tracking-tight">
               {isLoading ? "—" : totalEur.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               {" "}<span className="text-primary">EUR</span>
@@ -187,11 +189,11 @@ export default function Dashboard() {
             <div className="flex items-center gap-1.5 text-success mt-2">
               <TrendingUp className="h-3.5 w-3.5" />
               <span className="text-sm font-medium font-mono">{weightedYield.toFixed(2)} %</span>
-              <span className="text-xs text-muted-foreground">rendement moyen</span>
+              <span className="text-xs text-muted-foreground">{t("dashboardPage.balance.averageYield")}</span>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Intérêts générés</p>
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{t("dashboardPage.balance.interestEarned")}</p>
             <p className="text-xl font-serif font-semibold text-success">
               {totalInterest.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} EUR
             </p>
@@ -202,8 +204,8 @@ export default function Dashboard() {
       {/* Products carousel */}
       <div className="shrink-0">
         <div className="flex items-baseline justify-between mb-3">
-          <h2 className="font-serif text-base"><em>Produits</em></h2>
-          <span className="text-xs text-muted-foreground">{accountSubs.length} actif{accountSubs.length > 1 ? "s" : ""}</span>
+          <h2 className="font-serif text-base"><em>{t("dashboardPage.products.title")}</em></h2>
+          <span className="text-xs text-muted-foreground">{t("dashboardPage.products.active", { count: accountSubs.length })}</span>
         </div>
         {isLoading ? (
           <div className="p-8 flex justify-center"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div>
@@ -224,14 +226,14 @@ export default function Dashboard() {
       {/* Transactions panel — fills remaining height, internal scroll */}
       <div className="flex-1 min-h-0 border rounded-sm bg-card flex flex-col overflow-hidden">
         <div className="flex items-center justify-between gap-3 px-4 py-3 border-b shrink-0 flex-wrap">
-          <h2 className="font-serif text-base"><em>Transactions</em></h2>
+          <h2 className="font-serif text-base"><em>{t("dashboardPage.transactions.title")}</em></h2>
           <div className="flex gap-2 items-center">
             <div className="relative">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
               <Input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Rechercher un produit"
+                placeholder={t("dashboardPage.transactions.searchPlaceholder")}
                 className="h-8 pl-8 w-48 text-sm"
               />
             </div>
@@ -240,10 +242,10 @@ export default function Dashboard() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tous types</SelectItem>
-                <SelectItem value="deposit">Dépôts</SelectItem>
-                <SelectItem value="withdrawal">Retraits</SelectItem>
-                <SelectItem value="interest">Intérêts</SelectItem>
+                <SelectItem value="all">{t("dashboardPage.transactions.allTypes")}</SelectItem>
+                <SelectItem value="deposit">{t("dashboardPage.transactions.deposits")}</SelectItem>
+                <SelectItem value="withdrawal">{t("dashboardPage.transactions.withdrawals")}</SelectItem>
+                <SelectItem value="interest">{t("dashboardPage.transactions.interests")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -252,17 +254,17 @@ export default function Dashboard() {
         <div className="flex-1 overflow-y-auto">
           {filteredTx.length === 0 ? (
             <div className="h-full flex items-center justify-center text-sm text-muted-foreground p-8">
-              Aucune transaction
+              {t("dashboardPage.transactions.empty")}
             </div>
           ) : (
             <table className="w-full text-sm">
               <thead className="sticky top-0 bg-card border-b z-10">
                 <tr className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                  <th className="text-left font-medium px-4 py-2.5">Date</th>
-                  <th className="text-left font-medium px-4 py-2.5">Type</th>
-                  <th className="text-left font-medium px-4 py-2.5">Produit</th>
-                  <th className="text-right font-medium px-4 py-2.5">Montant</th>
-                  <th className="text-right font-medium px-4 py-2.5">Statut</th>
+                  <th className="text-left font-medium px-4 py-2.5">{t("dashboardPage.transactions.headers.date")}</th>
+                  <th className="text-left font-medium px-4 py-2.5">{t("dashboardPage.transactions.headers.type")}</th>
+                  <th className="text-left font-medium px-4 py-2.5">{t("dashboardPage.transactions.headers.product")}</th>
+                  <th className="text-right font-medium px-4 py-2.5">{t("dashboardPage.transactions.headers.amount")}</th>
+                  <th className="text-right font-medium px-4 py-2.5">{t("dashboardPage.transactions.headers.status")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -289,7 +291,7 @@ export default function Dashboard() {
                       </td>
                       <td className="px-4 py-2.5 text-right">
                         <span className="text-[10px] uppercase tracking-wider font-mono text-success border border-success/30 px-1.5 py-0.5 rounded-sm">
-                          {t.status === "completed" ? "Réglé" : "En cours"}
+                          {t.status === "completed" ? "" : ""}{t.status === "completed" ? "" : ""}
                         </span>
                       </td>
                     </tr>
