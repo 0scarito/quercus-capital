@@ -8,17 +8,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Mail } from "lucide-react";
-
-const emailSchema = z.object({
-  firstName: z.string().trim().min(1, "Prénom requis").max(100),
-  lastName: z.string().trim().min(1, "Nom requis").max(100),
-  email: z.string().trim().email("Adresse email invalide").max(255),
-  password: z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères").max(128),
-  confirmPassword: z.string(),
-}).refine(d => d.password === d.confirmPassword, {
-  message: "Les mots de passe ne correspondent pas",
-  path: ["confirmPassword"],
-});
+import { useTranslation } from "react-i18next";
 
 interface StageEmailVerificationProps {
   onNext: (data: { email: string }) => void;
@@ -26,6 +16,18 @@ interface StageEmailVerificationProps {
 }
 
 export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmailVerificationProps) {
+  const { t } = useTranslation("onboarding");
+  const emailSchema = z.object({
+    firstName: z.string().trim().min(1, t("email.errors.firstNameRequired")).max(100),
+    lastName: z.string().trim().min(1, t("email.errors.lastNameRequired")).max(100),
+    email: z.string().trim().email(t("email.errors.emailInvalid")).max(255),
+    password: z.string().min(8, t("email.errors.passwordMin")).max(128),
+    confirmPassword: z.string(),
+  }).refine(d => d.password === d.confirmPassword, {
+    message: t("email.errors.passwordMismatch"),
+    path: ["confirmPassword"],
+  });
+
   const [phase, setPhase] = useState<"credentials" | "otp">("credentials");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -73,7 +75,6 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
       return;
     }
 
-    toast.success("Compte créé !");
     onNext({ email });
   };
 
@@ -86,7 +87,7 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success("Code renvoyé !");
+      toast.success(t("email.resend"));
     }
     setLoading(false);
   };
@@ -106,13 +107,12 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
     });
 
     if (error) {
-      toast.error("Code invalide. Veuillez réessayer.");
+      toast.error(t("twoFA.toasts.invalidCode"));
       setOtp("");
       setLoading(false);
       return;
     }
 
-    toast.success("Email vérifié !");
     onNext({ email });
   };
 
@@ -129,14 +129,14 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
             <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
               <Mail className="w-7 h-7 text-primary" />
             </div>
-            <h2 className="text-2xl font-serif"><em>Créez votre accès</em></h2>
-            <p className="text-sm text-muted-foreground">Renseignez votre email et choisissez un mot de passe sécurisé.</p>
+            <h2 className="text-2xl font-serif"><em>{t("email.title")}</em></h2>
+            <p className="text-sm text-muted-foreground">{t("email.subtitle")}</p>
           </div>
 
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">Prénom</Label>
+                <Label htmlFor="firstName">{t("email.firstName")}</Label>
                 <Input
                   id="firstName"
                   value={firstName}
@@ -146,7 +146,7 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
                 {errors.firstName && <p className="text-xs text-destructive">{errors.firstName}</p>}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName">Nom</Label>
+                <Label htmlFor="lastName">{t("email.lastName")}</Label>
                 <Input
                   id="lastName"
                   value={lastName}
@@ -157,7 +157,7 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t("email.email")}</Label>
               <Input
                 id="email"
                 type="email"
@@ -168,7 +168,7 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
               {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Mot de passe</Label>
+              <Label htmlFor="password">{t("email.password")}</Label>
               <Input
                 id="password"
                 type="password"
@@ -179,7 +179,7 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
               {errors.password && <p className="text-xs text-destructive">{errors.password}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirmer le mot de passe</Label>
+              <Label htmlFor="confirmPassword">{t("email.confirmPassword")}</Label>
               <Input
                 id="confirmPassword"
                 type="password"
@@ -193,7 +193,7 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
 
           <motion.div animate={shake ? { x: [-4, 4, -4, 4, 0] } : {}} transition={{ duration: 0.4 }}>
             <Button onClick={handleSignUp} size="lg" className="btn-glow w-full" disabled={loading}>
-              {loading ? "Chargement…" : "Créer mon compte"}
+              {loading ? t("email.loading") : t("email.submit")}
             </Button>
           </motion.div>
         </>
@@ -203,9 +203,9 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
             <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
               <Mail className="w-7 h-7 text-primary" />
             </div>
-            <h2 className="text-2xl font-serif"><em>Vérifiez votre email</em></h2>
+            <h2 className="text-2xl font-serif"><em>{t("email.verifyTitle")}</em></h2>
             <p className="text-sm text-muted-foreground">
-              Entrez le code à 6 chiffres envoyé à <strong className="font-mono">{email}</strong>
+              {t("email.verifySubtitle")} <strong className="font-mono">{email}</strong>
             </p>
           </div>
 
@@ -220,7 +220,7 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
           </div>
 
           <Button variant="ghost" className="w-full text-xs" onClick={handleResendCode} disabled={loading}>
-            Renvoyer le code
+            {t("email.resend")}
           </Button>
         </>
       )}

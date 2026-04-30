@@ -2,12 +2,14 @@ import { motion } from "framer-motion";
 import { User, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface StageAccountTypeProps {
   onNext: (type: "particulier" | "moral") => void;
 }
 
 export function StageAccountType({ onNext }: StageAccountTypeProps) {
+  const { t } = useTranslation("onboarding");
   const [selected, setSelected] = useState<"particulier" | "moral" | null>(null);
 
   const cardClass = (active: boolean) =>
@@ -23,8 +25,8 @@ export function StageAccountType({ onNext }: StageAccountTypeProps) {
       className="space-y-8 max-w-lg mx-auto"
     >
       <div className="text-center space-y-2">
-        <h2 className="text-2xl font-serif"><em>Type de compte</em></h2>
-        <p className="text-sm text-muted-foreground">Sélectionnez le type de compte que vous souhaitez ouvrir.</p>
+        <h2 className="text-2xl font-serif"><em>{t("accountType.title")}</em></h2>
+        <p className="text-sm text-muted-foreground">{t("accountType.subtitle")}</p>
       </div>
 
       <div className="grid grid-cols-2 gap-6">
@@ -36,8 +38,8 @@ export function StageAccountType({ onNext }: StageAccountTypeProps) {
           <div className="flex flex-col items-center gap-4 text-center">
             <User className="w-10 h-10 text-primary" />
             <div>
-              <p className="font-medium">Un particulier</p>
-              <p className="text-xs text-muted-foreground mt-1">Personne physique</p>
+              <p className="font-medium">{t("accountType.individual")}</p>
+              <p className="text-xs text-muted-foreground mt-1">{t("accountType.individualDesc")}</p>
             </div>
           </div>
         </motion.div>
@@ -50,8 +52,8 @@ export function StageAccountType({ onNext }: StageAccountTypeProps) {
           <div className="flex flex-col items-center gap-4 text-center">
             <Building2 className="w-10 h-10 text-primary" />
             <div>
-              <p className="font-medium">Une personne morale</p>
-              <p className="text-xs text-muted-foreground mt-1">Entreprise / Entité</p>
+              <p className="font-medium">{t("accountType.corporate")}</p>
+              <p className="text-xs text-muted-foreground mt-1">{t("accountType.corporateDesc")}</p>
             </div>
           </div>
         </motion.div>
@@ -64,7 +66,7 @@ export function StageAccountType({ onNext }: StageAccountTypeProps) {
       >
         {selected && (
           <Button onClick={() => onNext(selected)} size="lg" className="btn-glow w-full">
-            Suivant
+            {t("accountType.next")}
           </Button>
         )}
       </motion.div>
