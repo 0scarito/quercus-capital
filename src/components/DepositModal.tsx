@@ -15,6 +15,7 @@ import { useProfile } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 interface DepositModalProps {
   open: boolean;
@@ -32,6 +33,7 @@ const bankByCurrency: Record<string, { holder: string; bank: string; iban: strin
 type Step = "product" | "instructions" | "waiting";
 
 export function DepositModal({ open, onOpenChange, presetProductId, presetAccountId }: DepositModalProps) {
+  const { t, i18n } = useTranslation("dashboard");
   const { data: products } = useProducts();
   const { data: accounts } = useAccounts();
   const { user } = useAuth();
@@ -67,13 +69,13 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
   const handleCopy = (key: string, value: string) => {
     navigator.clipboard.writeText(value);
     setCopiedKey(key);
-    toast.success("Copié");
+    toast.success(t("deposit.copied"));
     setTimeout(() => setCopiedKey(null), 2000);
   };
 
   const handleNextFromProduct = () => {
     if (!productId || !accountId) {
-      toast.error("Sélectionnez un produit et un compte");
+      toast.error(t("deposit.selectError"));
       return;
     }
     setStep("instructions");
@@ -95,7 +97,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
     setSubmitting(false);
     if (error) {
       console.error("Deposit intent error:", error);
-      toast.error("Une erreur est survenue. Veuillez réessayer.");
+      toast.error(t("deposit.error"));
       return;
     }
     setReference(data.reference);
@@ -107,11 +109,12 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
     if (!product || !bank) return;
     const value = parseFloat(proofAmount);
     if (isNaN(value) || value < 1) {
-      toast.error("Montant invalide");
+      toast.error(t("deposit.proof.invalidAmount"));
       return;
     }
     const doc = new jsPDF();
     const fullName = [profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || user?.email || "";
+    const locale = i18n.language === "en" ? "en-US" : "fr-FR";
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(20);
@@ -122,7 +125,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
     doc.line(20, 38, 190, 38);
 
     doc.setFontSize(11);
-    doc.text(`Date : ${new Date().toLocaleDateString("fr-FR")}`, 20, 50);
+    doc.text(`Date : ${new Date().toLocaleDateString(locale)}`, 20, 50);
     doc.text(`Souscripteur : ${fullName}`, 20, 58);
     doc.text(`Email : ${user?.email ?? ""}`, 20, 66);
 
@@ -132,7 +135,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
     doc.text(`Produit : ${product.name}`, 20, 92);
     doc.text(`Devise : ${product.currency}`, 20, 100);
     doc.text(`Rendement indicatif : ${product.yield_rate.toFixed(2)} %`, 20, 108);
-    doc.text(`Montant prévu : ${value.toLocaleString("fr-FR", { minimumFractionDigits: 2 })} ${product.currency}`, 20, 116);
+    doc.text(`Montant prévu : ${value.toLocaleString(locale, { minimumFractionDigits: 2 })} ${product.currency}`, 20, 116);
 
     doc.setFont("helvetica", "bold");
     doc.text("Coordonnées bancaires de réception", 20, 132);
@@ -157,7 +160,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
     doc.text("Quercus Capital — CIF / ORIAS — contact@quercus.capital", 20, 280);
 
     doc.save(`Quercus-Promesse-${product.currency}-${Date.now()}.pdf`);
-    toast.success("Justificatif téléchargé");
+    toast.success(t("deposit.proof.downloaded"));
     setProofOpen(false);
   };
 
@@ -171,13 +174,13 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
             <div>
               <DialogHeader className="text-left">
                 <DialogTitle className="font-serif text-xl">
-                  <em>Déposer des fonds</em>
+                  <em>{t("deposit.title")}</em>
                 </DialogTitle>
               </DialogHeader>
               <p className="text-xs text-muted-foreground mt-0.5">
-                {step === "product" && "Choisissez un produit et un compte"}
-                {step === "instructions" && "Effectuez votre virement"}
-                {step === "waiting" && "Virement en attente"}
+                {step === "product" && t("deposit.subtitleProduct")}
+                {step === "instructions" && t("deposit.subtitleInstructions")}
+                {step === "waiting" && t("deposit.subtitleWaiting")}
               </p>
             </div>
           </div>
@@ -187,13 +190,13 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
           {step === "product" && (
             <>
               <div className="space-y-2">
-                <Label className="text-xs uppercase tracking-wider text-muted-foreground">Compte de destination</Label>
+                <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("deposit.destination")}</Label>
                 <Select value={accountId} onValueChange={setAccountId}>
-                  <SelectTrigger><SelectValue placeholder="Sélectionner un compte" /></SelectTrigger>
+                  <SelectTrigger><SelectValue placeholder={t("deposit.destinationPlaceholder")} /></SelectTrigger>
                   <SelectContent>
                     {accounts?.map((a) => (
                       <SelectItem key={a.id} value={a.id}>
-                        {a.is_primary ? "Compte principal" : a.name}
+                        {a.is_primary ? t("deposit.principal") : a.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -201,7 +204,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
               </div>
 
               <div className="space-y-2">
-                <Label className="text-xs uppercase tracking-wider text-muted-foreground">Produit</Label>
+                <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("deposit.product")}</Label>
                 <div className="border rounded-sm divide-y">
                   {products?.map((p) => (
                     <button
@@ -222,10 +225,10 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
                     </button>
                   ))}
                 </div>
-                <p className="text-[11px] text-muted-foreground">Dépôt minimum : 1,00 {product?.currency ?? "EUR"}</p>
+                <p className="text-[11px] text-muted-foreground">{t("deposit.minDeposit", { currency: product?.currency ?? "EUR" })}</p>
               </div>
 
-              <Button onClick={handleNextFromProduct} className="w-full">Continuer</Button>
+              <Button onClick={handleNextFromProduct} className="w-full">{t("deposit.continue")}</Button>
             </>
           )}
 
@@ -233,17 +236,15 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
             <>
               <div className="flex items-start gap-2 p-3 rounded-sm bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40">
                 <AlertCircle className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
-                <p className="text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
-                  Effectuez uniquement des virements depuis un compte bancaire à votre nom. Le montant que vous virez détermine votre souscription.
-                </p>
+                <p className="text-xs text-amber-900 dark:text-amber-200 leading-relaxed">{t("deposit.warning")}</p>
               </div>
 
               <div className="space-y-3">
                 {[
-                  { key: "holder", label: "Titulaire", value: bank.holder, mono: false },
-                  { key: "bank", label: "Banque", value: bank.bank, mono: false },
-                  { key: "iban", label: "IBAN", value: bank.iban, mono: true },
-                  { key: "bic", label: "BIC / SWIFT", value: bank.bic, mono: true },
+                  { key: "holder", label: t("deposit.labels.holder"), value: bank.holder, mono: false },
+                  { key: "bank", label: t("deposit.labels.bank"), value: bank.bank, mono: false },
+                  { key: "iban", label: t("deposit.labels.iban"), value: bank.iban, mono: true },
+                  { key: "bic", label: t("deposit.labels.bic"), value: bank.bic, mono: true },
                 ].map((d) => (
                   <div key={d.key} className="flex items-center justify-between gap-3 pb-3 border-b last:border-0">
                     <div className="min-w-0 flex-1">
@@ -261,16 +262,16 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
 
               <div className="flex items-center justify-between gap-2">
                 <Button variant="ghost" size="sm" onClick={() => setStep("product")}>
-                  <ArrowLeft className="h-3 w-3 mr-1" /> Retour
+                  <ArrowLeft className="h-3 w-3 mr-1" /> {t("deposit.back")}
                 </Button>
                 <Button variant="outline" size="sm" onClick={() => { setProofAmount(""); setProofOpen(true); }}>
-                  <Download className="h-3 w-3 mr-1" /> J'ai besoin d'un justificatif
+                  <Download className="h-3 w-3 mr-1" /> {t("deposit.needProof")}
                 </Button>
               </div>
 
               <Button onClick={handleConfirmTransfer} disabled={submitting} className="w-full">
                 {submitting && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
-                J'ai effectué le virement
+                {t("deposit.doneTransfer")}
               </Button>
             </>
           )}
@@ -281,16 +282,14 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
                 <Clock className="h-7 w-7 text-primary" />
               </div>
               <div>
-                <h3 className="font-serif text-xl"><em>Nous attendons votre virement</em></h3>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  Vos fonds apparaîtront généralement sous 24 h ouvrées. Vous serez notifié par email à leur réception.
-                </p>
+                <h3 className="font-serif text-xl"><em>{t("deposit.waiting.title")}</em></h3>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{t("deposit.waiting.desc")}</p>
               </div>
               <div className="bg-muted/40 rounded-sm p-3 text-left">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Référence de suivi</p>
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{t("deposit.waiting.reference")}</p>
                 <p className="font-mono text-sm font-medium">{reference}</p>
               </div>
-              <Button onClick={() => handleClose(false)} variant="outline" className="w-full">Fermer</Button>
+              <Button onClick={() => handleClose(false)} variant="outline" className="w-full">{t("deposit.waiting.close")}</Button>
             </div>
           )}
         </div>
@@ -299,27 +298,25 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
         <Dialog open={proofOpen} onOpenChange={setProofOpen}>
           <DialogContent className="sm:max-w-sm">
             <DialogHeader>
-              <DialogTitle className="font-serif"><em>Promesse de souscription</em></DialogTitle>
+              <DialogTitle className="font-serif"><em>{t("deposit.proof.title")}</em></DialogTitle>
             </DialogHeader>
-            <p className="text-xs text-muted-foreground">
-              Génère un PDF à remettre à votre banque pour justifier le virement.
-            </p>
+            <p className="text-xs text-muted-foreground">{t("deposit.proof.desc")}</p>
             <div className="space-y-2">
               <Label className="text-xs uppercase tracking-wider text-muted-foreground">
-                Montant prévu ({product?.currency})
+                {t("deposit.proof.amount", { currency: product?.currency ?? "" })}
               </Label>
               <Input
                 type="number"
                 min="1"
                 step="0.01"
-                placeholder="10 000,00"
+                placeholder={t("deposit.proof.amountPlaceholder")}
                 value={proofAmount}
                 onChange={(e) => setProofAmount(e.target.value)}
                 className="font-mono"
               />
             </div>
             <Button onClick={generateProofPDF} className="w-full">
-              <Download className="h-3 w-3 mr-1" /> Télécharger le PDF
+              <Download className="h-3 w-3 mr-1" /> {t("deposit.proof.download")}
             </Button>
           </DialogContent>
         </Dialog>
