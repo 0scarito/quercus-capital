@@ -306,7 +306,8 @@
     "swapBadge": "SWAP TRS",
     "step1": "Le panier",
     "step2": "L'échange",
-    "step3": "Le rendement"
+    "step3": "Le rendement",
+    "stepLabel": "Étape {{n}}"
   },
   "basisChart": {
     "future": "FUTURE",

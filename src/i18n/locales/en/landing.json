@@ -306,7 +306,8 @@
     "swapBadge": "TRS SWAP",
     "step1": "The basket",
     "step2": "The swap",
-    "step3": "The yield"
+    "step3": "The yield",
+    "stepLabel": "Step {{n}}"
   },
   "basisChart": {
     "future": "FUTURE",

@@ -140,15 +140,15 @@ export function VelvetMirrorSwap() {
 
       <div className={cn("grid grid-cols-3 gap-3 mt-6 text-center")}>
         <div className="border-l-2 border-primary/30 pl-3 text-left">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Étape 01</p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t("mirrorSwap.stepLabel", { n: "01" })}</p>
           <p className="text-sm font-serif italic mt-0.5">{t("mirrorSwap.step1")}</p>
         </div>
         <div className="border-l-2 border-primary/30 pl-3 text-left">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Étape 02</p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t("mirrorSwap.stepLabel", { n: "02" })}</p>
           <p className="text-sm font-serif italic mt-0.5">{t("mirrorSwap.step2")}</p>
         </div>
         <div className="border-l-2 border-success/40 pl-3 text-left">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Étape 03</p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t("mirrorSwap.stepLabel", { n: "03" })}</p>
           <p className="text-sm font-serif italic mt-0.5">{t("mirrorSwap.step3")}</p>
         </div>
       </div>
