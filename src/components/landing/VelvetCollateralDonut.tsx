@@ -1,15 +1,7 @@
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts";
+import { useTranslation } from "react-i18next";
 
-const data = [
-  { name: "Technologie", value: 34 },
-  { name: "Services Financiers", value: 18 },
-  { name: "Santé", value: 12 },
-  { name: "Consommation", value: 10 },
-  { name: "Communications", value: 8 },
-  { name: "Industrie", value: 7 },
-  { name: "Énergie", value: 5 },
-  { name: "Autres", value: 6 },
-];
+const VALUES = [34, 18, 12, 10, 8, 7, 5, 6];
 
 // Quercus-tinted palette: deep teal → warm sienna gradient
 const COLORS = [
@@ -24,6 +16,9 @@ const COLORS = [
 ];
 
 export function VelvetCollateralDonut() {
+  const { t } = useTranslation("landing");
+  const sectors = (t("collateralDonut.sectors", { returnObjects: true }) as string[]) || [];
+  const data = VALUES.map((value, i) => ({ name: sectors[i] || "", value }));
   const total = data.reduce((s, d) => s + d.value, 0);
 
   return (
@@ -56,11 +51,11 @@ export function VelvetCollateralDonut() {
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Collatéral</p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t("collateralDonut.centerLabel")}</p>
           <p className="font-serif text-2xl mt-1">
             <em>{total} %</em>
           </p>
-          <p className="text-[10px] text-muted-foreground mt-0.5">Tier-1 actions</p>
+          <p className="text-[10px] text-muted-foreground mt-0.5">{t("collateralDonut.centerSub")}</p>
         </div>
       </div>
 

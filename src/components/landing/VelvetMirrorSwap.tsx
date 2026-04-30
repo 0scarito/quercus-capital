@@ -1,5 +1,6 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 /**
  * Animated "Mirror Swap" diagram for Velvet:
@@ -8,6 +9,7 @@ import { cn } from "@/lib/utils";
  * center = Quercus seal (the swap)
  */
 export function VelvetMirrorSwap() {
+  const { t } = useTranslation("landing");
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>(0.25);
 
   return (
@@ -16,7 +18,7 @@ export function VelvetMirrorSwap() {
         viewBox="0 0 600 320"
         className="w-full h-auto"
         role="img"
-        aria-label="Schéma du Total Return Swap : panier d'actions échangé contre un rendement monétaire stable"
+        aria-label={t("mirrorSwap.ariaLabel")}
       >
         <defs>
           <linearGradient id="vmsBasket" x1="0" x2="0" y1="0" y2="1">
@@ -37,8 +39,8 @@ export function VelvetMirrorSwap() {
         </defs>
 
         {/* labels */}
-        <text x="80" y="22" className="font-mono" fontSize="10" letterSpacing="2" fill="hsl(var(--muted-foreground))">PANIER · ACTIONS</text>
-        <text x="380" y="22" className="font-mono" fontSize="10" letterSpacing="2" fill="hsl(var(--muted-foreground))">RENDEMENT · €STR + 0,30 %</text>
+        <text x="80" y="22" className="font-mono" fontSize="10" letterSpacing="2" fill="hsl(var(--muted-foreground))">{t("mirrorSwap.basketLabel")}</text>
+        <text x="380" y="22" className="font-mono" fontSize="10" letterSpacing="2" fill="hsl(var(--muted-foreground))">{t("mirrorSwap.yieldLabel")}</text>
 
         {/* LEFT — oscillating bars */}
         <g transform="translate(40,60)">
@@ -76,7 +78,7 @@ export function VelvetMirrorSwap() {
           })}
           {/* baseline */}
           <line x1="-4" y1="180" x2="200" y2="180" stroke="hsl(var(--primary))" strokeWidth="0.5" strokeOpacity="0.4" />
-          <text x="0" y="200" fontSize="9" fill="hsl(var(--muted-foreground))" className="font-mono">VOLATILITÉ MARCHÉ</text>
+          <text x="0" y="200" fontSize="9" fill="hsl(var(--muted-foreground))" className="font-mono">{t("mirrorSwap.marketVol")}</text>
         </g>
 
         {/* CENTER — Quercus seal */}
@@ -93,7 +95,7 @@ export function VelvetMirrorSwap() {
             />
           </circle>
           <text textAnchor="middle" y="-2" fontSize="11" className="font-serif" fontStyle="italic" fill="hsl(var(--primary))">Quercus</text>
-          <text textAnchor="middle" y="14" fontSize="8" letterSpacing="2" fill="hsl(var(--muted-foreground))" className="font-mono">SWAP TRS</text>
+          <text textAnchor="middle" y="14" fontSize="8" letterSpacing="2" fill="hsl(var(--muted-foreground))" className="font-mono">{t("mirrorSwap.swapBadge")}</text>
         </g>
 
         {/* arrows in/out */}
@@ -132,22 +134,22 @@ export function VelvetMirrorSwap() {
           >
             <animate attributeName="r" values="4;6;4" dur="2.4s" repeatCount="indefinite" />
           </circle>
-          <text x="0" y="200" fontSize="9" fill="hsl(var(--muted-foreground))" className="font-mono">RENDEMENT GARANTI</text>
+          <text x="0" y="200" fontSize="9" fill="hsl(var(--muted-foreground))" className="font-mono">{t("mirrorSwap.guaranteed")}</text>
         </g>
       </svg>
 
       <div className={cn("grid grid-cols-3 gap-3 mt-6 text-center")}>
         <div className="border-l-2 border-primary/30 pl-3 text-left">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Étape 01</p>
-          <p className="text-sm font-serif italic mt-0.5">Le panier</p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.stepLabel", { ns: "products", n: "01" })}</p>
+          <p className="text-sm font-serif italic mt-0.5">{t("mirrorSwap.step1")}</p>
         </div>
         <div className="border-l-2 border-primary/30 pl-3 text-left">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Étape 02</p>
-          <p className="text-sm font-serif italic mt-0.5">L'échange</p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.stepLabel", { ns: "products", n: "02" })}</p>
+          <p className="text-sm font-serif italic mt-0.5">{t("mirrorSwap.step2")}</p>
         </div>
         <div className="border-l-2 border-success/40 pl-3 text-left">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Étape 03</p>
-          <p className="text-sm font-serif italic mt-0.5">Le rendement</p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.stepLabel", { ns: "products", n: "03" })}</p>
+          <p className="text-sm font-serif italic mt-0.5">{t("mirrorSwap.step3")}</p>
         </div>
       </div>
     </div>
