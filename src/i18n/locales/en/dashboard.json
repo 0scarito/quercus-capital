@@ -1,28 +1,256 @@
 {
   "sidebar": {
     "dashboard": "Dashboard",
-    "products": "Products",
-    "statements": "Statements",
-    "settings": "Settings",
+    "investments": "My investments",
+    "advisor": "My advisor",
+    "settings": "Account settings",
+    "statements": "My transactions",
     "integrations": "Integrations",
-    "signOut": "Sign out"
+    "personalSettings": "Personal settings",
+    "accountSettings": "Account settings",
+    "helpCenter": "Help center",
+    "contactUs": "Contact us",
+    "signOut": "Sign out",
+    "myAccount": "My account",
+    "personalAccount": "Personal account",
+    "corporateAccount": "Corporate account",
+    "openCorporate": "Open a professional account"
   },
-  "balance": {
-    "title": "Total balance",
-    "deposit": "Deposit",
-    "withdraw": "Withdraw"
+  "dashboardPage": {
+    "greeting": "Hello, {{name}}",
+    "advisor": {
+      "available": "Your advisor {{name}} is available to answer your questions.",
+      "credentials": "Wealth Advisor — CIF ORIAS no. 24004789",
+      "sendMessage": "Send a message",
+      "unlock": "Get a dedicated Wealth Manager from €3M invested.",
+      "remaining": "{{amount}} more to unlock this service.",
+      "investNow": "Invest now"
+    },
+    "actions": {
+      "withdraw": "Withdraw",
+      "invest": "Invest"
+    },
+    "balance": {
+      "total": "Total balance",
+      "averageYield": "average yield",
+      "interestEarned": "Interest earned"
+    },
+    "products": {
+      "title": "Products",
+      "active": "{{count}} active",
+      "active_plural": "{{count}} active"
+    },
+    "transactions": {
+      "title": "Transactions",
+      "searchPlaceholder": "Search a product",
+      "allTypes": "All types",
+      "deposits": "Deposits",
+      "withdrawals": "Withdrawals",
+      "interests": "Interest",
+      "empty": "No transactions",
+      "headers": {
+        "date": "Date",
+        "type": "Type",
+        "product": "Product",
+        "amount": "Amount",
+        "status": "Status"
+      },
+      "types": {
+        "deposit": "Deposit",
+        "withdrawal": "Withdrawal",
+        "interest": "Interest"
+      },
+      "status": {
+        "completed": "Settled",
+        "pending": "Pending"
+      }
+    }
   },
-  "transactions": {
-    "title": "Transactions",
-    "search": "Search a product…",
-    "type": "Type",
-    "all": "All",
-    "deposit": "Deposit",
-    "withdrawal": "Withdrawal",
-    "interest": "Interest",
-    "date": "Date",
+  "settings": {
+    "title": "Account settings",
+    "subtitle": "Manage your profile, security and bank accounts.",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saveSuccess": "Profile updated",
+    "saveError": "An error occurred. Please try again.",
+    "holder": {
+      "title": "Account holder",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "dob": "Date of birth",
+      "email": "Email",
+      "phone": "Phone",
+      "accountType": "Account type",
+      "id": "Identifier",
+      "individual": "Individual",
+      "corporate": "Legal entity"
+    },
+    "users": {
+      "title": "User management",
+      "intro": "Manage who is allowed to access your account.",
+      "owner": "Owner",
+      "addUser": "+ Add user"
+    },
+    "tax": {
+      "title": "Tax residence",
+      "country": "Country of tax residence",
+      "tin": "Tax Identification Number",
+      "address": "Address",
+      "city": "City",
+      "postalCode": "Postal code",
+      "residence": "Country"
+    },
+    "financial": {
+      "title": "Financial profile",
+      "sector": "Sector of activity",
+      "income": "Annual income",
+      "wealth": "Wealth",
+      "deposit": "Planned deposit",
+      "fundsOrigin": "Source of funds",
+      "referral": "Discovery source",
+      "legalName": "Legal name",
+      "legalForm": "Legal form",
+      "siren": "SIREN",
+      "entityType": "Entity type",
+      "fundsSource": "Source of funds"
+    },
+    "bank": {
+      "title": "Bank accounts",
+      "intro": "These are the accounts you can withdraw your funds to.",
+      "empty": "No bank account added",
+      "add": "+ Add bank account"
+    },
+    "security": {
+      "title": "Security",
+      "twoFA": "Two-factor authentication",
+      "twoFADesc": "Protect your account with an additional verification code.",
+      "closeTitle": "Close account",
+      "closeDesc": "Your Quercus account will be permanently deleted. This action is irreversible.",
+      "closeCta": "Close my account"
+    }
+  },
+  "statements": {
+    "title": "Statements",
+    "subtitle": "View and download your monthly account statements.",
+    "empty": "No statements available yet.",
+    "emptyHint": "Statements will be generated automatically at the end of each month."
+  },
+  "products": {
+    "title": "Our products",
+    "subtitle": "Select a product to start placing your liquidity.",
+    "smartCash": "Smart Cash & Sovereign Funds",
+    "headers": {
+      "asset": "Asset",
+      "type": "Type",
+      "currency": "Currency",
+      "yield": "Yield"
+    },
+    "subscribe": "Subscribe to {{name}}",
+    "increase": "Increase",
+    "add": "Add",
+    "liquidity": "T+0 liquidity for orders placed before 12:25 CET. Yields shown are indicative and net of management fees.",
+    "advised": {
+      "section": "Wealth allocation",
+      "title": "Advised Portfolio",
+      "available": "Available",
+      "locked": "Locked",
+      "desc": "Bespoke wealth allocation built with your dedicated advisor — combining Smart Cash, Cash & Carry, bonds, equities and alternative solutions.",
+      "availableFrom": "Available from {{amount}} of assets",
+      "bookMeeting": "Book a meeting",
+      "unavailable": "Unavailable"
+    },
+    "modal": {
+      "destination": "Destination account",
+      "destinationPlaceholder": "Select an account",
+      "principal": "(primary)",
+      "amount": "Amount ({{currency}})",
+      "amountPlaceholder": "10,000",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "selectAccount": "Select an account",
+      "invalidAmount": "Invalid amount",
+      "subscribed": "{{name}} subscribed successfully",
+      "error": "An error occurred. Please try again."
+    }
+  },
+  "integrations": {
+    "title": "Integrations",
+    "subtitle": "Connect Quercus to your accounting, banking and payment tools.",
+    "connected": "Connected",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "connectedToast": "Integration connected",
+    "disconnectedToast": "Integration disconnected",
+    "error": "An error occurred. Please try again.",
+    "footer": "Real OAuth connections to each service will be enabled progressively. For priority deployment, contact your account manager."
+  },
+  "advisor": {
+    "title": "My advisor",
+    "lockedSubtitle": "A service reserved for clients investing €3M or more.",
+    "lockedHero": "A dedicated advisor, just for you.",
+    "lockedDesc": "From <0>€3M invested</0>, a Wealth Manager supports you personally: bespoke allocation, tax optimization and priority follow-up by phone, email or appointment.",
+    "progress": "{{wealth}} / €3,000,000 — {{remaining}} left to invest",
+    "investNow": "Invest now",
+    "contactUs": "Contact us",
+    "perks": [
+      { "title": "Bespoke allocation", "desc": "A strategy designed for your overall wealth situation." },
+      { "title": "Priority follow-up", "desc": "Guaranteed reply within 24 business hours from your dedicated Wealth Manager." },
+      { "title": "Directly reachable", "desc": "Phone, email, in-person or video meeting." }
+    ],
+    "subtitle": "Your dedicated Wealth Manager, reachable by message, email or phone.",
+    "advisorRole": "Wealth Advisor · Quercus Capital",
+    "credentials": "CIF ORIAS no. 24004789 · Wealth Advisor — AMF",
+    "availability": "Available Monday to Friday, 9am–7pm. Reply guaranteed within 24 business hours.",
+    "form": {
+      "title": "Send a message",
+      "subject": "Subject",
+      "subjectPlaceholder": "Question about my allocation",
+      "message": "Message",
+      "messagePlaceholder": "Hello Alexandre, …",
+      "send": "Send message",
+      "sending": "Sending…",
+      "sent": "Message sent to your advisor"
+    }
+  },
+  "deposit": {
+    "title": "Deposit funds",
+    "subtitleProduct": "Choose a product and an account",
+    "subtitleInstructions": "Make your transfer",
+    "subtitleWaiting": "Transfer pending",
+    "destination": "Destination account",
+    "destinationPlaceholder": "Select an account",
+    "principal": "Primary account",
     "product": "Product",
-    "amount": "Amount",
-    "empty": "No transactions"
+    "minDeposit": "Minimum deposit: 1.00 {{currency}}",
+    "continue": "Continue",
+    "warning": "Only make transfers from a bank account in your own name. The amount you transfer determines your subscription.",
+    "labels": {
+      "holder": "Account holder",
+      "bank": "Bank",
+      "iban": "IBAN",
+      "bic": "BIC / SWIFT"
+    },
+    "back": "Back",
+    "needProof": "I need a proof document",
+    "doneTransfer": "I have made the transfer",
+    "waiting": {
+      "title": "We are awaiting your transfer",
+      "desc": "Your funds will usually appear within 24 business hours. You will be notified by email upon receipt.",
+      "reference": "Tracking reference",
+      "close": "Close"
+    },
+    "proof": {
+      "title": "Subscription pledge",
+      "desc": "Generates a PDF to give to your bank to justify the transfer.",
+      "amount": "Planned amount ({{currency}})",
+      "amountPlaceholder": "10,000.00",
+      "download": "Download PDF",
+      "downloaded": "Proof downloaded",
+      "invalidAmount": "Invalid amount"
+    },
+    "selectError": "Select a product and an account",
+    "copied": "Copied",
+    "error": "An error occurred. Please try again."
   }
 }
