@@ -9,6 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { useProfile } from "@/hooks/useProfile";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 
 interface StageKYCProps {
@@ -16,6 +17,7 @@ interface StageKYCProps {
 }
 
 export function StageKYC({ onComplete }: StageKYCProps) {
+  const { t } = useTranslation("onboarding");
   const [phase, setPhase] = useState<"ready" | "verifying" | "review" | "done">("ready");
   const { user } = useAuth();
   const { data: profile } = useProfile();
@@ -58,19 +60,19 @@ export function StageKYC({ onComplete }: StageKYCProps) {
   const handleConfirm = async () => {
     if (!user) return;
     const required: Array<[string, string]> = [
-      [firstName.trim(), "Prénom"],
-      [lastName.trim(), "Nom"],
-      [dateOfBirth, "Date de naissance"],
-      [address.trim(), "Adresse"],
-      [city.trim(), "Ville"],
-      [postalCode.trim(), "Code postal"],
-      [country.trim(), "Pays de résidence"],
-      [taxCountry.trim(), "Résidence fiscale"],
-      [taxId.trim(), "Numéro fiscal (NIF)"],
+      [firstName.trim(), t("kyc.review.firstName")],
+      [lastName.trim(), t("kyc.review.lastName")],
+      [dateOfBirth, t("kyc.review.dob")],
+      [address.trim(), t("kyc.review.address")],
+      [city.trim(), t("kyc.review.city")],
+      [postalCode.trim(), t("kyc.review.postalCode")],
+      [country.trim(), t("kyc.review.country")],
+      [taxCountry.trim(), t("kyc.review.taxCountry")],
+      [taxId.trim(), t("kyc.review.tin")],
     ];
     const missing = required.filter(([v]) => !v).map(([, label]) => label);
     if (missing.length) {
-      toast.error(`Veuillez renseigner : ${missing.join(", ")}`);
+      toast.error(t("kyc.review.missing", { fields: missing.join(", ") }));
       return;
     }
     setSaving(true);
@@ -91,7 +93,7 @@ export function StageKYC({ onComplete }: StageKYCProps) {
       .eq("user_id", user.id);
     setSaving(false);
     if (error) {
-      toast.error("Erreur d'enregistrement. Veuillez réessayer.");
+      toast.error(t("kyc.review.saveError"));
       return;
     }
     queryClient.invalidateQueries({ queryKey: ["profile", user.id] });
@@ -111,29 +113,25 @@ export function StageKYC({ onComplete }: StageKYCProps) {
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
               <ScanFace className="w-8 h-8 text-primary" />
             </div>
-            <h2 className="text-2xl font-serif"><em>Vérification d'identité</em></h2>
+            <h2 className="text-2xl font-serif"><em>{t("kyc.ready.title")}</em></h2>
             <p className="text-sm text-muted-foreground">
-              Dernière étape : nous devons vérifier votre identité pour activer votre compte.
+              {t("kyc.ready.subtitle")}
             </p>
           </div>
 
           <div className="bg-white/40 backdrop-blur-[12px] border border-white/20 p-6 space-y-3 text-left">
-            <p className="text-sm font-medium">Vous aurez besoin de :</p>
+            <p className="text-sm font-medium">{t("kyc.ready.needsTitle")}</p>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary" /> Pièce d'identité (CNI ou Passeport)
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary" /> Caméra pour un selfie de vérification
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary" /> 2 minutes de votre temps
-              </li>
+              {(t("kyc.ready.needs", { returnObjects: true }) as string[]).map((n) => (
+                <li key={n} className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-primary" /> {n}
+                </li>
+              ))}
             </ul>
           </div>
 
           <Button onClick={handleVerify} size="lg" className="btn-glow w-full">
-            Vérifier mon identité
+            {t("kyc.ready.cta")}
           </Button>
         </>
       )}
@@ -141,7 +139,7 @@ export function StageKYC({ onComplete }: StageKYCProps) {
       {phase === "verifying" && (
         <div className="space-y-6 py-12">
           <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto" />
-          <p className="text-sm text-muted-foreground">Extraction des informations en cours…</p>
+          <p className="text-sm text-muted-foreground">{t("kyc.verifying")}</p>
         </div>
       )}
 
@@ -152,62 +150,62 @@ export function StageKYC({ onComplete }: StageKYCProps) {
           className="space-y-5 text-left"
         >
           <div className="space-y-2 text-center">
-            <h2 className="text-2xl font-serif"><em>Confirmez vos informations</em></h2>
+            <h2 className="text-2xl font-serif"><em>{t("kyc.review.title")}</em></h2>
             <p className="text-sm text-muted-foreground">
-              Voici les informations extraites de votre pièce d'identité. Corrigez si nécessaire — elles seront enregistrées dans vos paramètres.
+              {t("kyc.review.subtitle")}
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Prénom</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("kyc.review.firstName")}</Label>
               <Input value={firstName} onChange={(e) => setFirstName(e.target.value)} />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Nom</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("kyc.review.lastName")}</Label>
               <Input value={lastName} onChange={(e) => setLastName(e.target.value)} />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Date de naissance</Label>
+            <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("kyc.review.dob")}</Label>
             <Input type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Adresse</Label>
+            <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("kyc.review.address")}</Label>
             <Input value={address} onChange={(e) => setAddress(e.target.value)} />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Ville</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("kyc.review.city")}</Label>
               <Input value={city} onChange={(e) => setCity(e.target.value)} />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Code postal</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("kyc.review.postalCode")}</Label>
               <Input value={postalCode} onChange={(e) => setPostalCode(e.target.value)} className="font-mono" />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Pays de résidence</Label>
+            <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("kyc.review.country")}</Label>
             <Input value={country} onChange={(e) => setCountry(e.target.value)} />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Résidence fiscale</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("kyc.review.taxCountry")}</Label>
               <Input value={taxCountry} onChange={(e) => setTaxCountry(e.target.value)} />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">N° fiscal (NIF)</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("kyc.review.tin")}</Label>
               <Input value={taxId} onChange={(e) => setTaxId(e.target.value)} className="font-mono" />
             </div>
           </div>
 
           <Button onClick={handleConfirm} size="lg" className="btn-glow w-full" disabled={saving}>
-            {saving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Enregistrement…</> : "Confirmer et activer mon compte"}
+            {saving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t("kyc.review.saving")}</> : t("kyc.review.confirm")}
           </Button>
         </motion.div>
       )}
@@ -243,14 +241,14 @@ export function StageKYC({ onComplete }: StageKYCProps) {
             >
               <CheckCircle className="w-12 h-12 text-success mx-auto" />
             </motion.div>
-            <h2 className="text-2xl font-serif"><em>Félicitations !</em></h2>
+            <h2 className="text-2xl font-serif"><em>{t("kyc.done.title")}</em></h2>
             <p className="text-sm text-muted-foreground">
-              Votre compte est en cours d'examen. Vous recevrez une confirmation par email sous 24 à 48 heures.
+              {t("kyc.done.subtitle")}
             </p>
           </div>
 
           <Button onClick={onComplete} size="lg" className="btn-glow w-full">
-            Accéder à mon espace
+            {t("kyc.done.cta")}
           </Button>
         </motion.div>
       )}
