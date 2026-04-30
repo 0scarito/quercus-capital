@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { segments, segmentImages } from "@/components/solutions/segmentData";
+import { useTranslation } from "react-i18next";
 
 export default function SolutionsPage() {
+  const { t } = useTranslation(["pages", "products", "nav"]);
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <FloatingBlobs />
@@ -17,11 +19,10 @@ export default function SolutionsPage() {
           <ScrollReveal>
             <div className="max-w-5xl mx-auto text-center space-y-6">
               <h1 className="text-4xl md:text-6xl font-serif font-semibold leading-tight">
-                <em>À qui s'adresse Quercus ?</em>
+                <em>{t("pages:solutions.heroTitle", { defaultValue: "À qui s'adresse Quercus ?" })}</em>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Quercus est conçu pour les organisations et les individus qui exigent
-                davantage de leur trésorerie.
+                {t("pages:solutions.heroSubtitle", { defaultValue: "Quercus est conçu pour les organisations et les individus qui exigent davantage de leur trésorerie." })}
               </p>
             </div>
           </ScrollReveal>
@@ -37,18 +38,18 @@ export default function SolutionsPage() {
                 >
                   <img
                     src={segmentImages[s.slug]}
-                    alt={s.name}
+                    alt={t(`nav:solutionsList.${s.slug}`, { defaultValue: s.name })}
                     loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <div className="absolute top-4 left-4 bg-background/95 backdrop-blur-sm px-3 py-1.5 flex items-center gap-2">
-                    <span className="text-sm font-medium text-foreground">{s.name}</span>
+                    <span className="text-sm font-medium text-foreground">{t(`nav:solutionsList.${s.slug}`, { defaultValue: s.name })}</span>
                     <ArrowUpRight className="h-3.5 w-3.5 text-primary" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-background">
                     <p className="text-sm leading-snug opacity-90 line-clamp-2">
-                      {s.heroDescription.split(".")[0]}.
+                      {t(`products:segments.${s.slug}.heroDescription`, { defaultValue: s.heroDescription }).split(".")[0]}.
                     </p>
                   </div>
                 </Link>
@@ -61,14 +62,14 @@ export default function SolutionsPage() {
           <ScrollReveal>
             <div className="max-w-4xl mx-auto text-center space-y-8">
               <h2 className="text-4xl md:text-5xl font-serif">
-                <em>Prêt à optimiser votre trésorerie ?</em>
+                <em>{t("pages:solutions.ctaTitle", { defaultValue: "Prêt à optimiser votre trésorerie ?" })}</em>
               </h2>
               <div className="flex items-center justify-center gap-4 flex-wrap">
                 <Button size="lg" className="px-10 btn-glow" asChild>
-                  <Link to="/open-account">Ouvrir un compte</Link>
+                  <Link to="/open-account">{t("products:common.openAccount")}</Link>
                 </Button>
                 <Button size="lg" variant="outline" className="px-10 btn-glow" asChild>
-                  <Link to="/contact">Nous contacter</Link>
+                  <Link to="/contact">{t("products:common.contactUs")}</Link>
                 </Button>
               </div>
             </div>
