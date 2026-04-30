@@ -128,6 +128,10 @@
       "closeTitle": "Clôture du compte",
       "closeDesc": "Votre compte Quercus sera définitivement supprimé. Cette action est irréversible.",
       "closeCta": "Clôturer mon compte"
+    },
+    "language": {
+      "title": "Langue",
+      "desc": "Choisissez la langue d'affichage de la plateforme."
     }
   },
   "statements": {

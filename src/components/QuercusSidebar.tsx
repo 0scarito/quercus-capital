@@ -43,7 +43,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProfile } from "@/hooks/useProfile";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function QuercusSidebar() {
   const navigate = useNavigate();
@@ -182,10 +181,6 @@ export function QuercusSidebar() {
             {initials}
           </div>
           <p className="text-xs text-sidebar-foreground truncate">{user?.email}</p>
-        </div>
-
-        <div className="px-2 py-1 flex justify-end">
-          <LanguageSwitcher />
         </div>
 
         <SidebarMenu>
