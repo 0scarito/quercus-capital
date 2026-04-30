@@ -224,60 +224,60 @@
     "high": "Risque le plus élevé"
   },
   "securityArch": {
-    "tobam": {
-      "manager": {
+    "tobam": [
+      {
         "role": "Gérant",
         "name": "TOBAM",
         "desc": "Stratégie & exécution"
       },
-      "depositary": {
+      {
         "role": "Dépositaire",
         "name": "CACEIS Bank",
         "desc": "Conservation des actifs · PSAN AMF"
       },
-      "admin": {
+      {
         "role": "Administrateur",
         "name": "CACEIS",
         "desc": "Valorisation & comptabilité"
       },
-      "auditor": {
+      {
         "role": "Auditeur",
         "name": "PwC",
         "desc": "Contrôle indépendant annuel"
       },
-      "brokers": {
+      {
         "role": "Brokers régulés",
         "name": "Taurus · BitGo · Binance",
         "desc": "Exécution multi-venues"
       }
-    },
-    "velvet": {
-      "manager": {
+    ],
+    "velvet": [
+      {
         "role": "Gérant",
         "name": "LFIS Capital",
         "desc": "AMF GP13000004 · > 5 Mds$ d'actifs"
       },
-      "depositary": {
+      {
         "role": "Dépositaire",
         "name": "BNP Paribas SA",
         "desc": "Ségrégation totale des actifs"
       },
-      "admin": {
+      {
         "role": "Administrateur",
         "name": "BNP Paribas",
         "desc": "Valorisation & comptabilité"
       },
-      "auditor": {
+      {
         "role": "Auditeur",
         "name": "PwC",
         "desc": "Audits trimestriels indépendants"
       },
-      "swap": {
+      {
         "role": "Contreparties Swap",
         "name": "BNPP · SG · GS · JPM",
         "desc": "Réseau de banques systémiques"
       }
-    }
+    ]
   },
   "cashCarry": {
     "headerEyebrow": "Schéma de flux magnétique",
