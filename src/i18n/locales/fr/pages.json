@@ -11,25 +11,204 @@
     "weekend": "Samedi – Dimanche : Fermé"
   },
   "about": {
-    "title": "À propos"
+    "title": "À propos",
+    "eyebrow": "Notre mission",
+    "heroTitle": "Une gestion de patrimoine\nà hauteur d'institution.",
+    "heroSubtitle": "Quercus Capital est un cabinet français de Conseil en Gestion de Patrimoine, dédié aux dirigeants, familles et entreprises qui veulent faire travailler leur épargne avec rigueur, simplicité et transparence.",
+    "approachTitle": "Notre approche",
+    "values": {
+      "v1Title": "Rigueur",
+      "v1Desc": "Une sélection exigeante des supports d'investissement, fondée sur l'analyse de la solidité, de la liquidité et de la qualité des contreparties.",
+      "v2Title": "Transparence",
+      "v2Desc": "Frais clairs, rendements nets, documentation complète. Vous savez toujours ce que vous payez et ce que vous gagnez.",
+      "v3Title": "Accompagnement humain",
+      "v3Desc": "Un conseiller dédié, joignable, qui prend le temps de comprendre votre situation et de répondre à vos questions."
+    },
+    "teamTitle": "Notre équipe",
+    "team": {
+      "audrey": {
+        "role": "Présidente — Fondatrice",
+        "reg": "CIF ORIAS 24004789",
+        "bio": "Fondatrice de Quercus Capital, Audrey conjugue plus de 20 ans d'expérience dans la finance institutionnelle pour offrir une gestion patrimoniale d'exception, alliant rigueur, expertise et vision long terme."
+      },
+      "david": {
+        "role": "Directeur Général",
+        "reg": "Diplômé HEC Paris",
+        "bio": "David pilote la stratégie et le développement de Quercus. Fort d'une carrière dans la gestion d'actifs et le conseil aux dirigeants, il garantit la qualité de service et la performance des solutions proposées."
+      },
+      "thomas": {
+        "role": "Directeur des Opérations",
+        "reg": "Membre CNCEF",
+        "bio": "Thomas supervise l'ensemble des opérations, de la conformité à l'expérience client. Son expertise opérationnelle assure une exécution sans faille de chaque mandat confié à Quercus."
+      }
+    },
+    "cardCta": "Cliquez pour en savoir plus",
+    "cardAria": "Voir plus d'informations sur {{name}}",
+    "approvalsTitle": "Nos agréments",
+    "approvals": {
+      "amfLabel": "Autorité des Marchés Financiers",
+      "amfDesc": "CGP — supervisé par l'AMF",
+      "oriasLabel": "CIF & COA",
+      "oriasDesc": "n° 24004789",
+      "cncefLabel": "Chambre Nationale",
+      "cncefDesc": "Membre actif",
+      "verify": "Vérifier notre enregistrement sur le registre public ORIAS",
+      "footer": "Quercus Capital — RCS Paris 928 443 001 · Siège : 231 rue Saint-Honoré, 75001 Paris."
+    },
+    "ctaTitle": "Rencontrons-nous.",
+    "ctaSubtitle": "Un premier échange, sans engagement, pour comprendre vos objectifs et voir comment nous pouvons vous accompagner.",
+    "ctaButton": "Prendre rendez-vous"
   },
   "press": {
-    "title": "Presse"
+    "title": "Presse",
+    "intro": "Pour toute demande presse, interview ou partenariat média, notre équipe de communication est à votre disposition.",
+    "contactTitle": "Contact presse",
+    "emailLabel": "Email :",
+    "phoneLabel": "Téléphone :",
+    "kitTitle": "Kit média",
+    "kitBody": "Notre kit média comprend nos logos, nos visuels de marque et nos communiqués de presse récents. N'hésitez pas à nous contacter pour obtenir des éléments complémentaires.",
+    "newsTitle": "Dernières actualités",
+    "news": {
+      "launchYear": "2025",
+      "launchTitle": "Lancement de la plateforme Quercus",
+      "launchBody": "Quercus Capital lance sa plateforme digitale de gestion de trésorerie, permettant aux entreprises et particuliers d'accéder aux meilleurs fonds monétaires européens."
+    }
   },
   "legal": {
-    "title": "Mentions légales"
+    "title": "Mentions légales",
+    "publisherTitle": "Éditeur du site",
+    "publisherBody": "QUERCUS CAPITAL SAS\n231 Rue Saint-Honoré, 75001 Paris\nRCS Paris : 928 443 001\nTéléphone : +33 1 84 20 07 65\nEmail : contact@quercus-capital.com",
+    "directorTitle": "Directeur de la publication",
+    "directorBody": "Le Président de Quercus Capital SAS.",
+    "hostingTitle": "Hébergement",
+    "hostingBody": "Ce site est hébergé par Lovable (Lovable Technologies).\nAdresse : voir lovable.dev",
+    "statusTitle": "Statut réglementaire",
+    "statusBody": "Quercus Capital est enregistrée auprès de l'ORIAS sous le n°24004789 en qualité de :\n— Conseiller en Investissements Financiers (CIF)\n— Courtier en Assurance (COA)\n\nAdhérente de la CNCIF (Chambre Nationale des Conseils en Investissements Financiers), association professionnelle agréée par l'AMF (Autorité des Marchés Financiers).",
+    "ipTitle": "Propriété intellectuelle",
+    "ipBody": "L'ensemble des contenus du site (textes, images, graphismes, logo, icônes, etc.) est la propriété exclusive de Quercus Capital, sauf mention contraire. Toute reproduction, représentation, modification ou distribution, même partielle, est interdite sans autorisation préalable écrite.",
+    "liabilityTitle": "Responsabilité",
+    "liabilityBody": "Les informations contenues sur ce site sont fournies à titre indicatif et ne constituent en aucun cas un conseil en investissement ni une offre de produits financiers. Les performances passées ne préjugent pas des performances futures. Quercus Capital ne saurait être tenue responsable des décisions prises sur la base des informations présentées sur ce site."
   },
   "privacy": {
-    "title": "Confidentialité"
+    "title": "Politique de confidentialité",
+    "lastUpdate": "Dernière mise à jour : avril 2025",
+    "s1Title": "1. Responsable du traitement",
+    "s1Body": "Quercus Capital SAS, 231 Rue Saint-Honoré, 75001 Paris, est responsable du traitement de vos données personnelles conformément au Règlement Général sur la Protection des Données (RGPD).",
+    "s2Title": "2. Données collectées",
+    "s2Intro": "Nous collectons les données suivantes :",
+    "s2Items": [
+      "Données d'identification : nom, prénom, date de naissance, nationalité",
+      "Coordonnées : adresse postale, email, téléphone",
+      "Données financières : informations fiscales, documents d'identité (KYC)",
+      "Données de connexion : adresse IP, logs de connexion"
+    ],
+    "s3Title": "3. Finalités du traitement",
+    "s3Items": [
+      "Création et gestion de votre compte",
+      "Respect des obligations réglementaires (KYC, LCB-FT)",
+      "Fourniture de nos services de gestion financière",
+      "Communication relative à votre compte et nos services",
+      "Amélioration de notre plateforme"
+    ],
+    "s4Title": "4. Base légale",
+    "s4Body": "Le traitement de vos données repose sur l'exécution du contrat, le respect de nos obligations légales (notamment en matière de lutte contre le blanchiment), votre consentement et notre intérêt légitime.",
+    "s5Title": "5. Durée de conservation",
+    "s5Body": "Vos données sont conservées pendant la durée de la relation contractuelle, puis archivées conformément aux obligations légales applicables (5 ans après la clôture du compte pour les données KYC).",
+    "s6Title": "6. Vos droits",
+    "s6Body": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, de portabilité et d'opposition. Pour exercer ces droits, contactez-nous à :",
+    "s7Title": "7. Sécurité",
+    "s7Body": "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, modification, divulgation ou destruction."
   },
   "cookie": {
-    "title": "Charte cookie"
+    "title": "Charte cookie",
+    "lastUpdate": "Dernière mise à jour : avril 2025",
+    "whatTitle": "Qu'est-ce qu'un cookie ?",
+    "whatBody": "Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de votre visite sur notre site. Il permet de stocker des informations relatives à votre navigation.",
+    "usedTitle": "Cookies utilisés",
+    "necessaryTitle": "Cookies strictement nécessaires",
+    "necessaryBody": "Ces cookies sont indispensables au fonctionnement du site et ne peuvent être désactivés. Ils permettent notamment la gestion de votre session et l'authentification.",
+    "analyticsTitle": "Cookies analytiques",
+    "analyticsBody": "Nous utilisons des cookies analytiques pour comprendre comment les visiteurs interagissent avec notre site, afin d'améliorer l'expérience utilisateur. Ces cookies sont déposés uniquement avec votre consentement.",
+    "manageTitle": "Gestion de vos préférences",
+    "manageBody": "Vous pouvez à tout moment modifier vos préférences en matière de cookies via les paramètres de votre navigateur. La désactivation de certains cookies peut affecter votre expérience de navigation.",
+    "retentionTitle": "Durée de conservation",
+    "retentionBody": "Les cookies sont conservés pour une durée maximale de 13 mois conformément aux recommandations de la CNIL.",
+    "contactTitle": "Contact",
+    "contactBody": "Pour toute question relative à notre politique en matière de cookies, contactez-nous à :"
   },
-  "products": {
-    "title": "Produits"
+  "products": { "title": "Produits" },
+  "solutions": { "title": "Solutions", "registerCta": "S'inscrire" },
+  "security": {
+    "title": "Sécurité",
+    "eyebrow": "Sécurité",
+    "heroTitle": "Votre capital, protégé\ncomme une institution.",
+    "heroSubtitle": "Quercus n'est jamais détenteur de vos fonds. Chaque maillon de notre chaîne de confiance est régulé, audité et indépendant — pour que votre épargne reste protégée, quelles que soient les circonstances.",
+    "archTitle": "Notre chaîne de confiance",
+    "archSubtitle": "Cinq acteurs régulés, indépendants les uns des autres, garantissent la conservation, la valorisation et le contrôle de vos actifs.",
+    "pillarsTitle": "Six piliers de sécurité",
+    "pillars": {
+      "p1Title": "Ségrégation totale des fonds",
+      "p1Desc": "Vos actifs ne transitent jamais par le bilan de Quercus. Ils sont déposés chez CACEIS (groupe Crédit Agricole), premier dépositaire européen, sur des comptes ségrégués à votre nom.",
+      "p2Title": "Custody institutionnelle",
+      "p2Desc": "Les actifs numériques sont conservés en cold storage multi-signature chez Taurus et BitGo Trust, tous deux régulés et assurés contre les risques de perte ou compromission.",
+      "p3Title": "Infrastructure auditée",
+      "p3Desc": "Plateforme hébergée en Europe, chiffrement AES-256 au repos, TLS 1.3 en transit, monitoring 24/7, plan de continuité d'activité testé chaque trimestre.",
+      "p4Title": "Audits indépendants",
+      "p4Desc": "Comptes annuels audités par PwC. Audits techniques et de sécurité conduits par des cabinets externes spécialisés. Reporting de valorisation indépendant produit par CACEIS.",
+      "p5Title": "Transparence totale",
+      "p5Desc": "Vous accédez en temps réel à vos positions, vos performances et vos frais. Documentation réglementaire complète disponible : DICI, prospectus, rapports annuels.",
+      "p6Title": "Authentification forte",
+      "p6Desc": "2FA obligatoire, sessions chiffrées, gestion granulaire des accès pour les comptes corporates, journal d'audit complet de toutes les opérations sensibles."
+    },
+    "auditsEyebrow": "Audits & contrôles",
+    "auditsTitle": "Contrôlés en continu",
+    "audits": {
+      "pwcDesc": "Audit annuel des comptes et des procédures internes.",
+      "caceisDesc": "Valorisation indépendante quotidienne et reporting réglementaire.",
+      "pentestLabel": "Pen-tests",
+      "pentestDesc": "Tests d'intrusion semestriels conduits par des cabinets externes."
+    },
+    "ctaTitle": "Une question sur notre sécurité ?",
+    "ctaSubtitle": "Notre équipe conformité est à votre disposition pour répondre à toutes vos questions.",
+    "ctaPrimary": "Prendre rendez-vous",
+    "ctaSecondary": "Voir notre cadre réglementaire"
   },
-  "solutions": {
-    "title": "Solutions",
-    "registerCta": "S'inscrire"
+  "regulation": {
+    "title": "Régulation",
+    "eyebrow": "Régulation",
+    "heroTitle": "Un cadre réglementaire\nsans compromis.",
+    "heroSubtitle": "Quercus Capital est un cabinet français enregistré et supervisé. Chaque recommandation, chaque opération, chaque communication s'inscrit dans un cadre légal strict.",
+    "registrationsTitle": "Nos enregistrements",
+    "registrations": {
+      "oriasLabel": "ORIAS",
+      "oriasValue": "n° 24004789",
+      "oriasDesc": "Conseiller en Investissements Financiers (CIF), enregistré au registre unique des intermédiaires en assurance, banque et finance.",
+      "cncefLabel": "CNCEF",
+      "cncefValue": "Membre",
+      "cncefDesc": "Membre de la Chambre Nationale des Conseils Experts Financiers, association professionnelle agréée par l'AMF.",
+      "amfLabel": "AMF",
+      "amfValue": "Supervisé",
+      "amfDesc": "Activités placées sous la supervision de l'Autorité des Marchés Financiers via notre association professionnelle agréée.",
+      "rcLabel": "RC Pro",
+      "rcValue": "Couverture en vigueur",
+      "rcDesc": "Assurance responsabilité civile professionnelle conforme aux exigences réglementaires de l'article L. 541-3 du CMF."
+    },
+    "frameworksTitle": "Cadres applicables",
+    "frameworks": {
+      "cifTitle": "Conseil en Investissements Financiers (CIF)",
+      "cifBody": "Notre statut CIF, encadré par les articles L. 541-1 et suivants du Code monétaire et financier, nous permet de délivrer des recommandations personnalisées sur des instruments financiers, dans le strict respect d'un devoir de conseil documenté.",
+      "mifTitle": "MIF II / MiFID II",
+      "mifBody": "Toutes nos recommandations s'inscrivent dans le cadre de la directive européenne MIF II : adéquation, transparence des coûts, gouvernance produit et meilleure exécution sont systématiquement appliquées.",
+      "amlTitle": "LCB-FT",
+      "amlBody": "Procédures complètes de lutte contre le blanchiment et le financement du terrorisme : KYC renforcé, vérification d'identité, contrôle des bénéficiaires effectifs, surveillance continue des opérations.",
+      "gdprTitle": "RGPD",
+      "gdprBody": "Conformité totale au Règlement Général sur la Protection des Données : traitement minimal, hébergement européen, droits d'accès, rectification et effacement garantis."
+    },
+    "docsEyebrow": "Documentation",
+    "docsTitle": "Tout est documenté",
+    "docsBody": "Lettre de mission, déclaration d'adéquation, document d'entrée en relation, politique de gestion des conflits d'intérêts, procédure de réclamation : l'ensemble de notre documentation réglementaire vous est remise dès l'ouverture de votre dossier.",
+    "docsLegal": "Mentions légales",
+    "docsPrivacy": "Confidentialité",
+    "docsRequest": "Demander un document"
   }
 }
