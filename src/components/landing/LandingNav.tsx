@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 import { segments } from "@/components/solutions/segmentData";
 import { useAnnouncementVisible } from "@/components/landing/AnnouncementBanner";
@@ -239,21 +240,7 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
           </div>
 
           {variant === "solutions" ? (
-            <div className="hidden md:flex items-center gap-1.5 flex-1 justify-center overflow-x-auto">
-              {segments.map((s) => (
-                <Link
-                  key={s.slug}
-                  to={`/solutions/${s.slug}`}
-                  className={`px-4 py-1.5 text-xs font-medium tracking-wide transition-all duration-300 border whitespace-nowrap ${
-                    s.slug === currentSlug
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-white/40 backdrop-blur-sm text-muted-foreground border-white/30 hover:bg-white/60 hover:text-foreground"
-                  }`}
-                >
-                  {s.name}
-                </Link>
-              ))}
-            </div>
+            <SolutionsCarousel currentSlug={currentSlug} />
           ) : (
             <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
               {/* Products */}
