@@ -17,59 +17,171 @@
     "backToCategory": "Retour à",
     "notFoundTitle": "Article introuvable",
     "notFoundBody": "Cet article n'est pas disponible. Retournez au centre d'aide ou contactez notre équipe.",
-    "backToHelp": "Retour au centre d'aide"
+    "backToHelp": "Retour au centre d'aide",
+    "helpfulQuestion": "Cet article vous a-t-il été utile ?",
+    "yes": "Oui",
+    "no": "Non",
+    "needMoreInfo": "Besoin de plus d'informations ?",
+    "relatedArticles": "Articles liés",
+    "backTo": "Retour à"
   },
   "categories": {
     "ouvrir-un-compte": {
       "title": "Ouvrir un compte",
       "description": "Tout ce qu'il faut savoir pour ouvrir un compte Quercus.",
       "sections": {
-        "individuals": "Ouvrir un compte en tant que particulier",
-        "corporates": "Ouvrir un compte en tant que personne morale",
-        "countries": "Pays éligibles"
+        "individuals": {
+          "title": "Ouvrir un compte en tant que particulier",
+          "items": {
+            "creer-compte-particulier": "Créer un compte pour particulier",
+            "pieces-identite": "Pièces d'identité acceptées",
+            "justificatif-domicile": "Justificatif de domicile",
+            "origine-fonds-particulier": "Justificatif d'origine des fonds pour les particuliers"
+          }
+        },
+        "corporates": {
+          "title": "Ouvrir un compte en tant que personne morale",
+          "items": {
+            "creer-compte-entreprise": "Créer un compte pour une entreprise",
+            "creer-compte-association": "Créer un compte pour une association française",
+            "creer-compte-individuelle": "Créer un compte pour une entreprise individuelle",
+            "creer-compte-syndicat": "Créer un compte pour un syndicat des copropriétaires en France",
+            "origine-fonds-morale": "Justificatif de fonds acceptés pour les personnes morales"
+          }
+        },
+        "countries": {
+          "title": "Pays éligibles",
+          "items": {
+            "restrictions-geographiques": "Restrictions géographiques"
+          }
+        }
       }
     },
     "produits": {
       "title": "Les produits Quercus",
       "description": "Découvrez les produits proposés par Quercus.",
       "sections": {
-        "treasury": "Quercus bons du Trésor",
-        "smartCash": "Quercus Smart Cash",
-        "cashCarry": "Quercus Cash & Carry",
-        "fees": "Frais"
+        "treasury": {
+          "title": "Quercus bons du Trésor",
+          "items": {
+            "fiche-monetaires": "Fiche technique des fonds monétaires Quercus",
+            "doc-monetaires": "Documentation des fonds monétaires Quercus"
+          }
+        },
+        "smartCash": {
+          "title": "Quercus Smart Cash",
+          "items": {
+            "fiche-smart-cash": "Fiche technique Quercus Smart Cash",
+            "doc-smart-cash": "Documentation de Quercus Smart Cash"
+          }
+        },
+        "cashCarry": {
+          "title": "Quercus Cash & Carry",
+          "items": {
+            "fiche-cash-carry": "Fiche technique Quercus Cash & Carry",
+            "doc-cash-carry": "Documentation de Quercus Cash & Carry"
+          }
+        },
+        "fees": {
+          "title": "Frais",
+          "items": {
+            "comprendre-frais": "Comprendre les frais sur Quercus"
+          }
+        }
       }
     },
     "depots-et-retraits": {
       "title": "Dépôts et retraits",
       "description": "Comment déposer et retirer des fonds sur votre compte Quercus.",
       "sections": {
-        "deposit": "Effectuer un dépôt",
-        "withdraw": "Effectuer un retrait",
-        "fx": "Conversion de devises"
+        "deposit": {
+          "title": "Effectuer un dépôt",
+          "items": {
+            "depot-tiers": "Dépôt depuis un compte tiers",
+            "effectuer-depot": "Effectuer un dépôt",
+            "virement-non-arrive": "Virement non arrivé",
+            "comptes-pre-2025": "Comptes ouverts avant septembre 2025"
+          }
+        },
+        "withdraw": {
+          "title": "Effectuer un retrait",
+          "items": {
+            "retrait-standard": "Effectuer un retrait standard",
+            "retrait-instantane": "Effectuer un retrait instantané"
+          }
+        },
+        "fx": {
+          "title": "Conversion de devises",
+          "items": {
+            "conversion-devises": "Conversion de devises"
+          }
+        }
       }
     },
     "gerer-mon-compte": {
       "title": "Gérer mon compte",
       "description": "Paramètres, sécurité et gestion de votre espace personnel.",
       "sections": {
-        "platform": "Fonctionnalités de la plateforme",
-        "security": "Sécurité et connexion"
+        "platform": {
+          "title": "Fonctionnalités de la plateforme",
+          "items": {
+            "applications-tierces": "Applications tierces",
+            "multi-utilisateurs": "Accès multi-utilisateurs",
+            "plusieurs-comptes": "Ouvrir plusieurs comptes Quercus",
+            "mode-quatre-yeux": "Mode Quatre Yeux"
+          }
+        },
+        "security": {
+          "title": "Sécurité et connexion",
+          "items": {
+            "modifier-mot-de-passe": "Modifier mon mot de passe",
+            "modifier-email": "Modifier mon email",
+            "auth-2fa": "Authentification à deux facteurs"
+          }
+        }
       }
     },
     "fiscalite-et-comptabilite": {
       "title": "Fiscalité et comptabilité",
       "description": "Trouver les informations sur la fiscalité et la comptabilité.",
       "sections": {
-        "tax": "Fiscalité",
-        "accounting": "Comptabilité"
+        "tax": {
+          "title": "Fiscalité",
+          "items": {
+            "fiscalite-particuliers": "Fiscalité pour les particuliers",
+            "fiscalite-morales": "Fiscalité pour les personnes morales",
+            "ifu": "Imprimé Fiscal Unique (IFU)"
+          }
+        },
+        "accounting": {
+          "title": "Comptabilité",
+          "items": {
+            "traitement-comptable": "Traitement comptable des fonds monétaires",
+            "releves-exports": "Relevés comptables et exports"
+          }
+        }
       }
     },
     "a-propos": {
       "title": "À propos de Quercus",
       "description": "Tout savoir sur Quercus et nos partenaires, et accéder à notre documentation juridique.",
       "sections": {
-        "quercus": "Quercus",
-        "legalDocs": "Documentation juridique"
+        "quercus": {
+          "title": "Quercus",
+          "items": {
+            "notre-mission": "Notre mission",
+            "nos-partenaires": "Nos partenaires",
+            "securite-fonds": "Sécurité de vos fonds"
+          }
+        },
+        "legalDocs": {
+          "title": "Documentation juridique",
+          "items": {
+            "cgu": "Conditions générales d'utilisation",
+            "confidentialite": "Politique de confidentialité",
+            "mentions-legales": "Mentions légales"
+          }
+        }
       }
     }
   }
