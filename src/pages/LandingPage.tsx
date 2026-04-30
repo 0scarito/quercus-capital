@@ -20,6 +20,7 @@ import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { SectionRule } from "@/components/landing/SectionRule";
 import { SectionEyebrow } from "@/components/landing/SectionEyebrow";
+import { HeroAmbientField } from "@/components/landing/HeroAmbientField";
 import { useTranslation } from "react-i18next";
 
 export default function LandingPage() {
@@ -31,9 +32,14 @@ export default function LandingPage() {
       <AnnouncementBanner />
       <LandingNav />
       <div style={{ paddingTop: bannerVisible ? "100px" : "64px" }} className="transition-[padding] duration-500 relative z-10">
-        <ScrollReveal variant="fade-up">
-          <HeroSection />
-        </ScrollReveal>
+        <div className="relative">
+          <div className="absolute inset-0 -z-10 h-[120%]">
+            <HeroAmbientField />
+          </div>
+          <ScrollReveal variant="fade-up">
+            <HeroSection />
+          </ScrollReveal>
+        </div>
         <TrustBadgeStrip />
         <SectionRule />
         <ScrollReveal variant="mask-up">
