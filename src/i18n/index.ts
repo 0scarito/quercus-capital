@@ -10,6 +10,7 @@ import frAuth from "./locales/fr/auth.json";
 import frDashboard from "./locales/fr/dashboard.json";
 import frOnboarding from "./locales/fr/onboarding.json";
 import frPages from "./locales/fr/pages.json";
+import frProducts from "./locales/fr/products.json";
 
 import enCommon from "./locales/en/common.json";
 import enNav from "./locales/en/nav.json";
@@ -19,6 +20,7 @@ import enAuth from "./locales/en/auth.json";
 import enDashboard from "./locales/en/dashboard.json";
 import enOnboarding from "./locales/en/onboarding.json";
 import enPages from "./locales/en/pages.json";
+import enProducts from "./locales/en/products.json";
 
 export const resources = {
   fr: {
@@ -30,6 +32,7 @@ export const resources = {
     dashboard: frDashboard,
     onboarding: frOnboarding,
     pages: frPages,
+    products: frProducts,
   },
   en: {
     common: enCommon,
@@ -40,6 +43,7 @@ export const resources = {
     dashboard: enDashboard,
     onboarding: enOnboarding,
     pages: enPages,
+    products: enProducts,
   },
 } as const;
 
@@ -50,7 +54,7 @@ i18n
     resources,
     fallbackLng: "fr",
     supportedLngs: ["fr", "en"],
-    ns: ["common", "nav", "landing", "footer", "auth", "dashboard", "onboarding", "pages"],
+    ns: ["common", "nav", "landing", "footer", "auth", "dashboard", "onboarding", "pages", "products"],
     defaultNS: "common",
     interpolation: { escapeValue: false },
     detection: {
