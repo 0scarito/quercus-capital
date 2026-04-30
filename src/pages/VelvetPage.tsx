@@ -4,6 +4,7 @@ import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GlassCard } from "@/components/landing/GlassCard";
 import { CountUp } from "@/components/landing/CountUp";
+import { ProcessSteps } from "@/components/landing/ProcessSteps";
 import { AdvisorThresholdSection } from "@/components/landing/AdvisorThresholdSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -122,21 +123,14 @@ export default function VelvetPage() {
                     {t("velvet.swapP2")}
                   </p>
 
-                  <ol className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                    {[
+                  <ProcessSteps
+                    steps={[
                       { n: "01", title: swapSteps.s1Title, desc: swapSteps.s1Desc },
                       { n: "02", title: swapSteps.s2Title, desc: swapSteps.s2Desc },
                       { n: "03", title: swapSteps.s3Title, desc: swapSteps.s3Desc },
-                    ].map((s) => (
-                      <li key={s.n} className="border-l border-primary/30 pl-4 py-1">
-                        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary/70">
-                          {t("velvet.stepLabel", { n: s.n })}
-                        </span>
-                        <h3 className="font-serif italic text-base mt-1 mb-1">{s.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-                      </li>
-                    ))}
-                  </ol>
+                    ]}
+                    stepLabel={(n) => t("velvet.stepLabel", { n })}
+                  />
 
                   <p className="text-foreground/90 leading-relaxed pt-2 text-base md:text-lg">
                     {t("velvet.swapResult")}
