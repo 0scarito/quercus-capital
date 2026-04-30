@@ -230,8 +230,8 @@ function ConvergenceChart() {
   // Geometry
   const W = 640;
   const H = 280;
-  const ML = 60;
-  const MR = 56;
+  const ML = 90;
+  const MR = 80;
   const MT = 40;
   const MB = 50;
 
@@ -254,18 +254,6 @@ function ConvergenceChart() {
 
   return (
     <div ref={wrapRef} className="relative">
-      <div className="flex items-center justify-between mb-5">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-          Animation de convergence · Scroll
-        </p>
-        <span
-          className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground"
-          style={{ color: "hsl(var(--success))" }}
-        >
-          {Math.round(progress * 100)}%
-        </span>
-      </div>
-
       <div
         className="relative"
         onMouseEnter={() => setHover(true)}
@@ -349,17 +337,20 @@ function ConvergenceChart() {
           />
 
           {/* Labels */}
-          <text x={ML - 8} y={futureY0 + 4} textAnchor="end" fontSize="10" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={0.85}>
+          <text x={ML - 10} y={futureY0 + 4} textAnchor="end" fontSize="11" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={1} fontWeight={500}>
             Prix Future
           </text>
-          <text x={ML - 8} y={spotY0 + 4} textAnchor="end" fontSize="10" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={0.85}>
+          <text x={ML - 10} y={spotY0 + 4} textAnchor="end" fontSize="11" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={1} fontWeight={500}>
             Prix Spot
           </text>
-          <text x={CX + 8} y={CY + 4} fontSize="10" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--success))" opacity={progress > 0.6 ? 1 : 0} style={{ transition: "opacity 0.5s" }}>
-            Échéance
+          <text x={CX + 10} y={CY + 4} fontSize="11" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--success))" opacity={progress > 0.6 ? 1 : 0} fontWeight={500} style={{ transition: "opacity 0.5s" }}>
+            Maturité
           </text>
-          <text x={ML} y={H - MB + 16} fontSize="9" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={0.6}>
+          <text x={ML} y={H - MB + 16} fontSize="10" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={0.7}>
             T0
+          </text>
+          <text x={CX} y={H - MB + 16} textAnchor="end" fontSize="10" fontFamily="JetBrains Mono, monospace" fill="hsl(var(--primary))" opacity={0.7}>
+            T+1M · Maturité
           </text>
         </svg>
 

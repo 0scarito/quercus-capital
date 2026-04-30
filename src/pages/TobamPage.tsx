@@ -169,17 +169,22 @@ export default function TobamPage() {
         {/* What is Cash & Carry — 2 columns layout */}
         <section className="py-14 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Titre en pleine largeur */}
+            <ScrollReveal>
+              <div className="space-y-5 mb-12 lg:mb-16">
+                <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono">
+                  Mécanisme · Cash &amp; Carry
+                </p>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight max-w-5xl">
+                  <em>L'art de l'arbitrage : générer du rendement sans subir la volatilité.</em>
+                </h2>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
               {/* Colonne gauche — texte pédagogique */}
               <ScrollReveal className="lg:col-span-7">
                 <div className="space-y-6">
-                  <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-mono">
-                    Mécanisme · Cash &amp; Carry
-                  </p>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
-                    <em>L'art de l'arbitrage : générer du rendement sans subir la volatilité.</em>
-                  </h2>
-
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                     Le mécanisme de <em>« Cash and Carry »</em> (ou arbitrage de base) exploite
                     une anomalie structurelle du marché crypto : les contrats Futures (prix
