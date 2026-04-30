@@ -28,10 +28,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const ADVISED_PORTFOLIO_THRESHOLD = 3_000_000;
 
 export default function Products() {
+  const { t, i18n } = useTranslation("dashboard");
   const { data: products, isLoading } = useProducts();
   const { data: subscriptions } = useUserSubscriptions();
   const { data: accounts } = useAccounts();
@@ -57,7 +59,7 @@ export default function Products() {
   );
 
   const formatEUR = (n: number) =>
-    new Intl.NumberFormat("fr-FR", {
+    new Intl.NumberFormat(i18n.language === "en" ? "en-US" : "fr-FR", {
       style: "currency",
       currency: "EUR",
       maximumFractionDigits: 0,
@@ -70,12 +72,12 @@ export default function Products() {
 
   const handleSubscribe = async () => {
     if (!selected || !user || !accountId) {
-      toast.error("Sélectionnez un compte");
+      toast.error(t("products.modal.selectAccount"));
       return;
     }
     const numAmount = parseFloat(amount);
     if (isNaN(numAmount) || numAmount <= 0) {
-      toast.error("Montant invalide");
+      toast.error(t("products.modal.invalidAmount"));
       return;
     }
     setSubmitting(true);
@@ -96,10 +98,10 @@ export default function Products() {
     setSubmitting(false);
     if (error) {
       console.error("Subscription error:", error);
-      toast.error("Une erreur est survenue. Veuillez réessayer.");
+      toast.error(t("products.modal.error"));
       return;
     }
-    toast.success(`${selected.name} souscrit avec succès`);
+    toast.success(t("products.modal.subscribed", { name: selected.name }));
     qc.invalidateQueries({ queryKey: ["user_subscriptions"] });
     setSelected(null);
     setAmount("");
@@ -116,24 +118,22 @@ export default function Products() {
   return (
     <div className="p-8 max-w-4xl mx-auto animate-fade-in space-y-8">
       <div>
-        <h1 className="text-3xl font-serif font-semibold"><em>Nos produits</em></h1>
-        <p className="text-sm text-muted-foreground mt-2">
-          Sélectionnez un produit pour commencer à placer vos liquidités.
-        </p>
+        <h1 className="text-3xl font-serif font-semibold"><em>{t("products.title")}</em></h1>
+        <p className="text-sm text-muted-foreground mt-2">{t("products.subtitle")}</p>
       </div>
 
       <div>
         <h2 className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-4">
-          Smart Cash & Sovereign Funds
+          {t("products.smartCash")}
         </h2>
         <div className="border rounded-sm overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="font-sans text-xs uppercase tracking-wider">Actif</TableHead>
-                <TableHead className="font-sans text-xs uppercase tracking-wider">Type</TableHead>
-                <TableHead className="font-sans text-xs uppercase tracking-wider">Devise</TableHead>
-                <TableHead className="font-sans text-xs uppercase tracking-wider text-right">Rendement</TableHead>
+                <TableHead className="font-sans text-xs uppercase tracking-wider">{t("products.headers.asset")}</TableHead>
+                <TableHead className="font-sans text-xs uppercase tracking-wider">{t("products.headers.type")}</TableHead>
+                <TableHead className="font-sans text-xs uppercase tracking-wider">{t("products.headers.currency")}</TableHead>
+                <TableHead className="font-sans text-xs uppercase tracking-wider text-right">{t("products.headers.yield")}</TableHead>
                 <TableHead className="w-[120px]"></TableHead>
               </TableRow>
             </TableHeader>
@@ -161,11 +161,11 @@ export default function Products() {
                       >
                         {subscribed ? (
                           <>
-                            <Check className="mr-1 h-3 w-3" /> Augmenter
+                            <Check className="mr-1 h-3 w-3" /> {t("products.increase")}
                           </>
                         ) : (
                           <>
-                            <Plus className="mr-1 h-3 w-3" /> Ajouter
+                            <Plus className="mr-1 h-3 w-3" /> {t("products.add")}
                           </>
                         )}
                       </Button>
@@ -178,14 +178,12 @@ export default function Products() {
         </div>
       </div>
 
-      <p className="text-xs text-muted-foreground">
-        Liquidité T+0 pour les ordres passés avant 12h25 CET. Les rendements affichés sont indicatifs et nets de frais de gestion.
-      </p>
+      <p className="text-xs text-muted-foreground">{t("products.liquidity")}</p>
 
       {/* Portefeuille Conseillé — verrouillé tant que l'encours n'atteint pas 3 M€ */}
       <div>
         <h2 className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-4">
-          Allocation patrimoniale
+          {t("products.advised.section")}
         </h2>
         <div
           className={`border rounded-sm p-6 md:p-8 transition-opacity ${
@@ -213,33 +211,25 @@ export default function Products() {
             <div className="flex-1 space-y-3">
               <div className="flex items-center gap-3 flex-wrap">
                 <h3 className="text-xl font-serif font-semibold">
-                  <em>Portefeuille Conseillé</em>
+                  <em>{t("products.advised.title")}</em>
                 </h3>
                 {advisedUnlocked ? (
                   <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-sm bg-success/15 text-success">
-                    <Sparkles className="h-3 w-3" /> Disponible
+                    <Sparkles className="h-3 w-3" /> {t("products.advised.available")}
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-sm bg-muted text-muted-foreground">
-                    <Lock className="h-3 w-3" /> Verrouillé
+                    <Lock className="h-3 w-3" /> {t("products.advised.locked")}
                   </span>
                 )}
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Allocation patrimoniale sur-mesure construite avec votre
-                conseiller dédié — combine Smart Cash, Cash & Carry,
-                obligations, actions et solutions alternatives.
-              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{t("products.advised.desc")}</p>
 
               {!advisedUnlocked && (
                 <div className="space-y-2 pt-2">
                   <div className="flex items-baseline justify-between text-xs">
                     <span className="text-muted-foreground">
-                      Disponible à partir de{" "}
-                      <span className="font-mono text-foreground">
-                        {formatEUR(ADVISED_PORTFOLIO_THRESHOLD)}
-                      </span>{" "}
-                      d'encours
+                      {t("products.advised.availableFrom", { amount: formatEUR(ADVISED_PORTFOLIO_THRESHOLD) })}
                     </span>
                     <span className="font-mono text-foreground">
                       {formatEUR(totalEncours)} / {formatEUR(ADVISED_PORTFOLIO_THRESHOLD)}
@@ -254,12 +244,12 @@ export default function Products() {
               {advisedUnlocked ? (
                 <Button asChild size="sm">
                   <Link to="/dashboard/conseiller">
-                    Prendre rendez-vous
+                    {t("products.advised.bookMeeting")}
                   </Link>
                 </Button>
               ) : (
                 <Button size="sm" variant="outline" disabled>
-                  <Lock className="mr-1 h-3 w-3" /> Indisponible
+                  <Lock className="mr-1 h-3 w-3" /> {t("products.advised.unavailable")}
                 </Button>
               )}
             </div>
@@ -271,7 +261,7 @@ export default function Products() {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="font-serif text-xl">
-              <em>Souscrire à {selected?.name}</em>
+              <em>{t("products.subscribe", { name: selected?.name ?? "" })}</em>
             </DialogTitle>
             <DialogDescription>
               {selected?.description} — Rendement {selected?.yield_rate.toFixed(2)}%
@@ -279,13 +269,13 @@ export default function Products() {
           </DialogHeader>
           <div className="space-y-4 py-2">
             <div className="space-y-2">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Compte de destination</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("products.modal.destination")}</Label>
               <Select value={accountId} onValueChange={setAccountId}>
-                <SelectTrigger><SelectValue placeholder="Sélectionner un compte" /></SelectTrigger>
+                <SelectTrigger><SelectValue placeholder={t("products.modal.destinationPlaceholder")} /></SelectTrigger>
                 <SelectContent>
                   {accounts?.map((a) => (
                     <SelectItem key={a.id} value={a.id}>
-                      {a.name}{a.is_primary && " (principal)"}
+                      {a.name}{a.is_primary && ` ${t("products.modal.principal")}`}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -293,12 +283,12 @@ export default function Products() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="amount" className="text-xs uppercase tracking-wider text-muted-foreground">
-                Montant ({selected?.currency})
+                {t("products.modal.amount", { currency: selected?.currency ?? "" })}
               </Label>
               <Input
                 id="amount"
                 type="number"
-                placeholder="10 000"
+                placeholder={t("products.modal.amountPlaceholder")}
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 className="font-mono"
@@ -307,11 +297,11 @@ export default function Products() {
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setSelected(null)}>
-              Annuler
+              {t("products.modal.cancel")}
             </Button>
             <Button onClick={handleSubscribe} disabled={submitting}>
               {submitting && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
-              Confirmer
+              {t("products.modal.confirm")}
             </Button>
           </DialogFooter>
         </DialogContent>

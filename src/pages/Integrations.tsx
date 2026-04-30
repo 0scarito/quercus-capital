@@ -7,8 +7,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Integrations() {
+  const { t } = useTranslation("dashboard");
   const { user } = useAuth();
   const { data: integrations, isLoading } = useIntegrations();
   const { data: userIntegrations } = useUserIntegrations();
@@ -31,10 +33,10 @@ export default function Integrations() {
     setPendingId(null);
     if (error) {
       console.error("Integration toggle error:", error);
-      toast.error("Une erreur est survenue. Veuillez réessayer.");
+      toast.error(t("integrations.error"));
       return;
     }
-    toast.success(existing ? "Intégration déconnectée" : "Intégration connectée");
+    toast.success(existing ? t("integrations.disconnectedToast") : t("integrations.connectedToast"));
     qc.invalidateQueries({ queryKey: ["user_integrations"] });
   };
 
@@ -55,10 +57,8 @@ export default function Integrations() {
   return (
     <div className="p-8 max-w-4xl mx-auto animate-fade-in space-y-8">
       <div>
-        <h1 className="text-3xl font-serif font-semibold"><em>Intégrations</em></h1>
-        <p className="text-sm text-muted-foreground mt-2">
-          Connectez Quercus à vos outils comptables, bancaires et de paiement.
-        </p>
+        <h1 className="text-3xl font-serif font-semibold"><em>{t("integrations.title")}</em></h1>
+        <p className="text-sm text-muted-foreground mt-2">{t("integrations.subtitle")}</p>
       </div>
 
       {Object.entries(grouped).map(([category, items]) => (
@@ -84,7 +84,7 @@ export default function Integrations() {
                         <p className="font-medium text-sm">{integration.name}</p>
                         {isConnected && (
                           <Badge variant="outline" className="h-5 px-1.5 text-[10px] border-success/40 text-success">
-                            <Check className="h-2.5 w-2.5 mr-0.5" /> Connecté
+                            <Check className="h-2.5 w-2.5 mr-0.5" /> {t("integrations.connected")}
                           </Badge>
                         )}
                       </div>
@@ -98,7 +98,7 @@ export default function Integrations() {
                     disabled={isPending}
                   >
                     {isPending && <Loader2 className="mr-1 h-3 w-3 animate-spin" />}
-                    {isConnected ? "Déconnecter" : "Connecter"}
+                    {isConnected ? t("integrations.disconnect") : t("integrations.connect")}
                   </Button>
                 </div>
               );
@@ -107,9 +107,7 @@ export default function Integrations() {
         </div>
       ))}
 
-      <p className="text-xs text-muted-foreground">
-        Les connexions OAuth réelles avec chaque service seront activées progressivement. Pour un déploiement prioritaire, contactez votre gestionnaire de compte.
-      </p>
+      <p className="text-xs text-muted-foreground">{t("integrations.footer")}</p>
     </div>
   );
 }
