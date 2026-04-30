@@ -1,17 +1,315 @@
 {
-  "title": "Open an account",
-  "stages": {
-    "welcome": "Welcome",
-    "accountType": "Account type",
-    "individual": "Personal information",
-    "corporate": "Company information",
-    "kyc": "Identity verification",
-    "twoFA": "Two-factor authentication",
-    "emailVerification": "Email verification"
+  "header": {
+    "alreadyAccount": "Already have an account?"
   },
   "common": {
-    "continue": "Continue",
+    "next": "Next",
     "back": "Back",
-    "skip": "Skip"
+    "skip": "Skip",
+    "saving": "Saving…",
+    "validate": "Validate",
+    "stepOf": "Step {{current}} of {{total}}"
+  },
+  "welcome": {
+    "title": "Welcome to Quercus",
+    "subtitle": "Open your account in a few minutes. Here are the three steps ahead.",
+    "steps": [
+      { "label": "Secure account", "desc": "Email & 2FA authentication" },
+      { "label": "Information", "desc": "Identity & legal documents" },
+      { "label": "Verification", "desc": "Scan your ID document" }
+    ],
+    "startEmail": "Start with email",
+    "or": "or",
+    "google": "Continue with Google",
+    "googleLoading": "Signing in…",
+    "afterGoogle": "You will then complete identity verification."
+  },
+  "email": {
+    "title": "Create your access",
+    "subtitle": "Enter your email and choose a secure password.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "submit": "Create my account",
+    "loading": "Loading…",
+    "verifyTitle": "Verify your email",
+    "verifySubtitle": "Enter the 6-digit code sent to",
+    "resend": "Resend code",
+    "errors": {
+      "firstNameRequired": "First name required",
+      "lastNameRequired": "Last name required",
+      "emailInvalid": "Invalid email address",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match"
+    }
+  },
+  "twoFA": {
+    "title": "Secure your account",
+    "subtitle": "Choose your two-factor authentication method.",
+    "sms": "SMS",
+    "smsDesc": "Code via SMS",
+    "app": "App",
+    "appDesc": "Recommended",
+    "skip": "Skip this step",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "+1 555 000 0000",
+    "sendCode": "Send code",
+    "sending": "Sending…",
+    "codeSent": "Enter the code sent to",
+    "verify": "Verify",
+    "verifying": "Verifying…",
+    "resend": "Resend code",
+    "back": "Back",
+    "qrInstruction": "Scan this QR code with your authenticator app (Google Authenticator, Authy, etc.)",
+    "secretLabel": "Secret key (manual entry)",
+    "verifyCodeLabel": "Verification code",
+    "verifyContinue": "Verify and continue",
+    "toasts": {
+      "invalidPhone": "Invalid phone number",
+      "smsSent": "SMS code sent!",
+      "phoneVerified": "Phone verified!",
+      "appConfigured": "2FA configured with authenticator app.",
+      "invalidCode": "Invalid code"
+    }
+  },
+  "accountType": {
+    "title": "Account type",
+    "subtitle": "Select the type of account you want to open.",
+    "individual": "An individual",
+    "individualDesc": "Natural person",
+    "corporate": "A legal entity",
+    "corporateDesc": "Company / Entity",
+    "next": "Next"
+  },
+  "individual": {
+    "title": "Personal information",
+    "address": {
+      "country": "Country of residence",
+      "address": "Full address",
+      "city": "City",
+      "postalCode": "Postal code"
+    },
+    "tax": {
+      "isFrance": "Tax residence in France?",
+      "country": "Country of tax residence",
+      "selectPlaceholder": "Select…",
+      "tin": "Tax Identification Number (TIN)"
+    },
+    "profession": {
+      "sector": "Sector of activity",
+      "income": "Annual income",
+      "incomeOptions": {
+        "lt50": "Less than €50,000",
+        "50_100": "€50,000 — €100,000",
+        "100_150": "€100,000 — €150,000",
+        "gt150": "More than €150,000"
+      },
+      "sectors": ["Finance", "Technology", "Healthcare", "Real estate", "Retail", "Education", "Student", "Retired", "Other"]
+    },
+    "wealth": {
+      "patrimoine": "Total wealth",
+      "patrimoineOptions": {
+        "lt50": "Less than €50,000",
+        "50_200": "€50,000 — €200,000",
+        "200_1M": "€200,000 — €1,000,000",
+        "gt1M": "More than €1,000,000"
+      },
+      "deposit": "Planned amount of first deposit",
+      "depositPlaceholder": "e.g. €10,000"
+    },
+    "funds": {
+      "label": "Source of funds",
+      "options": [
+        { "value": "salary", "label": "Salary / Professional income" },
+        { "value": "inheritance", "label": "Inheritance / Donation" },
+        { "value": "real-estate", "label": "Real estate sale" },
+        { "value": "crypto", "label": "Crypto gains" },
+        { "value": "other", "label": "Other" }
+      ]
+    },
+    "referral": {
+      "label": "How did you hear about Quercus?",
+      "options": ["LinkedIn", "Friend recommendation", "Google search", "Press", "Event", "Other"]
+    },
+    "errors": {
+      "addressRequired": "Please provide your country of tax residence and TIN.",
+      "professionRequired": "Please select your sector and annual income.",
+      "wealthRequired": "Please provide your wealth and planned deposit.",
+      "fundsRequired": "Please select the source of funds.",
+      "referralRequired": "Please indicate how you heard about Quercus.",
+      "sessionExpired": "Session expired. Please sign in again.",
+      "profileSave": "Error saving profile.",
+      "detailsSave": "Error saving information.",
+      "fieldRequired": "Required"
+    }
+  },
+  "corporate": {
+    "titles": {
+      "country": "Country of incorporation",
+      "org": "Information about your company or organization",
+      "orgAddress": "Registered address",
+      "entityType": "Your activity",
+      "sector": "Sector",
+      "deposit": "How much do you plan to deposit on Quercus?",
+      "fundsOrigin": "Source of funds",
+      "documents": "Upload the required documents",
+      "referral": "How did you hear about Quercus?"
+    },
+    "country": {
+      "label": "Country of incorporation",
+      "options": ["France", "Belgium", "Switzerland", "Luxembourg", "Germany", "Netherlands", "Italy", "Spain", "Other"]
+    },
+    "org": {
+      "legalName": "Legal name",
+      "legalForm": "Legal form",
+      "legalFormPlaceholder": "e.g. SAS, SARL, SA, EI, etc.",
+      "legalFormHelp": "e.g. SAS, SARL, SA, EI, etc.",
+      "siren": "SIREN or registration number",
+      "sirenPlaceholder": "123 456 789",
+      "sirenHelp": "e.g. SIREN (France), BCE/KBO company number (Belgium), etc.",
+      "errors": {
+        "required": "Required",
+        "sirenInvalid": "Invalid SIREN (9 digits)"
+      }
+    },
+    "orgAddress": {
+      "address": "Registered address",
+      "city": "City",
+      "postalCode": "Postal code"
+    },
+    "entityType": {
+      "intro": "Select the option that best describes your organization's activity.",
+      "recommended": "Recommended",
+      "fatca": "By selecting one of these options, you certify the accuracy of this information in accordance with FATCA & CRS regulations.",
+      "cards": [
+        {
+          "value": "operative",
+          "label": "Operating entity (active)",
+          "desc": "More than 50% of your income comes from the sale of goods or services (software, consulting, manufacturing, services, etc.)."
+        },
+        {
+          "value": "patrimoine",
+          "label": "Holding entity (passive)",
+          "desc": "More than 50% of your income comes from passive income (dividends, interest, rents, capital gains, etc.)."
+        },
+        {
+          "value": "financial",
+          "label": "Financial institution",
+          "desc": "You are a bank, investment firm, fund, payment institution, etc."
+        }
+      ]
+    },
+    "sector": {
+      "label": "Sector of activity",
+      "placeholder": "Search…",
+      "options": [
+        "Industry and manufacturing",
+        "Technology and software",
+        "Financial services",
+        "Consulting and professional services",
+        "Retail and distribution",
+        "Real estate and construction",
+        "Healthcare and life sciences",
+        "Energy and utilities",
+        "Transport and logistics",
+        "Media, leisure and communication",
+        "Hospitality and food service",
+        "Agriculture and agri-food",
+        "Education",
+        "Holding / Asset management",
+        "Associations and public sector",
+        "Other"
+      ]
+    },
+    "deposit": {
+      "options": [
+        { "value": "lt_100k", "label": "Less than €100,000" },
+        { "value": "100k_500k", "label": "Between €100,000 and €500,000" },
+        { "value": "500k_1m", "label": "Between €500,000 and €1,000,000" },
+        { "value": "1m_5m", "label": "Between €1,000,000 and €5,000,000" },
+        { "value": "gt_5m", "label": "More than €5,000,000" }
+      ]
+    },
+    "fundsOrigin": {
+      "intro": "Where do the funds you wish to deposit on Quercus mainly come from?",
+      "options": [
+        { "value": "operating", "label": "From the operational activity of the company or organization" },
+        { "value": "fundraise", "label": "From investor fundraising or loans" },
+        { "value": "client-funds", "label": "These are funds belonging to the company's or entity's clients" }
+      ]
+    },
+    "documents": {
+      "intro": "Upload the following documents to validate your registration.",
+      "fields": [
+        { "key": "funds", "label": "Proof of source of funds", "desc": "Latest balance sheet or bank statement" },
+        { "key": "statutes", "label": "Articles of association", "desc": "Official document" },
+        { "key": "beneficiaries", "label": "Register of beneficial owners", "desc": "List of beneficiaries" }
+      ],
+      "drop": "Drag and drop or click to upload"
+    },
+    "referral": {
+      "options": ["LinkedIn", "Partner recommendation", "Google search", "Press", "Event", "Other"]
+    },
+    "errors": {
+      "sessionExpired": "Session expired. Please sign in again.",
+      "profileSave": "Error saving profile.",
+      "detailsSave": "Error saving information."
+    }
+  },
+  "kyc": {
+    "ready": {
+      "title": "Identity verification",
+      "subtitle": "Final step: we need to verify your identity to activate your account.",
+      "needsTitle": "You will need:",
+      "needs": [
+        "ID document (national ID or Passport)",
+        "Camera for a verification selfie",
+        "2 minutes of your time"
+      ],
+      "cta": "Verify my identity"
+    },
+    "verifying": "Extracting information…",
+    "review": {
+      "title": "Confirm your information",
+      "subtitle": "Here is the information extracted from your ID document. Correct if needed — it will be saved to your settings.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "dob": "Date of birth",
+      "address": "Address",
+      "city": "City",
+      "postalCode": "Postal code",
+      "country": "Country of residence",
+      "taxCountry": "Tax residence",
+      "tin": "Tax ID (TIN)",
+      "confirm": "Confirm and activate my account",
+      "saving": "Saving…",
+      "missing": "Please fill in: {{fields}}",
+      "saveError": "Error saving. Please try again."
+    },
+    "done": {
+      "title": "Congratulations!",
+      "subtitle": "Your account is under review. You will receive an email confirmation within 24 to 48 hours.",
+      "cta": "Access my space"
+    }
+  },
+  "completeProfile": {
+    "title": "Complete your profile",
+    "subtitle": "For regulatory reasons, some required information is missing. Please fill it in to continue using your space.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "dob": "Date of birth",
+    "address": "Address",
+    "city": "City",
+    "postalCode": "Postal code",
+    "country": "Country of residence",
+    "taxCountry": "Tax residence",
+    "tin": "Tax ID (TIN)",
+    "save": "Save and continue",
+    "saving": "Saving…",
+    "missing": "Please fill in: {{fields}}",
+    "saveError": "Error saving. Please try again.",
+    "saveSuccess": "Profile completed."
   }
 }

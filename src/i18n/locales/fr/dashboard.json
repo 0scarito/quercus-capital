@@ -1,28 +1,256 @@
 {
   "sidebar": {
     "dashboard": "Tableau de bord",
-    "products": "Produits",
-    "statements": "Relevés",
-    "settings": "Paramètres",
+    "investments": "Mes investissements",
+    "advisor": "Mon conseiller",
+    "settings": "Paramètres de compte",
+    "statements": "Mes mouvements",
     "integrations": "Intégrations",
-    "signOut": "Se déconnecter"
+    "personalSettings": "Paramètres personnels",
+    "accountSettings": "Paramètres du compte",
+    "helpCenter": "Centre d'aide",
+    "contactUs": "Nous contacter",
+    "signOut": "Se déconnecter",
+    "myAccount": "Mon compte",
+    "personalAccount": "Compte personnel",
+    "corporateAccount": "Compte entreprise",
+    "openCorporate": "Ouvrir un compte professionnel"
   },
-  "balance": {
-    "title": "Solde total",
-    "deposit": "Déposer",
-    "withdraw": "Retirer"
+  "dashboardPage": {
+    "greeting": "Bonjour, {{name}}",
+    "advisor": {
+      "available": "Votre conseiller {{name}} est disponible pour répondre à vos questions.",
+      "credentials": "CGP — CIF ORIAS n° 24004789",
+      "sendMessage": "Envoyer un message",
+      "unlock": "Bénéficiez d'un Conseiller en Gestion de Patrimoine dédié dès 3 M€ investis.",
+      "remaining": "Encore {{amount}} pour débloquer ce service.",
+      "investNow": "Investir maintenant"
+    },
+    "actions": {
+      "withdraw": "Retirer",
+      "invest": "Investir"
+    },
+    "balance": {
+      "total": "Solde total",
+      "averageYield": "rendement moyen",
+      "interestEarned": "Intérêts générés"
+    },
+    "products": {
+      "title": "Produits",
+      "active": "{{count}} actif",
+      "active_plural": "{{count}} actifs"
+    },
+    "transactions": {
+      "title": "Transactions",
+      "searchPlaceholder": "Rechercher un produit",
+      "allTypes": "Tous types",
+      "deposits": "Dépôts",
+      "withdrawals": "Retraits",
+      "interests": "Intérêts",
+      "empty": "Aucune transaction",
+      "headers": {
+        "date": "Date",
+        "type": "Type",
+        "product": "Produit",
+        "amount": "Montant",
+        "status": "Statut"
+      },
+      "types": {
+        "deposit": "Dépôt",
+        "withdrawal": "Retrait",
+        "interest": "Intérêts"
+      },
+      "status": {
+        "completed": "Réglé",
+        "pending": "En cours"
+      }
+    }
   },
-  "transactions": {
-    "title": "Transactions",
-    "search": "Rechercher un produit…",
-    "type": "Type",
-    "all": "Tous",
-    "deposit": "Dépôt",
-    "withdrawal": "Retrait",
-    "interest": "Intérêts",
-    "date": "Date",
+  "settings": {
+    "title": "Paramètres de compte",
+    "subtitle": "Gérez votre profil, sécurité et comptes bancaires.",
+    "edit": "Modifier",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "saveSuccess": "Profil mis à jour",
+    "saveError": "Une erreur est survenue. Veuillez réessayer.",
+    "holder": {
+      "title": "Titulaire du compte",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "dob": "Date de naissance",
+      "email": "Email",
+      "phone": "Téléphone",
+      "accountType": "Type de compte",
+      "id": "Identifiant",
+      "individual": "Particulier",
+      "corporate": "Personne morale"
+    },
+    "users": {
+      "title": "Gestion des utilisateurs",
+      "intro": "Gérez les personnes autorisées à accéder à votre compte.",
+      "owner": "Titulaire",
+      "addUser": "+ Ajouter un utilisateur"
+    },
+    "tax": {
+      "title": "Résidence fiscale",
+      "country": "Pays de résidence fiscale",
+      "tin": "Numéro d'identification fiscale",
+      "address": "Adresse",
+      "city": "Ville",
+      "postalCode": "Code postal",
+      "residence": "Pays"
+    },
+    "financial": {
+      "title": "Profil financier",
+      "sector": "Secteur d'activité",
+      "income": "Revenu annuel",
+      "wealth": "Patrimoine",
+      "deposit": "Dépôt prévu",
+      "fundsOrigin": "Origine des fonds",
+      "referral": "Source de découverte",
+      "legalName": "Raison sociale",
+      "legalForm": "Forme juridique",
+      "siren": "SIREN",
+      "entityType": "Type d'entité",
+      "fundsSource": "Source des fonds"
+    },
+    "bank": {
+      "title": "Comptes bancaires",
+      "intro": "Ce sont les comptes vers lesquels vous pouvez retirer vos fonds.",
+      "empty": "Aucun compte bancaire ajouté",
+      "add": "+ Ajouter un compte bancaire"
+    },
+    "security": {
+      "title": "Sécurité",
+      "twoFA": "Authentification à deux facteurs",
+      "twoFADesc": "Protégez votre compte avec un code de vérification supplémentaire.",
+      "closeTitle": "Clôture du compte",
+      "closeDesc": "Votre compte Quercus sera définitivement supprimé. Cette action est irréversible.",
+      "closeCta": "Clôturer mon compte"
+    }
+  },
+  "statements": {
+    "title": "Relevés",
+    "subtitle": "Consultez et téléchargez vos relevés de compte mensuels.",
+    "empty": "Aucun relevé disponible pour le moment.",
+    "emptyHint": "Les relevés seront générés automatiquement à la fin de chaque mois."
+  },
+  "products": {
+    "title": "Nos produits",
+    "subtitle": "Sélectionnez un produit pour commencer à placer vos liquidités.",
+    "smartCash": "Smart Cash & Sovereign Funds",
+    "headers": {
+      "asset": "Actif",
+      "type": "Type",
+      "currency": "Devise",
+      "yield": "Rendement"
+    },
+    "subscribe": "Souscrire à {{name}}",
+    "increase": "Augmenter",
+    "add": "Ajouter",
+    "liquidity": "Liquidité T+0 pour les ordres passés avant 12h25 CET. Les rendements affichés sont indicatifs et nets de frais de gestion.",
+    "advised": {
+      "section": "Allocation patrimoniale",
+      "title": "Portefeuille Conseillé",
+      "available": "Disponible",
+      "locked": "Verrouillé",
+      "desc": "Allocation patrimoniale sur-mesure construite avec votre conseiller dédié — combine Smart Cash, Cash & Carry, obligations, actions et solutions alternatives.",
+      "availableFrom": "Disponible à partir de {{amount}} d'encours",
+      "bookMeeting": "Prendre rendez-vous",
+      "unavailable": "Indisponible"
+    },
+    "modal": {
+      "destination": "Compte de destination",
+      "destinationPlaceholder": "Sélectionner un compte",
+      "principal": "(principal)",
+      "amount": "Montant ({{currency}})",
+      "amountPlaceholder": "10 000",
+      "cancel": "Annuler",
+      "confirm": "Confirmer",
+      "selectAccount": "Sélectionnez un compte",
+      "invalidAmount": "Montant invalide",
+      "subscribed": "{{name}} souscrit avec succès",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    }
+  },
+  "integrations": {
+    "title": "Intégrations",
+    "subtitle": "Connectez Quercus à vos outils comptables, bancaires et de paiement.",
+    "connected": "Connecté",
+    "connect": "Connecter",
+    "disconnect": "Déconnecter",
+    "connectedToast": "Intégration connectée",
+    "disconnectedToast": "Intégration déconnectée",
+    "error": "Une erreur est survenue. Veuillez réessayer.",
+    "footer": "Les connexions OAuth réelles avec chaque service seront activées progressivement. Pour un déploiement prioritaire, contactez votre gestionnaire de compte."
+  },
+  "advisor": {
+    "title": "Mon conseiller",
+    "lockedSubtitle": "Un service réservé à nos clients investissant 3 M€ ou plus.",
+    "lockedHero": "Un conseiller dédié, rien que pour vous.",
+    "lockedDesc": "Dès <0>3 M€ investis</0>, un Conseiller en Gestion de Patrimoine vous accompagne personnellement : allocation sur-mesure, optimisation fiscale et suivi prioritaire par téléphone, e-mail ou rendez-vous.",
+    "progress": "{{wealth}} / 3 000 000 € — encore <0>{{remaining}}</0> à investir",
+    "investNow": "Investir maintenant",
+    "contactUs": "Nous contacter",
+    "perks": [
+      { "title": "Allocation sur-mesure", "desc": "Une stratégie pensée pour votre situation patrimoniale globale." },
+      { "title": "Suivi prioritaire", "desc": "Réponse garantie sous 24h ouvrées par votre CGP dédié." },
+      { "title": "Joignable directement", "desc": "Téléphone, e-mail, rendez-vous physique ou visioconférence." }
+    ],
+    "subtitle": "Votre Conseiller en Gestion de Patrimoine dédié, joignable par message, e-mail ou téléphone.",
+    "advisorRole": "CGP · Quercus Capital",
+    "credentials": "CIF ORIAS n° 24004789 · CGP — AMF",
+    "availability": "Disponible du lundi au vendredi, 9h–19h. Réponse garantie sous 24h ouvrées.",
+    "form": {
+      "title": "Envoyer un message",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Question sur mon allocation",
+      "message": "Message",
+      "messagePlaceholder": "Bonjour Alexandre, …",
+      "send": "Envoyer le message",
+      "sending": "Envoi…",
+      "sent": "Message envoyé à votre conseiller"
+    }
+  },
+  "deposit": {
+    "title": "Déposer des fonds",
+    "subtitleProduct": "Choisissez un produit et un compte",
+    "subtitleInstructions": "Effectuez votre virement",
+    "subtitleWaiting": "Virement en attente",
+    "destination": "Compte de destination",
+    "destinationPlaceholder": "Sélectionner un compte",
+    "principal": "Compte principal",
     "product": "Produit",
-    "amount": "Montant",
-    "empty": "Aucune transaction"
+    "minDeposit": "Dépôt minimum : 1,00 {{currency}}",
+    "continue": "Continuer",
+    "warning": "Effectuez uniquement des virements depuis un compte bancaire à votre nom. Le montant que vous virez détermine votre souscription.",
+    "labels": {
+      "holder": "Titulaire",
+      "bank": "Banque",
+      "iban": "IBAN",
+      "bic": "BIC / SWIFT"
+    },
+    "back": "Retour",
+    "needProof": "J'ai besoin d'un justificatif",
+    "doneTransfer": "J'ai effectué le virement",
+    "waiting": {
+      "title": "Nous attendons votre virement",
+      "desc": "Vos fonds apparaîtront généralement sous 24 h ouvrées. Vous serez notifié par email à leur réception.",
+      "reference": "Référence de suivi",
+      "close": "Fermer"
+    },
+    "proof": {
+      "title": "Promesse de souscription",
+      "desc": "Génère un PDF à remettre à votre banque pour justifier le virement.",
+      "amount": "Montant prévu ({{currency}})",
+      "amountPlaceholder": "10 000,00",
+      "download": "Télécharger le PDF",
+      "downloaded": "Justificatif téléchargé",
+      "invalidAmount": "Montant invalide"
+    },
+    "selectError": "Sélectionnez un produit et un compte",
+    "copied": "Copié",
+    "error": "Une erreur est survenue. Veuillez réessayer."
   }
 }
