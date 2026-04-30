@@ -1,5 +1,43 @@
 ## i18n — état d'avancement
 
+### ✅ Vague 4 — Plateforme (en cours)
+- **JSON FR+EN complets** créés pour `auth`, `onboarding` (welcome, email, 2FA, accountType, individual, corporate, kyc, completeProfile), `dashboard` (sidebar, dashboardPage, settings, statements, products, integrations, advisor, deposit).
+- **Refactor effectué** : `SignIn.tsx` (avec LanguageSwitcher en haut à droite), `OpenAccount.tsx` (header avec LanguageSwitcher).
+
+### 🔧 À finir dans une prochaine session — refactor composants plateforme
+Les clés JSON existent. Il ne reste que la substitution `useTranslation()` :
+
+**Onboarding stages** (namespace `onboarding`) :
+- `StageWelcome.tsx` → `t("welcome.*")` — utiliser `t("welcome.steps", { returnObjects: true })`
+- `StageEmailVerification.tsx` → `t("email.*")` — schema zod messages via `t("email.errors.*")`
+- `Stage2FA.tsx` → `t("twoFA.*")`
+- `StageAccountType.tsx` → `t("accountType.*")`
+- `StageIndividual.tsx` → `t("individual.*")` — listes via `returnObjects`
+- `StageCorporate.tsx` → `t("corporate.*")` — supprimer le bloc inline `{sub === "country" && ...}` et utiliser `t(\`corporate.titles.\${sub}\`)`
+- `StageKYC.tsx` → `t("kyc.ready.*")`, `t("kyc.review.*")`, `t("kyc.done.*")`
+- `CompleteProfile.tsx` → `t("completeProfile.*")`
+
+**Dashboard** (namespace `dashboard`) :
+- `QuercusSidebar.tsx` → `t("sidebar.*")` + ajouter `<LanguageSwitcher />` dans `SidebarFooter` au-dessus du bouton sign-out
+- `Dashboard.tsx` → `t("dashboardPage.*")`
+- `AccountSettings.tsx` → `t("settings.*")`
+- `Statements.tsx` → `t("statements.*")`
+- `Products.tsx` → `t("products.*")`
+- `Integrations.tsx` → `t("integrations.*")`
+- `dashboard/MonConseiller.tsx` → `t("advisor.*")` (la prop `lockedDesc` et `progress` utilisent `<Trans i18nKey>` pour le markup `<0>...</0>`)
+- `DepositModal.tsx` → `t("deposit.*")`
+
+**Pages produits restantes** (namespace `products`/`landing`) :
+- `TobamPage.tsx`, `VelvetPage.tsx`, `HelpCenter.tsx` — clés déjà dans `products.json` et `help.json`
+
+**Pattern type** :
+```tsx
+import { useTranslation } from "react-i18next";
+const { t } = useTranslation("onboarding");
+// listes : (t("welcome.steps", { returnObjects: true }) as Array<{label:string, desc:string}>)
+// interpolation : t("kyc.review.missing", { fields: missing.join(", ") })
+```
+
 ### ✅ Terminé
 - **Vague 1 — Pages institutionnelles** : AboutPage, SecurityPage, RegulationPage, PressPage, LegalPage, PrivacyPage, CookiePage, ContactPage refactorées vers `pages` namespace.
 - **Infrastructure i18n** : namespaces `pages`, `products`, `help` créés et enregistrés dans `src/i18n/index.ts`.
