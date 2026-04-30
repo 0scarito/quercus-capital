@@ -1,0 +1,469 @@
+{
+  "common": {
+    "bookMeeting": "Book a meeting",
+    "contactUs": "Contact us",
+    "openAccount": "Open my account",
+    "startInvesting": "Start investing",
+    "stepLabel": "Step {{n}}",
+    "lowestRisk": "Lowest risk",
+    "highestRisk": "Highest risk",
+    "verifyAmf": "Verify AMF approval",
+    "checkRegistration": "Check the registration"
+  },
+  "advisorThreshold": {
+    "eyebrow": "Above a certain balance",
+    "title": "A dedicated advisor to support you.",
+    "body": "Above a certain level of assets on the platform, a Wealth Management Advisor is assigned to you. They build with you a tailor-made Advised Portfolio: an asset allocation combining Smart Cash, Cash & Carry, bonds, equities and alternative solutions, calibrated to your goals and your horizon.",
+    "discover": "Discover the Advised Portfolio",
+    "book": "Book a meeting"
+  },
+  "productsListing": {
+    "heroTitle": "Our products",
+    "heroSubtitle": "Three complementary solutions to put your savings to work — from treasury investments to a tailor-made wealth portfolio.",
+    "disclaimer": "Net of management fees · Past performance not guaranteed · Capital at risk.",
+    "table": {
+      "product": "Product",
+      "yield": "Net yield",
+      "currency": "Currency",
+      "liquidity": "Liquidity",
+      "risk": "Risk",
+      "details": "Details"
+    },
+    "tableNote": "Yields refreshed daily, net of management fees. Past performance is not indicative of future performance. Every investment carries a risk of capital loss.",
+    "ctaTitle": "Let's talk about your project with an advisor.",
+    "ctaPrimary": "Book a meeting",
+    "ctaSecondary": "Run a simulation"
+  },
+  "dashboardProducts": {
+    "title": "Our products",
+    "subtitle": "Pick a product to start putting your cash to work.",
+    "smartCashHeader": "Smart Cash & Sovereign Funds",
+    "table": {
+      "asset": "Asset",
+      "type": "Type",
+      "currency": "Currency",
+      "yield": "Yield"
+    },
+    "increase": "Increase",
+    "add": "Add",
+    "footnote": "T+0 liquidity for orders placed before 12:25 CET. Yields shown are indicative and net of management fees.",
+    "allocationHeader": "Wealth allocation",
+    "advisedTitle": "Advised Portfolio",
+    "available": "Available",
+    "locked": "Locked",
+    "advisedDesc": "Tailor-made wealth allocation built with your dedicated advisor — combining Smart Cash, Cash & Carry, bonds, equities and alternative solutions.",
+    "thresholdLabel": "Available from",
+    "thresholdSuffix": "in assets",
+    "bookMeeting": "Book a meeting",
+    "unavailable": "Unavailable",
+    "subscribeTitle": "Subscribe to {{name}}",
+    "subscribeDesc": "{{description}} — Yield {{rate}}%",
+    "destAccount": "Destination account",
+    "selectAccount": "Select an account",
+    "primarySuffix": "(primary)",
+    "amount": "Amount ({{currency}})",
+    "amountPlaceholder": "10,000",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "selectAccountToast": "Select an account",
+    "invalidAmount": "Invalid amount",
+    "errorToast": "An error occurred. Please try again.",
+    "successToast": "{{name}} subscribed successfully"
+  },
+  "portefeuille": {
+    "badge": "Wealth advisor · Tailor-made allocation · CIF ORIAS 24004789",
+    "title": "Advised Portfolio",
+    "subtitle": "An asset allocation built with your Wealth Management Advisor, tailored to your risk profile, your horizon and your goals.",
+    "ctaBook": "Book a meeting",
+    "ctaProducts": "See all products",
+    "metrics": {
+      "currencies": "Currencies",
+      "currenciesValue": "Multi-currency",
+      "liquidity": "Liquidity",
+      "liquidityValue": "Variable",
+      "fees": "Fees",
+      "feesValue": "On request",
+      "risk": "Risk",
+      "riskValue": "Tailored to your profile"
+    },
+    "approachTitle": "A holistic wealth approach",
+    "approachBody": "Beyond the Smart Cash and Cash & Carry money-market funds, your advisor can offer a tailor-made allocation that includes bonds, equities, alternative funds and geographic diversification. Every proposal is documented, justified and adapted to your MiFID profile.",
+    "stepsTitle": "How to invest",
+    "steps": {
+      "s1Title": "Book a meeting",
+      "s1Desc": "An initial conversation with your advisor to understand your goals and your horizon.",
+      "s2Title": "Co-build the allocation",
+      "s2Desc": "Your advisor proposes a tailor-made allocation: money-market, fixed income, equities, alternatives.",
+      "s3Title": "Implementation and follow-up",
+      "s3Desc": "Subscriptions executed via our regulated partners. Regular reporting and quarterly reviews."
+    },
+    "faqTitle": "Frequently asked questions",
+    "faq": {
+      "q1": "Who is the Advised Portfolio for?",
+      "a1": "For clients seeking a tailor-made wealth allocation, beyond simple treasury investing. Entry ticket and fees are defined with your advisor.",
+      "q2": "What is my role in the management?",
+      "a2": "You remain the decision-maker. Your advisor proposes trades that you validate. No transaction is executed without your approval.",
+      "q3": "What regulation applies?",
+      "a3": "Quercus Capital acts as a Financial Investment Advisor (CIF) registered with ORIAS no. 24004789, and as a wealth advisor member of CNCEF, supervised by the AMF."
+    },
+    "ctaTitle": "Let's build your allocation together.",
+    "ctaDisclaimer": "Past performance not guaranteed · Capital at risk · Net of management fees."
+  },
+  "tobam": {
+    "badge": "AIF · Specialised Professional Fund",
+    "heroTitle": "Capture high yields on the crypto markets.",
+    "heroLine": "with",
+    "heroBadge": "ZERO",
+    "heroSuffix": "exposure to crypto-asset prices.",
+    "metrics": {
+      "yield": "Net target yield",
+      "yieldValue": "~7–10%",
+      "yieldDetail": "EUR 7–8% · USD 9–10%",
+      "yieldNote": "p.a. · net of fees",
+      "liquidity": "Liquidity",
+      "liquidityValue": "Daily",
+      "liquidityNote": "24h withdrawal · Settlement D+1",
+      "exposure": "Crypto exposure",
+      "exposureValue": "0%",
+      "exposureNote": "Position fully hedged",
+      "risk": "Risk level",
+      "riskValue": "2",
+      "riskNote": "SRRI / SRI",
+      "riskAria": "More information on the risk indicator"
+    },
+    "carryEyebrow": "Mechanism · Cash & Carry",
+    "carryTitle": "The art of arbitrage: generating yield without enduring volatility.",
+    "carryP1": "The Cash & Carry mechanism (or basis trade) exploits a structural anomaly of the crypto market: Futures contracts (forward price) almost always trade higher than the Spot (current price).",
+    "carryP2": "At Quercus, via the TOBAM fund, we capture this price gap mathematically and securely:",
+    "carrySteps": {
+      "s1Title": "The buy (Long Spot)",
+      "s1Desc": "We buy Bitcoin via regulated ETFs on NASDAQ.",
+      "s2Title": "The sell (Short Future)",
+      "s2Desc": "Simultaneously, we sell a futures contract on the CME with one-month maturity.",
+      "s3Title": "The profit (Contango)",
+      "s3Desc": "By locking these positions, we cancel the BTC price exposure and pocket the premium that converges to zero."
+    },
+    "carryResult": "The result: uncorrelated performance, minimal volatility and no exposure to crypto market price swings.",
+    "methodEyebrow": "Methodology",
+    "methodTitle": "The TOBAM strategy in detail",
+    "pillars": {
+      "p1Title": "Position",
+      "p1Desc": "Long Bitcoin ETF (NASDAQ) + Short Bitcoin CME futures → capture the contango spread. The strategy also uses Ethereum when the opportunity is better.",
+      "p1Alt": "Editorial illustration of two parallel pillars symbolising the long and short positions of the cash & carry strategy",
+      "p2Title": "Entry threshold",
+      "p2Desc": "The strategy enters a position only when the basis yield exceeds the cash rate + 2%. Mathematical discipline, constant timing optimisation.",
+      "p2Alt": "Precision balance with a golden drop at the equilibrium point, symbolising the entry threshold of the strategy",
+      "p3Title": "Carbon offset",
+      "p3Desc": "TOBAM measures the annual carbon footprint of the Bitcoin exposure and offsets it via CO₂ certificates (VER — Verified Emission Reductions).",
+      "p3Alt": "Oak leaf with golden veins on a molecular grid, symbolising the carbon offset of the fund"
+    },
+    "rolling": {
+      "eyebrow": "Step 04 · Execution",
+      "title": "Monthly rolling",
+      "body": "Futures rolled monthly. Average one-month position maintained at all times. Opportunistic leverage up to 125% when the basis is wide."
+    },
+    "stats": {
+      "eyebrow": "Key Stats",
+      "title": "Key figures of the strategy",
+      "subtitle": "Backtest CME Bitcoin Carry · December 2019 — March 2025",
+      "disclaimer": "Past performance is not indicative of future performance. Data from the TOBAM Crypto Liquidity backtest, for illustrative purposes only."
+    },
+    "characteristicsTitle": "Fund characteristics",
+    "characteristics": {
+      "header": "Characteristic",
+      "detail": "Detail",
+      "rows": {
+        "name": ["Official name", "TOBAM Crypto Liquidity Fund"],
+        "structure": ["Legal structure", "AIF — Specialised Professional Fund (FPS)"],
+        "domicile": ["Domicile", "France"],
+        "creation": ["Inception date", "27 June 2025"],
+        "duration": ["Duration", "99 years"],
+        "objective": ["Objective", "Maximise BTC/ETH basis trade revenue with zero exposure to crypto prices"],
+        "benchEur": ["Benchmark (EUR)", "€STER (ESTCINDX Index)"],
+        "benchUsd": ["Benchmark (USD)", "SOFR (SOFRINDX Index)"],
+        "currencies": ["Available currencies", "EUR and USD"],
+        "liquidity": ["Liquidity", "Daily"],
+        "cutoff": ["Cut-off", "1:00 pm Paris (D)"],
+        "settle": ["Settlement", "D+1 before 1:00 pm"],
+        "income": ["Income treatment", "Capitalisation"],
+        "leverage": ["Max gross leverage", "300%"],
+        "drawdown": ["Target max drawdown", "< -2% over two quarters"]
+      }
+    },
+    "secTitle": "Security architecture",
+    "secSubtitle": "Five regulated, separate and independent actors — your assets are never on the balance sheet of TOBAM or Quercus.",
+    "riskCardEyebrow": "Risk indicator · SRRI / SRI",
+    "riskCardLabel": "Non-directional strategy. Weekly volatility ~5%, max quarterly drawdown 0% on the 2019–2024 backtest.",
+    "riskCardNote": "The Summary Risk Indicator (SRI / SRRI) is the European regulatory scale from 1 (lowest risk) to 7 (highest risk), published in each fund's Key Information Document (KID).",
+    "regCardEyebrow": "Regulation & verification",
+    "regCard": {
+      "structure": "Structure",
+      "structureValue": "AIF · FPS",
+      "manager": "Manager",
+      "managerValue": "TOBAM · GP 06 000019",
+      "depositary": "Depositary",
+      "depositaryValue": "CACEIS · AMF-registered DASP",
+      "auditor": "Auditor",
+      "auditorValue": "PwC · annual"
+    },
+    "faqTitle": "Frequently asked questions",
+    "faq": {
+      "q1": "What are the risks?",
+      "a1": "Low directional risk (crypto exposure fully hedged). Main risks: basis risk (the spread between futures and spot can temporarily diverge), margin call risk, counterparty risk (exchange or broker default), leverage risk, cyber risk (mitigated — no direct BTC custody, exposure via ETF only), concentration risk.",
+      "q2": "How is this product structured legally?",
+      "a2": "AIF in the Specialised Professional Fund (FPS) category under French law. Declared with the AMF but not approved. Open to professional investors and to investors with an initial subscription ≥ €100,000.",
+      "q3": "Why Bitcoin in particular?",
+      "a3": "Bitcoin is the largest and most liquid crypto asset (~6× Ethereum's market cap), with the most active futures market on the CME. The basis trade has historically delivered ~8% annualised p.a. and the premium stayed above 3% in 76% of the last 5 years.",
+      "q4": "Which platforms are used?",
+      "a4": "Long position: Bitcoin ETF on NASDAQ (no direct crypto custody, no hacking risk). Short position: CME Bitcoin futures (regulated exchange with clearing mechanism). Crypto custody if needed: CACEIS Bank (AMF-registered DASP), Taurus, BitGo.",
+      "q5": "Who can invest?",
+      "a5": "Professional investors (within the meaning of article L533-16 of the Monetary and Financial Code) and investors with an initial subscription ≥ €100,000. Recommended minimum holding period: 1 year.",
+      "q6": "What about ESG?",
+      "a6": "TOBAM measures the annual carbon footprint of the Bitcoin exposure and fully offsets it via CO₂ certificates (VER — Verified Emission Reductions).",
+      "q7": "Where can I find legal documentation?",
+      "a7": "The full prospectus is available on tobam.fr. NAV is available on request."
+    },
+    "ctaTitle": "Access the yield of the crypto basis trade.",
+    "ctaSubtitle": "Institutional strategy. Daily liquidity. Zero exposure to crypto-asset prices."
+  },
+  "velvet": {
+    "badge": "FCP UCITS · AMF no. FCP20230197",
+    "heroTitle": "Institutional power for your everyday treasury.",
+    "heroSubtitle": "Maximise your treasury surplus with Velvet. A target yield of €STR + 0.30%, institutional-grade UCITS security, and daily liquidity with no entry or exit fees.",
+    "metrics": {
+      "yield": "Net yield",
+      "yieldValue": "3.5 – 3.8%",
+      "yieldDetail": "€STR + 0.30%",
+      "yieldNote": "real time · net of fees",
+      "risk": "Risk indicator",
+      "riskValue": "1",
+      "riskNote": "The lowest on the market",
+      "liquidity": "Liquidity",
+      "liquidityValue": "Daily",
+      "liquidityNote": "NAV D+1 · Settlement D+2",
+      "security": "Security",
+      "securityValue": "UCITS",
+      "securityNote": "Approved by the AMF"
+    },
+    "swapEyebrow": "Mechanism · Mirror Swap",
+    "swapTitle": "Turning equity performance into a stable money-market yield.",
+    "swapP1": "Velvet uses a Total Return Swap (TRS) — a performance swap with the largest global banks. The result: a guaranteed money-market yield, protected from equity market swings.",
+    "swapSteps": {
+      "s1Title": "The collateral basket",
+      "s1Desc": "Velvet holds a diversified portfolio of Tier-1 international equities that act as collateral.",
+      "s2Title": "The swap",
+      "s2Desc": "Velvet swaps the performance of this basket for a guaranteed money-market rate (€STR + spread) with top-tier banks.",
+      "s3Title": "The rate capture",
+      "s3Desc": "The investor receives a stable yield, protected from equity swings by the swap contract."
+    },
+    "swapResult": "The result: a steady daily yield, independent of equity markets, contractually guaranteed by BNP Paribas.",
+    "methodEyebrow": "Methodology",
+    "methodTitle": "The Velvet strategy in detail",
+    "pillars": {
+      "p1Title": "Stability",
+      "p1Desc": "Velvet takes no directional bet on equity markets. The swap turns the basket's volatility into a fixed money-market yield guaranteed by BNP Paribas — the absolute anchor of your treasury.",
+      "p1Alt": "Brass nautical anchor on parchment with deep teal ribbons — symbol of stability",
+      "p2Title": "Steady outperformance",
+      "p2Desc": "The 0.30% premium above €STR is captured every day, with no entry or exit fees. +5.38% cumulative vs. +4.84% for €STR over 17 months.",
+      "p2Alt": "Golden coin balanced on a marble pedestal — symbol of stable yield",
+      "p3Title": "Symmetry & guarantee",
+      "p3Desc": "Every day, BNP Paribas and Velvet exchange the performance. Whatever the market conditions, the contractual €STR + spread yield is paid. No default since 2014.",
+      "p3Alt": "Precision balance in equilibrium with stacks of coins — symbol of the balanced exchange of the Total Return Swap"
+    },
+    "stats": {
+      "eyebrow": "Key Stats",
+      "title": "Key fund figures",
+      "subtitle": "Performance & transparency — real-time Velvet data",
+      "aum": "Assets under management",
+      "interest": "Cumulative interest generated",
+      "outperf": "Outperformance / €STR",
+      "outperfNote": "17-month cumulative",
+      "disclaimer": "Past performance is not indicative of future performance. Velvet (Class I) data, net of fees."
+    },
+    "collateralEyebrow": "Composition",
+    "collateralTitle": "The collateral basket",
+    "collateralSubtitle": "100% Tier-1 international equities, diversified by sector.",
+    "characteristicsTitle": "Fund characteristics",
+    "characteristics": {
+      "header": "Characteristic",
+      "i2": "Class I2 EUR",
+      "i3": "Class I3 EUR",
+      "rows": {
+        "name": ["Official name", "FCP Velvet", "FCP Velvet"],
+        "isin": ["ISIN code", "FR0014010AT3", "FR0014010IJ7"],
+        "bbg": ["Bloomberg", "FCPVVI2 FP Equity", "FCPVVI3 FP Equity"],
+        "form": ["Legal form", "FCP — UCITS", "FCP — UCITS"],
+        "domicile": ["Domicile", "France", "France"],
+        "creation": ["Inception date", "07/12/2023", "07/12/2023"],
+        "currency": ["Reference currency", "EUR", "EUR"],
+        "fees": ["Management fees (max)", "0.25%", "0.20%"],
+        "min": ["Minimum subscription", "€500,000", "€1,000,000"],
+        "eligible": ["Eligible investors", "Professional clients", "Same"],
+        "cutoff": ["Cut-off", "D before 2:00 pm (Paris)", "Same"],
+        "nav": ["NAV publication", "D+1 business day", "D+1 business day"],
+        "settle": ["Settlement", "D+2 business days", "D+2 business days"],
+        "income": ["Income treatment", "Capitalisation", "Capitalisation"],
+        "sfdr": ["SFDR classification", "Article 6", "Article 6"],
+        "risk": ["Risk indicator", "1 / 7", "1 / 7"],
+        "regulator": ["Regulator", "AMF no. FCP20230197", "Same"]
+      }
+    },
+    "secTitle": "Security architecture",
+    "secSubtitle": "Five regulated, separate and independent actors — your funds are never on the balance sheet of LFIS or Quercus.",
+    "riskCardEyebrow": "Risk indicator · SRI",
+    "riskCardLabel": "Velvet is rated 1/7 on the synthetic risk indicator (SRI). No default since 2014.",
+    "riskCardNote": "The Summary Risk Indicator (SRI) is the European regulatory scale from 1 (lowest risk) to 7 (highest risk), published in each fund's Key Information Document (KID).",
+    "regCardEyebrow": "BNP Paribas rating",
+    "regCard": {
+      "structure": "Structure",
+      "structureValue": "FCP · UCITS",
+      "manager": "Manager",
+      "managerValue": "LFIS · GP13000004",
+      "auditor": "Auditor",
+      "auditorValue": "PwC · quarterly",
+      "verifyAmf": "Verify AMF approval no. FCP20230197"
+    },
+    "faqTitle": "Frequently asked questions",
+    "faq": {
+      "q1": "What are the fees?",
+      "a1": "Management fees only: 0.25% p.a. (max) for Class I2, 0.20% for Class I3. No entry, exit or subscription fees. Yields shown are always net of fees.",
+      "q2": "What are the risks and how are my funds protected?",
+      "a2": "Your funds are backed by a top-tier bank (BNP Paribas). The main risk is counterparty default, mitigated by the collateral portfolio (Tier-1 liquid equities) held by the fund and immediately liquidatable. This strategy has never had a default since 2014.",
+      "q3": "What happens if LFIS Capital goes bankrupt?",
+      "a3": "No financial exposure to the manager's insolvency. Assets are held by BNP Paribas as depositary, separate from LFIS's balance sheet. You can always submit redemption orders directly.",
+      "q4": "Why do banks pay above the risk-free rate?",
+      "a4": "Holding financial assets on the balance sheet is costly for banks because of regulatory capital requirements. Banks pay a premium to funds like Velvet to hold these assets off-balance-sheet via a TRS — a mutually beneficial arrangement.",
+      "q5": "How do the daily flows work?",
+      "a5": "Every day, Velvet and BNP Paribas exchange the performance. If the equity basket rises, Velvet pays the gain to BNP. If it falls, BNP pays the difference to Velvet. Whatever the market conditions, BNP pays €STR + spread to Velvet daily.",
+      "q6": "Is there a currency risk?",
+      "a6": "No. The counterparty pays the daily yield in EUR, regardless of the currency of the basket's underlying assets.",
+      "q7": "Where can I find legal documentation?",
+      "a7": "The prospectus and KID are available on lfis.com."
+    },
+    "ctaTitle": "Put your treasury to work every day.",
+    "ctaSubtitle": "Your funds held by BNP Paribas. Daily yield net of fees. Daily liquidity."
+  },
+  "solutionsList": {
+    "heroTitle": "Who is Quercus for?",
+    "heroSubtitle": "Quercus is built for organisations and individuals who demand more from their treasury.",
+    "ctaTitle": "Ready to optimise your treasury?",
+    "ctaPrimary": "Open an account",
+    "ctaSecondary": "Contact us"
+  },
+  "segments": {
+    "startups": {
+      "name": "Start-ups",
+      "heroTitle": "Treasury investment for Start-ups",
+      "heroDescription": "Optimise your runway with a daily yield. Deploy your idle treasury in daily-yield instruments while keeping immediate liquidity."
+    },
+    "holdings": {
+      "name": "Holdings",
+      "heroTitle": "Treasury investment for Holdings",
+      "heroDescription": "Institutional management, full transparency. Access institutional-grade treasury management with segregated custody of your assets."
+    },
+    "crypto": {
+      "name": "Crypto Businesses",
+      "heroTitle": "Treasury investment for Crypto Businesses",
+      "heroDescription": "Secure your fiat reserves. Place your traditional-currency reserves in secure sovereign instruments, with T+0 liquidity."
+    },
+    "freelances": {
+      "name": "Freelancers",
+      "heroTitle": "Treasury investment for Freelancers",
+      "heroDescription": "Make every euro work. Turn your safety savings into a daily yield source without locking up your capital."
+    },
+    "pme": {
+      "name": "SMEs",
+      "heroTitle": "Treasury investment for SMEs",
+      "heroDescription": "Grow your surplus without locking it up. Get a competitive yield on your reserves without tying them up in term deposits."
+    },
+    "fintechs": {
+      "name": "Fintechs",
+      "heroTitle": "Treasury investment for Fintechs",
+      "heroDescription": "API-first integration. White-label yield products for your end clients, integrated via our treasury API."
+    },
+    "sci": {
+      "name": "Real Estate Holdings",
+      "heroTitle": "Treasury investment for Real Estate Holdings",
+      "heroDescription": "Make the most of your real-estate cash. Place liquidity between two acquisitions in sovereign instruments with daily yield."
+    },
+    "particuliers": {
+      "name": "Private clients",
+      "heroTitle": "Treasury investment for Private Clients",
+      "heroDescription": "Institutional savings made accessible. Access the same sovereign instruments as institutions. Daily yield, immediate liquidity."
+    }
+  },
+  "segmentHero": { "register": "Sign up" },
+  "comparison": {
+    "title": "Why choose Quercus?",
+    "headers": {
+      "current": "Current account",
+      "term": "Term deposit",
+      "recommended": "Recommended"
+    },
+    "rows": {
+      "lockup": {
+        "label": "Lock-up period",
+        "current": "No lock-up",
+        "term": "> 1 month",
+        "quercus": "No lock-up"
+      },
+      "withdrawalFees": {
+        "label": "Withdrawal fees",
+        "current": "None",
+        "term": "Early-withdrawal penalty",
+        "quercus": "None"
+      },
+      "accountFees": {
+        "label": "Account-keeping fees",
+        "current": "Yes",
+        "term": "Yes",
+        "quercus": "None"
+      },
+      "yield": {
+        "label": "Current net yield",
+        "current": "0%",
+        "term": "1.60% – 2.20%",
+        "quercus": "EU 2.20% / US 4.00%"
+      }
+    }
+  },
+  "roadmap": {
+    "title": "Get started with Quercus in minutes",
+    "steps": {
+      "s1Title": "Become a Quercus member in a few clicks.",
+      "s1Text": "Provide your details, secure your access via two-factor authentication (2FA) and verify your identity. A smooth, digital process compliant with the highest security standards.",
+      "s2Title": "Deposit your funds with peace of mind.",
+      "s2Text": "Make a transfer to your Quercus account. Your funds are deposited with our depositary bank (CACEIS / Crédit Agricole), guaranteeing full segregation and maximum protection of your capital.",
+      "s3Title": "Watch your interest grow every day.",
+      "s3Text": "From day one, your capital generates interest. Gains are automatically capitalised and reinvested daily, maximising the effect of compound interest with no action on your part.",
+      "s4Title": "Access your liquidity without constraints.",
+      "s4Text": "Withdraw all or part of your funds at any time, with no exit fees. For any request submitted before 12:25, your funds are available the same day (T+0). Excellence is also freedom."
+    },
+    "openAccount": "Open my account"
+  },
+  "securityBlock": {
+    "title": "Your security is our absolute priority.",
+    "body": "Quercus never holds your funds. They are kept by <1>CACEIS</1>, a subsidiary of the <2>Crédit Agricole</2> group, Europe's leading depositary. This full segregation guarantees that your capital remains protected, no matter what happens.",
+    "depositary": "Depositary bank",
+    "group": "Banking group",
+    "segregation": "Segregation",
+    "segregationNote": "Funds never on balance sheet"
+  },
+  "solutionsFaq": {
+    "title": "Frequently asked questions",
+    "items": {
+      "q1": "What are the actual fees?",
+      "a1": "Quercus charges a 0.25% management fee per year, already deducted from the net yield shown. There are no entry, exit, account-keeping or withdrawal fees. The yield you see is the yield you receive.",
+      "q2": "How is my money protected?",
+      "a2": "Your funds are never held by Quercus. They are kept by CACEIS, a subsidiary of the Crédit Agricole group and Europe's leading depositary. This full segregation means your capital remains protected even if Quercus were to fail.",
+      "q3": "Can I withdraw my money on a Sunday?",
+      "a3": "You can submit a withdrawal request at any time, including weekends. Requests are processed on business days. For any request submitted before 12:25 on a business day, your funds are available the same day (T+0 liquidity).",
+      "q4": "Is Quercus regulated?",
+      "a4": "Yes. Quercus is registered as a Financial Investment Advisor (CIF) and Insurance Broker (COA) with ORIAS (no. 24004789). We are supervised by the AMF and comply with anti-money-laundering (AML/CFT) regulatory obligations."
+    }
+  },
+  "riskScale": {
+    "low": "Lowest risk",
+    "high": "Highest risk"
+  }
+}
