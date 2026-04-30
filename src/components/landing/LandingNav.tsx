@@ -143,6 +143,99 @@ function Row({
   );
 }
 
+function SolutionsCarousel({ currentSlug }: { currentSlug?: string }) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  // Triple the list to fake an infinite loop
+  const items = [...segments, ...segments, ...segments];
+
+  // On mount, jump scroll to the middle copy and center the active item.
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const middleStart = el.scrollWidth / 3;
+    const activeIndex = segments.findIndex((s) => s.slug === currentSlug);
+    let targetLeft = middleStart;
+    if (activeIndex >= 0) {
+      const activeEl = el.querySelectorAll<HTMLElement>("[data-seg]")[
+        segments.length + activeIndex
+      ];
+      if (activeEl) {
+        targetLeft =
+          activeEl.offsetLeft - el.clientWidth / 2 + activeEl.clientWidth / 2;
+      }
+    }
+    el.scrollLeft = targetLeft;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSlug]);
+
+  // Loop scroll: when leaving the middle copy, snap back by one copy width.
+  const onScroll = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const copyWidth = el.scrollWidth / 3;
+    if (el.scrollLeft < copyWidth * 0.5) {
+      el.scrollLeft += copyWidth;
+    } else if (el.scrollLeft > copyWidth * 1.5) {
+      el.scrollLeft -= copyWidth;
+    }
+  };
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * 200, behavior: "smooth" });
+  };
+
+  return (
+    <div className="hidden md:flex items-center gap-2 flex-1 justify-center min-w-0">
+      <button
+        type="button"
+        aria-label="Précédent"
+        onClick={() => scrollBy(-1)}
+        className="shrink-0 h-7 w-7 flex items-center justify-center bg-white/50 hover:bg-white/80 border border-white/40 text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <ChevronLeft className="h-3.5 w-3.5" />
+      </button>
+      <div
+        ref={scrollerRef}
+        onScroll={onScroll}
+        className="flex items-center gap-1 overflow-x-auto scrollbar-none max-w-[520px]"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%)",
+          maskImage:
+            "linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%)",
+        }}
+      >
+        {items.map((s, i) => (
+          <Link
+            key={`${s.slug}-${i}`}
+            data-seg={s.slug}
+            to={`/solutions/${s.slug}`}
+            className={`px-3 py-1 text-[11px] font-medium tracking-wide transition-all duration-300 border whitespace-nowrap shrink-0 ${
+              s.slug === currentSlug
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-white/40 backdrop-blur-sm text-muted-foreground border-white/30 hover:bg-white/60 hover:text-foreground"
+            }`}
+          >
+            {s.name}
+          </Link>
+        ))}
+      </div>
+      <button
+        type="button"
+        aria-label="Suivant"
+        onClick={() => scrollBy(1)}
+        className="shrink-0 h-7 w-7 flex items-center justify-center bg-white/50 hover:bg-white/80 border border-white/40 text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <ChevronRight className="h-3.5 w-3.5" />
+      </button>
+    </div>
+  );
+}
+
 export function LandingNav({ variant = "default", currentSlug }: LandingNavProps = {}) {
   const { t } = useTranslation(["nav", "common"]);
   const [scrolled, setScrolled] = useState(false);
