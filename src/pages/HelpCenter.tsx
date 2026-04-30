@@ -4,159 +4,49 @@ import { Link, useParams } from "react-router-dom";
 import { BookOpen, Search, ChevronRight, Clock, Calendar } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState, useMemo } from "react";
-import { HELP_ARTICLES, slugify, type HelpArticle, type ArticleBlock } from "@/data/helpArticles";
+import { useTranslation } from "react-i18next";
+import { HELP_ARTICLES, type HelpArticle, type ArticleBlock } from "@/data/helpArticles";
+
+// Stable ordering by slug — keys come from translations
+const CATEGORY_ORDER = [
+  "ouvrir-un-compte",
+  "produits",
+  "depots-et-retraits",
+  "gerer-mon-compte",
+  "fiscalite-et-comptabilite",
+  "a-propos",
+] as const;
 
 type Category = {
   slug: string;
   title: string;
   description: string;
-  sections: { title: string; items: string[] }[];
+  sections: { key: string; title: string; items: { slug: string; label: string }[] }[];
 };
 
-const CATEGORIES: Category[] = [
-  {
-    slug: "ouvrir-un-compte",
-    title: "Ouvrir un compte",
-    description: "Tout ce qu'il faut savoir pour ouvrir un compte Quercus.",
-    sections: [
-      {
-        title: "Ouvrir un compte en tant que particulier",
-        items: [
-          "Créer un compte pour particulier",
-          "Pièces d'identité acceptées",
-          "Justificatif de domicile",
-          "Justificatif d'origine des fonds pour les particuliers",
-        ],
-      },
-      {
-        title: "Ouvrir un compte en tant que personne morale",
-        items: [
-          "Créer un compte pour une entreprise",
-          "Créer un compte pour une association française",
-          "Créer un compte pour une entreprise individuelle",
-          "Créer un compte pour un syndicat des copropriétaires en France",
-          "Justificatif de fonds acceptés pour les personnes morales",
-        ],
-      },
-      {
-        title: "Pays éligibles",
-        items: ["Restrictions géographiques"],
-      },
-    ],
-  },
-  {
-    slug: "produits",
-    title: "Les produits Quercus",
-    description: "Découvrez les produits proposés par Quercus.",
-    sections: [
-      {
-        title: "Quercus bons du Trésor",
-        items: [
-          "Fiche technique des fonds monétaires Quercus",
-          "Documentation des fonds monétaires Quercus",
-        ],
-      },
-      {
-        title: "Quercus Smart Cash",
-        items: ["Fiche technique Quercus Smart Cash", "Documentation de Quercus Smart Cash"],
-      },
-      {
-        title: "Quercus Cash & Carry",
-        items: ["Fiche technique Quercus Cash & Carry", "Documentation de Quercus Cash & Carry"],
-      },
-      {
-        title: "Frais",
-        items: ["Comprendre les frais sur Quercus"],
-      },
-    ],
-  },
-  {
-    slug: "depots-et-retraits",
-    title: "Dépôts et retraits",
-    description: "Comment déposer et retirer des fonds sur votre compte Quercus.",
-    sections: [
-      {
-        title: "Effectuer un dépôt",
-        items: [
-          "Dépôt depuis un compte tiers",
-          "Effectuer un dépôt",
-          "Virement non arrivé",
-          "Comptes ouverts avant septembre 2025",
-        ],
-      },
-      {
-        title: "Effectuer un retrait",
-        items: ["Effectuer un retrait standard", "Effectuer un retrait instantané"],
-      },
-      {
-        title: "Conversion de devises",
-        items: ["Conversion de devises"],
-      },
-    ],
-  },
-  {
-    slug: "gerer-mon-compte",
-    title: "Gérer mon compte",
-    description: "Paramètres, sécurité et gestion de votre espace personnel.",
-    sections: [
-      {
-        title: "Fonctionnalités de la plateforme",
-        items: [
-          "Applications tierces",
-          "Accès multi-utilisateurs",
-          "Ouvrir plusieurs comptes Quercus",
-          "Mode Quatre Yeux",
-        ],
-      },
-      {
-        title: "Sécurité et connexion",
-        items: [
-          "Modifier mon mot de passe",
-          "Modifier mon email",
-          "Authentification à deux facteurs",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "fiscalite-et-comptabilite",
-    title: "Fiscalité et comptabilité",
-    description: "Trouver les informations sur la fiscalité et la comptabilité.",
-    sections: [
-      {
-        title: "Fiscalité",
-        items: [
-          "Fiscalité pour les particuliers",
-          "Fiscalité pour les personnes morales",
-          "Imprimé Fiscal Unique (IFU)",
-        ],
-      },
-      {
-        title: "Comptabilité",
-        items: ["Traitement comptable des fonds monétaires", "Relevés comptables et exports"],
-      },
-    ],
-  },
-  {
-    slug: "a-propos",
-    title: "À propos de Quercus",
-    description: "Tout savoir sur Quercus et nos partenaires, et accéder à notre documentation juridique.",
-    sections: [
-      {
-        title: "Quercus",
-        items: ["Notre mission", "Nos partenaires", "Sécurité de vos fonds"],
-      },
-      {
-        title: "Documentation juridique",
-        items: [
-          "Conditions générales d'utilisation",
-          "Politique de confidentialité",
-          "Mentions légales",
-        ],
-      },
-    ],
-  },
-];
+function useCategories(): Category[] {
+  const { t } = useTranslation("help");
+  return useMemo(() => {
+    return CATEGORY_ORDER.map((slug) => {
+      const cat = t(`categories.${slug}`, { returnObjects: true }) as {
+        title: string;
+        description: string;
+        sections: Record<string, { title: string; items: Record<string, string> }>;
+      } | undefined;
+      if (!cat || typeof cat !== "object") return null;
+      const sections = Object.entries(cat.sections || {}).map(([key, sec]) => ({
+        key,
+        title: sec.title,
+        items: Object.entries(sec.items || {}).map(([itemSlug, label]) => ({
+          slug: itemSlug,
+          label,
+        })),
+      }));
+      return { slug, title: cat.title, description: cat.description, sections };
+    }).filter(Boolean) as Category[];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [t]);
+}
 
 function CategoryCard({ cat }: { cat: Category }) {
   return (
@@ -177,25 +67,27 @@ function CategoryCard({ cat }: { cat: Category }) {
 }
 
 function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) => void }) {
+  const { t } = useTranslation("help");
+  const CATEGORIES = useCategories();
   const q = query.trim().toLowerCase();
 
   const allArticles = useMemo(() => {
-    const list: { catSlug: string; catTitle: string; section: string; item: string }[] = [];
+    const list: { catSlug: string; catTitle: string; section: string; itemSlug: string; itemLabel: string }[] = [];
     for (const c of CATEGORIES) {
       for (const s of c.sections) {
         for (const it of s.items) {
-          list.push({ catSlug: c.slug, catTitle: c.title, section: s.title, item: it });
+          list.push({ catSlug: c.slug, catTitle: c.title, section: s.title, itemSlug: it.slug, itemLabel: it.label });
         }
       }
     }
     return list;
-  }, []);
+  }, [CATEGORIES]);
 
   const articleResults = useMemo(() => {
     if (!q) return [];
     return allArticles.filter(
       (a) =>
-        a.item.toLowerCase().includes(q) ||
+        a.itemLabel.toLowerCase().includes(q) ||
         a.section.toLowerCase().includes(q) ||
         a.catTitle.toLowerCase().includes(q),
     );
@@ -207,7 +99,7 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
       (c) =>
         c.title.toLowerCase().includes(q) || c.description.toLowerCase().includes(q),
     );
-  }, [q]);
+  }, [q, CATEGORIES]);
 
   const highlight = (text: string) => {
     if (!q) return text;
@@ -226,13 +118,10 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
     <>
       <div className="mb-12 max-w-2xl">
         <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4">
-          Centre d'aide
+          {t("ui.eyebrow")}
         </p>
-        <h1 className="text-5xl md:text-6xl font-serif italic mb-6">Comment pouvons-nous vous aider ?</h1>
-        <p className="text-muted-foreground leading-relaxed">
-          Parcourez nos guides ou recherchez une réponse précise concernant votre compte,
-          nos produits et l'utilisation de la plateforme Quercus.
-        </p>
+        <h1 className="text-5xl md:text-6xl font-serif italic mb-6">{t("ui.title")}</h1>
+        <p className="text-muted-foreground leading-relaxed">{t("ui.intro")}</p>
       </div>
 
       <div className="relative mb-12 max-w-xl">
@@ -240,24 +129,24 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Rechercher dans le centre d'aide…"
+          placeholder={t("ui.searchPlaceholder")}
           className="pl-9 h-11 rounded-none border-border focus-visible:border-primary focus-visible:ring-primary/20"
         />
         {q && (
           <div className="absolute left-0 right-0 top-full mt-2 z-20 border border-border bg-background shadow-lg max-h-[420px] overflow-y-auto">
             {articleResults.length === 0 ? (
               <p className="px-4 py-6 text-sm text-muted-foreground">
-                Aucun article ne correspond à « {query} ».
+                {t("ui.noMatchPrefix")} {query} {t("ui.noMatchSuffix")}
               </p>
             ) : (
               <ul>
                 {articleResults.slice(0, 12).map((a) => (
-                  <li key={`${a.catSlug}-${a.item}`}>
+                  <li key={`${a.catSlug}-${a.itemSlug}`}>
                     <Link
-                      to={`/aide/${a.catSlug}/${slugify(a.item)}`}
+                      to={`/aide/${a.catSlug}/${a.itemSlug}`}
                       className="flex flex-col gap-1 px-4 py-3 border-b border-border last:border-0 hover:bg-primary/5 hover:border-l-2 hover:border-l-primary transition-all"
                     >
-                      <span className="text-sm text-foreground">{highlight(a.item)}</span>
+                      <span className="text-sm text-foreground">{highlight(a.itemLabel)}</span>
                       <span className="text-xs text-primary/70 font-mono">
                         {a.catTitle} › {a.section}
                       </span>
@@ -266,7 +155,7 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
                 ))}
                 {articleResults.length > 12 && (
                   <li className="px-4 py-2 text-xs text-muted-foreground bg-muted/30">
-                    +{articleResults.length - 12} autres résultats…
+                    +{articleResults.length - 12} {t("ui.moreResults")}
                   </li>
                 )}
               </ul>
@@ -284,18 +173,21 @@ function HelpIndex({ query, setQuery }: { query: string; setQuery: (s: string) =
       </div>
 
       {categoryResults.length === 0 && articleResults.length === 0 && (
-        <p className="text-muted-foreground mt-8">Aucun résultat pour « {query} ».</p>
+        <p className="text-muted-foreground mt-8">
+          {t("ui.noResultsPrefix")} {query} {t("ui.noResultsSuffix")}
+        </p>
       )}
     </>
   );
 }
 
 function CategoryDetail({ cat }: { cat: Category }) {
+  const { t } = useTranslation("help");
   return (
     <>
       <nav className="mb-10 text-sm flex items-center gap-2 text-muted-foreground">
         <Link to="/aide" className="hover:text-primary underline-offset-4 hover:underline transition-colors">
-          Quercus
+          {t("ui.breadcrumbHome")}
         </Link>
         <ChevronRight className="h-3.5 w-3.5 text-primary/50" />
         <span className="text-primary font-medium">{cat.title}</span>
@@ -306,19 +198,19 @@ function CategoryDetail({ cat }: { cat: Category }) {
 
       <div className="grid md:grid-cols-2 gap-6">
         {cat.sections.map((sec) => (
-          <div key={sec.title} className="border border-border p-6 hover:border-primary/40 transition-colors bg-gradient-to-br from-transparent to-primary/[0.02]">
+          <div key={sec.key} className="border border-border p-6 hover:border-primary/40 transition-colors bg-gradient-to-br from-transparent to-primary/[0.02]">
             <h2 className="text-lg font-serif text-foreground pb-3 mb-4 border-b border-primary/20">
               <em>{sec.title}</em>
             </h2>
             <ul className="space-y-3">
               {sec.items.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm">
+                <li key={item.slug} className="flex items-start gap-3 text-sm">
                   <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
                   <Link
-                    to={`/aide/${cat.slug}/${slugify(item)}`}
+                    to={`/aide/${cat.slug}/${item.slug}`}
                     className="text-muted-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
                   >
-                    {item}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -328,14 +220,12 @@ function CategoryDetail({ cat }: { cat: Category }) {
       </div>
 
       <div className="mt-16 border-t border-primary/20 pt-8 flex flex-wrap items-center justify-between gap-4">
-        <p className="text-sm text-muted-foreground">
-          Vous ne trouvez pas la réponse à votre question ?
-        </p>
+        <p className="text-sm text-muted-foreground">{t("ui.ctaQuestion")}</p>
         <Link
           to="/contact"
           className="text-sm font-serif italic text-primary underline underline-offset-4 hover:text-primary/80"
         >
-          Contacter notre équipe →
+          {t("ui.ctaContact")}
         </Link>
       </div>
     </>
@@ -443,16 +333,17 @@ function ArticleView({
   article: HelpArticle;
   articleSlug: string;
 }) {
+  const { t } = useTranslation("help");
   const related = cat.sections
     .flatMap((s) => s.items)
-    .filter((it) => slugify(it) !== articleSlug)
+    .filter((it) => it.slug !== articleSlug)
     .slice(0, 5);
 
   return (
     <>
       <nav className="mb-10 text-sm flex items-center gap-2 text-muted-foreground flex-wrap">
         <Link to="/aide" className="hover:text-primary underline-offset-4 hover:underline transition-colors">
-          Quercus
+          {t("ui.breadcrumbHome")}
         </Link>
         <ChevronRight className="h-3.5 w-3.5 text-primary/50" />
         <Link
@@ -468,7 +359,7 @@ function ArticleView({
       <div className="grid md:grid-cols-[1fr_240px] gap-12">
         <article className="max-w-2xl">
           <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4 font-mono">
-            {article.categoryTitle}
+            {cat.title}
           </p>
           <h1 className="text-3xl md:text-4xl font-serif italic mb-5 leading-tight">
             {article.title}
@@ -476,7 +367,7 @@ function ArticleView({
           <div className="flex items-center gap-5 text-xs text-muted-foreground mb-8 pb-8 border-b border-primary/20">
             <span className="flex items-center gap-2">
               <Calendar className="h-3.5 w-3.5 text-primary/70" />
-              Mis à jour le {article.updatedAt}
+              {t("ui.updatedOn")} {article.updatedAt}
             </span>
             <span className="flex items-center gap-2">
               <Clock className="h-3.5 w-3.5 text-primary/70" />
@@ -494,25 +385,23 @@ function ArticleView({
 
           <div className="mt-14 border-t border-primary/20 pt-8">
             <p className="text-sm text-foreground mb-4 font-serif italic">
-              Cet article vous a-t-il été utile ?
+              {t("ui.helpfulQuestion")}
             </p>
             <div className="flex gap-3 mb-10">
               <button className="px-5 py-2 text-sm border border-border hover:border-primary hover:bg-primary/5 hover:text-primary transition-colors">
-                Oui
+                {t("ui.yes")}
               </button>
               <button className="px-5 py-2 text-sm border border-border hover:border-primary hover:bg-primary/5 hover:text-primary transition-colors">
-                Non
+                {t("ui.no")}
               </button>
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-border">
-              <p className="text-sm text-muted-foreground">
-                Besoin de plus d'informations ?
-              </p>
+              <p className="text-sm text-muted-foreground">{t("ui.needMoreInfo")}</p>
               <Link
                 to="/contact"
                 className="text-sm font-serif italic text-primary underline underline-offset-4 hover:text-primary/80"
               >
-                Contacter notre équipe →
+                {t("ui.ctaContact")}
               </Link>
             </div>
           </div>
@@ -522,16 +411,16 @@ function ArticleView({
           <div className="sticky top-28 space-y-8">
             <div className="border-l-2 border-primary/30 pl-4">
               <p className="text-xs uppercase tracking-[0.18em] text-primary mb-4 font-mono">
-                Articles liés
+                {t("ui.relatedArticles")}
               </p>
               <ul className="space-y-3">
                 {related.map((it) => (
-                  <li key={it}>
+                  <li key={it.slug}>
                     <Link
-                      to={`/aide/${cat.slug}/${slugify(it)}`}
+                      to={`/aide/${cat.slug}/${it.slug}`}
                       className="text-sm text-muted-foreground hover:text-primary transition-colors leading-relaxed block"
                     >
-                      {it}
+                      {it.label}
                     </Link>
                   </li>
                 ))}
@@ -541,7 +430,7 @@ function ArticleView({
               to={`/aide/${cat.slug}`}
               className="text-xs uppercase tracking-[0.18em] text-primary/70 hover:text-primary inline-flex items-center gap-2 font-mono"
             >
-              ← Retour à {cat.title}
+              ← {t("ui.backTo")} {cat.title}
             </Link>
           </div>
         </aside>
@@ -553,6 +442,7 @@ function ArticleView({
 export default function HelpCenter() {
   const { slug, articleSlug } = useParams();
   const [query, setQuery] = useState("");
+  const CATEGORIES = useCategories();
   const cat = slug ? CATEGORIES.find((c) => c.slug === slug) : undefined;
   const article =
     cat && articleSlug ? HELP_ARTICLES[`${cat.slug}/${articleSlug}`] : undefined;
