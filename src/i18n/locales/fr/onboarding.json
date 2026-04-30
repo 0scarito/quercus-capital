@@ -1,17 +1,315 @@
 {
-  "title": "Ouvrir un compte",
-  "stages": {
-    "welcome": "Bienvenue",
-    "accountType": "Type de compte",
-    "individual": "Informations personnelles",
-    "corporate": "Informations entreprise",
-    "kyc": "Vérification d'identité",
-    "twoFA": "Double authentification",
-    "emailVerification": "Vérification email"
+  "header": {
+    "alreadyAccount": "Déjà un compte ?"
   },
   "common": {
-    "continue": "Continuer",
+    "next": "Suivant",
     "back": "Retour",
-    "skip": "Passer"
+    "skip": "Passer",
+    "saving": "Enregistrement…",
+    "validate": "Valider",
+    "stepOf": "Étape {{current}} sur {{total}}"
+  },
+  "welcome": {
+    "title": "Bienvenue chez Quercus",
+    "subtitle": "Créez votre compte en quelques minutes. Voici les trois étapes qui vous attendent.",
+    "steps": [
+      { "label": "Compte sécurisé", "desc": "Email & authentification 2FA" },
+      { "label": "Informations", "desc": "Identité & documents légaux" },
+      { "label": "Vérification", "desc": "Scan de votre pièce d'identité" }
+    ],
+    "startEmail": "Démarrer avec un email",
+    "or": "ou",
+    "google": "Continuer avec Google",
+    "googleLoading": "Connexion…",
+    "afterGoogle": "Vous compléterez ensuite la vérification d'identité."
+  },
+  "email": {
+    "title": "Créez votre accès",
+    "subtitle": "Renseignez votre email et choisissez un mot de passe sécurisé.",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submit": "Créer mon compte",
+    "loading": "Chargement…",
+    "verifyTitle": "Vérifiez votre email",
+    "verifySubtitle": "Entrez le code à 6 chiffres envoyé à",
+    "resend": "Renvoyer le code",
+    "errors": {
+      "firstNameRequired": "Prénom requis",
+      "lastNameRequired": "Nom requis",
+      "emailInvalid": "Adresse email invalide",
+      "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
+      "passwordMismatch": "Les mots de passe ne correspondent pas"
+    }
+  },
+  "twoFA": {
+    "title": "Sécurisez votre compte",
+    "subtitle": "Choisissez votre méthode d'authentification à deux facteurs.",
+    "sms": "SMS",
+    "smsDesc": "Code par SMS",
+    "app": "Application",
+    "appDesc": "Recommandé",
+    "skip": "Passer cette étape",
+    "phoneLabel": "Numéro de téléphone",
+    "phonePlaceholder": "+33 6 00 00 00 00",
+    "sendCode": "Envoyer le code",
+    "sending": "Envoi…",
+    "codeSent": "Entrez le code reçu au",
+    "verify": "Vérifier",
+    "verifying": "Vérification…",
+    "resend": "Renvoyer le code",
+    "back": "Retour",
+    "qrInstruction": "Scannez ce QR code avec votre application d'authentification (Google Authenticator, Authy, etc.)",
+    "secretLabel": "Clé secrète (saisie manuelle)",
+    "verifyCodeLabel": "Code de vérification",
+    "verifyContinue": "Vérifier et continuer",
+    "toasts": {
+      "invalidPhone": "Numéro de téléphone invalide",
+      "smsSent": "Code SMS envoyé !",
+      "phoneVerified": "Numéro vérifié !",
+      "appConfigured": "2FA configuré avec l'application d'authentification.",
+      "invalidCode": "Code invalide"
+    }
+  },
+  "accountType": {
+    "title": "Type de compte",
+    "subtitle": "Sélectionnez le type de compte que vous souhaitez ouvrir.",
+    "individual": "Un particulier",
+    "individualDesc": "Personne physique",
+    "corporate": "Une personne morale",
+    "corporateDesc": "Entreprise / Entité",
+    "next": "Suivant"
+  },
+  "individual": {
+    "title": "Informations personnelles",
+    "address": {
+      "country": "Pays de résidence",
+      "address": "Adresse complète",
+      "city": "Ville",
+      "postalCode": "Code postal"
+    },
+    "tax": {
+      "isFrance": "Résidence fiscale en France ?",
+      "country": "Pays de résidence fiscale",
+      "selectPlaceholder": "Sélectionner…",
+      "tin": "Numéro d'identification fiscale (NIF)"
+    },
+    "profession": {
+      "sector": "Secteur d'activité",
+      "income": "Revenu annuel",
+      "incomeOptions": {
+        "lt50": "Moins de 50 000 €",
+        "50_100": "50 000 € — 100 000 €",
+        "100_150": "100 000 € — 150 000 €",
+        "gt150": "Plus de 150 000 €"
+      },
+      "sectors": ["Finance", "Technologie", "Santé", "Immobilier", "Commerce", "Éducation", "Étudiant", "Retraité", "Autre"]
+    },
+    "wealth": {
+      "patrimoine": "Patrimoine total",
+      "patrimoineOptions": {
+        "lt50": "Moins de 50 000 €",
+        "50_200": "50 000 € — 200 000 €",
+        "200_1M": "200 000 € — 1 000 000 €",
+        "gt1M": "Plus de 1 000 000 €"
+      },
+      "deposit": "Montant prévu du premier dépôt",
+      "depositPlaceholder": "Ex: 10 000 €"
+    },
+    "funds": {
+      "label": "Origine des fonds",
+      "options": [
+        { "value": "salary", "label": "Salaire / Revenus professionnels" },
+        { "value": "inheritance", "label": "Héritage / Donation" },
+        { "value": "real-estate", "label": "Vente immobilière" },
+        { "value": "crypto", "label": "Gains crypto" },
+        { "value": "other", "label": "Autre" }
+      ]
+    },
+    "referral": {
+      "label": "Comment avez-vous entendu parler de Quercus ?",
+      "options": ["LinkedIn", "Recommandation d'un ami", "Recherche Google", "Presse", "Événement", "Autre"]
+    },
+    "errors": {
+      "addressRequired": "Veuillez renseigner votre pays de résidence fiscale et votre NIF.",
+      "professionRequired": "Veuillez sélectionner votre secteur et votre revenu annuel.",
+      "wealthRequired": "Veuillez renseigner votre patrimoine et le dépôt prévu.",
+      "fundsRequired": "Veuillez sélectionner l'origine des fonds.",
+      "referralRequired": "Veuillez indiquer comment vous avez connu Quercus.",
+      "sessionExpired": "Session expirée. Veuillez vous reconnecter.",
+      "profileSave": "Erreur d'enregistrement du profil.",
+      "detailsSave": "Erreur d'enregistrement des informations.",
+      "fieldRequired": "Requis"
+    }
+  },
+  "corporate": {
+    "titles": {
+      "country": "Pays d'immatriculation",
+      "org": "Informations sur votre société ou organisation",
+      "orgAddress": "Adresse d'immatriculation",
+      "entityType": "Votre activité",
+      "sector": "Secteur",
+      "deposit": "Quel montant pensez-vous déposer sur Quercus ?",
+      "fundsOrigin": "Origine des fonds",
+      "documents": "Téléchargez les documents nécessaires",
+      "referral": "Comment avez-vous entendu parler de Quercus ?"
+    },
+    "country": {
+      "label": "Pays d'immatriculation",
+      "options": ["France", "Belgique", "Suisse", "Luxembourg", "Allemagne", "Pays-Bas", "Italie", "Espagne", "Autre"]
+    },
+    "org": {
+      "legalName": "Raison sociale",
+      "legalForm": "Forme juridique",
+      "legalFormPlaceholder": "Par exemple SAS, SARL, SA, EI, etc.",
+      "legalFormHelp": "Par exemple SAS, SARL, SA, EI, etc.",
+      "siren": "SIREN ou numéro d'immatriculation",
+      "sirenPlaceholder": "123 456 789",
+      "sirenHelp": "Par exemple le SIREN (France), le numéro d'entreprise BCE/KBO (Belgique), etc.",
+      "errors": {
+        "required": "Requis",
+        "sirenInvalid": "SIREN invalide (9 chiffres)"
+      }
+    },
+    "orgAddress": {
+      "address": "Adresse d'immatriculation",
+      "city": "Ville",
+      "postalCode": "Code postal"
+    },
+    "entityType": {
+      "intro": "Sélectionnez l'option qui décrit le mieux l'activité de votre organisation.",
+      "recommended": "Recommandé",
+      "fatca": "En sélectionnant l'une de ces options, vous certifiez de l'exactitude de ces informations conformément aux réglementations FATCA & CRS.",
+      "cards": [
+        {
+          "value": "operative",
+          "label": "Entité opérationnelle (active)",
+          "desc": "Plus de 50 % de vos revenus proviennent de la vente de biens ou de services (logiciel, conseil, industrie, prestations, etc.)."
+        },
+        {
+          "value": "patrimoine",
+          "label": "Entité patrimoniale (passive)",
+          "desc": "Plus de 50 % de vos revenus proviennent de revenus passifs (dividendes, intérêts, loyers, plus-values, etc.)."
+        },
+        {
+          "value": "financial",
+          "label": "Institution financière",
+          "desc": "Vous êtes une banque, une entreprise d'investissement, un fonds, un établissement de paiement, etc."
+        }
+      ]
+    },
+    "sector": {
+      "label": "Secteur d'activité",
+      "placeholder": "Rechercher…",
+      "options": [
+        "Industrie et fabrication",
+        "Technologies et logiciels",
+        "Services financiers",
+        "Conseil et services professionnels",
+        "Commerce et distribution",
+        "Immobilier et construction",
+        "Santé et sciences de la vie",
+        "Énergie et utilities",
+        "Transport et logistique",
+        "Médias, loisirs et communication",
+        "Hôtellerie et restauration",
+        "Agriculture et agroalimentaire",
+        "Éducation",
+        "Holding / Gestion de participations",
+        "Associations et secteur public",
+        "Autre"
+      ]
+    },
+    "deposit": {
+      "options": [
+        { "value": "lt_100k", "label": "Moins de 100 000 €" },
+        { "value": "100k_500k", "label": "Entre 100 000 € et 500 000 €" },
+        { "value": "500k_1m", "label": "Entre 500 000 € et 1 000 000 €" },
+        { "value": "1m_5m", "label": "Entre 1 000 000 € et 5 000 000 €" },
+        { "value": "gt_5m", "label": "Plus de 5 000 000 €" }
+      ]
+    },
+    "fundsOrigin": {
+      "intro": "D'où proviennent principalement les fonds que vous souhaitez déposer sur Quercus ?",
+      "options": [
+        { "value": "operating", "label": "De l'activité opérationnelle de l'entreprise ou de l'organisation" },
+        { "value": "fundraise", "label": "De levées de fonds auprès d'investisseurs ou de prêts" },
+        { "value": "client-funds", "label": "Ce sont des fonds qui appartiennent aux clients de l'entreprise ou de l'entité" }
+      ]
+    },
+    "documents": {
+      "intro": "Téléchargez les documents suivants pour valider votre inscription.",
+      "fields": [
+        { "key": "funds", "label": "Justificatif d'origine des fonds", "desc": "Dernier bilan ou relevé bancaire" },
+        { "key": "statutes", "label": "Statuts de la société", "desc": "Document officiel" },
+        { "key": "beneficiaries", "label": "Registre des bénéficiaires effectifs", "desc": "Liste des ayants droit" }
+      ],
+      "drop": "Glissez-déposez ou cliquez pour téléverser"
+    },
+    "referral": {
+      "options": ["LinkedIn", "Recommandation d'un partenaire", "Recherche Google", "Presse", "Événement", "Autre"]
+    },
+    "errors": {
+      "sessionExpired": "Session expirée. Veuillez vous reconnecter.",
+      "profileSave": "Erreur d'enregistrement du profil.",
+      "detailsSave": "Erreur d'enregistrement des informations."
+    }
+  },
+  "kyc": {
+    "ready": {
+      "title": "Vérification d'identité",
+      "subtitle": "Dernière étape : nous devons vérifier votre identité pour activer votre compte.",
+      "needsTitle": "Vous aurez besoin de :",
+      "needs": [
+        "Pièce d'identité (CNI ou Passeport)",
+        "Caméra pour un selfie de vérification",
+        "2 minutes de votre temps"
+      ],
+      "cta": "Vérifier mon identité"
+    },
+    "verifying": "Extraction des informations en cours…",
+    "review": {
+      "title": "Confirmez vos informations",
+      "subtitle": "Voici les informations extraites de votre pièce d'identité. Corrigez si nécessaire — elles seront enregistrées dans vos paramètres.",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "dob": "Date de naissance",
+      "address": "Adresse",
+      "city": "Ville",
+      "postalCode": "Code postal",
+      "country": "Pays de résidence",
+      "taxCountry": "Résidence fiscale",
+      "tin": "N° fiscal (NIF)",
+      "confirm": "Confirmer et activer mon compte",
+      "saving": "Enregistrement…",
+      "missing": "Veuillez renseigner : {{fields}}",
+      "saveError": "Erreur d'enregistrement. Veuillez réessayer."
+    },
+    "done": {
+      "title": "Félicitations !",
+      "subtitle": "Votre compte est en cours d'examen. Vous recevrez une confirmation par email sous 24 à 48 heures.",
+      "cta": "Accéder à mon espace"
+    }
+  },
+  "completeProfile": {
+    "title": "Complétez votre profil",
+    "subtitle": "Pour des raisons réglementaires, certaines informations obligatoires sont manquantes. Merci de les compléter pour continuer à utiliser votre espace.",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "dob": "Date de naissance",
+    "address": "Adresse",
+    "city": "Ville",
+    "postalCode": "Code postal",
+    "country": "Pays de résidence",
+    "taxCountry": "Résidence fiscale",
+    "tin": "N° fiscal (NIF)",
+    "save": "Enregistrer et continuer",
+    "saving": "Enregistrement…",
+    "missing": "Veuillez renseigner : {{fields}}",
+    "saveError": "Erreur d'enregistrement. Veuillez réessayer.",
+    "saveSuccess": "Profil complété."
   }
 }
