@@ -10,6 +10,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useProfile } from "@/hooks/useProfile";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 /**
  * Shown to any authenticated user whose profile is missing one of the
@@ -21,6 +22,7 @@ export default function CompleteProfile() {
   const { user } = useAuth();
   const { data: profile, isLoading } = useProfile();
   const queryClient = useQueryClient();
+  const { t } = useTranslation("onboarding");
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -49,19 +51,19 @@ export default function CompleteProfile() {
   const handleSave = async () => {
     if (!user) return;
     const required: Array<[string, string]> = [
-      [firstName.trim(), "Prénom"],
-      [lastName.trim(), "Nom"],
-      [dateOfBirth, "Date de naissance"],
-      [address.trim(), "Adresse"],
-      [city.trim(), "Ville"],
-      [postalCode.trim(), "Code postal"],
-      [country.trim(), "Pays de résidence"],
-      [taxCountry.trim(), "Résidence fiscale"],
-      [taxId.trim(), "Numéro fiscal (NIF)"],
+      [firstName.trim(), t("completeProfile.firstName")],
+      [lastName.trim(), t("completeProfile.lastName")],
+      [dateOfBirth, t("completeProfile.dob")],
+      [address.trim(), t("completeProfile.address")],
+      [city.trim(), t("completeProfile.city")],
+      [postalCode.trim(), t("completeProfile.postalCode")],
+      [country.trim(), t("completeProfile.country")],
+      [taxCountry.trim(), t("completeProfile.taxCountry")],
+      [taxId.trim(), t("completeProfile.tin")],
     ];
     const missing = required.filter(([v]) => !v).map(([, label]) => label);
     if (missing.length) {
-      toast.error(`Veuillez renseigner : ${missing.join(", ")}`);
+      toast.error(t("completeProfile.missing", { fields: missing.join(", ") }));
       return;
     }
     setSaving(true);
@@ -82,11 +84,11 @@ export default function CompleteProfile() {
       .eq("user_id", user.id);
     setSaving(false);
     if (error) {
-      toast.error("Erreur d'enregistrement. Veuillez réessayer.");
+      toast.error(t("completeProfile.saveError"));
       return;
     }
     queryClient.invalidateQueries({ queryKey: ["profile", user.id] });
-    toast.success("Profil complété.");
+    toast.success(t("completeProfile.saveSuccess"));
     navigate("/dashboard", { replace: true });
   };
 
@@ -109,64 +111,63 @@ export default function CompleteProfile() {
           <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
             <ShieldAlert className="w-7 h-7 text-primary" />
           </div>
-          <h1 className="text-2xl font-serif"><em>Complétez votre profil</em></h1>
+          <h1 className="text-2xl font-serif"><em>{t("completeProfile.title")}</em></h1>
           <p className="text-sm text-muted-foreground">
-            Pour des raisons réglementaires, certaines informations obligatoires sont manquantes.
-            Merci de les compléter pour continuer à utiliser votre espace.
+            {t("completeProfile.subtitle")}
           </p>
         </div>
 
         <div className="bg-white/40 backdrop-blur-[12px] border border-white/20 p-6 space-y-5">
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Prénom</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("completeProfile.firstName")}</Label>
               <Input value={firstName} onChange={(e) => setFirstName(e.target.value)} />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Nom</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("completeProfile.lastName")}</Label>
               <Input value={lastName} onChange={(e) => setLastName(e.target.value)} />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Date de naissance</Label>
+            <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("completeProfile.dob")}</Label>
             <Input type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Adresse</Label>
+            <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("completeProfile.address")}</Label>
             <Input value={address} onChange={(e) => setAddress(e.target.value)} />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Ville</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("completeProfile.city")}</Label>
               <Input value={city} onChange={(e) => setCity(e.target.value)} />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Code postal</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("completeProfile.postalCode")}</Label>
               <Input value={postalCode} onChange={(e) => setPostalCode(e.target.value)} className="font-mono" />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <Label className="text-xs uppercase tracking-wider text-muted-foreground">Pays de résidence</Label>
+            <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("completeProfile.country")}</Label>
             <Input value={country} onChange={(e) => setCountry(e.target.value)} />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">Résidence fiscale</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("completeProfile.taxCountry")}</Label>
               <Input value={taxCountry} onChange={(e) => setTaxCountry(e.target.value)} />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs uppercase tracking-wider text-muted-foreground">N° fiscal (NIF)</Label>
+              <Label className="text-xs uppercase tracking-wider text-muted-foreground">{t("completeProfile.tin")}</Label>
               <Input value={taxId} onChange={(e) => setTaxId(e.target.value)} className="font-mono" />
             </div>
           </div>
 
           <Button onClick={handleSave} size="lg" className="btn-glow w-full" disabled={saving}>
-            {saving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Enregistrement…</> : "Enregistrer et continuer"}
+            {saving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t("completeProfile.saving")}</> : t("completeProfile.save")}
           </Button>
         </div>
       </motion.div>

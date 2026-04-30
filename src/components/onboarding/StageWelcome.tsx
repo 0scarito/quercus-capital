@@ -5,19 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { lovable } from "@/integrations/lovable/index";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 interface StageWelcomeProps {
   onNext: () => void;
 }
 
-const steps = [
-  { icon: ShieldCheck, label: "Compte sécurisé", desc: "Email & authentification 2FA" },
-  { icon: FileText, label: "Informations", desc: "Identité & documents légaux" },
-  { icon: ScanFace, label: "Vérification", desc: "Scan de votre pièce d'identité" },
-];
+const stepIcons = [ShieldCheck, FileText, ScanFace];
 
 export function StageWelcome({ onNext }: StageWelcomeProps) {
   const [googleLoading, setGoogleLoading] = useState(false);
+  const { t } = useTranslation("onboarding");
+  const steps = (t("welcome.steps", { returnObjects: true }) as Array<{ label: string; desc: string }>).map((s, i) => ({
+    ...s,
+    icon: stepIcons[i] ?? ShieldCheck,
+  }));
 
   const handleGoogle = async () => {
     setGoogleLoading(true);
@@ -50,10 +52,10 @@ export function StageWelcome({ onNext }: StageWelcomeProps) {
           <span className="text-lg font-serif tracking-widest">QUERCUS</span>
         </div>
         <h1 className="text-3xl font-serif">
-          <em>Bienvenue chez Quercus</em>
+          <em>{t("welcome.title")}</em>
         </h1>
         <p className="text-muted-foreground text-sm max-w-md mx-auto">
-          Créez votre compte en quelques minutes. Voici les trois étapes qui vous attendent.
+          {t("welcome.subtitle")}
         </p>
       </div>
 
@@ -77,7 +79,7 @@ export function StageWelcome({ onNext }: StageWelcomeProps) {
 
       <div className="space-y-4 max-w-sm mx-auto">
         <Button onClick={onNext} size="lg" className="btn-glow w-full">
-          Démarrer avec un email
+          {t("welcome.startEmail")}
         </Button>
 
         <div className="relative">
@@ -85,7 +87,7 @@ export function StageWelcome({ onNext }: StageWelcomeProps) {
             <Separator className="w-full" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">ou</span>
+            <span className="bg-background px-2 text-muted-foreground">{t("welcome.or")}</span>
           </div>
         </div>
 
@@ -102,10 +104,10 @@ export function StageWelcome({ onNext }: StageWelcomeProps) {
             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
           </svg>
-          {googleLoading ? "Connexion…" : "Continuer avec Google"}
+          {googleLoading ? t("welcome.googleLoading") : t("welcome.google")}
         </Button>
         <p className="text-xs text-muted-foreground">
-          Vous compléterez ensuite la vérification d'identité.
+          {t("welcome.afterGoogle")}
         </p>
       </div>
     </motion.div>
