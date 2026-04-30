@@ -289,7 +289,12 @@
       }
     ],
     "ctaTitle": "Access the yield of the crypto basis trade.",
-    "ctaSubtitle": "Institutional strategy. Daily liquidity. Zero exposure to crypto-asset prices."
+    "ctaSubtitle": "Institutional strategy. Daily liquidity. Zero exposure to crypto-asset prices.",
+    "ctaInvest": "Start investing",
+    "stepLabel": "Step {{n}}",
+    "verifyAmf": "Verify AMF authorisation",
+    "ctaBookMeeting": "Book a meeting",
+    "ctaContactUs": "Contact us"
   },
   "velvet": {
     "badge": "FCP UCITS · AMF no. FCP20230197",

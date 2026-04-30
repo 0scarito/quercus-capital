@@ -289,7 +289,12 @@
       }
     ],
     "ctaTitle": "Accédez au rendement du basis trade crypto.",
-    "ctaSubtitle": "Stratégie institutionnelle. Liquidité quotidienne. Zéro exposition au prix des crypto-actifs."
+    "ctaSubtitle": "Stratégie institutionnelle. Liquidité quotidienne. Zéro exposition au prix des crypto-actifs.",
+    "ctaInvest": "Commencer à investir",
+    "stepLabel": "Étape {{n}}",
+    "verifyAmf": "Vérifier l'agrément AMF",
+    "ctaBookMeeting": "Prendre rendez-vous",
+    "ctaContactUs": "Nous contacter"
   },
   "velvet": {
     "badge": "FCP UCITS · AMF n° FCP20230197",
