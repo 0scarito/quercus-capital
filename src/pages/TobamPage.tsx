@@ -263,7 +263,7 @@ export default function TobamPage() {
             </ScrollReveal>
 
             {/* Pillars zigzag — image + texte alternés */}
-            <div className="space-y-16 md:space-y-24">
+            <div className="space-y-8 md:space-y-12">
               {[
                 {
                   step: "01",
@@ -293,7 +293,7 @@ export default function TobamPage() {
               ].map((item) => (
                 <ScrollReveal key={item.title}>
                   <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${item.reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
-                    <div className="lg:col-span-4 max-w-[320px] mx-auto lg:mx-0 w-full">
+                    <div className="lg:col-span-3 max-w-[240px] mx-auto lg:mx-0 w-full">
                       <div className="relative aspect-square overflow-hidden border border-primary/10">
                         <img
                           src={item.img}
@@ -305,7 +305,7 @@ export default function TobamPage() {
                         />
                       </div>
                     </div>
-                    <div className="lg:col-span-8 space-y-4">
+                    <div className="lg:col-span-9 space-y-4">
                       <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">
                         Étape {item.step}
                       </p>
