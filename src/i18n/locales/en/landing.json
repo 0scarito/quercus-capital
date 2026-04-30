@@ -225,18 +225,58 @@
   },
   "securityArch": {
     "tobam": {
-      "manager": { "role": "Manager", "name": "TOBAM", "desc": "Strategy & execution" },
-      "depositary": { "role": "Depositary", "name": "CACEIS Bank", "desc": "Asset custody · AMF-registered DASP" },
-      "admin": { "role": "Administrator", "name": "CACEIS", "desc": "Valuation & accounting" },
-      "auditor": { "role": "Auditor", "name": "PwC", "desc": "Independent annual audit" },
-      "brokers": { "role": "Regulated brokers", "name": "Taurus · BitGo · Binance", "desc": "Multi-venue execution" }
+      "manager": {
+        "role": "Manager",
+        "name": "TOBAM",
+        "desc": "Strategy & execution"
+      },
+      "depositary": {
+        "role": "Depositary",
+        "name": "CACEIS Bank",
+        "desc": "Asset custody · AMF-registered DASP"
+      },
+      "admin": {
+        "role": "Administrator",
+        "name": "CACEIS",
+        "desc": "Valuation & accounting"
+      },
+      "auditor": {
+        "role": "Auditor",
+        "name": "PwC",
+        "desc": "Independent annual audit"
+      },
+      "brokers": {
+        "role": "Regulated brokers",
+        "name": "Taurus · BitGo · Binance",
+        "desc": "Multi-venue execution"
+      }
     },
     "velvet": {
-      "manager": { "role": "Manager", "name": "LFIS Capital", "desc": "AMF GP13000004 · > $5 bn AUM" },
-      "depositary": { "role": "Depositary", "name": "BNP Paribas SA", "desc": "Full asset segregation" },
-      "admin": { "role": "Administrator", "name": "BNP Paribas", "desc": "Valuation & accounting" },
-      "auditor": { "role": "Auditor", "name": "PwC", "desc": "Independent quarterly audits" },
-      "swap": { "role": "Swap counterparties", "name": "BNPP · SG · GS · JPM", "desc": "Network of systemic banks" }
+      "manager": {
+        "role": "Manager",
+        "name": "LFIS Capital",
+        "desc": "AMF GP13000004 · > $5 bn AUM"
+      },
+      "depositary": {
+        "role": "Depositary",
+        "name": "BNP Paribas SA",
+        "desc": "Full asset segregation"
+      },
+      "admin": {
+        "role": "Administrator",
+        "name": "BNP Paribas",
+        "desc": "Valuation & accounting"
+      },
+      "auditor": {
+        "role": "Auditor",
+        "name": "PwC",
+        "desc": "Independent quarterly audits"
+      },
+      "swap": {
+        "role": "Swap counterparties",
+        "name": "BNPP · SG · GS · JPM",
+        "desc": "Network of systemic banks"
+      }
     }
   },
   "cashCarry": {
@@ -389,5 +429,10 @@
       "q4": "Is Quercus regulated?",
       "a4": "Yes. Quercus is registered as a Financial Investment Advisor (CIF) and Insurance Broker (COA) with ORIAS (no. 24004789). We are supervised by the AMF and comply with anti-money-laundering (AML/CFT) regulatory obligations."
     }
+  },
+  "specsTable": {
+    "title": "Product specifications",
+    "subtitle": "Complete technical data for institutional due diligence.",
+    "specification": "Specification"
   }
 }
