@@ -191,5 +191,203 @@
     "yield": "Rendement",
     "targetYield": "Rendement cible",
     "performance30d": "Performance · 30 jours"
+  },
+  "forEveryone": {
+    "eyebrow": "Une solution, tous les profils",
+    "titleLeft": "Conçu pour",
+    "titleEm1": "chacun",
+    "titleMid": ", dès",
+    "titleEm2": "1 €",
+    "titleRight": "investi.",
+    "subtitle": "Particulier qui veut faire fructifier son épargne ou entreprise qui cherche à optimiser sa trésorerie — Quercus s'adapte à votre échelle, sans minimum imposé.",
+    "discover": "Découvrir la solution",
+    "individuals": {
+      "eyebrow": "Particuliers",
+      "title": "Votre épargne, comme une institution",
+      "body": "Des fonds monétaires souverains accessibles dès 1 €. Liquidité quotidienne, intérêts crédités chaque jour ouvré."
+    },
+    "treasuries": {
+      "eyebrow": "Trésoreries d'entreprise",
+      "title": "Faites travailler vos excédents",
+      "body": "Holdings, PME, SCI, fintechs, crypto : placez votre cash sans l'immobiliser. Ségrégation bancaire et reporting institutionnel."
+    }
+  },
+  "advisorThreshold": {
+    "eyebrow": "Au-delà d'un certain encours",
+    "title": "Un conseiller dédié pour vous accompagner.",
+    "body": "À partir d'un certain niveau d'encours sur la plateforme, un Conseiller en Gestion de Patrimoine vous est attribué. Il construit avec vous un Portefeuille Conseillé sur-mesure : une allocation patrimoniale qui combine Smart Cash, Cash & Carry, obligations, actions et solutions alternatives, calibrée selon vos objectifs et votre horizon.",
+    "discover": "Découvrir le Portefeuille Conseillé",
+    "book": "Prendre rendez-vous"
+  },
+  "riskScale": {
+    "low": "Risque le plus bas",
+    "high": "Risque le plus élevé"
+  },
+  "securityArch": {
+    "tobam": {
+      "manager": { "role": "Gérant", "name": "TOBAM", "desc": "Stratégie & exécution" },
+      "depositary": { "role": "Dépositaire", "name": "CACEIS Bank", "desc": "Conservation des actifs · PSAN AMF" },
+      "admin": { "role": "Administrateur", "name": "CACEIS", "desc": "Valorisation & comptabilité" },
+      "auditor": { "role": "Auditeur", "name": "PwC", "desc": "Contrôle indépendant annuel" },
+      "brokers": { "role": "Brokers régulés", "name": "Taurus · BitGo · Binance", "desc": "Exécution multi-venues" }
+    },
+    "velvet": {
+      "manager": { "role": "Gérant", "name": "LFIS Capital", "desc": "AMF GP13000004 · > 5 Mds$ d'actifs" },
+      "depositary": { "role": "Dépositaire", "name": "BNP Paribas SA", "desc": "Ségrégation totale des actifs" },
+      "admin": { "role": "Administrateur", "name": "BNP Paribas", "desc": "Valorisation & comptabilité" },
+      "auditor": { "role": "Auditeur", "name": "PwC", "desc": "Audits trimestriels indépendants" },
+      "swap": { "role": "Contreparties Swap", "name": "BNPP · SG · GS · JPM", "desc": "Réseau de banques systémiques" }
+    }
+  },
+  "cashCarry": {
+    "headerEyebrow": "Schéma de flux magnétique",
+    "headerBadge": "Non-directional",
+    "leftLabel": "Achat Spot",
+    "leftSub": "(ETF NASDAQ)",
+    "rightLabel": "Vente Future",
+    "rightSub": "(CME)",
+    "centerEyebrow": "Rendement",
+    "centerWord": "Sécurisé",
+    "centerSub": "(Le « Basis »)",
+    "convergenceLabel": "Convergence over time",
+    "futureLabel": "Prix Future",
+    "spotLabel": "Prix Spot",
+    "maturityLabel": "Maturité",
+    "spreadEyebrow": "Spread capturé",
+    "spreadValue": "+7,6 %",
+    "spreadSuffix": "(Ann.)"
+  },
+  "mirrorSwap": {
+    "ariaLabel": "Schéma du Total Return Swap : panier d'actions échangé contre un rendement monétaire stable",
+    "basketLabel": "PANIER · ACTIONS",
+    "yieldLabel": "RENDEMENT · €STR + 0,30 %",
+    "marketVol": "VOLATILITÉ MARCHÉ",
+    "guaranteed": "RENDEMENT GARANTI",
+    "swapBadge": "SWAP TRS",
+    "step1": "Le panier",
+    "step2": "L'échange",
+    "step3": "Le rendement"
+  },
+  "basisChart": {
+    "future": "FUTURE",
+    "spot": "SPOT",
+    "maturity": "T+1M · Échéance",
+    "profitCaptured": "PROFIT CAPTÉ"
+  },
+  "premiumChart": {
+    "tooltipLabel": "Prime annualisée",
+    "monthLabel": "Mois",
+    "threshold": "Seuil 3 %",
+    "average": "Moyenne 8 %"
+  },
+  "collateralDonut": {
+    "centerLabel": "Collatéral",
+    "centerSub": "Tier-1 actions",
+    "sectors": {
+      "tech": "Technologie",
+      "finance": "Services Financiers",
+      "health": "Santé",
+      "consumer": "Consommation",
+      "comms": "Communications",
+      "industry": "Industrie",
+      "energy": "Énergie",
+      "other": "Autres"
+    }
+  },
+  "perfChart": {
+    "eyebrow": "Performance nette cumulée",
+    "title": "La ligne de confiance",
+    "range": "Janv. 2024 → Mai 2025 · base 100",
+    "velvet": "Velvet (net)",
+    "estr": "€STR capitalisé",
+    "y2024": "2024",
+    "ytd2025": "YTD 2025",
+    "cumulative": "Cumulé 17 mois",
+    "vs": "vs"
+  },
+  "tobamAnalytics": {
+    "stat1": "Prime moyenne 5 ans",
+    "stat2": "Temps avec prime > 3 %",
+    "stat3": "Prime au 31 mars 2025",
+    "stat4": "Durée max prime < 0 %",
+    "stat5": "Temps avec prime > 10 %",
+    "stat4Value": "43 jours",
+    "carryEyebrow": "CME Bitcoin Carry · Leveraged strategy",
+    "carryTitle": "Stratégie simulée CME Future / NASDAQ BTC ETF",
+    "yieldEyebrow": "Annualized implicit funding yield",
+    "yieldTitle": "Stratégie — futures roulés à 1 mois",
+    "averageLabel": "Moyenne · 8 %",
+    "march25Label": "Mars 25 · 5 %",
+    "monthLabel": "Mois",
+    "yieldLabel": "Yield",
+    "footnote": "* Rendement courant fluctuant entre 6 % et 13 %. La stratégie ne prend position que si le basis > cash + 2 %.",
+    "strategy": "Strategy",
+    "credit": "Short Term IG Credit",
+    "cash": "Cash"
+  },
+  "comparison": {
+    "title": "Pourquoi choisir Quercus ?",
+    "headerCurrent": "Compte Courant",
+    "headerTerm": "Compte à Terme",
+    "recommended": "Recommandé",
+    "labelCurrent": "Courant",
+    "labelTerm": "À Terme",
+    "labelQuercus": "Quercus",
+    "rows": {
+      "lockup": "Période d'immobilisation",
+      "withdrawalFees": "Frais de retrait",
+      "accountFees": "Frais de tenue de compte",
+      "yield": "Rendement net actuel"
+    },
+    "values": {
+      "noLock": "Pas de blocage",
+      "termLock": "> 1 mois",
+      "none": "Aucun",
+      "earlyPenalty": "Retrait anticipé pénalisé",
+      "yes": "Oui",
+      "zero": "0%",
+      "termRange": "1,60% – 2,20%",
+      "quercusYield": "EU 2,20% / US 4,00%"
+    }
+  },
+  "roadmap": {
+    "title": "Démarrez avec Quercus en quelques minutes",
+    "stepLabel": "Étape {{n}}",
+    "openAccount": "Ouvrir mon compte",
+    "steps": {
+      "s1Title": "Devenez membre Quercus en quelques clics.",
+      "s1Text": "Renseignez vos informations, sécurisez votre accès via la double authentification (2FA) et validez votre identité. Un processus fluide, digital, et conforme aux plus hautes exigences de sécurité.",
+      "s2Title": "Déposez vos fonds en toute sérénité.",
+      "s2Text": "Effectuez un virement vers votre compte Quercus. Vos fonds sont déposés auprès de notre banque dépositaire (CACEIS / Crédit Agricole), garantissant une ségrégation totale et une protection maximale de votre capital.",
+      "s3Title": "Observez vos intérêts croître chaque jour.",
+      "s3Text": "Dès le premier jour, votre capital génère des intérêts. Les gains sont automatiquement capitalisés et réinvestis quotidiennement, maximisant ainsi l'effet des intérêts composés sans aucune action de votre part.",
+      "s4Title": "Disposez de vos liquidités sans contrainte.",
+      "s4Text": "Retirez tout ou partie de vos fonds à tout moment, sans frais de sortie. Pour toute demande effectuée avant 12h25, vos fonds sont disponibles le jour même (T+0). L'excellence, c'est aussi la liberté."
+    }
+  },
+  "securityBlock": {
+    "title": "Votre sécurité est notre priorité absolue.",
+    "bodyPrefix": "Quercus n'est jamais détenteur de vos fonds. Ils sont conservés par",
+    "depositaryName": "CACEIS",
+    "bodyMid": ", filiale du groupe",
+    "groupName": "Crédit Agricole",
+    "bodySuffix": ", premier dépositaire européen. Cette ségrégation totale garantit que votre capital reste protégé, quoi qu'il advienne.",
+    "depositary": "Banque dépositaire",
+    "group": "Groupe bancaire",
+    "segregation": "Ségrégation",
+    "segregationNote": "Fonds jamais au bilan"
+  },
+  "solutionsFaq": {
+    "title": "Questions fréquentes",
+    "items": {
+      "q1": "Quels sont les frais réels ?",
+      "a1": "Quercus applique des frais de gestion de 0,25% par an, déjà déduits du rendement net affiché. Il n'y a aucun frais d'entrée, de sortie, de tenue de compte ou de retrait. Le rendement que vous voyez est le rendement que vous percevez.",
+      "q2": "Comment mon argent est-il protégé ?",
+      "a2": "Vos fonds ne sont jamais détenus par Quercus. Ils sont conservés par CACEIS, filiale du groupe Crédit Agricole et premier dépositaire européen. Cette ségrégation totale signifie que votre capital reste protégé même en cas de défaillance de Quercus.",
+      "q3": "Puis-je retirer mon argent un dimanche ?",
+      "a3": "Vous pouvez soumettre une demande de retrait à tout moment, y compris le week-end. Les demandes sont traitées les jours ouvrés. Pour toute demande effectuée avant 12h25 un jour ouvré, vos fonds sont disponibles le jour même (liquidité T+0).",
+      "q4": "Quercus est-il régulé ?",
+      "a4": "Oui. Quercus est enregistré en tant que Conseiller en Investissements Financiers (CIF) et Courtier en Assurance (COA) auprès de l'ORIAS (n°24004789). Nous sommes soumis à la supervision de l'AMF et respectons les obligations réglementaires en matière de lutte anti-blanchiment (LCB-FT)."
+    }
   }
 }
