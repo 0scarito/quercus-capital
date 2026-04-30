@@ -1,24 +1,26 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
+import { useTranslation } from "react-i18next";
 import particuliersImg from "@/assets/segments/particuliers.jpg";
 import holdingsImg from "@/assets/segments/holdings.jpg";
 
 export function ForEveryoneSection() {
+  const { t } = useTranslation("landing");
   const cards = [
     {
       slug: "particuliers",
-      eyebrow: "Particuliers",
-      title: "Votre épargne, comme une institution",
-      body: "Des fonds monétaires souverains accessibles dès 1 €. Liquidité quotidienne, intérêts crédités chaque jour ouvré.",
+      eyebrow: t("forEveryone.individuals.eyebrow"),
+      title: t("forEveryone.individuals.title"),
+      body: t("forEveryone.individuals.body"),
       image: particuliersImg,
       to: "/solutions/particuliers",
     },
     {
       slug: "tresoreries",
-      eyebrow: "Trésoreries d'entreprise",
-      title: "Faites travailler vos excédents",
-      body: "Holdings, PME, SCI, fintechs, crypto : placez votre cash sans l'immobiliser. Ségrégation bancaire et reporting institutionnel.",
+      eyebrow: t("forEveryone.treasuries.eyebrow"),
+      title: t("forEveryone.treasuries.title"),
+      body: t("forEveryone.treasuries.body"),
       image: holdingsImg,
       to: "/solutions",
     },
@@ -30,14 +32,13 @@ export function ForEveryoneSection() {
         <ScrollReveal>
           <div className="text-center mb-14 max-w-3xl mx-auto">
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
-              Une solution, tous les profils
+              {t("forEveryone.eyebrow")}
             </p>
             <h2 className="text-4xl md:text-5xl font-serif leading-tight">
-              Conçu pour <em>chacun</em>, dès <em>1&nbsp;€</em> investi.
+              {t("forEveryone.titleLeft")} <em>{t("forEveryone.titleEm1")}</em>{t("forEveryone.titleMid")} <em>{t("forEveryone.titleEm2")}</em> {t("forEveryone.titleRight")}
             </h2>
             <p className="mt-5 text-lg text-muted-foreground">
-              Particulier qui veut faire fructifier son épargne ou entreprise qui cherche à
-              optimiser sa trésorerie — Quercus s'adapte à votre échelle, sans minimum imposé.
+              {t("forEveryone.subtitle")}
             </p>
           </div>
         </ScrollReveal>
@@ -71,7 +72,7 @@ export function ForEveryoneSection() {
                     </p>
                     <div className="mt-3 pt-4 border-t border-border/50 flex items-center gap-3 text-xs uppercase tracking-[0.15em] text-muted-foreground">
                       <span className="inline-block w-8 h-px bg-primary/60" />
-                      Découvrir la solution
+                      {t("forEveryone.discover")}
                     </div>
                   </div>
                 </article>

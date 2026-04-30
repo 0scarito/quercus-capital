@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface RiskScaleProps {
   level: number; // 1..7
@@ -7,12 +8,13 @@ interface RiskScaleProps {
 }
 
 export function RiskScale({ level, label, className }: RiskScaleProps) {
+  const { t } = useTranslation("landing");
   const safe = Math.min(7, Math.max(1, Math.round(level)));
   return (
     <div className={cn("space-y-2", className)}>
       <div className="flex items-center justify-between text-[11px] uppercase tracking-widest text-muted-foreground">
-        <span>Risque le plus bas</span>
-        <span>Risque le plus élevé</span>
+        <span>{t("riskScale.low")}</span>
+        <span>{t("riskScale.high")}</span>
       </div>
       <div className="flex gap-1.5">
         {Array.from({ length: 7 }).map((_, i) => {
