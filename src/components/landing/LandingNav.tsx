@@ -229,10 +229,14 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
         }}
       >
         <div className="px-6 md:px-10 h-full flex items-center justify-between gap-4 relative">
-          <Link to="/" className="flex items-center gap-3 shrink-0">
-            <img src={quercusLogo} alt="Quercus" className="h-11 w-auto" />
-            <span className="text-xl font-serif tracking-widest">QUERCUS</span>
-          </Link>
+          <div className="flex items-center gap-4 shrink-0">
+            <LanguageSwitcher />
+            <div className="h-6 w-px bg-border" aria-hidden="true" />
+            <Link to="/" className="flex items-center gap-3">
+              <img src={quercusLogo} alt="Quercus" className="h-11 w-auto" />
+              <span className="text-xl font-serif tracking-widest">QUERCUS</span>
+            </Link>
+          </div>
 
           {variant === "solutions" ? (
             <div className="hidden md:flex items-center gap-1.5 flex-1 justify-center overflow-x-auto">
@@ -386,7 +390,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
           )}
 
           <div className="flex items-center gap-3 shrink-0">
-            <LanguageSwitcher />
             <Button variant="ghost" size="sm" className="btn-glow" asChild>
               <Link to="/signin">{t("common:actions.signIn")}</Link>
             </Button>
