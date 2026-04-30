@@ -1,47 +1,37 @@
 import { LandingNav } from "@/components/landing/LandingNav";
 import { LandingFooter } from "@/components/landing/LandingFooter";
+import { useTranslation } from "react-i18next";
 
 export default function CookiePage() {
+  const { t } = useTranslation("pages");
   return (
     <div className="min-h-screen bg-background">
       <LandingNav />
       <main className="pt-28 pb-24 max-w-6xl mx-auto px-4 md:px-8">
-        <h1 className="text-5xl md:text-6xl font-serif italic mb-10">Charte cookie</h1>
+        <h1 className="text-5xl md:text-6xl font-serif italic mb-10">{t("cookie.title")}</h1>
 
         <section className="space-y-6 text-muted-foreground leading-relaxed text-base">
-          <p>Dernière mise à jour : avril 2025</p>
+          <p>{t("cookie.lastUpdate")}</p>
 
-          <h2 className="text-xl font-serif text-foreground">Qu'est-ce qu'un cookie ?</h2>
-          <p>
-            Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de votre visite sur notre site. Il permet de stocker des informations relatives à votre navigation.
-          </p>
+          <h2 className="text-xl font-serif text-foreground">{t("cookie.whatTitle")}</h2>
+          <p>{t("cookie.whatBody")}</p>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">Cookies utilisés</h2>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("cookie.usedTitle")}</h2>
 
-          <h3 className="text-base font-medium text-foreground">Cookies strictement nécessaires</h3>
-          <p>
-            Ces cookies sont indispensables au fonctionnement du site et ne peuvent être désactivés. Ils permettent notamment la gestion de votre session et l'authentification.
-          </p>
+          <h3 className="text-base font-medium text-foreground">{t("cookie.necessaryTitle")}</h3>
+          <p>{t("cookie.necessaryBody")}</p>
 
-          <h3 className="text-base font-medium text-foreground pt-2">Cookies analytiques</h3>
-          <p>
-            Nous utilisons des cookies analytiques pour comprendre comment les visiteurs interagissent avec notre site, afin d'améliorer l'expérience utilisateur. Ces cookies sont déposés uniquement avec votre consentement.
-          </p>
+          <h3 className="text-base font-medium text-foreground pt-2">{t("cookie.analyticsTitle")}</h3>
+          <p>{t("cookie.analyticsBody")}</p>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">Gestion de vos préférences</h2>
-          <p>
-            Vous pouvez à tout moment modifier vos préférences en matière de cookies via les paramètres de votre navigateur. La désactivation de certains cookies peut affecter votre expérience de navigation.
-          </p>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("cookie.manageTitle")}</h2>
+          <p>{t("cookie.manageBody")}</p>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">Durée de conservation</h2>
-          <p>
-            Les cookies sont conservés pour une durée maximale de 13 mois conformément aux recommandations de la CNIL.
-          </p>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("cookie.retentionTitle")}</h2>
+          <p>{t("cookie.retentionBody")}</p>
 
-          <h2 className="text-xl font-serif text-foreground pt-4">Contact</h2>
-          <p>
-            Pour toute question relative à notre politique en matière de cookies, contactez-nous à : <a href="mailto:dpo@quercus-capital.com" className="text-foreground underline">dpo@quercus-capital.com</a>.
-          </p>
+          <h2 className="text-xl font-serif text-foreground pt-4">{t("cookie.contactTitle")}</h2>
+          <p>{t("cookie.contactBody")} <a href="mailto:dpo@quercus-capital.com" className="text-foreground underline">dpo@quercus-capital.com</a>.</p>
         </section>
       </main>
       <LandingFooter />

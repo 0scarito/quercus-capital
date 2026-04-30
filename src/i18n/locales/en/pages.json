@@ -1,35 +1,214 @@
 {
   "contact": {
     "title": "Contact",
-    "intro": "Our team is available to answer your questions and support you in your treasury management projects.",
+    "intro": "Our team is at your disposal to answer your questions and support you in your treasury management projects.",
     "headquarters": "Head office",
-    "details": "Contact details",
+    "details": "Get in touch",
     "phoneLabel": "Phone:",
     "emailLabel": "Email:",
     "hours": "Opening hours",
-    "weekdays": "Monday – Friday: 9:00 – 18:00",
+    "weekdays": "Monday – Friday: 9:00 am – 6:00 pm",
     "weekend": "Saturday – Sunday: Closed"
   },
   "about": {
-    "title": "About"
+    "title": "About",
+    "eyebrow": "Our mission",
+    "heroTitle": "Wealth management\nat institutional standards.",
+    "heroSubtitle": "Quercus Capital is a French Wealth Management Advisory firm dedicated to executives, families and businesses who want their savings to work with rigour, simplicity and transparency.",
+    "approachTitle": "Our approach",
+    "values": {
+      "v1Title": "Rigour",
+      "v1Desc": "A demanding selection of investment vehicles, based on the analysis of resilience, liquidity and counterparty quality.",
+      "v2Title": "Transparency",
+      "v2Desc": "Clear fees, net yields, complete documentation. You always know what you pay and what you earn.",
+      "v3Title": "Human support",
+      "v3Desc": "A dedicated, reachable advisor who takes the time to understand your situation and answer your questions."
+    },
+    "teamTitle": "Our team",
+    "team": {
+      "audrey": {
+        "role": "President — Founder",
+        "reg": "CIF ORIAS 24004789",
+        "bio": "Founder of Quercus Capital, Audrey combines more than 20 years of experience in institutional finance to deliver exceptional wealth management, blending rigour, expertise and long-term vision."
+      },
+      "david": {
+        "role": "Managing Director",
+        "reg": "HEC Paris graduate",
+        "bio": "David leads Quercus's strategy and development. With a career in asset management and executive advisory, he ensures the quality of service and performance of every solution we offer."
+      },
+      "thomas": {
+        "role": "Chief Operating Officer",
+        "reg": "CNCEF Member",
+        "bio": "Thomas oversees all operations, from compliance to client experience. His operational expertise guarantees flawless execution of every mandate entrusted to Quercus."
+      }
+    },
+    "cardCta": "Click to learn more",
+    "cardAria": "See more information about {{name}}",
+    "approvalsTitle": "Our approvals",
+    "approvals": {
+      "amfLabel": "Autorité des Marchés Financiers",
+      "amfDesc": "Wealth advisor — supervised by the AMF",
+      "oriasLabel": "CIF & COA",
+      "oriasDesc": "no. 24004789",
+      "cncefLabel": "National chamber",
+      "cncefDesc": "Active member",
+      "verify": "Check our registration on the public ORIAS register",
+      "footer": "Quercus Capital — Paris RCS 928 443 001 · Head office: 231 rue Saint-Honoré, 75001 Paris."
+    },
+    "ctaTitle": "Let's meet.",
+    "ctaSubtitle": "An initial conversation, with no commitment, to understand your goals and see how we can support you.",
+    "ctaButton": "Book a meeting"
   },
   "press": {
-    "title": "Press"
+    "title": "Press",
+    "intro": "For any press, interview or media partnership request, our communications team is at your disposal.",
+    "contactTitle": "Press contact",
+    "emailLabel": "Email:",
+    "phoneLabel": "Phone:",
+    "kitTitle": "Media kit",
+    "kitBody": "Our media kit includes our logos, brand visuals and recent press releases. Please contact us for any additional materials.",
+    "newsTitle": "Latest news",
+    "news": {
+      "launchYear": "2025",
+      "launchTitle": "Launch of the Quercus platform",
+      "launchBody": "Quercus Capital launches its digital treasury management platform, giving businesses and individuals access to the best European money-market funds."
+    }
   },
   "legal": {
-    "title": "Legal notice"
+    "title": "Legal notice",
+    "publisherTitle": "Site publisher",
+    "publisherBody": "QUERCUS CAPITAL SAS\n231 Rue Saint-Honoré, 75001 Paris\nParis RCS: 928 443 001\nPhone: +33 1 84 20 07 65\nEmail: contact@quercus-capital.com",
+    "directorTitle": "Publication director",
+    "directorBody": "The President of Quercus Capital SAS.",
+    "hostingTitle": "Hosting",
+    "hostingBody": "This site is hosted by Lovable (Lovable Technologies).\nAddress: see lovable.dev",
+    "statusTitle": "Regulatory status",
+    "statusBody": "Quercus Capital is registered with ORIAS under no. 24004789 as:\n— Financial Investment Advisor (CIF)\n— Insurance Broker (COA)\n\nMember of the CNCIF (National Chamber of Financial Investment Advisors), a professional association approved by the AMF (Autorité des Marchés Financiers).",
+    "ipTitle": "Intellectual property",
+    "ipBody": "All site content (text, images, graphics, logo, icons, etc.) is the exclusive property of Quercus Capital, unless otherwise stated. Any reproduction, representation, modification or distribution, even partial, is prohibited without prior written authorisation.",
+    "liabilityTitle": "Liability",
+    "liabilityBody": "The information on this site is provided for guidance only and does not constitute investment advice or an offer of financial products. Past performance is not indicative of future performance. Quercus Capital cannot be held liable for decisions made on the basis of the information presented on this site."
   },
   "privacy": {
-    "title": "Privacy"
+    "title": "Privacy policy",
+    "lastUpdate": "Last updated: April 2025",
+    "s1Title": "1. Data controller",
+    "s1Body": "Quercus Capital SAS, 231 Rue Saint-Honoré, 75001 Paris, is the controller of your personal data in accordance with the General Data Protection Regulation (GDPR).",
+    "s2Title": "2. Data collected",
+    "s2Intro": "We collect the following data:",
+    "s2Items": [
+      "Identification data: surname, first name, date of birth, nationality",
+      "Contact details: postal address, email, phone",
+      "Financial data: tax information, identity documents (KYC)",
+      "Connection data: IP address, login logs"
+    ],
+    "s3Title": "3. Purposes of processing",
+    "s3Items": [
+      "Creation and management of your account",
+      "Compliance with regulatory obligations (KYC, AML/CFT)",
+      "Provision of our financial management services",
+      "Communications about your account and our services",
+      "Improvement of our platform"
+    ],
+    "s4Title": "4. Legal basis",
+    "s4Body": "Processing is based on the performance of the contract, compliance with our legal obligations (notably anti-money laundering rules), your consent and our legitimate interest.",
+    "s5Title": "5. Retention period",
+    "s5Body": "Your data is kept for the duration of the contractual relationship, then archived in accordance with applicable legal obligations (5 years after account closure for KYC data).",
+    "s6Title": "6. Your rights",
+    "s6Body": "Under the GDPR, you have the right to access, rectify, erase, restrict, port and object. To exercise these rights, contact us at:",
+    "s7Title": "7. Security",
+    "s7Body": "We implement appropriate technical and organisational measures to protect your data against any unauthorised access, modification, disclosure or destruction."
   },
   "cookie": {
-    "title": "Cookie policy"
+    "title": "Cookie policy",
+    "lastUpdate": "Last updated: April 2025",
+    "whatTitle": "What is a cookie?",
+    "whatBody": "A cookie is a small text file placed on your device (computer, tablet, smartphone) when you visit our site. It allows us to store information related to your browsing.",
+    "usedTitle": "Cookies used",
+    "necessaryTitle": "Strictly necessary cookies",
+    "necessaryBody": "These cookies are essential to the operation of the site and cannot be disabled. They are used in particular for session management and authentication.",
+    "analyticsTitle": "Analytics cookies",
+    "analyticsBody": "We use analytics cookies to understand how visitors interact with our site, in order to improve user experience. These cookies are placed only with your consent.",
+    "manageTitle": "Managing your preferences",
+    "manageBody": "You can change your cookie preferences at any time via your browser settings. Disabling certain cookies may affect your browsing experience.",
+    "retentionTitle": "Retention period",
+    "retentionBody": "Cookies are stored for a maximum duration of 13 months in accordance with CNIL recommendations.",
+    "contactTitle": "Contact",
+    "contactBody": "For any question relating to our cookie policy, please contact us at:"
   },
-  "products": {
-    "title": "Products"
+  "products": { "title": "Products" },
+  "solutions": { "title": "Solutions", "registerCta": "Sign up" },
+  "security": {
+    "title": "Security",
+    "eyebrow": "Security",
+    "heroTitle": "Your capital, protected\nlike an institution.",
+    "heroSubtitle": "Quercus never holds your funds. Every link in our chain of trust is regulated, audited and independent — so that your savings remain protected, whatever the circumstances.",
+    "archTitle": "Our chain of trust",
+    "archSubtitle": "Five regulated actors, independent of one another, ensure the custody, valuation and oversight of your assets.",
+    "pillarsTitle": "Six pillars of security",
+    "pillars": {
+      "p1Title": "Full segregation of funds",
+      "p1Desc": "Your assets never go through Quercus's balance sheet. They are deposited at CACEIS (Crédit Agricole group), Europe's leading depositary, in segregated accounts in your name.",
+      "p2Title": "Institutional custody",
+      "p2Desc": "Digital assets are held in multi-signature cold storage at Taurus and BitGo Trust, both regulated and insured against loss or compromise.",
+      "p3Title": "Audited infrastructure",
+      "p3Desc": "Platform hosted in Europe, AES-256 encryption at rest, TLS 1.3 in transit, 24/7 monitoring, business continuity plan tested every quarter.",
+      "p4Title": "Independent audits",
+      "p4Desc": "Annual accounts audited by PwC. Technical and security audits conducted by specialised external firms. Independent valuation reporting produced by CACEIS.",
+      "p5Title": "Total transparency",
+      "p5Desc": "You access your positions, performance and fees in real time. Full regulatory documentation available: KIID, prospectus, annual reports.",
+      "p6Title": "Strong authentication",
+      "p6Desc": "Mandatory 2FA, encrypted sessions, granular access management for corporate accounts, full audit trail of every sensitive operation."
+    },
+    "auditsEyebrow": "Audits & controls",
+    "auditsTitle": "Continuously controlled",
+    "audits": {
+      "pwcDesc": "Annual audit of accounts and internal procedures.",
+      "caceisDesc": "Independent daily valuation and regulatory reporting.",
+      "pentestLabel": "Pen-tests",
+      "pentestDesc": "Half-yearly penetration tests conducted by external firms."
+    },
+    "ctaTitle": "A question about our security?",
+    "ctaSubtitle": "Our compliance team is at your disposal to answer all your questions.",
+    "ctaPrimary": "Book a meeting",
+    "ctaSecondary": "See our regulatory framework"
   },
-  "solutions": {
-    "title": "Solutions",
-    "registerCta": "Register"
+  "regulation": {
+    "title": "Regulation",
+    "eyebrow": "Regulation",
+    "heroTitle": "A regulatory framework\nwith no compromise.",
+    "heroSubtitle": "Quercus Capital is a French firm, registered and supervised. Every recommendation, every operation, every communication falls within a strict legal framework.",
+    "registrationsTitle": "Our registrations",
+    "registrations": {
+      "oriasLabel": "ORIAS",
+      "oriasValue": "no. 24004789",
+      "oriasDesc": "Financial Investment Advisor (CIF), registered in the single register of intermediaries in insurance, banking and finance.",
+      "cncefLabel": "CNCEF",
+      "cncefValue": "Member",
+      "cncefDesc": "Member of the National Chamber of Financial Expert Advisors, a professional association approved by the AMF.",
+      "amfLabel": "AMF",
+      "amfValue": "Supervised",
+      "amfDesc": "Activities placed under the supervision of the Autorité des Marchés Financiers via our approved professional association.",
+      "rcLabel": "Pro liability insurance",
+      "rcValue": "Cover in force",
+      "rcDesc": "Professional civil liability insurance compliant with regulatory requirements of article L. 541-3 of the CMF."
+    },
+    "frameworksTitle": "Applicable frameworks",
+    "frameworks": {
+      "cifTitle": "Financial Investment Advisor (CIF)",
+      "cifBody": "Our CIF status, governed by articles L. 541-1 and following of the Monetary and Financial Code, allows us to deliver personalised recommendations on financial instruments, in strict compliance with a documented duty of advice.",
+      "mifTitle": "MiFID II",
+      "mifBody": "All our recommendations are made within the framework of the European MiFID II directive: suitability, cost transparency, product governance and best execution are systematically applied.",
+      "amlTitle": "AML / CFT",
+      "amlBody": "Comprehensive procedures against money laundering and the financing of terrorism: enhanced KYC, identity verification, beneficial owner controls, ongoing transaction monitoring.",
+      "gdprTitle": "GDPR",
+      "gdprBody": "Full compliance with the General Data Protection Regulation: minimal processing, European hosting, guaranteed rights of access, rectification and erasure."
+    },
+    "docsEyebrow": "Documentation",
+    "docsTitle": "Everything is documented",
+    "docsBody": "Engagement letter, suitability statement, onboarding document, conflict-of-interest policy, complaints procedure: all of our regulatory documentation is provided to you as soon as your file is opened.",
+    "docsLegal": "Legal notice",
+    "docsPrivacy": "Privacy",
+    "docsRequest": "Request a document"
   }
 }
