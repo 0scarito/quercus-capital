@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -36,6 +37,56 @@ import MonConseiller from "@/pages/dashboard/MonConseiller";
 
 const queryClient = new QueryClient();
 
+function AnimatedRoutes() {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -4 }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Routes location={location}>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/velvet" element={<VelvetPage />} />
+          <Route path="/products/tobam" element={<TobamPage />} />
+          <Route path="/products/portefeuille-conseille" element={<PortefeuilleConseillePage />} />
+          <Route path="/solutions" element={<SolutionsPage />} />
+          <Route path="/solutions/:segment" element={<SolutionDetailPage />} />
+          <Route path="/a-propos" element={<AboutPage />} />
+          <Route path="/presse" element={<PressPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/mentions-legales" element={<LegalPage />} />
+          <Route path="/confidentialite" element={<PrivacyPage />} />
+          <Route path="/charte-cookie" element={<CookiePage />} />
+          <Route path="/securite" element={<SecurityPage />} />
+          <Route path="/regulation" element={<RegulationPage />} />
+          <Route path="/aide" element={<HelpCenter />} />
+          <Route path="/aide/:slug" element={<HelpCenter />} />
+          <Route path="/aide/:slug/:articleSlug" element={<HelpCenter />} />
+          <Route path="/open-account" element={<OpenAccount />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/complete-profile" element={<CompleteProfile />} />
+            <Route element={<AppLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/conseiller" element={<MonConseiller />} />
+              <Route path="/produits" element={<Products />} />
+              <Route path="/releves" element={<Statements />} />
+              <Route path="/parametres" element={<AccountSettings />} />
+              <Route path="/integrations" element={<Integrations />} />
+            </Route>
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
@@ -44,40 +95,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/products/velvet" element={<VelvetPage />} />
-            <Route path="/products/tobam" element={<TobamPage />} />
-            <Route path="/products/portefeuille-conseille" element={<PortefeuilleConseillePage />} />
-            <Route path="/solutions" element={<SolutionsPage />} />
-            <Route path="/solutions/:segment" element={<SolutionDetailPage />} />
-            <Route path="/a-propos" element={<AboutPage />} />
-            <Route path="/presse" element={<PressPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/mentions-legales" element={<LegalPage />} />
-            <Route path="/confidentialite" element={<PrivacyPage />} />
-            <Route path="/charte-cookie" element={<CookiePage />} />
-            <Route path="/securite" element={<SecurityPage />} />
-            <Route path="/regulation" element={<RegulationPage />} />
-            <Route path="/aide" element={<HelpCenter />} />
-            <Route path="/aide/:slug" element={<HelpCenter />} />
-            <Route path="/aide/:slug/:articleSlug" element={<HelpCenter />} />
-            <Route path="/open-account" element={<OpenAccount />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path="/complete-profile" element={<CompleteProfile />} />
-              <Route element={<AppLayout />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/dashboard/conseiller" element={<MonConseiller />} />
-                <Route path="/produits" element={<Products />} />
-                <Route path="/releves" element={<Statements />} />
-                <Route path="/parametres" element={<AccountSettings />} />
-                <Route path="/integrations" element={<Integrations />} />
-              </Route>
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
