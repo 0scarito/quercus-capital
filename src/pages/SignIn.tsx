@@ -9,8 +9,11 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { toast } from "sonner";
 import quercusLogo from "@/assets/quercus-logo.jpg";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export default function SignIn() {
+  const { t } = useTranslation("auth");
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const expired = searchParams.get("expired") === "1";
@@ -26,14 +29,14 @@ export default function SignIn() {
         redirect_uri: window.location.origin,
       });
       if (result.error) {
-        toast.error("Erreur de connexion Google");
+        toast.error(t("toasts.googleError"));
         return;
       }
       if (result.redirected) return;
-      toast.success("Connexion réussie");
+      toast.success(t("toasts.signInSuccess"));
       navigate("/dashboard");
     } catch {
-      toast.error("Erreur de connexion Google");
+      toast.error(t("toasts.googleError"));
     } finally {
       setGoogleLoading(false);
     }
@@ -51,22 +54,25 @@ export default function SignIn() {
       return;
     }
 
-    toast.success("Connexion réussie");
+    toast.success(t("toasts.signInSuccess"));
     navigate("/dashboard");
   };
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
+      <div className="absolute top-4 right-4 z-10">
+        <LanguageSwitcher />
+      </div>
       <div className="w-full max-w-sm space-y-8">
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-3">
             <img src={quercusLogo} alt="Quercus" className="h-10 w-auto" />
-            <span className="text-2xl font-serif tracking-widest">QUERCUS</span>
+            <span className="text-2xl font-serif tracking-widest">{t("signIn.brand")}</span>
           </div>
           <div className="space-y-1">
-            <p className="text-base font-serif"><em>Accéder à mon espace Quercus</em></p>
+            <p className="text-base font-serif"><em>{t("signIn.title")}</em></p>
             <p className="text-xs text-muted-foreground">
-              Suivi de vos investissements et communication avec votre conseiller.
+              {t("signIn.subtitle")}
             </p>
           </div>
         </div>
@@ -77,10 +83,10 @@ export default function SignIn() {
           <div className="rounded-md border border-amber-500/40 bg-amber-500/5 p-4 space-y-1">
             <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
               <Clock className="h-4 w-4" />
-              <p className="text-sm font-medium">Vous avez été déconnecté.</p>
+              <p className="text-sm font-medium">{t("signIn.expiredTitle")}</p>
             </div>
             <p className="text-xs text-muted-foreground pl-6">
-              Votre session a expiré après 15 minutes d'inactivité. Veuillez vous reconnecter.
+              {t("signIn.expiredDesc")}
             </p>
           </div>
         )}
@@ -88,12 +94,12 @@ export default function SignIn() {
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
             <Label htmlFor="email" className="text-xs uppercase tracking-wider">
-              Adresse e-mail
+              {t("signIn.emailLabel")}
             </Label>
             <Input
               id="email"
               type="email"
-              placeholder="nom@entreprise.com"
+              placeholder={t("signIn.emailPlaceholder")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -103,16 +109,16 @@ export default function SignIn() {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <Label htmlFor="password" className="text-xs uppercase tracking-wider">
-                Mot de passe
+                {t("signIn.passwordLabel")}
               </Label>
               <a href="#" className="text-xs text-muted-foreground hover:text-foreground underline">
-                Mot de passe oublié ?
+                {t("signIn.forgot")}
               </a>
             </div>
             <Input
               id="password"
               type="password"
-              placeholder="••••••••"
+              placeholder={t("signIn.passwordPlaceholder")}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -120,7 +126,7 @@ export default function SignIn() {
             />
           </div>
           <Button type="submit" className="w-full h-11" disabled={loading}>
-            {loading ? "Connexion…" : "Se connecter"}
+            {loading ? t("signIn.loading") : t("signIn.submit")}
         </Button>
         </form>
 
@@ -129,7 +135,7 @@ export default function SignIn() {
             <Separator className="w-full" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">ou</span>
+            <span className="bg-background px-2 text-muted-foreground">{t("signIn.or")}</span>
           </div>
         </div>
 
@@ -145,21 +151,21 @@ export default function SignIn() {
             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
           </svg>
-          {googleLoading ? "Connexion…" : "Continuer avec Google"}
+          {googleLoading ? t("signIn.googleLoading") : t("signIn.google")}
         </Button>
         <p className="text-center text-xs text-muted-foreground">
-          Pas encore client ?{" "}
+          {t("signIn.noClient")}{" "}
           <Link to="/contact" className="underline hover:text-foreground">
-            Prenez rendez-vous avec un conseiller
+            {t("signIn.bookAdvisor")}
           </Link>
         </p>
 
         <div className="pt-8 text-center space-y-1">
           <p className="text-[10px] text-muted-foreground tracking-wide">
-            QUERCUS CAPITAL | 231 RUE SAINT-HONORÉ, 75001 PARIS
+            {t("signIn.footerAddress")}
           </p>
           <p className="text-[10px] text-muted-foreground">
-            RCS PARIS : 928 443 001 | ORIAS n°24004789 — CIF & COA
+            {t("signIn.footerLegal")}
           </p>
         </div>
       </div>
