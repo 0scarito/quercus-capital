@@ -33,20 +33,20 @@
         "individuals": {
           "title": "Ouvrir un compte en tant que particulier",
           "items": {
-            "creer-compte-particulier": "Créer un compte pour particulier",
-            "pieces-identite": "Pièces d'identité acceptées",
-            "justificatif-domicile": "Justificatif de domicile",
-            "origine-fonds-particulier": "Justificatif d'origine des fonds pour les particuliers"
+            "creer-un-compte-pour-particulier": "Créer un compte pour particulier",
+            "pieces-d-identite-acceptees": "Pièces d'identité acceptées",
+            "justificatif-de-domicile": "Justificatif de domicile",
+            "justificatif-d-origine-des-fonds-pour-les-particuliers": "Justificatif d'origine des fonds pour les particuliers"
           }
         },
         "corporates": {
           "title": "Ouvrir un compte en tant que personne morale",
           "items": {
-            "creer-compte-entreprise": "Créer un compte pour une entreprise",
-            "creer-compte-association": "Créer un compte pour une association française",
-            "creer-compte-individuelle": "Créer un compte pour une entreprise individuelle",
-            "creer-compte-syndicat": "Créer un compte pour un syndicat des copropriétaires en France",
-            "origine-fonds-morale": "Justificatif de fonds acceptés pour les personnes morales"
+            "creer-un-compte-pour-une-entreprise": "Créer un compte pour une entreprise",
+            "creer-un-compte-pour-une-association-francaise": "Créer un compte pour une association française",
+            "creer-un-compte-pour-une-entreprise-individuelle": "Créer un compte pour une entreprise individuelle",
+            "creer-un-compte-pour-un-syndicat-des-coproprietaires-en-france": "Créer un compte pour un syndicat des copropriétaires en France",
+            "justificatif-de-fonds-acceptes-pour-les-personnes-morales": "Justificatif de fonds acceptés pour les personnes morales"
           }
         },
         "countries": {
@@ -64,28 +64,28 @@
         "treasury": {
           "title": "Quercus bons du Trésor",
           "items": {
-            "fiche-monetaires": "Fiche technique des fonds monétaires Quercus",
-            "doc-monetaires": "Documentation des fonds monétaires Quercus"
+            "fiche-technique-des-fonds-monetaires-quercus": "Fiche technique des fonds monétaires Quercus",
+            "documentation-des-fonds-monetaires-quercus": "Documentation des fonds monétaires Quercus"
           }
         },
         "smartCash": {
           "title": "Quercus Smart Cash",
           "items": {
-            "fiche-smart-cash": "Fiche technique Quercus Smart Cash",
-            "doc-smart-cash": "Documentation de Quercus Smart Cash"
+            "fiche-technique-quercus-smart-cash": "Fiche technique Quercus Smart Cash",
+            "documentation-de-quercus-smart-cash": "Documentation de Quercus Smart Cash"
           }
         },
         "cashCarry": {
           "title": "Quercus Cash & Carry",
           "items": {
-            "fiche-cash-carry": "Fiche technique Quercus Cash & Carry",
-            "doc-cash-carry": "Documentation de Quercus Cash & Carry"
+            "fiche-technique-quercus-cash-and-carry": "Fiche technique Quercus Cash & Carry",
+            "documentation-de-quercus-cash-and-carry": "Documentation de Quercus Cash & Carry"
           }
         },
         "fees": {
           "title": "Frais",
           "items": {
-            "comprendre-frais": "Comprendre les frais sur Quercus"
+            "comprendre-les-frais-sur-quercus": "Comprendre les frais sur Quercus"
           }
         }
       }
@@ -97,23 +97,23 @@
         "deposit": {
           "title": "Effectuer un dépôt",
           "items": {
-            "depot-tiers": "Dépôt depuis un compte tiers",
-            "effectuer-depot": "Effectuer un dépôt",
+            "depot-depuis-un-compte-tiers": "Dépôt depuis un compte tiers",
+            "effectuer-un-depot": "Effectuer un dépôt",
             "virement-non-arrive": "Virement non arrivé",
-            "comptes-pre-2025": "Comptes ouverts avant septembre 2025"
+            "comptes-ouverts-avant-septembre-2025": "Comptes ouverts avant septembre 2025"
           }
         },
         "withdraw": {
           "title": "Effectuer un retrait",
           "items": {
-            "retrait-standard": "Effectuer un retrait standard",
-            "retrait-instantane": "Effectuer un retrait instantané"
+            "effectuer-un-retrait-standard": "Effectuer un retrait standard",
+            "effectuer-un-retrait-instantane": "Effectuer un retrait instantané"
           }
         },
         "fx": {
           "title": "Conversion de devises",
           "items": {
-            "conversion-devises": "Conversion de devises"
+            "conversion-de-devises": "Conversion de devises"
           }
         }
       }
@@ -126,17 +126,17 @@
           "title": "Fonctionnalités de la plateforme",
           "items": {
             "applications-tierces": "Applications tierces",
-            "multi-utilisateurs": "Accès multi-utilisateurs",
-            "plusieurs-comptes": "Ouvrir plusieurs comptes Quercus",
+            "acces-multi-utilisateurs": "Accès multi-utilisateurs",
+            "ouvrir-plusieurs-comptes-quercus": "Ouvrir plusieurs comptes Quercus",
             "mode-quatre-yeux": "Mode Quatre Yeux"
           }
         },
         "security": {
           "title": "Sécurité et connexion",
           "items": {
-            "modifier-mot-de-passe": "Modifier mon mot de passe",
-            "modifier-email": "Modifier mon email",
-            "auth-2fa": "Authentification à deux facteurs"
+            "modifier-mon-mot-de-passe": "Modifier mon mot de passe",
+            "modifier-mon-email": "Modifier mon email",
+            "authentification-a-deux-facteurs": "Authentification à deux facteurs"
           }
         }
       }
@@ -148,16 +148,16 @@
         "tax": {
           "title": "Fiscalité",
           "items": {
-            "fiscalite-particuliers": "Fiscalité pour les particuliers",
-            "fiscalite-morales": "Fiscalité pour les personnes morales",
-            "ifu": "Imprimé Fiscal Unique (IFU)"
+            "fiscalite-pour-les-particuliers": "Fiscalité pour les particuliers",
+            "fiscalite-pour-les-personnes-morales": "Fiscalité pour les personnes morales",
+            "imprime-fiscal-unique-ifu": "Imprimé Fiscal Unique (IFU)"
           }
         },
         "accounting": {
           "title": "Comptabilité",
           "items": {
-            "traitement-comptable": "Traitement comptable des fonds monétaires",
-            "releves-exports": "Relevés comptables et exports"
+            "traitement-comptable-des-fonds-monetaires": "Traitement comptable des fonds monétaires",
+            "releves-comptables-et-exports": "Relevés comptables et exports"
           }
         }
       }
@@ -171,14 +171,14 @@
           "items": {
             "notre-mission": "Notre mission",
             "nos-partenaires": "Nos partenaires",
-            "securite-fonds": "Sécurité de vos fonds"
+            "securite-de-vos-fonds": "Sécurité de vos fonds"
           }
         },
         "legalDocs": {
           "title": "Documentation juridique",
           "items": {
-            "cgu": "Conditions générales d'utilisation",
-            "confidentialite": "Politique de confidentialité",
+            "conditions-generales-d-utilisation": "Conditions générales d'utilisation",
+            "politique-de-confidentialite": "Politique de confidentialité",
             "mentions-legales": "Mentions légales"
           }
         }

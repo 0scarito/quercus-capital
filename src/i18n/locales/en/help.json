@@ -33,20 +33,20 @@
         "individuals": {
           "title": "Open an account as an individual",
           "items": {
-            "creer-compte-particulier": "Create an individual account",
-            "pieces-identite": "Accepted identity documents",
-            "justificatif-domicile": "Proof of address",
-            "origine-fonds-particulier": "Proof of source of funds for individuals"
+            "creer-un-compte-pour-particulier": "Create an individual account",
+            "pieces-d-identite-acceptees": "Accepted identity documents",
+            "justificatif-de-domicile": "Proof of address",
+            "justificatif-d-origine-des-fonds-pour-les-particuliers": "Proof of source of funds for individuals"
           }
         },
         "corporates": {
           "title": "Open an account as a legal entity",
           "items": {
-            "creer-compte-entreprise": "Create a business account",
-            "creer-compte-association": "Create an account for a French association",
-            "creer-compte-individuelle": "Create an account for a sole proprietorship",
-            "creer-compte-syndicat": "Create an account for a French co-ownership association",
-            "origine-fonds-morale": "Accepted source-of-funds documents for legal entities"
+            "creer-un-compte-pour-une-entreprise": "Create a business account",
+            "creer-un-compte-pour-une-association-francaise": "Create an account for a French association",
+            "creer-un-compte-pour-une-entreprise-individuelle": "Create an account for a sole proprietorship",
+            "creer-un-compte-pour-un-syndicat-des-coproprietaires-en-france": "Create an account for a French co-ownership association",
+            "justificatif-de-fonds-acceptes-pour-les-personnes-morales": "Accepted source-of-funds documents for legal entities"
           }
         },
         "countries": {
@@ -64,28 +64,28 @@
         "treasury": {
           "title": "Quercus Treasury bills",
           "items": {
-            "fiche-monetaires": "Money-market funds factsheet",
-            "doc-monetaires": "Money-market funds documentation"
+            "fiche-technique-des-fonds-monetaires-quercus": "Money-market funds factsheet",
+            "documentation-des-fonds-monetaires-quercus": "Money-market funds documentation"
           }
         },
         "smartCash": {
           "title": "Quercus Smart Cash",
           "items": {
-            "fiche-smart-cash": "Quercus Smart Cash factsheet",
-            "doc-smart-cash": "Quercus Smart Cash documentation"
+            "fiche-technique-quercus-smart-cash": "Quercus Smart Cash factsheet",
+            "documentation-de-quercus-smart-cash": "Quercus Smart Cash documentation"
           }
         },
         "cashCarry": {
           "title": "Quercus Cash & Carry",
           "items": {
-            "fiche-cash-carry": "Quercus Cash & Carry factsheet",
-            "doc-cash-carry": "Quercus Cash & Carry documentation"
+            "fiche-technique-quercus-cash-and-carry": "Quercus Cash & Carry factsheet",
+            "documentation-de-quercus-cash-and-carry": "Quercus Cash & Carry documentation"
           }
         },
         "fees": {
           "title": "Fees",
           "items": {
-            "comprendre-frais": "Understanding Quercus fees"
+            "comprendre-les-frais-sur-quercus": "Understanding Quercus fees"
           }
         }
       }
@@ -97,23 +97,23 @@
         "deposit": {
           "title": "Make a deposit",
           "items": {
-            "depot-tiers": "Deposit from a third-party account",
-            "effectuer-depot": "Make a deposit",
+            "depot-depuis-un-compte-tiers": "Deposit from a third-party account",
+            "effectuer-un-depot": "Make a deposit",
             "virement-non-arrive": "Transfer not received",
-            "comptes-pre-2025": "Accounts opened before September 2025"
+            "comptes-ouverts-avant-septembre-2025": "Accounts opened before September 2025"
           }
         },
         "withdraw": {
           "title": "Make a withdrawal",
           "items": {
-            "retrait-standard": "Make a standard withdrawal",
-            "retrait-instantane": "Make an instant withdrawal"
+            "effectuer-un-retrait-standard": "Make a standard withdrawal",
+            "effectuer-un-retrait-instantane": "Make an instant withdrawal"
           }
         },
         "fx": {
           "title": "Currency conversion",
           "items": {
-            "conversion-devises": "Currency conversion"
+            "conversion-de-devises": "Currency conversion"
           }
         }
       }
@@ -126,17 +126,17 @@
           "title": "Platform features",
           "items": {
             "applications-tierces": "Third-party applications",
-            "multi-utilisateurs": "Multi-user access",
-            "plusieurs-comptes": "Open several Quercus accounts",
+            "acces-multi-utilisateurs": "Multi-user access",
+            "ouvrir-plusieurs-comptes-quercus": "Open several Quercus accounts",
             "mode-quatre-yeux": "Four-eyes mode"
           }
         },
         "security": {
           "title": "Security and login",
           "items": {
-            "modifier-mot-de-passe": "Change my password",
-            "modifier-email": "Change my email",
-            "auth-2fa": "Two-factor authentication"
+            "modifier-mon-mot-de-passe": "Change my password",
+            "modifier-mon-email": "Change my email",
+            "authentification-a-deux-facteurs": "Two-factor authentication"
           }
         }
       }
@@ -148,16 +148,16 @@
         "tax": {
           "title": "Taxation",
           "items": {
-            "fiscalite-particuliers": "Taxation for individuals",
-            "fiscalite-morales": "Taxation for legal entities",
-            "ifu": "Single Tax Statement (IFU)"
+            "fiscalite-pour-les-particuliers": "Taxation for individuals",
+            "fiscalite-pour-les-personnes-morales": "Taxation for legal entities",
+            "imprime-fiscal-unique-ifu": "Single Tax Statement (IFU)"
           }
         },
         "accounting": {
           "title": "Accounting",
           "items": {
-            "traitement-comptable": "Accounting treatment of money-market funds",
-            "releves-exports": "Accounting statements and exports"
+            "traitement-comptable-des-fonds-monetaires": "Accounting treatment of money-market funds",
+            "releves-comptables-et-exports": "Accounting statements and exports"
           }
         }
       }
@@ -171,14 +171,14 @@
           "items": {
             "notre-mission": "Our mission",
             "nos-partenaires": "Our partners",
-            "securite-fonds": "Security of your funds"
+            "securite-de-vos-fonds": "Security of your funds"
           }
         },
         "legalDocs": {
           "title": "Legal documentation",
           "items": {
-            "cgu": "Terms and conditions",
-            "confidentialite": "Privacy policy",
+            "conditions-generales-d-utilisation": "Terms and conditions",
+            "politique-de-confidentialite": "Privacy policy",
             "mentions-legales": "Legal notices"
           }
         }
