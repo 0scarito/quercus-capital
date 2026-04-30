@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { HELP_ARTICLES, type HelpArticle, type ArticleBlock } from "@/data/helpArticles";
+import { HELP_ARTICLES_EN } from "@/data/helpArticles.en";
 
 // Stable ordering by slug — keys come from translations
 const CATEGORY_ORDER = [
@@ -443,9 +444,11 @@ export default function HelpCenter() {
   const { slug, articleSlug } = useParams();
   const [query, setQuery] = useState("");
   const CATEGORIES = useCategories();
+  const { i18n } = useTranslation("help");
+  const ARTICLES = i18n.language?.startsWith("en") ? HELP_ARTICLES_EN : HELP_ARTICLES;
   const cat = slug ? CATEGORIES.find((c) => c.slug === slug) : undefined;
   const article =
-    cat && articleSlug ? HELP_ARTICLES[`${cat.slug}/${articleSlug}`] : undefined;
+    cat && articleSlug ? ARTICLES[`${cat.slug}/${articleSlug}`] : undefined;
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
