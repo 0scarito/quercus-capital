@@ -12,12 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-
-const orgSchema = z.object({
-  legalName: z.string().min(1, "Requis").max(255),
-  legalForm: z.string().min(1, "Requis"),
-  siren: z.string().min(9, "SIREN invalide (9 chiffres)").max(14),
-});
+import { useTranslation } from "react-i18next";
 
 interface StageCorporateProps {
   onNext: (data: Record<string, unknown>) => void;
@@ -38,6 +33,12 @@ const subSteps = [
 type SubStep = typeof subSteps[number];
 
 export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
+  const { t } = useTranslation("onboarding");
+  const orgSchema = z.object({
+    legalName: z.string().min(1, t("corporate.org.errors.required")).max(255),
+    legalForm: z.string().min(1, t("corporate.org.errors.required")),
+    siren: z.string().min(9, t("corporate.org.errors.sirenInvalid")).max(14),
+  });
   const [sub, setSub] = useState<SubStep>("country");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [shake, setShake] = useState(false);
@@ -112,7 +113,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
       setSub(subSteps[subIndex + 1]);
     } else {
       if (!user) {
-        toast.error("Session expirée. Veuillez vous reconnecter.");
+        toast.error(t("corporate.errors.sessionExpired"));
         return;
       }
       setSaving(true);
@@ -128,7 +129,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
         .eq("user_id", user.id);
       if (profileError) {
         setSaving(false);
-        toast.error("Erreur d'enregistrement du profil.");
+        toast.error(t("corporate.errors.profileSave"));
         return;
       }
       const { error: detailsError } = await supabase
@@ -147,7 +148,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
         }, { onConflict: "user_id" });
       setSaving(false);
       if (detailsError) {
-        toast.error("Erreur d'enregistrement des informations.");
+        toast.error(t("corporate.errors.detailsSave"));
         return;
       }
       qc.invalidateQueries({ queryKey: ["profile"] });
@@ -168,68 +169,24 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
 
   const errorClass = (f: string) => errors[f] ? "border-destructive" : "";
 
-  const entityCards = [
-    {
-      value: "operative",
-      icon: Briefcase,
-      label: "Entité opérationnelle (active)",
-      desc: "Plus de 50 % de vos revenus proviennent de la vente de biens ou de services (logiciel, conseil, industrie, prestations, etc.).",
-      recommended: true,
-    },
-    {
-      value: "patrimoine",
-      icon: Building2,
-      label: "Entité patrimoniale (passive)",
-      desc: "Plus de 50 % de vos revenus proviennent de revenus passifs (dividendes, intérêts, loyers, plus-values, etc.).",
-    },
-    {
-      value: "financial",
-      icon: Landmark,
-      label: "Institution financière",
-      desc: "Vous êtes une banque, une entreprise d'investissement, un fonds, un établissement de paiement, etc.",
-    },
-  ];
+  const entityCardsData = t("corporate.entityType.cards", { returnObjects: true }) as Array<{ value: string; label: string; desc: string }>;
+  const entityIcons: Record<string, typeof Briefcase> = {
+    operative: Briefcase,
+    patrimoine: Building2,
+    financial: Landmark,
+  };
+  const entityCards = entityCardsData.map((c) => ({
+    ...c,
+    icon: entityIcons[c.value] ?? Briefcase,
+    recommended: c.value === "operative",
+  }));
 
-  const sectorOptions = [
-    "Industrie et fabrication",
-    "Technologies et logiciels",
-    "Services financiers",
-    "Conseil et services professionnels",
-    "Commerce et distribution",
-    "Immobilier et construction",
-    "Santé et sciences de la vie",
-    "Énergie et utilities",
-    "Transport et logistique",
-    "Médias, loisirs et communication",
-    "Hôtellerie et restauration",
-    "Agriculture et agroalimentaire",
-    "Éducation",
-    "Holding / Gestion de participations",
-    "Associations et secteur public",
-    "Autre",
-  ];
-
-  const depositOptions = [
-    { value: "lt_100k", label: "Moins de 100 000 €" },
-    { value: "100k_500k", label: "Entre 100 000 € et 500 000 €" },
-    { value: "500k_1m", label: "Entre 500 000 € et 1 000 000 €" },
-    { value: "1m_5m", label: "Entre 1 000 000 € et 5 000 000 €" },
-    { value: "gt_5m", label: "Plus de 5 000 000 €" },
-  ];
-
-  const fundsOriginOptions = [
-    { value: "operating", label: "De l'activité opérationnelle de l'entreprise ou de l'organisation" },
-    { value: "fundraise", label: "De levées de fonds auprès d'investisseurs ou de prêts" },
-    { value: "client-funds", label: "Ce sont des fonds qui appartiennent aux clients de l'entreprise ou de l'entité" },
-  ];
-
-  const countries = ["France", "Belgique", "Suisse", "Luxembourg", "Allemagne", "Pays-Bas", "Italie", "Espagne", "Autre"];
-
-  const docFields = [
-    { key: "funds", label: "Justificatif d'origine des fonds", desc: "Dernier bilan ou relevé bancaire" },
-    { key: "statutes", label: "Statuts de la société", desc: "Document officiel" },
-    { key: "beneficiaries", label: "Registre des bénéficiaires effectifs", desc: "Liste des ayants droit" },
-  ];
+  const sectorOptions = t("corporate.sector.options", { returnObjects: true }) as string[];
+  const depositOptions = t("corporate.deposit.options", { returnObjects: true }) as Array<{ value: string; label: string }>;
+  const fundsOriginOptions = t("corporate.fundsOrigin.options", { returnObjects: true }) as Array<{ value: string; label: string }>;
+  const countries = t("corporate.country.options", { returnObjects: true }) as string[];
+  const docFields = t("corporate.documents.fields", { returnObjects: true }) as Array<{ key: string; label: string; desc: string }>;
+  const referralOptions = t("corporate.referral.options", { returnObjects: true }) as string[];
 
   return (
     <motion.div
@@ -240,19 +197,9 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
     >
       <div className="text-center space-y-1">
         <h2 className="text-2xl font-serif">
-          <em>
-            {sub === "country" && "Pays d'immatriculation"}
-            {sub === "org" && "Informations sur votre société ou organisation"}
-            {sub === "orgAddress" && "Adresse d'immatriculation"}
-            {sub === "entityType" && "Votre activité"}
-            {sub === "sector" && "Secteur"}
-            {sub === "deposit" && "Quel montant pensez-vous déposer sur Quercus ?"}
-            {sub === "fundsOrigin" && "Origine des fonds"}
-            {sub === "documents" && "Téléchargez les documents nécessaires"}
-            {sub === "referral" && "Comment avez-vous entendu parler de Quercus ?"}
-          </em>
+          <em>{t(`corporate.titles.${sub}`)}</em>
         </h2>
-        <p className="text-xs text-muted-foreground">Étape {subIndex + 1} sur {subSteps.length}</p>
+        <p className="text-xs text-muted-foreground">{t("common.stepOf", { current: subIndex + 1, total: subSteps.length })}</p>
       </div>
 
       <div className="flex gap-1">
@@ -272,7 +219,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
         >
           {sub === "country" && (
             <div className="space-y-2">
-              <Label>Pays d'immatriculation</Label>
+              <Label>{t("corporate.country.label")}</Label>
               <Select value={orgCountry} onValueChange={setOrgCountry}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -287,31 +234,31 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
           {sub === "org" && (
             <>
               <div className="space-y-2">
-                <Label>Raison sociale</Label>
+                <Label>{t("corporate.org.legalName")}</Label>
                 <Input value={legalName} onChange={e => setLegalName(e.target.value)} className={errorClass("legalName")} />
                 {errors.legalName && <p className="text-xs text-destructive">{errors.legalName}</p>}
               </div>
               <div className="space-y-2">
-                <Label>Forme juridique</Label>
+                <Label>{t("corporate.org.legalForm")}</Label>
                 <Input
                   value={legalForm}
                   onChange={e => setLegalForm(e.target.value)}
-                  placeholder="Par exemple SAS, SARL, SA, EI, etc."
+                  placeholder={t("corporate.org.legalFormPlaceholder")}
                   className={errorClass("legalForm")}
                 />
-                <p className="text-xs text-muted-foreground">Par exemple SAS, SARL, SA, EI, etc.</p>
+                <p className="text-xs text-muted-foreground">{t("corporate.org.legalFormHelp")}</p>
               </div>
               <div className="space-y-2">
-                <Label>SIREN ou numéro d'immatriculation</Label>
+                <Label>{t("corporate.org.siren")}</Label>
                 <Input
                   value={siren}
                   onChange={e => setSiren(e.target.value.replace(/\D/g, ""))}
-                  placeholder="123 456 789"
+                  placeholder={t("corporate.org.sirenPlaceholder")}
                   className={`font-mono ${errorClass("siren")}`}
                   maxLength={14}
                 />
                 {errors.siren && <p className="text-xs text-destructive">{errors.siren}</p>}
-                <p className="text-xs text-muted-foreground">Par exemple le SIREN (France), le numéro d'entreprise BCE/KBO (Belgique), etc.</p>
+                <p className="text-xs text-muted-foreground">{t("corporate.org.sirenHelp")}</p>
               </div>
             </>
           )}
@@ -319,16 +266,16 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
           {sub === "orgAddress" && (
             <>
               <div className="space-y-2">
-                <Label>Adresse d'immatriculation</Label>
+                <Label>{t("corporate.orgAddress.address")}</Label>
                 <Input value={orgAddress} onChange={e => setOrgAddress(e.target.value)} />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Ville</Label>
+                  <Label>{t("corporate.orgAddress.city")}</Label>
                   <Input value={orgCity} onChange={e => setOrgCity(e.target.value)} />
                 </div>
                 <div className="space-y-2">
-                  <Label>Code postal</Label>
+                  <Label>{t("corporate.orgAddress.postalCode")}</Label>
                   <Input value={orgPostalCode} onChange={e => setOrgPostalCode(e.target.value)} className="font-mono" />
                 </div>
               </div>
@@ -338,7 +285,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
           {sub === "entityType" && (
             <div className="space-y-3">
               <p className="text-sm text-muted-foreground">
-                Sélectionnez l'option qui décrit le mieux l'activité de votre organisation.
+                {t("corporate.entityType.intro")}
               </p>
               {entityCards.map(card => (
                 <motion.div
@@ -355,7 +302,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
                       <p className="font-medium text-sm">{card.label}</p>
                       {card.recommended && (
                         <span className="text-[10px] font-mono uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded">
-                          Recommandé
+                          {t("corporate.entityType.recommended")}
                         </span>
                       )}
                     </div>
@@ -364,16 +311,16 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
                 </motion.div>
               ))}
               <p className="text-xs text-muted-foreground pt-2">
-                En sélectionnant l'une de ces options, vous certifiez de l'exactitude de ces informations conformément aux réglementations FATCA &amp; CRS.
+                {t("corporate.entityType.fatca")}
               </p>
             </div>
           )}
 
           {sub === "sector" && (
             <div className="space-y-2">
-              <Label>Secteur d'activité</Label>
+              <Label>{t("corporate.sector.label")}</Label>
               <Select value={activitySector} onValueChange={setActivitySector}>
-                <SelectTrigger><SelectValue placeholder="Rechercher…" /></SelectTrigger>
+                <SelectTrigger><SelectValue placeholder={t("corporate.sector.placeholder")} /></SelectTrigger>
                 <SelectContent>
                   {sectorOptions.map(s => (
                     <SelectItem key={s} value={s}>{s}</SelectItem>
@@ -403,7 +350,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
           {sub === "fundsOrigin" && (
             <>
               <p className="text-sm text-muted-foreground">
-                D'où proviennent principalement les fonds que vous souhaitez déposer sur Quercus&nbsp;?
+                {t("corporate.fundsOrigin.intro")}
               </p>
               <RadioGroup value={fundsSource} onValueChange={setFundsSource} className="space-y-2">
                 {fundsOriginOptions.map(opt => (
@@ -425,7 +372,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
           {sub === "documents" && (
             <div className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Téléchargez les documents suivants pour valider votre inscription.
+                {t("corporate.documents.intro")}
               </p>
               {docFields.map(doc => (
                 <div key={doc.key} className="space-y-2">
@@ -454,11 +401,11 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
 
           {sub === "referral" && (
             <div className="space-y-2">
-              <Label>Comment avez-vous entendu parler de Quercus ?</Label>
+              <Label>{t("corporate.titles.referral")}</Label>
               <Select value={referral} onValueChange={setReferral}>
-                <SelectTrigger><SelectValue placeholder="Sélectionner…" /></SelectTrigger>
+                <SelectTrigger><SelectValue placeholder={t("individual.tax.selectPlaceholder", { ns: "onboarding" })} /></SelectTrigger>
                 <SelectContent>
-                  {["LinkedIn", "Recommandation", "Recherche Google", "Presse", "Événement", "Autre"].map(r => (
+                  {referralOptions.map(r => (
                     <SelectItem key={r} value={r}>{r}</SelectItem>
                   ))}
                 </SelectContent>
@@ -469,10 +416,10 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
       </AnimatePresence>
 
       <div className="flex gap-3">
-        <Button variant="ghost" onClick={goBack} className="flex-1">Retour</Button>
+        <Button variant="ghost" onClick={goBack} className="flex-1">{t("common.back")}</Button>
         <motion.div className="flex-1" animate={shake ? { x: [-4, 4, -4, 4, 0] } : {}} transition={{ duration: 0.4 }}>
           <Button onClick={goNext} className="btn-glow w-full" disabled={saving}>
-            {saving ? "Enregistrement…" : subIndex === subSteps.length - 1 ? "Valider" : "Suivant"}
+            {saving ? t("common.saving") : subIndex === subSteps.length - 1 ? t("common.validate") : t("common.next")}
           </Button>
         </motion.div>
       </div>

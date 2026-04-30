@@ -11,13 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-
-const addressSchema = z.object({
-  country: z.string().min(1, "Requis"),
-  address: z.string().min(1, "Requis").max(255),
-  city: z.string().min(1, "Requis").max(100),
-  postalCode: z.string().min(1, "Requis").max(20),
-});
+import { useTranslation } from "react-i18next";
 
 interface StageIndividualProps {
   onNext: (data: Record<string, unknown>) => void;
@@ -28,6 +22,13 @@ const subSteps = ["address", "tax", "profession", "wealth", "funds", "referral"]
 type SubStep = typeof subSteps[number];
 
 export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
+  const { t } = useTranslation("onboarding");
+  const addressSchema = z.object({
+    country: z.string().min(1, t("individual.errors.fieldRequired")),
+    address: z.string().min(1, t("individual.errors.fieldRequired")).max(255),
+    city: z.string().min(1, t("individual.errors.fieldRequired")).max(100),
+    postalCode: z.string().min(1, t("individual.errors.fieldRequired")).max(20),
+  });
   const [sub, setSub] = useState<SubStep>("address");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [shake, setShake] = useState(false);
@@ -79,32 +80,32 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
 
     if (sub === "tax" && !taxFrance) {
       if (!taxCountry || !taxId.trim()) {
-        toast.error("Veuillez renseigner votre pays de résidence fiscale et votre NIF.");
+        toast.error(t("individual.errors.addressRequired"));
         triggerShake();
         return;
       }
     }
 
     if (sub === "profession" && (!sector || !income)) {
-      toast.error("Veuillez sélectionner votre secteur et votre revenu annuel.");
+      toast.error(t("individual.errors.professionRequired"));
       triggerShake();
       return;
     }
 
     if (sub === "wealth" && (!patrimoine || !deposit.trim())) {
-      toast.error("Veuillez renseigner votre patrimoine et le dépôt prévu.");
+      toast.error(t("individual.errors.wealthRequired"));
       triggerShake();
       return;
     }
 
     if (sub === "funds" && !fundsOrigin) {
-      toast.error("Veuillez sélectionner l'origine des fonds.");
+      toast.error(t("individual.errors.fundsRequired"));
       triggerShake();
       return;
     }
 
     if (sub === "referral" && !referral) {
-      toast.error("Veuillez indiquer comment vous avez connu Quercus.");
+      toast.error(t("individual.errors.referralRequired"));
       triggerShake();
       return;
     }
@@ -113,7 +114,7 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
       setSub(subSteps[subIndex + 1]);
     } else {
       if (!user) {
-        toast.error("Session expirée. Veuillez vous reconnecter.");
+        toast.error(t("individual.errors.sessionExpired"));
         return;
       }
       setSaving(true);
@@ -128,7 +129,7 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
         .eq("user_id", user.id);
       if (profileError) {
         setSaving(false);
-        toast.error("Erreur d'enregistrement du profil.");
+        toast.error(t("individual.errors.profileSave"));
         return;
       }
       const { error: detailsError } = await supabase
@@ -145,7 +146,7 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
         }, { onConflict: "user_id" });
       setSaving(false);
       if (detailsError) {
-        toast.error("Erreur d'enregistrement des informations.");
+        toast.error(t("individual.errors.detailsSave"));
         return;
       }
       qc.invalidateQueries({ queryKey: ["profile"] });
@@ -166,6 +167,12 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
 
   const errorClass = (field: string) => errors[field] ? "border-destructive" : "";
 
+  const incomeOptions = t("individual.profession.incomeOptions", { returnObjects: true }) as Record<string, string>;
+  const wealthOptions = t("individual.wealth.patrimoineOptions", { returnObjects: true }) as Record<string, string>;
+  const sectorList = t("individual.profession.sectors", { returnObjects: true }) as string[];
+  const fundsOptions = t("individual.funds.options", { returnObjects: true }) as Array<{ value: string; label: string }>;
+  const referralOptions = t("individual.referral.options", { returnObjects: true }) as string[];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -174,8 +181,8 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
       className="space-y-6 max-w-md mx-auto"
     >
       <div className="text-center space-y-1">
-        <h2 className="text-2xl font-serif"><em>Informations personnelles</em></h2>
-        <p className="text-xs text-muted-foreground">Étape {subIndex + 1} sur {subSteps.length}</p>
+        <h2 className="text-2xl font-serif"><em>{t("individual.title")}</em></h2>
+        <p className="text-xs text-muted-foreground">{t("common.stepOf", { current: subIndex + 1, total: subSteps.length })}</p>
       </div>
 
       <div className="flex gap-1">
@@ -196,7 +203,7 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
           {sub === "address" && (
             <>
               <div className="space-y-2">
-                <Label>Pays de résidence</Label>
+                <Label>{t("individual.address.country")}</Label>
                 <Select value={country} onValueChange={setCountry}>
                   <SelectTrigger className={errorClass("country")}><SelectValue /></SelectTrigger>
                   <SelectContent>
@@ -207,17 +214,17 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>Adresse complète</Label>
+                <Label>{t("individual.address.address")}</Label>
                 <Input value={address} onChange={e => setAddress(e.target.value)} className={errorClass("address")} />
                 {errors.address && <p className="text-xs text-destructive">{errors.address}</p>}
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Ville</Label>
+                  <Label>{t("individual.address.city")}</Label>
                   <Input value={city} onChange={e => setCity(e.target.value)} className={errorClass("city")} />
                 </div>
                 <div className="space-y-2">
-                  <Label>Code postal</Label>
+                  <Label>{t("individual.address.postalCode")}</Label>
                   <Input value={postalCode} onChange={e => setPostalCode(e.target.value)} className={`font-mono ${errorClass("postalCode")}`} />
                 </div>
               </div>
@@ -227,15 +234,15 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
           {sub === "tax" && (
             <>
               <div className="flex items-center justify-between">
-                <Label>Résidence fiscale en France ?</Label>
+                <Label>{t("individual.tax.isFrance")}</Label>
                 <Switch checked={taxFrance} onCheckedChange={setTaxFrance} />
               </div>
               {!taxFrance && (
                 <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="space-y-4">
                   <div className="space-y-2">
-                    <Label>Pays de résidence fiscale</Label>
+                    <Label>{t("individual.tax.country")}</Label>
                     <Select value={taxCountry} onValueChange={setTaxCountry}>
-                      <SelectTrigger><SelectValue placeholder="Sélectionner…" /></SelectTrigger>
+                      <SelectTrigger><SelectValue placeholder={t("individual.tax.selectPlaceholder")} /></SelectTrigger>
                       <SelectContent>
                         {["Belgique", "Suisse", "Luxembourg", "Allemagne", "Espagne", "Italie", "Royaume-Uni", "États-Unis", "Autre"].map(c => (
                           <SelectItem key={c} value={c}>{c}</SelectItem>
@@ -244,7 +251,7 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label>Numéro d'identification fiscale (NIF)</Label>
+                    <Label>{t("individual.tax.tin")}</Label>
                     <Input value={taxId} onChange={e => setTaxId(e.target.value)} className="font-mono" />
                   </div>
                 </motion.div>
@@ -255,25 +262,25 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
           {sub === "profession" && (
             <>
               <div className="space-y-2">
-                <Label>Secteur d'activité</Label>
+                <Label>{t("individual.profession.sector")}</Label>
                 <Select value={sector} onValueChange={setSector}>
-                  <SelectTrigger><SelectValue placeholder="Sélectionner…" /></SelectTrigger>
+                  <SelectTrigger><SelectValue placeholder={t("individual.tax.selectPlaceholder")} /></SelectTrigger>
                   <SelectContent>
-                    {["Finance", "Technologie", "Santé", "Immobilier", "Commerce", "Éducation", "Étudiant", "Retraité", "Autre"].map(s => (
+                    {sectorList.map(s => (
                       <SelectItem key={s} value={s}>{s}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>Revenu annuel</Label>
+                <Label>{t("individual.profession.income")}</Label>
                 <Select value={income} onValueChange={setIncome}>
-                  <SelectTrigger><SelectValue placeholder="Sélectionner…" /></SelectTrigger>
+                  <SelectTrigger><SelectValue placeholder={t("individual.tax.selectPlaceholder")} /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="<50k">Moins de 50 000 €</SelectItem>
-                    <SelectItem value="50-100k">50 000 € — 100 000 €</SelectItem>
-                    <SelectItem value="100-150k">100 000 € — 150 000 €</SelectItem>
-                    <SelectItem value=">150k">Plus de 150 000 €</SelectItem>
+                    <SelectItem value="<50k">{incomeOptions.lt50}</SelectItem>
+                    <SelectItem value="50-100k">{incomeOptions["50_100"]}</SelectItem>
+                    <SelectItem value="100-150k">{incomeOptions["100_150"]}</SelectItem>
+                    <SelectItem value=">150k">{incomeOptions.gt150}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -283,23 +290,23 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
           {sub === "wealth" && (
             <>
               <div className="space-y-2">
-                <Label>Patrimoine total</Label>
+                <Label>{t("individual.wealth.patrimoine")}</Label>
                 <Select value={patrimoine} onValueChange={setPatrimoine}>
-                  <SelectTrigger><SelectValue placeholder="Sélectionner…" /></SelectTrigger>
+                  <SelectTrigger><SelectValue placeholder={t("individual.tax.selectPlaceholder")} /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="<50k">Moins de 50 000 €</SelectItem>
-                    <SelectItem value="50-200k">50 000 € — 200 000 €</SelectItem>
-                    <SelectItem value="200k-1M">200 000 € — 1 000 000 €</SelectItem>
-                    <SelectItem value=">1M">Plus de 1 000 000 €</SelectItem>
+                    <SelectItem value="<50k">{wealthOptions.lt50}</SelectItem>
+                    <SelectItem value="50-200k">{wealthOptions["50_200"]}</SelectItem>
+                    <SelectItem value="200k-1M">{wealthOptions["200_1M"]}</SelectItem>
+                    <SelectItem value=">1M">{wealthOptions.gt1M}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>Montant prévu du premier dépôt</Label>
+                <Label>{t("individual.wealth.deposit")}</Label>
                 <Input
                   value={deposit}
                   onChange={e => setDeposit(e.target.value)}
-                  placeholder="Ex: 10 000 €"
+                  placeholder={t("individual.wealth.depositPlaceholder")}
                   className="font-mono"
                 />
               </div>
@@ -308,15 +315,9 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
 
           {sub === "funds" && (
             <div className="space-y-2">
-              <Label>Origine des fonds</Label>
+              <Label>{t("individual.funds.label")}</Label>
               <RadioGroup value={fundsOrigin} onValueChange={setFundsOrigin} className="space-y-3">
-                {[
-                  { value: "salary", label: "Salaire / Revenus professionnels" },
-                  { value: "inheritance", label: "Héritage / Donation" },
-                  { value: "real-estate", label: "Vente immobilière" },
-                  { value: "crypto", label: "Gains crypto" },
-                  { value: "other", label: "Autre" },
-                ].map(opt => (
+                {fundsOptions.map(opt => (
                   <div key={opt.value} className="flex items-center gap-3 bg-white/40 backdrop-blur-[12px] border border-white/20 p-3 cursor-pointer hover:border-primary/40 transition-colors">
                     <RadioGroupItem value={opt.value} id={opt.value} />
                     <Label htmlFor={opt.value} className="cursor-pointer text-sm">{opt.label}</Label>
@@ -328,11 +329,11 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
 
           {sub === "referral" && (
             <div className="space-y-2">
-              <Label>Comment avez-vous entendu parler de Quercus ?</Label>
+              <Label>{t("individual.referral.label")}</Label>
               <Select value={referral} onValueChange={setReferral}>
-                <SelectTrigger><SelectValue placeholder="Sélectionner…" /></SelectTrigger>
+                <SelectTrigger><SelectValue placeholder={t("individual.tax.selectPlaceholder")} /></SelectTrigger>
                 <SelectContent>
-                  {["LinkedIn", "Recommandation d'un ami", "Recherche Google", "Presse", "Événement", "Autre"].map(r => (
+                  {referralOptions.map(r => (
                     <SelectItem key={r} value={r}>{r}</SelectItem>
                   ))}
                 </SelectContent>
@@ -343,10 +344,10 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
       </AnimatePresence>
 
       <div className="flex gap-3">
-        <Button variant="ghost" onClick={goBack} className="flex-1">Retour</Button>
+        <Button variant="ghost" onClick={goBack} className="flex-1">{t("common.back")}</Button>
         <motion.div className="flex-1" animate={shake ? { x: [-4, 4, -4, 4, 0] } : {}} transition={{ duration: 0.4 }}>
           <Button onClick={goNext} className="btn-glow w-full" disabled={saving}>
-            {saving ? "Enregistrement…" : subIndex === subSteps.length - 1 ? "Valider" : "Suivant"}
+            {saving ? t("common.saving") : subIndex === subSteps.length - 1 ? t("common.validate") : t("common.next")}
           </Button>
         </motion.div>
       </div>
