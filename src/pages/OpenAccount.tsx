@@ -13,6 +13,8 @@ import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProfile } from "@/hooks/useProfile";
 import quercusLogo from "@/assets/quercus-logo.jpg";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 type Stage = "welcome" | "email" | "2fa" | "type" | "individual" | "corporate" | "kyc";
 
@@ -30,6 +32,7 @@ function getStepNumber(stage: Stage, accountType: "particulier" | "moral" | null
 const TOTAL_STEPS = 6;
 
 export default function OpenAccount() {
+  const { t } = useTranslation("onboarding");
   const navigate = useNavigate();
   const { session, loading } = useAuth();
   const { data: profile } = useProfile();
@@ -95,9 +98,12 @@ export default function OpenAccount() {
           <img src={quercusLogo} alt="Quercus" className="h-8 w-auto" />
           <span className="text-lg font-serif tracking-widest">QUERCUS</span>
         </Link>
-        <Link to="/signin" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-          Déjà un compte ?
-        </Link>
+        <div className="flex items-center gap-4">
+          <LanguageSwitcher />
+          <Link to="/signin" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            {t("header.alreadyAccount")}
+          </Link>
+        </div>
       </div>
 
       {/* Content */}
