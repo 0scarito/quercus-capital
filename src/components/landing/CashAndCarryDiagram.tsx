@@ -254,18 +254,6 @@ function ConvergenceChart() {
 
   return (
     <div ref={wrapRef} className="relative">
-      <div className="flex items-center justify-between mb-5">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-          Animation de convergence · Scroll
-        </p>
-        <span
-          className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground"
-          style={{ color: "hsl(var(--success))" }}
-        >
-          {Math.round(progress * 100)}%
-        </span>
-      </div>
-
       <div
         className="relative"
         onMouseEnter={() => setHover(true)}
