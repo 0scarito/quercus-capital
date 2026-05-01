@@ -23,7 +23,12 @@ export function useIdleTimeout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!session) return;
+    if (!session) {
+      // Make sure no stale timer/timestamp survives a logout so the
+      // expired banner is never shown to a user who isn't signed in.
+      localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
 
     let timer: number | undefined;
 
@@ -32,6 +37,8 @@ export function useIdleTimeout() {
         await supabase.auth.signOut();
       } finally {
         localStorage.removeItem(STORAGE_KEY);
+        // Only flag as expired if the user was actually still signed in
+        // when the timer fired. The session check above guarantees this.
         navigate("/signin?expired=1", { replace: true });
       }
     };

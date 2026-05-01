@@ -128,6 +128,14 @@ export default function SignIn() {
           <Button type="submit" className="w-full h-11" disabled={loading}>
             {loading ? t("signIn.loading") : t("signIn.submit")}
         </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            className="w-full h-11"
+            onClick={() => navigate("/")}
+          >
+            {t("signIn.cancel")}
+          </Button>
         </form>
 
         <div className="relative">
