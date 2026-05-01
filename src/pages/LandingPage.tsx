@@ -18,86 +18,67 @@ import { PressStrip } from "@/components/landing/PressStrip";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
-import { SectionRule } from "@/components/landing/SectionRule";
-import { SectionEyebrow } from "@/components/landing/SectionEyebrow";
-import { HeroAmbientField } from "@/components/landing/HeroAmbientField";
-import { useTranslation } from "react-i18next";
+import { Separator } from "@/components/ui/separator";
 
 export default function LandingPage() {
   const bannerVisible = useAnnouncementVisible();
-  const { t } = useTranslation("landing");
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <FloatingBlobs />
       <AnnouncementBanner />
       <LandingNav />
       <div style={{ paddingTop: bannerVisible ? "100px" : "64px" }} className="transition-[padding] duration-500 relative z-10">
-        <div className="relative">
-          <div className="absolute inset-0 -z-10 h-[120%]">
-            <HeroAmbientField />
-          </div>
-          <ScrollReveal variant="fade-up">
-            <HeroSection />
-          </ScrollReveal>
-        </div>
+        <ScrollReveal>
+          <HeroSection />
+        </ScrollReveal>
         <TrustBadgeStrip />
-        <SectionRule />
-        <ScrollReveal variant="mask-up">
-          <SectionEyebrow number={1} label={t("sectionEyebrows.method")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <HowItWorks />
         </ScrollReveal>
         <DashboardPreview />
-        <SectionRule />
-        <ScrollReveal variant="fade-up">
-          <SectionEyebrow number={2} label={t("sectionEyebrows.products")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <div id="products">
             <YieldCards />
           </div>
         </ScrollReveal>
-        <SectionRule />
-        <ScrollReveal variant="scale-in">
-          <SectionEyebrow number={3} label={t("sectionEyebrows.live")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <LiveNumbers />
         </ScrollReveal>
-        <SectionRule />
-        <ScrollReveal variant="fade-left">
-          <SectionEyebrow number={4} label={t("sectionEyebrows.calculator")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <div id="calculator">
             <YieldCalculator />
           </div>
         </ScrollReveal>
-        <SectionRule />
-        <ScrollReveal variant="fade-right">
-          <SectionEyebrow number={5} label={t("sectionEyebrows.audience")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <ForEveryoneSection />
         </ScrollReveal>
-        <SectionRule />
-        <ScrollReveal variant="mask-up">
-          <SectionEyebrow number={6} label={t("sectionEyebrows.security")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <SecuritySection />
         </ScrollReveal>
-        <SectionRule />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
         <TrustChain />
-        <SectionRule />
-        <ScrollReveal variant="fade-up">
-          <SectionEyebrow number={7} label={t("sectionEyebrows.partners")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <div id="partners">
             <PartnersSection />
           </div>
         </ScrollReveal>
-        <SectionRule />
-        <ScrollReveal variant="fade-left">
-          <SectionEyebrow number={8} label={t("sectionEyebrows.voices")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <Testimonials />
         </ScrollReveal>
-        <SectionRule />
-        <ScrollReveal variant="fade-right">
-          <SectionEyebrow number={9} label={t("sectionEyebrows.questions")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <LandingFaq />
         </ScrollReveal>
-        <SectionRule />
-        <ScrollReveal variant="fade-up">
-          <SectionEyebrow number={10} label={t("sectionEyebrows.press")} />
+        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <ScrollReveal>
           <PressStrip />
         </ScrollReveal>
         <LandingFooter />

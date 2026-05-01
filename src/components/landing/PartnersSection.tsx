@@ -20,20 +20,12 @@ export function PartnersSection() {
           {t("partners.label")}
         </p>
       </div>
-      <div
-        className="relative group"
-        style={{
-          maskImage:
-            "linear-gradient(90deg, transparent, hsl(0 0% 0%) 8%, hsl(0 0% 0%) 92%, transparent)",
-          WebkitMaskImage:
-            "linear-gradient(90deg, transparent, hsl(0 0% 0%) 8%, hsl(0 0% 0%) 92%, transparent)",
-        }}
-      >
-        <div className="flex animate-marquee-slow whitespace-nowrap [animation-play-state:running] group-hover:[animation-play-state:paused]">
+      <div className="relative">
+        <div className="flex animate-marquee whitespace-nowrap">
           {doubled.map((name, i) => (
             <span
               key={i}
-              className="mx-12 text-2xl md:text-3xl font-serif font-semibold text-foreground/30 shrink-0 transition-colors hover:text-foreground/70"
+              className="mx-12 text-2xl md:text-3xl font-serif font-semibold text-foreground/30 shrink-0"
             >
               {name}
             </span>

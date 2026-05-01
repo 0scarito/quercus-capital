@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ShieldCheck, Sparkles, Users, ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { QuercusShield } from "@/components/QuercusShield";
 import audreyPhoto from "@/assets/team-audrey.jpg";
 import davidPhoto from "@/assets/team-david.png";
 import thomasPhoto from "@/assets/team-thomas.jpg";
@@ -35,9 +34,6 @@ export default function AboutPage() {
         <section className="py-24 md:py-32 px-4 md:px-8">
           <ScrollReveal>
             <div className="max-w-4xl mx-auto text-center space-y-6">
-              <div className="flex justify-center mb-2">
-                <QuercusShield size={150} />
-              </div>
               <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("about.eyebrow")}</p>
               <h1 className="text-5xl md:text-7xl font-serif font-semibold leading-tight whitespace-pre-line">
                 <em>{t("about.heroTitle")}</em>

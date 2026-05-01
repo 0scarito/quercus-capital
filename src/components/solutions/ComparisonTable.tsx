@@ -1,5 +1,4 @@
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { GlassCard } from "@/components/landing/GlassCard";
 import { Badge } from "@/components/ui/badge";
 import { Check, X } from "lucide-react";
@@ -42,7 +41,6 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
   });
 
   const quercusHeader = headers.quercus || "Quercus";
-  const { ref: tableRef, isVisible: tableVisible } = useScrollReveal<HTMLDivElement>(0.3);
   return (
     <section className="py-24 px-4 md:px-8">
       <ScrollReveal>
@@ -52,21 +50,7 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
           </h2>
 
           {/* Desktop table */}
-          <GlassCard className="overflow-x-auto hidden md:block relative" >
-            <div ref={tableRef} aria-hidden className="absolute inset-0 pointer-events-none" />
-            {/* Animated highlight column behind Quercus */}
-            <div
-              aria-hidden
-              className="absolute top-0 bottom-0 right-0 w-1/4 pointer-events-none"
-              style={{
-                background:
-                  "linear-gradient(180deg, hsl(var(--primary) / 0.06), hsl(var(--primary) / 0.02))",
-                opacity: tableVisible ? 1 : 0,
-                transform: tableVisible ? "scaleY(1)" : "scaleY(0.85)",
-                transformOrigin: "center",
-                transition: "all 900ms cubic-bezier(0.22,1,0.36,1) 200ms",
-              }}
-            />
+          <GlassCard className="overflow-x-auto hidden md:block">
             <table className="w-full text-base">
               <thead>
                 <tr className="border-b border-border/50">
@@ -83,15 +67,7 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
               </thead>
               <tbody>
                 {rawRows.map((row, i) => (
-                  <tr
-                    key={i}
-                    className="border-b border-border/30 last:border-0"
-                    style={{
-                      opacity: tableVisible ? 1 : 0,
-                      transform: tableVisible ? "translateX(0)" : "translateX(-10px)",
-                      transition: `all 600ms cubic-bezier(0.22,1,0.36,1) ${400 + i * 120}ms`,
-                    }}
-                  >
+                  <tr key={i} className="border-b border-border/30 last:border-0">
                     <td className="p-5 font-medium">{row.label}</td>
                     <td className="p-5 text-center">
                       <CellContent {...row.courant} />
@@ -99,8 +75,8 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
                     <td className="p-5 text-center">
                       <CellContent {...row.terme} />
                     </td>
-                    <td className="p-5 text-center border-x-2 border-primary/30 relative">
-                      <CellContent {...row.quercus} animateIn={tableVisible} delay={500 + i * 120 + 200} />
+                    <td className="p-5 text-center border-x-2 border-primary/30">
+                      <CellContent {...row.quercus} />
                     </td>
                   </tr>
                 ))}
@@ -136,52 +112,15 @@ export function ComparisonTable({ segment }: ComparisonTableProps) {
   );
 }
 
-function CellContent({
-  text,
-  good,
-  highlight,
-  animateIn,
-  delay = 0,
-}: {
-  text: string;
-  good: boolean;
-  highlight?: boolean;
-  animateIn?: boolean;
-  delay?: number;
-}) {
-  // animateIn===undefined means no entry animation (mobile / non-quercus column).
-  const shouldAnimate = animateIn !== undefined;
-  const visible = !shouldAnimate || animateIn;
+function CellContent({ text, good, highlight }: { text: string; good: boolean; highlight?: boolean }) {
   return (
     <div className="flex flex-col items-center gap-1">
       {good ? (
-        <Check
-          className="h-4 w-4 text-success"
-          style={
-            shouldAnimate
-              ? {
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? "scale(1)" : "scale(0.4)",
-                  transition: `all 450ms cubic-bezier(0.34,1.56,0.64,1) ${delay}ms`,
-                }
-              : undefined
-          }
-        />
+        <Check className="h-4 w-4 text-success" />
       ) : (
         <X className="h-4 w-4 text-destructive" />
       )}
-      <span
-        className={highlight ? "text-lg font-serif font-semibold text-success" : ""}
-        style={
-          shouldAnimate
-            ? {
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(4px)",
-                transition: `all 500ms ease-out ${delay + 80}ms`,
-              }
-            : undefined
-        }
-      >
+      <span className={highlight ? "text-lg font-serif font-semibold text-success" : ""}>
         {text}
       </span>
     </div>

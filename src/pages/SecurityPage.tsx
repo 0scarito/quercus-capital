@@ -32,7 +32,7 @@ export default function SecurityPage() {
             <div className="max-w-4xl mx-auto text-center space-y-8">
               <p className="text-xs uppercase tracking-widest text-muted-foreground">{t("security.eyebrow")}</p>
               <div className="flex justify-center">
-                <QuercusShield size={300} />
+                <QuercusShield size={200} />
               </div>
               <h1 className="text-5xl md:text-7xl font-serif font-semibold leading-tight whitespace-pre-line">
                 <em>{t("security.heroTitle")}</em>

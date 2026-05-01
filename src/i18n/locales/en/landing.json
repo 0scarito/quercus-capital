@@ -487,29 +487,5 @@
     "title": "Product specifications",
     "subtitle": "Complete technical data for institutional due diligence.",
     "specification": "Specification"
-  },
-  "sectionEyebrows": {
-    "method": "Method",
-    "preview": "Platform",
-    "products": "Yield",
-    "live": "Live",
-    "calculator": "Simulation",
-    "audience": "Built for",
-    "security": "Security",
-    "trust": "Chain of trust",
-    "partners": "Partners",
-    "voices": "Testimonials",
-    "questions": "Frequently asked",
-    "press": "Press"
-  },
-  "footerStatement": "Preserve. Grow. Pass on.",
-  "backToTop": "Back to top",
-  "notFound": {
-    "code": "404",
-    "eyebrow": "Lost in the forest",
-    "title": "This page didn't take root.",
-    "subtitle": "The address you requested doesn't exist or has been moved. Let's get back on the main path.",
-    "ctaHome": "Back to home",
-    "ctaHelp": "Help center"
   }
 }

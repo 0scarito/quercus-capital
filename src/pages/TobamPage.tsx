@@ -11,7 +11,6 @@ import { Leaf, ExternalLink } from "lucide-react";
 import { RiskScale } from "@/components/landing/RiskScale";
 import { SecurityArchitecture } from "@/components/landing/SecurityArchitecture";
 import { CashAndCarryDiagram } from "@/components/landing/CashAndCarryDiagram";
-import { ProcessSteps } from "@/components/landing/ProcessSteps";
 import { TobamAnalytics } from "@/components/landing/TobamAnalytics";
 import strategyPositionImg from "@/assets/strategy-position.jpg";
 import strategyThresholdImg from "@/assets/strategy-threshold.jpg";
@@ -146,14 +145,21 @@ export default function TobamPage() {
                     {t("tobam.carryP2")}
                   </p>
 
-                  <ProcessSteps
-                    steps={[
-                      { n: "01", title: carrySteps.s1Title, desc: carrySteps.s1Desc },
-                      { n: "02", title: carrySteps.s2Title, desc: carrySteps.s2Desc },
-                      { n: "03", title: carrySteps.s3Title, desc: carrySteps.s3Desc },
-                    ]}
-                    stepLabel={(n) => t("tobam.stepLabel", { n })}
-                  />
+                  <ol className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                    {[
+                      { n: "01", t: carrySteps.s1Title, d: carrySteps.s1Desc },
+                      { n: "02", t: carrySteps.s2Title, d: carrySteps.s2Desc },
+                      { n: "03", t: carrySteps.s3Title, d: carrySteps.s3Desc },
+                    ].map((s) => (
+                      <li key={s.n} className="border-l border-primary/30 pl-4 py-1">
+                        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary/70">
+                          {t("tobam.stepLabel", { n: s.n })}
+                        </span>
+                        <h3 className="font-serif italic text-base mt-1 mb-1">{s.t}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{s.d}</p>
+                      </li>
+                    ))}
+                  </ol>
 
                   <p className="text-foreground/90 leading-relaxed pt-2 text-base md:text-lg">
                     {t("tobam.carryResult")}
