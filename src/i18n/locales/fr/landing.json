@@ -385,6 +385,16 @@
       "industry": "Industrie",
       "energy": "Énergie",
       "other": "Autres"
+    },
+    "examples": {
+      "tech": "Apple, Microsoft, Nvidia, ASML",
+      "finance": "JPMorgan, HSBC, BNP Paribas",
+      "health": "Novo Nordisk, Roche, J&J",
+      "consumer": "LVMH, Nestlé, L'Oréal",
+      "comms": "Alphabet, Meta, Deutsche Telekom",
+      "industry": "Schneider, Siemens, Airbus",
+      "energy": "TotalEnergies, Shell, Equinor",
+      "other": "Utilities, immobilier coté, matériaux"
     }
   },
   "perfChart": {
