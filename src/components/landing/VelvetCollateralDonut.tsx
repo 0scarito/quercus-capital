@@ -1,6 +1,7 @@
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts";
 import { useTranslation } from "react-i18next";
 
+const KEYS = ["tech", "finance", "health", "consumer", "comms", "industry", "energy", "other"] as const;
 const VALUES = [34, 18, 12, 10, 8, 7, 5, 6];
 
 // Quercus-tinted palette: deep teal → warm sienna gradient
@@ -17,8 +18,12 @@ const COLORS = [
 
 export function VelvetCollateralDonut() {
   const { t } = useTranslation("landing");
-  const sectors = (t("collateralDonut.sectors", { returnObjects: true }) as string[]) || [];
-  const data = VALUES.map((value, i) => ({ name: sectors[i] || "", value }));
+  const data = VALUES.map((value, i) => ({
+    key: KEYS[i],
+    name: t(`collateralDonut.sectors.${KEYS[i]}`),
+    example: t(`collateralDonut.examples.${KEYS[i]}`),
+    value,
+  }));
   const total = data.reduce((s, d) => s + d.value, 0);
 
   return (
@@ -61,15 +66,22 @@ export function VelvetCollateralDonut() {
 
       <ul className="space-y-2.5">
         {data.map((d, i) => (
-          <li key={d.name} className="flex items-center gap-3 text-sm">
+          <li key={d.key} className="flex items-start gap-3 text-sm">
             <span
-              className="h-2.5 w-2.5 shrink-0"
+              className="h-2.5 w-2.5 shrink-0 mt-1.5"
               style={{ background: COLORS[i] }}
             />
-            <span className="flex-1 text-foreground/85">{d.name}</span>
-            <span className="font-mono text-xs text-muted-foreground tabular-nums">
-              {d.value.toString().padStart(2, " ")} %
-            </span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline gap-2">
+                <span className="flex-1 text-foreground/85">{d.name}</span>
+                <span className="font-mono text-xs text-muted-foreground tabular-nums">
+                  {d.value.toString().padStart(2, " ")} %
+                </span>
+              </div>
+              <p className="text-[11px] text-muted-foreground/80 mt-0.5 truncate">
+                {d.example}
+              </p>
+            </div>
           </li>
         ))}
       </ul>
