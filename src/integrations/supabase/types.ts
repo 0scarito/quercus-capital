@@ -335,6 +335,7 @@ export type Database = {
           phone: string | null
           phone_verified: boolean | null
           postal_code: string | null
+          proof_of_address_uploaded: boolean
           tax_country: string | null
           tax_id: string | null
           updated_at: string
@@ -354,6 +355,7 @@ export type Database = {
           phone?: string | null
           phone_verified?: boolean | null
           postal_code?: string | null
+          proof_of_address_uploaded?: boolean
           tax_country?: string | null
           tax_id?: string | null
           updated_at?: string
@@ -373,6 +375,7 @@ export type Database = {
           phone?: string | null
           phone_verified?: boolean | null
           postal_code?: string | null
+          proof_of_address_uploaded?: boolean
           tax_country?: string | null
           tax_id?: string | null
           updated_at?: string
