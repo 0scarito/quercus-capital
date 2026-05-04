@@ -22,6 +22,7 @@ import AccountSettings from "@/pages/AccountSettings";
 import Integrations from "@/pages/Integrations";
 import CompleteProfile from "@/pages/CompleteProfile";
 import NotFound from "@/pages/NotFound";
+import Unsubscribe from "@/pages/Unsubscribe";
 import AboutPage from "@/pages/AboutPage";
 import PressPage from "@/pages/PressPage";
 import ContactPage from "@/pages/ContactPage";
