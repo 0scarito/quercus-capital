@@ -97,6 +97,15 @@ export function StageKYC({ onComplete }: StageKYCProps) {
       return;
     }
     queryClient.invalidateQueries({ queryKey: ["profile", user.id] });
+    // Fire-and-forget welcome email — failure must never block onboarding.
+    void supabase.functions.invoke("send-transactional-email", {
+      body: {
+        templateName: "welcome",
+        recipientEmail: user.email,
+        idempotencyKey: `welcome-${user.id}`,
+        templateData: { firstName: firstName.trim() },
+      },
+    }).catch((err) => console.warn("welcome email failed to enqueue", err));
     setPhase("done");
   };
 
