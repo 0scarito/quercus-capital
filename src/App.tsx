@@ -66,6 +66,7 @@ const App = () => (
             <Route path="/aide/:slug/:articleSlug" element={<HelpCenter />} />
             <Route path="/open-account" element={<OpenAccount />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/complete-profile" element={<CompleteProfile />} />
               <Route element={<AppLayout />}>
