@@ -245,6 +245,7 @@
       "fields": [
         { "key": "funds", "label": "Justificatif d'origine des fonds", "desc": "Dernier bilan ou relevé bancaire" },
         { "key": "statutes", "label": "Statuts de la société", "desc": "Document officiel" },
+        { "key": "kbis", "label": "Extrait Kbis", "desc": "Daté de moins de 3 mois" },
         { "key": "beneficiaries", "label": "Registre des bénéficiaires effectifs", "desc": "Liste des ayants droit" }
       ],
       "drop": "Glissez-déposez ou cliquez pour téléverser"

@@ -108,7 +108,7 @@ export default function OpenAccount() {
 
       {/* Content */}
       <div className="flex-1 relative z-10 flex items-center justify-center px-6 py-8">
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-3xl">
           <AnimatePresence mode="wait">
             {stage === "welcome" && (
               <StageWelcome key="welcome" onNext={() => setStage("email")} />

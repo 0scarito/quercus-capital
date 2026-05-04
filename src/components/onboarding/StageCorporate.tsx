@@ -193,18 +193,18 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="space-y-6 max-w-md mx-auto"
+      className="space-y-8 max-w-2xl mx-auto w-full"
     >
-      <div className="text-center space-y-1">
-        <h2 className="text-2xl font-serif">
+      <div className="text-center space-y-2">
+        <h2 className="text-3xl md:text-4xl font-serif">
           <em>{t(`corporate.titles.${sub}`)}</em>
         </h2>
-        <p className="text-xs text-muted-foreground">{t("common.stepOf", { current: subIndex + 1, total: subSteps.length })}</p>
+        <p className="text-sm text-muted-foreground tracking-widest uppercase">{t("common.stepOf", { current: subIndex + 1, total: subSteps.length })}</p>
       </div>
 
-      <div className="flex gap-1">
+      <div className="flex gap-1.5">
         {subSteps.map((_, i) => (
-          <div key={i} className={`h-0.5 flex-1 transition-colors ${i <= subIndex ? "bg-primary" : "bg-border"}`} />
+          <div key={i} className={`h-1 flex-1 transition-colors ${i <= subIndex ? "bg-primary" : "bg-border"}`} />
         ))}
       </div>
 
@@ -215,7 +215,7 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.2 }}
-          className="space-y-4"
+          className="space-y-5 bg-white/30 backdrop-blur-[12px] border border-white/20 p-6 md:p-8"
         >
           {sub === "country" && (
             <div className="space-y-2">
@@ -416,9 +416,9 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
       </AnimatePresence>
 
       <div className="flex gap-3">
-        <Button variant="ghost" onClick={goBack} className="flex-1">{t("common.back")}</Button>
+        <Button variant="ghost" size="lg" onClick={goBack} className="flex-1 h-12 text-base">{t("common.back")}</Button>
         <motion.div className="flex-1" animate={shake ? { x: [-4, 4, -4, 4, 0] } : {}} transition={{ duration: 0.4 }}>
-          <Button onClick={goNext} className="btn-glow w-full" disabled={saving}>
+          <Button onClick={goNext} size="lg" className="btn-glow w-full h-12 text-base" disabled={saving}>
             {saving ? t("common.saving") : subIndex === subSteps.length - 1 ? t("common.validate") : t("common.next")}
           </Button>
         </motion.div>

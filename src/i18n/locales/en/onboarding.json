@@ -245,6 +245,7 @@
       "fields": [
         { "key": "funds", "label": "Proof of source of funds", "desc": "Latest balance sheet or bank statement" },
         { "key": "statutes", "label": "Articles of association", "desc": "Official document" },
+        { "key": "kbis", "label": "Kbis extract", "desc": "Issued less than 3 months ago" },
         { "key": "beneficiaries", "label": "Register of beneficial owners", "desc": "List of beneficiaries" }
       ],
       "drop": "Drag and drop or click to upload"
