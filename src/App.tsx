@@ -22,6 +22,7 @@ import AccountSettings from "@/pages/AccountSettings";
 import Integrations from "@/pages/Integrations";
 import CompleteProfile from "@/pages/CompleteProfile";
 import NotFound from "@/pages/NotFound";
+import Unsubscribe from "@/pages/Unsubscribe";
 import AboutPage from "@/pages/AboutPage";
 import PressPage from "@/pages/PressPage";
 import ContactPage from "@/pages/ContactPage";
@@ -65,6 +66,7 @@ const App = () => (
             <Route path="/aide/:slug/:articleSlug" element={<HelpCenter />} />
             <Route path="/open-account" element={<OpenAccount />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/complete-profile" element={<CompleteProfile />} />
               <Route element={<AppLayout />}>
