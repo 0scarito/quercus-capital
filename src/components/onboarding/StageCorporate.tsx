@@ -416,9 +416,9 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
       </AnimatePresence>
 
       <div className="flex gap-3">
-        <Button variant="ghost" onClick={goBack} className="flex-1">{t("common.back")}</Button>
+        <Button variant="ghost" size="lg" onClick={goBack} className="flex-1 h-12 text-base">{t("common.back")}</Button>
         <motion.div className="flex-1" animate={shake ? { x: [-4, 4, -4, 4, 0] } : {}} transition={{ duration: 0.4 }}>
-          <Button onClick={goNext} className="btn-glow w-full" disabled={saving}>
+          <Button onClick={goNext} size="lg" className="btn-glow w-full h-12 text-base" disabled={saving}>
             {saving ? t("common.saving") : subIndex === subSteps.length - 1 ? t("common.validate") : t("common.next")}
           </Button>
         </motion.div>
