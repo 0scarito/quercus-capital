@@ -288,7 +288,6 @@ export function LandingNav({ variant = "default", currentSlug }: LandingNavProps
 
   const resourceItems = [
     { href: "/a-propos", title: t("nav:resourcesList.about"), desc: t("nav:resourcesList.aboutDesc") },
-    { href: "/presse", title: t("nav:resourcesList.press"), desc: t("nav:resourcesList.pressDesc") },
     { href: "/contact", title: t("nav:resourcesList.contact"), desc: t("nav:resourcesList.contactDesc") },
     { href: "/aide", title: t("nav:resourcesList.help"), desc: t("nav:resourcesList.helpDesc") },
   ];

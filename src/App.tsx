@@ -19,12 +19,10 @@ import Dashboard from "@/pages/Dashboard";
 import Products from "@/pages/Products";
 import Statements from "@/pages/Statements";
 import AccountSettings from "@/pages/AccountSettings";
-import Integrations from "@/pages/Integrations";
 import CompleteProfile from "@/pages/CompleteProfile";
 import NotFound from "@/pages/NotFound";
 import Unsubscribe from "@/pages/Unsubscribe";
 import AboutPage from "@/pages/AboutPage";
-import PressPage from "@/pages/PressPage";
 import ContactPage from "@/pages/ContactPage";
 import LegalPage from "@/pages/LegalPage";
 import PrivacyPage from "@/pages/PrivacyPage";
@@ -54,7 +52,6 @@ const App = () => (
             <Route path="/solutions" element={<SolutionsPage />} />
             <Route path="/solutions/:segment" element={<SolutionDetailPage />} />
             <Route path="/a-propos" element={<AboutPage />} />
-            <Route path="/presse" element={<PressPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/mentions-legales" element={<LegalPage />} />
             <Route path="/confidentialite" element={<PrivacyPage />} />
@@ -75,7 +72,6 @@ const App = () => (
                 <Route path="/produits" element={<Products />} />
                 <Route path="/releves" element={<Statements />} />
                 <Route path="/parametres" element={<AccountSettings />} />
-                <Route path="/integrations" element={<Integrations />} />
               </Route>
             </Route>
             <Route path="*" element={<NotFound />} />

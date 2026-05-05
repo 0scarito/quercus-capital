@@ -36,7 +36,6 @@ export function LandingFooter() {
 
   const resourceLinks = [
     { label: t("footer:resources.about"), href: "/a-propos" },
-    { label: t("footer:resources.press"), href: "/presse" },
     { label: t("footer:resources.contact"), href: "/contact" },
     { label: t("footer:resources.help"), href: "/aide" },
   ];
@@ -57,7 +56,6 @@ export function LandingFooter() {
   const contactLinks = [
     { label: t("footer:contactCol.email"), href: "mailto:contact@quercus-capital.fr" },
     { label: t("footer:contactCol.book"), href: "/contact" },
-    { label: t("footer:contactCol.press"), href: "/presse" },
     { label: t("footer:contactCol.help"), href: "/aide" },
   ];
 
