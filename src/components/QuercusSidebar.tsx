@@ -2,7 +2,6 @@ import {
   LayoutDashboard,
   Package,
   FileText,
-  Plug,
   ChevronRight,
   ChevronsUpDown,
   Settings,
@@ -59,7 +58,6 @@ export function QuercusSidebar() {
 
   const secondaryNav = [
     { title: t("sidebar.statements"), url: "/releves", icon: FileText },
-    { title: t("sidebar.integrations"), url: "/integrations", icon: Plug },
   ];
 
   const fullName = [profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || t("sidebar.myAccount");
