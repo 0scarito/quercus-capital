@@ -96,7 +96,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
       .single();
     setSubmitting(false);
     if (error) {
-      console.error("Deposit intent error:", error);
+      logger.error("Deposit intent error:", error);
       toast.error(t("deposit.error"));
       return;
     }
