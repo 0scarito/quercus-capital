@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { logger } from "@/lib/logger";
 
 export function LandingFooter() {
   const { t } = useTranslation(["footer"]);
@@ -79,7 +80,7 @@ export function LandingFooter() {
         if (error.code === "23505") {
           toast.success(t("footer:newsletter.successAlready"));
         } else {
-          console.error("newsletter error", error);
+          logger.error("newsletter error", error);
           toast.error(t("footer:newsletter.error"));
         }
       } else {
