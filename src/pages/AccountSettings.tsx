@@ -13,6 +13,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { logger } from "@/lib/logger";
 
 export default function AccountSettings() {
   const { t } = useTranslation("dashboard");
@@ -49,7 +50,7 @@ export default function AccountSettings() {
       .eq("user_id", user.id);
     setSaving(false);
     if (error) {
-      console.error("Profile update error:", error);
+      logger.error("Profile update error:", error);
       toast.error(t("settings.saveError"));
       return;
     }

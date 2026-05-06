@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plus, Check, Loader2, Lock, Compass, Sparkles } from "lucide-react";
+import { logger } from "@/lib/logger";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
@@ -97,7 +98,7 @@ export default function Products() {
         });
     setSubmitting(false);
     if (error) {
-      console.error("Subscription error:", error);
+      logger.error("Subscription error:", error);
       toast.error(t("products.modal.error"));
       return;
     }

@@ -11,6 +11,7 @@ import { useProfile } from "@/hooks/useProfile";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 import quercusLogo from "@/assets/quercus-logo.jpg";
+import { logger } from "@/lib/logger";
 
 interface StageKYCProps {
   onComplete: () => void;
@@ -105,7 +106,7 @@ export function StageKYC({ onComplete }: StageKYCProps) {
         idempotencyKey: `welcome-${user.id}`,
         templateData: { firstName: firstName.trim() },
       },
-    }).catch((err) => console.warn("welcome email failed to enqueue", err));
+    }).catch((err) => logger.warn("welcome email failed to enqueue", err));
     setPhase("done");
   };
 

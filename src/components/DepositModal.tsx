@@ -16,6 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { logger } from "@/lib/logger";
 
 interface DepositModalProps {
   open: boolean;
@@ -96,7 +97,7 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
       .single();
     setSubmitting(false);
     if (error) {
-      console.error("Deposit intent error:", error);
+      logger.error("Deposit intent error:", error);
       toast.error(t("deposit.error"));
       return;
     }
