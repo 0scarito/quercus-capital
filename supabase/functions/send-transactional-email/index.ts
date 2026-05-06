@@ -30,9 +30,11 @@ function generateToken(): string {
     .join('')
 }
 
-// Auth note: this function uses verify_jwt = true in config.toml, so Supabase's
-// gateway validates the caller's JWT (anon or service_role) before the request
-// reaches this code. No in-function auth check is needed.
+// Auth: verify_jwt=true gates anonymous (no-token) callers, but the public
+// anon key itself produces a valid JWT, so we MUST additionally enforce in code:
+//   - service_role callers can send anything (used by cron/server flows)
+//   - authenticated users can only send to their OWN email address
+// Anonymous role tokens are rejected outright to prevent email-spam abuse.
 
 Deno.serve(async (req) => {
   // Handle CORS preflight
@@ -51,6 +53,48 @@ Deno.serve(async (req) => {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
+    )
+  }
+
+  // ---- In-function authorization check ----
+  const authHeader = req.headers.get('Authorization') ?? ''
+  const bearer = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : ''
+  if (!bearer) {
+    return new Response(
+      JSON.stringify({ error: 'Unauthorized' }),
+      { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+    )
+  }
+
+  let callerRole: string | null = null
+  let callerEmail: string | null = null
+  let callerSub: string | null = null
+  if (bearer === supabaseServiceKey) {
+    callerRole = 'service_role'
+  } else {
+    try {
+      const payloadPart = bearer.split('.')[1]
+      const padded = payloadPart + '='.repeat((4 - (payloadPart.length % 4)) % 4)
+      const decoded = JSON.parse(
+        new TextDecoder().decode(
+          Uint8Array.from(atob(padded.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0)),
+        ),
+      )
+      callerRole = decoded?.role ?? null
+      callerEmail = decoded?.email ?? null
+      callerSub = decoded?.sub ?? null
+    } catch {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      )
+    }
+  }
+
+  if (callerRole !== 'service_role' && callerRole !== 'authenticated') {
+    return new Response(
+      JSON.stringify({ error: 'Forbidden' }),
+      { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
     )
   }
 
@@ -87,6 +131,18 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
     )
+  }
+
+  // Authenticated (non-service) callers may only send to their own email.
+  if (callerRole === 'authenticated') {
+    const target = (recipientEmail || '').toLowerCase()
+    const own = (callerEmail || '').toLowerCase()
+    if (!own || !target || target !== own) {
+      return new Response(
+        JSON.stringify({ error: 'Forbidden: may only send to your own email' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      )
+    }
   }
 
   // 1. Look up template from registry (early — needed to resolve recipient)
