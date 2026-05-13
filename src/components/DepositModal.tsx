@@ -13,6 +13,7 @@ import { useAccounts } from "@/hooks/useAccounts";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProfile } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
+import { bridge } from "@/lib/chamfeuil-bridge";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
@@ -103,6 +104,15 @@ export function DepositModal({ open, onOpenChange, presetProductId, presetAccoun
     }
     setReference(data.reference);
     qc.invalidateQueries({ queryKey: ["deposit_intents"] });
+    // Push the deposit intent into the Chamfeuil KYC activity log so CGP
+    // admins see "promesse de virement" land on the client's timeline in
+    // real time. Fire-and-forget — never blocks the user.
+    bridge.depositIntent({
+      product_id: product.id,
+      product_name: product.name,
+      reference: data.reference,
+      amount: parseFloat(proofAmount) || undefined,
+    });
     setStep("waiting");
   };
 

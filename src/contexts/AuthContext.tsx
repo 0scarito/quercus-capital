@@ -4,6 +4,7 @@ import { Session, User } from "@supabase/supabase-js";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { ensureUserWorkspace } from "@/lib/ensure-user-workspace";
+import { bridge } from "@/lib/chamfeuil-bridge";
 
 interface AuthContextType {
   session: Session | null;
@@ -78,6 +79,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [authResolved, queryClient, session?.user?.id]);
 
   const signOut = async () => {
+    // Log logout BEFORE actually signing out — once the JWT is gone, the
+    // bridge can't authenticate the caller anymore.
+    bridge.logout();
     await supabase.auth.signOut();
   };
 

@@ -26,6 +26,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useProducts, useUserSubscriptions, type Product } from "@/hooks/useProducts";
 import { useAccounts } from "@/hooks/useAccounts";
 import { supabase } from "@/integrations/supabase/client";
+import { bridge } from "@/lib/chamfeuil-bridge";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -102,6 +103,24 @@ export default function Products() {
       toast.error(t("products.modal.error"));
       return;
     }
+    // Mirror to the Chamfeuil KYC backend's quercus_investments table so it
+    // shows up on the CGP admin's view of this client. Use product slug as
+    // the fund_code; partner inferred from slug prefix (quercus → in-house).
+    bridge.investmentPurchased({
+      fund_code: selected.slug,
+      fund_name: selected.name,
+      partner: selected.slug.startsWith("tobam") ? "TOBAM"
+             : selected.slug.startsWith("velvet") ? "VELVET"
+             : "QUERCUS",
+      amount_invested: existing ? Number(existing.amount) + numAmount : numAmount,
+      status: "active",
+      metadata: {
+        product_id: selected.id,
+        account_id: accountId,
+        currency: selected.currency,
+        yield_rate: selected.yield_rate,
+      },
+    });
     toast.success(t("products.modal.subscribed", { name: selected.name }));
     qc.invalidateQueries({ queryKey: ["user_subscriptions"] });
     setSelected(null);

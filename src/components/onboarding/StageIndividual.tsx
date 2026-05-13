@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { supabase } from "@/integrations/supabase/client";
+import { bridge } from "@/lib/chamfeuil-bridge";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -151,6 +152,23 @@ export function StageIndividual({ onNext, onBack }: StageIndividualProps) {
       }
       qc.invalidateQueries({ queryKey: ["profile"] });
       qc.invalidateQueries({ queryKey: ["onboarding_details"] });
+      // Mirror onboarding answers to the Chamfeuil KYC backend — profile
+      // fields go to kyc_clients (via sync_profile), the wealth/income
+      // signals are logged as a profile_updated activity with full metadata
+      // for the CGP's risk profiling.
+      bridge.profileUpdated({
+        address,
+        city,
+        postal_code: postalCode,
+        country,
+        tax_country: taxFrance ? country : (taxCountry || undefined),
+        tax_id: taxId || undefined,
+      });
+      bridge.activity("profile_updated", "Onboarding individuel complété", {
+        account_type: "particulier",
+        sector, income_band: income, wealth_band: patrimoine,
+        planned_deposit: deposit, funds_origin: fundsOrigin, referral_source: referral,
+      });
       onNext({
         country, address, city, postalCode,
         taxFrance, taxCountry, taxId,

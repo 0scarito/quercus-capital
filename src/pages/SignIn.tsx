@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { supabase } from "@/integrations/supabase/client";
+import { bridge } from "@/lib/chamfeuil-bridge";
 import { lovable } from "@/integrations/lovable/index";
 import { toast } from "sonner";
 import quercusLogo from "@/assets/quercus-logo.jpg";
@@ -33,6 +34,11 @@ export default function SignIn() {
         return;
       }
       if (result.redirected) return;
+      // Google OAuth users that haven't been signup-synced yet land here too —
+      // bridge.signup is idempotent on the Chamfeuil side, so we call it as a
+      // safety net BEFORE the activity log entry.
+      bridge.signup({});
+      bridge.login({ method: "google" });
       toast.success(t("toasts.signInSuccess"));
       navigate("/dashboard");
     } catch {
@@ -53,6 +59,11 @@ export default function SignIn() {
       setLoading(false);
       return;
     }
+
+    // Belt-and-suspenders: ensure a kyc_clients row exists for legacy users
+    // who signed up before the bridge was wired. Idempotent on the DB side.
+    bridge.signup({});
+    bridge.login({ method: "password" });
 
     toast.success(t("toasts.signInSuccess"));
     navigate("/dashboard");

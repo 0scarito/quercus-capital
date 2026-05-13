@@ -1,6 +1,7 @@
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import type { TablesUpdate } from "@/integrations/supabase/types";
+import { bridge } from "@/lib/chamfeuil-bridge";
 
 const PRIMARY_ACCOUNT_NAME = "Compte principal";
 
@@ -90,4 +91,13 @@ export async function ensureUserWorkspace(user: User) {
 
     if (error) throw error;
   }
+
+  // Safety-net signup sync — covers legacy users created before the bridge
+  // was wired. Idempotent on the Chamfeuil side (upsert by user_id+env).
+  // Fire-and-forget — never blocks the user session bootstrap.
+  bridge.signup({
+    first_name: details.firstName ?? undefined,
+    last_name: details.lastName ?? undefined,
+    phone: details.phone ?? undefined,
+  });
 }

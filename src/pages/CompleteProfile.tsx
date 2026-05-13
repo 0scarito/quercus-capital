@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
+import { bridge } from "@/lib/chamfeuil-bridge";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProfile } from "@/hooks/useProfile";
 import { useQueryClient } from "@tanstack/react-query";
@@ -88,6 +89,19 @@ export default function CompleteProfile() {
       return;
     }
     queryClient.invalidateQueries({ queryKey: ["profile", user.id] });
+    // CompleteProfile is the catch-up flow for users who landed in the app
+    // without finishing onboarding — treat completion as a KYC milestone too.
+    bridge.kycComplete({
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      date_of_birth: dateOfBirth,
+      address: address.trim(),
+      city: city.trim(),
+      postal_code: postalCode.trim(),
+      country: country.trim(),
+      tax_country: taxCountry.trim(),
+      tax_id: taxId.trim(),
+    });
     toast.success(t("completeProfile.saveSuccess"));
     navigate("/dashboard", { replace: true });
   };

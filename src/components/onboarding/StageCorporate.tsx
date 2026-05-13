@@ -9,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Progress } from "@/components/ui/progress";
 import { Upload, CheckCircle, Building2, Briefcase, Landmark } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { bridge } from "@/lib/chamfeuil-bridge";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -153,6 +154,20 @@ export function StageCorporate({ onNext, onBack }: StageCorporateProps) {
       }
       qc.invalidateQueries({ queryKey: ["profile"] });
       qc.invalidateQueries({ queryKey: ["onboarding_details"] });
+      // Mirror corporate registration data to the Chamfeuil KYC backend.
+      bridge.profileUpdated({
+        address:     orgAddress     || undefined,
+        city:        orgCity        || undefined,
+        postal_code: orgPostalCode  || undefined,
+        country:     orgCountry     || undefined,
+      });
+      bridge.activity("profile_updated", `Onboarding personne morale — ${legalName}`, {
+        account_type: "moral",
+        legal_name: legalName, legal_form: legalForm, siren,
+        entity_type: entityType, activity_sector: activitySector,
+        planned_deposit: depositAmount, funds_origin: fundsSource,
+        referral_source: referral,
+      });
       onNext({
         legalName, legalForm, siren,
         orgCountry, orgAddress, orgCity, orgPostalCode,

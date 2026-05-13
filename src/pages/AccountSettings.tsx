@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
+import { bridge } from "@/lib/chamfeuil-bridge";
 import { useProfile, useOnboardingDetails, type Profile } from "@/hooks/useProfile";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -54,6 +55,20 @@ export default function AccountSettings() {
       toast.error(t("settings.saveError"));
       return;
     }
+    // Mirror profile changes to the Chamfeuil KYC backend so the CGP admin
+    // sees the updated address, phone, tax fields, etc. on the client card.
+    bridge.profileUpdated({
+      first_name:    form.first_name    ?? undefined,
+      last_name:     form.last_name     ?? undefined,
+      phone:         form.phone         ?? undefined,
+      date_of_birth: form.date_of_birth ?? undefined,
+      address:       form.address       ?? undefined,
+      city:          form.city          ?? undefined,
+      postal_code:   form.postal_code   ?? undefined,
+      country:       form.country       ?? undefined,
+      tax_country:   form.tax_country   ?? undefined,
+      tax_id:        form.tax_id        ?? undefined,
+    });
     toast.success(t("settings.saveSuccess"));
     qc.invalidateQueries({ queryKey: ["profile"] });
     setEditing(false);

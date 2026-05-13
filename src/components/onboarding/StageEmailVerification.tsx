@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { supabase } from "@/integrations/supabase/client";
+import { bridge } from "@/lib/chamfeuil-bridge";
 import { toast } from "sonner";
 import { Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -64,6 +65,12 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
         data: {
           first_name: firstName.trim(),
           last_name: lastName.trim(),
+          // Tag this user as a Quercus-side signup. The chamfeuil-bridge
+          // edge function uses this (alongside the JWT) to know that this
+          // identity should land in the Chamfeuil KYC backend as a
+          // `kyc_clients` row with environment='quercus'.
+          env: "quercus",
+          source: "quercus_website",
           skip_email_verification: true,
         },
       },
@@ -74,6 +81,13 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
       setLoading(false);
       return;
     }
+
+    // Push the signup into the Chamfeuil KYC DB (creates kyc_clients row +
+    // first activity log entry). Fire-and-forget — never blocks onboarding.
+    bridge.signup({
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+    });
 
     onNext({ email });
   };
@@ -112,6 +126,10 @@ export function StageEmailVerification({ onNext, defaultEmail = "" }: StageEmail
       setLoading(false);
       return;
     }
+
+    // Belt-and-suspenders signup sync — covers the case where the JWT wasn't
+    // valid at handleSignUp time (rare but possible with email-confirm flows).
+    bridge.signup({});
 
     onNext({ email });
   };

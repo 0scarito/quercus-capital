@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScanFace, CheckCircle, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { bridge } from "@/lib/chamfeuil-bridge";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQueryClient } from "@tanstack/react-query";
 import { useProfile } from "@/hooks/useProfile";
@@ -98,6 +99,21 @@ export function StageKYC({ onComplete }: StageKYCProps) {
       return;
     }
     queryClient.invalidateQueries({ queryKey: ["profile", user.id] });
+    // Push the KYC milestone + the new profile fields to the Chamfeuil KYC DB
+    // in one call. The bridge edge function calls both quercus_sync_kyc_complete
+    // (stage bump + mandatory cases marked OK + activity log) AND
+    // quercus_sync_profile (mirrors fields onto kyc_clients).
+    bridge.kycComplete({
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      date_of_birth: dateOfBirth,
+      address: address.trim(),
+      city: city.trim(),
+      postal_code: postalCode.trim(),
+      country: country.trim(),
+      tax_country: taxCountry.trim(),
+      tax_id: taxId.trim(),
+    });
     // Fire-and-forget welcome email — failure must never block onboarding.
     void supabase.functions.invoke("send-transactional-email", {
       body: {
