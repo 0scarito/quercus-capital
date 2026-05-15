@@ -7,7 +7,7 @@ export function Testimonials() {
 
   return (
     <section className="py-20 md:py-24 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1500px] mx-auto">
         <ScrollReveal>
           <h2 className="text-4xl md:text-5xl font-serif font-semibold text-center mb-14 max-w-3xl mx-auto">
             <em>{t("testimonials.title")}</em>

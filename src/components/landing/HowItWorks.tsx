@@ -15,7 +15,7 @@ export function HowItWorks() {
 
   return (
     <section className="py-20 md:py-24 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1500px] mx-auto">
         <ScrollReveal>
           <div className="text-center mb-14 max-w-2xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-serif font-semibold">

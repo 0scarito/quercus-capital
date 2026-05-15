@@ -8,7 +8,7 @@ export function HeroSection() {
 
   return (
     <section className="pt-16 md:pt-24 pb-12 md:pb-20 px-4 md:px-8 relative z-10">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
         <div className="space-y-7 order-1">
           <p className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-muted-foreground">
             {t("landing:hero.eyebrow")}

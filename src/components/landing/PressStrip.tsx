@@ -13,7 +13,7 @@ export function PressStrip() {
 
   return (
     <section className="py-20 md:py-24 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1600px] mx-auto">
         <ScrollReveal>
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">

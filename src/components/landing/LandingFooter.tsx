@@ -94,7 +94,7 @@ export function LandingFooter() {
 
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-16 pb-10">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 pt-16 pb-10">
         <div className="flex items-center justify-between gap-3 mb-10">
           <span className="text-3xl font-serif tracking-widest">QUERCUS</span>
           <LanguageSwitcher variant="dark" />
