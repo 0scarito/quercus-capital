@@ -21,9 +21,9 @@ import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
-import { Seo } from "@/components/Seo";
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
+import { Seo } from "@/components/Seo";
 
 export default function VelvetPage() {
   const { t } = useTranslation("products");
