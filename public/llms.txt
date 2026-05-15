@@ -1,0 +1,27 @@
+# Quercus Capital
+
+> Plateforme française de gestion de trésorerie : fonds monétaires, Smart Cash et portefeuille conseillé pour particuliers et entreprises.
+
+Quercus Capital est un Conseiller en Investissements Financiers (CIF) immatriculé à l'ORIAS. Nous proposons un accès digital à des fonds monétaires institutionnels (Velvet, Tobam) et à un portefeuille conseillé piloté par nos conseillers patrimoniaux.
+
+## Pages
+
+- [Accueil](/): Présentation de Quercus Capital, rendements en direct et calculatrice.
+- [Produits](/products): Catalogue des fonds monétaires et solutions de trésorerie.
+- [Quercus Velvet](/products/velvet): Fonds monétaire institutionnel collatéralisé.
+- [Quercus Tobam](/products/tobam): Stratégie cash-and-carry à faible empreinte carbone.
+- [Portefeuille conseillé](/products/portefeuille-conseille): Allocation sur-mesure pilotée par un conseiller.
+- [Solutions](/solutions): Solutions par profil (particuliers, holdings, startups, PME, SCI, fintechs, freelances, crypto).
+- [À propos](/a-propos): Mission, équipe et partenaires.
+- [Sécurité](/securite): Architecture de sécurité et ségrégation des actifs.
+- [Régulation](/regulation): Statut CIF, ORIAS et cadre AMF.
+- [Centre d'aide](/aide): Guides sur l'ouverture de compte, dépôts, retraits, fiscalité.
+- [Contact](/contact): Support client et partenariats.
+- [Ouvrir un compte](/open-account): Souscription en ligne en moins de 10 minutes.
+
+## Optional
+
+- [Mentions légales](/mentions-legales)
+- [Confidentialité](/confidentialite)
+- [Charte cookie](/charte-cookie)
+- [Connexion](/signin)

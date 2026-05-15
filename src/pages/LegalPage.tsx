@@ -1,11 +1,14 @@
 import { LandingNav } from "@/components/landing/LandingNav";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 import { useTranslation } from "react-i18next";
+import { Seo } from "@/components/Seo";
 
 export default function LegalPage() {
   const { t } = useTranslation("pages");
   return (
     <div className="min-h-screen bg-background">
+      <Seo title="Mentions légales | Quercus Capital" description="Mentions légales du site Quercus Capital : éditeur, hébergeur, statut et propriété intellectuelle." path="/mentions-legales" />
+
       <LandingNav />
       <main className="pt-28 pb-24 max-w-6xl mx-auto px-4 md:px-8">
         <h1 className="text-5xl md:text-6xl font-serif italic mb-10">{t("legal.title")}</h1>

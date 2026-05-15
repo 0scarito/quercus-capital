@@ -23,6 +23,7 @@ import {
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
+import { Seo } from "@/components/Seo";
 
 export default function VelvetPage() {
   const { t } = useTranslation("products");
@@ -34,6 +35,8 @@ export default function VelvetPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo title="Quercus Velvet — Fonds monétaire institutionnel | Quercus Capital" description="Quercus Velvet : fonds monétaire à rendement quotidien, collatéralisé et liquide pour la trésorerie d'entreprise." path="/products/velvet" />
+
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-16 relative z-10">
