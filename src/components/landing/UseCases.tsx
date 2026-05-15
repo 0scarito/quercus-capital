@@ -119,7 +119,7 @@ export function UseCases() {
 
   return (
     <section className="py-20 md:py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
         <ScrollReveal>
           <div className="text-center mb-14">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif">

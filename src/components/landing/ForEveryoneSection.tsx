@@ -28,7 +28,7 @@ export function ForEveryoneSection() {
 
   return (
     <section className="py-20 md:py-24 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1500px] mx-auto">
         <ScrollReveal>
           <div className="text-center mb-14 max-w-3xl mx-auto">
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">

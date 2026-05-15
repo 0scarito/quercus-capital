@@ -11,7 +11,7 @@ export function TrustBadgeStrip() {
   ];
   return (
     <section className="px-4 md:px-8 -mt-2 md:-mt-4 relative z-10">
-      <div className="max-w-6xl mx-auto bg-white/40 backdrop-blur-[12px] border border-white/30 px-6 py-4">
+      <div className="max-w-[1500px] mx-auto bg-white/40 backdrop-blur-[12px] border border-white/30 px-6 py-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {items.map(({ icon: Icon, label }) => (
             <div

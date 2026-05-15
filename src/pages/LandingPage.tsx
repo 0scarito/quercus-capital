@@ -52,52 +52,52 @@ export default function LandingPage() {
           <HeroSection />
         </ScrollReveal>
         <TrustBadgeStrip />
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <HowItWorks />
         </ScrollReveal>
         <DashboardPreview />
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <div id="products">
             <YieldCards />
           </div>
         </ScrollReveal>
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <LiveNumbers />
         </ScrollReveal>
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <div id="calculator">
             <YieldCalculator />
           </div>
         </ScrollReveal>
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <ForEveryoneSection />
         </ScrollReveal>
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <SecuritySection />
         </ScrollReveal>
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <TrustChain />
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <div id="partners">
             <PartnersSection />
           </div>
         </ScrollReveal>
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <Testimonials />
         </ScrollReveal>
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <LandingFaq />
         </ScrollReveal>
-        <Separator className="max-w-7xl mx-auto opacity-60" />
+        <Separator className="max-w-[1600px] mx-auto opacity-60" />
         <ScrollReveal>
           <PressStrip />
         </ScrollReveal>

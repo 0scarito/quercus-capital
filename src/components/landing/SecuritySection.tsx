@@ -10,7 +10,7 @@ export function SecuritySection() {
   return (
     <section className="py-20 md:py-24 px-4 md:px-8">
       <div
-        className="max-w-7xl mx-auto"
+        className="max-w-[1600px] mx-auto"
         onMouseMove={parallax.onMouseMove}
         onMouseLeave={parallax.onMouseLeave}
       >

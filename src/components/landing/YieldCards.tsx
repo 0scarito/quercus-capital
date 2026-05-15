@@ -67,7 +67,7 @@ export function YieldCards() {
 
   return (
     <section className="py-24 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1600px] mx-auto">
         <h2 className="text-4xl md:text-5xl font-serif text-center mb-6">
           <em>{t("products.title")}</em>
         </h2>

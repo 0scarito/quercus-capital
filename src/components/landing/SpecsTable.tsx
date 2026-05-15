@@ -24,7 +24,7 @@ export function SpecsTable({
   const finalSubtitle = subtitle ?? t("specsTable.subtitle");
   return (
     <section className="py-20 md:py-24 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1600px] mx-auto">
         <h2 className="text-4xl md:text-5xl font-serif text-center mb-4">
           <em>{finalTitle}</em>
         </h2>
