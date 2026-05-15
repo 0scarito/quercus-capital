@@ -8,6 +8,7 @@ import { IntegrationRoadmap } from "@/components/solutions/IntegrationRoadmap";
 import { SecurityBlock } from "@/components/solutions/SecurityBlock";
 import { FaqAccordion } from "@/components/solutions/FaqAccordion";
 import { getSegmentBySlug } from "@/components/solutions/segmentData";
+import { Seo } from "@/components/Seo";
 
 export default function SolutionDetailPage() {
   const { segment } = useParams<{ segment: string }>();
@@ -17,6 +18,11 @@ export default function SolutionDetailPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo
+        title={`${data.label} — Solutions Quercus Capital`}
+        description={`Solutions Quercus Capital pour ${data.label.toLowerCase()} : gestion de trésorerie, fonds monétaires et conseil dédié.`}
+        path={`/solutions/${data.slug}`}
+      />
       <FloatingBlobs />
       <LandingNav variant="solutions" currentSlug={data.slug} />
       <div className="pt-16 relative z-10">
