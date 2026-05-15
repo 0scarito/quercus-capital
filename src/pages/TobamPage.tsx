@@ -20,6 +20,7 @@ import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
+import { Seo } from "@/components/Seo";
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 
@@ -33,6 +34,8 @@ export default function TobamPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo title="Quercus Tobam — Stratégie cash-and-carry | Quercus Capital" description="Quercus Tobam : stratégie cash-and-carry à faible empreinte carbone, conçue avec Tobam." path="/products/tobam" />
+
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-16 relative z-10">

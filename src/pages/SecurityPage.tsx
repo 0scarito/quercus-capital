@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ShieldCheck, Lock, Server, FileCheck2, Eye, KeyRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Seo } from "@/components/Seo";
 
 export default function SecurityPage() {
   const { t } = useTranslation("pages");
@@ -24,6 +25,8 @@ export default function SecurityPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo title="Sécurité de vos fonds | Quercus Capital" description="Architecture de sécurité Quercus : ségrégation des actifs, dépositaire, audits et certifications." path="/securite" />
+
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-16 relative z-10">

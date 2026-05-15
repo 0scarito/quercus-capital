@@ -11,6 +11,7 @@ import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useTranslation } from "react-i18next";
+import { Seo } from "@/components/Seo";
 
 const STEP_ICONS = [Calendar, Compass, ShieldCheck];
 
@@ -30,6 +31,8 @@ export default function PortefeuilleConseillePage() {
   const faqItems = (t("portefeuille.faq", { returnObjects: true }) as Array<{ q: string; a: string }>) || [];
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo title="Portefeuille conseillé | Quercus Capital" description="Portefeuille conseillé Quercus : allocation sur-mesure pilotée par nos conseillers patrimoniaux." path="/products/portefeuille-conseille" />
+
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-16 relative z-10">

@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { Seo } from "@/components/Seo";
 
 export default function SignIn() {
   const { t } = useTranslation("auth");
@@ -71,6 +72,8 @@ export default function SignIn() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
+      <Seo title="Connexion | Quercus Capital" description="Connectez-vous à votre espace Quercus Capital." path="/signin" />
+
       <div className="absolute top-4 right-4 z-10">
         <LanguageSwitcher />
       </div>

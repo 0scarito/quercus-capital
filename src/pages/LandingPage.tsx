@@ -19,11 +19,14 @@ import { LandingFooter } from "@/components/landing/LandingFooter";
 import { FloatingBlobs } from "@/components/landing/FloatingBlobs";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { Separator } from "@/components/ui/separator";
+import { Seo } from "@/components/Seo";
 
 export default function LandingPage() {
   const bannerVisible = useAnnouncementVisible();
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo title="Quercus Capital — Gestion de trésorerie et fonds monétaires" description="Plateforme française de gestion de trésorerie. Fonds monétaires, Smart Cash et portefeuille conseillé pour particuliers et entreprises." path="/" />
+
       <FloatingBlobs />
       <AnnouncementBanner />
       <LandingNav />

@@ -7,11 +7,14 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { segments, segmentImages } from "@/components/solutions/segmentData";
 import { useTranslation } from "react-i18next";
+import { Seo } from "@/components/Seo";
 
 export default function SolutionsPage() {
   const { t } = useTranslation(["pages", "products", "nav"]);
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo title="Solutions par profil — Particuliers, entreprises, holdings | Quercus Capital" description="Solutions Quercus pour particuliers, holdings, startups, PME, fintechs, SCI, freelances et acteurs crypto." path="/solutions" />
+
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-20 relative z-10">
