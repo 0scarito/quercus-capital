@@ -15,7 +15,6 @@ import { useProfile } from "@/hooks/useProfile";
 import quercusLogo from "@/assets/quercus-logo.jpg";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { Seo } from "@/components/Seo";
 
 type Stage = "welcome" | "email" | "2fa" | "type" | "individual" | "corporate" | "kyc";
 
@@ -88,8 +87,6 @@ export default function OpenAccount() {
 
   return (
     <div className="min-h-screen bg-background relative flex flex-col">
-      <Seo title="Ouvrir un compte Quercus Capital" description="Ouvrez votre compte Quercus en ligne en moins de dix minutes — particulier ou entreprise." path="/open-account" />
-
       <FloatingBlobs />
       {!upgradeMode && (
         <OnboardingProgress currentStep={stepNumber} totalSteps={TOTAL_STEPS} />

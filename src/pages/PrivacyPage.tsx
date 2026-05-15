@@ -1,7 +1,6 @@
 import { LandingNav } from "@/components/landing/LandingNav";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 import { useTranslation } from "react-i18next";
-import { Seo } from "@/components/Seo";
 
 export default function PrivacyPage() {
   const { t } = useTranslation("pages");
@@ -9,8 +8,6 @@ export default function PrivacyPage() {
   const s3Items = t("privacy.s3Items", { returnObjects: true }) as string[];
   return (
     <div className="min-h-screen bg-background">
-      <Seo title="Politique de confidentialité | Quercus Capital" description="Comment Quercus Capital collecte, utilise et protège vos données personnelles." path="/confidentialite" />
-
       <LandingNav />
       <main className="pt-28 pb-24 max-w-6xl mx-auto px-4 md:px-8">
         <h1 className="text-5xl md:text-6xl font-serif italic mb-10">{t("privacy.title")}</h1>

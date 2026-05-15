@@ -1,14 +1,11 @@
 import { LandingNav } from "@/components/landing/LandingNav";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 import { useTranslation } from "react-i18next";
-import { Seo } from "@/components/Seo";
 
 export default function ContactPage() {
   const { t } = useTranslation(["pages"]);
   return (
     <div className="min-h-screen bg-background">
-      <Seo title="Contact — Quercus Capital" description="Contactez l'équipe Quercus Capital : support client, partenariats, presse." path="/contact" />
-
       <LandingNav />
       <main className="pt-28 pb-24 max-w-6xl mx-auto px-4 md:px-8">
         <h1 className="text-5xl md:text-6xl font-serif italic mb-10">{t("pages:contact.title")}</h1>

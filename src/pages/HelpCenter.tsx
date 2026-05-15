@@ -7,7 +7,6 @@ import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { HELP_ARTICLES, type HelpArticle, type ArticleBlock } from "@/data/helpArticles";
 import { HELP_ARTICLES_EN } from "@/data/helpArticles.en";
-import { Seo } from "@/components/Seo";
 
 // Stable ordering by slug — keys come from translations
 const CATEGORY_ORDER = [
@@ -58,8 +57,6 @@ function CategoryCard({ cat }: { cat: Category }) {
     >
       <span className="absolute top-0 left-0 h-[2px] w-12 bg-primary group-hover:w-full transition-all duration-500" />
       <div className="h-10 w-10 bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 group-hover:border-primary/40 transition-colors">
-      <Seo title="Centre d'aide | Quercus Capital" description="Réponses aux questions sur l'ouverture de compte, les dépôts, les retraits, la fiscalité et la gestion du compte Quercus." path="/aide" />
-
         <BookOpen className="h-4 w-4 text-primary" />
       </div>
       <h3 className="text-xl font-serif text-foreground mb-2 group-hover:text-primary transition-colors">
