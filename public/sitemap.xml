@@ -6,14 +6,71 @@
   <url><loc>https://quercus-capital.lovable.app/products/tobam</loc><priority>0.8</priority></url>
   <url><loc>https://quercus-capital.lovable.app/products/portefeuille-conseille</loc><priority>0.8</priority></url>
   <url><loc>https://quercus-capital.lovable.app/solutions</loc><priority>0.9</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/solutions/startups</loc><priority>0.7</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/solutions/holdings</loc><priority>0.7</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/solutions/crypto</loc><priority>0.7</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/solutions/freelances</loc><priority>0.7</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/solutions/pme</loc><priority>0.7</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/solutions/fintechs</loc><priority>0.7</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/solutions/sci</loc><priority>0.7</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/solutions/particuliers</loc><priority>0.7</priority></url>
   <url><loc>https://quercus-capital.lovable.app/a-propos</loc><priority>0.7</priority></url>
   <url><loc>https://quercus-capital.lovable.app/contact</loc><priority>0.7</priority></url>
   <url><loc>https://quercus-capital.lovable.app/securite</loc><priority>0.6</priority></url>
   <url><loc>https://quercus-capital.lovable.app/regulation</loc><priority>0.6</priority></url>
   <url><loc>https://quercus-capital.lovable.app/aide</loc><priority>0.7</priority></url>
-  <url><loc>https://quercus-capital.lovable.app/mentions-legales</loc><priority>0.4</priority></url>
-  <url><loc>https://quercus-capital.lovable.app/confidentialite</loc><priority>0.4</priority></url>
-  <url><loc>https://quercus-capital.lovable.app/charte-cookie</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte</loc><priority>0.5</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/produits</loc><priority>0.5</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/depots-et-retraits</loc><priority>0.5</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/gerer-mon-compte</loc><priority>0.5</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/fiscalite-et-comptabilite</loc><priority>0.5</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/a-propos</loc><priority>0.5</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/creer-un-compte-pour-particulier</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/pieces-d-identite-acceptees</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/justificatif-de-domicile</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/justificatif-d-origine-des-fonds-pour-les-particuliers</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/creer-un-compte-pour-une-entreprise</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/creer-un-compte-pour-une-association-francaise</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/creer-un-compte-pour-une-entreprise-individuelle</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/creer-un-compte-pour-un-syndicat-des-coproprietaires-en-france</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/justificatif-de-fonds-acceptes-pour-les-personnes-morales</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/ouvrir-un-compte/restrictions-geographiques</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/produits/fiche-technique-des-fonds-monetaires-quercus</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/produits/documentation-des-fonds-monetaires-quercus</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/produits/fiche-technique-quercus-smart-cash</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/produits/documentation-de-quercus-smart-cash</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/produits/fiche-technique-quercus-cash-and-carry</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/produits/documentation-de-quercus-cash-and-carry</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/produits/comprendre-les-frais-sur-quercus</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/depots-et-retraits/depot-depuis-un-compte-tiers</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/depots-et-retraits/effectuer-un-depot</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/depots-et-retraits/virement-non-arrive</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/depots-et-retraits/comptes-ouverts-avant-septembre-2025</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/depots-et-retraits/effectuer-un-retrait-standard</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/depots-et-retraits/effectuer-un-retrait-instantane</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/depots-et-retraits/conversion-de-devises</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/gerer-mon-compte/applications-tierces</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/gerer-mon-compte/acces-multi-utilisateurs</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/gerer-mon-compte/ouvrir-plusieurs-comptes-quercus</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/gerer-mon-compte/mode-quatre-yeux</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/gerer-mon-compte/modifier-mon-mot-de-passe</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/gerer-mon-compte/modifier-mon-email</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/gerer-mon-compte/authentification-a-deux-facteurs</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/fiscalite-et-comptabilite/fiscalite-pour-les-particuliers</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/fiscalite-et-comptabilite/fiscalite-pour-les-personnes-morales</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/fiscalite-et-comptabilite/imprime-fiscal-unique-ifu</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/fiscalite-et-comptabilite/traitement-comptable-des-fonds-monetaires</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/fiscalite-et-comptabilite/releves-comptables-et-exports</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/a-propos/notre-mission</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/a-propos/nos-partenaires</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/a-propos/securite-de-vos-fonds</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/a-propos/conditions-generales-d-utilisation</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/a-propos/politique-de-confidentialite</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/aide/a-propos/mentions-legales</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/mentions-legales</loc><priority>0.3</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/confidentialite</loc><priority>0.3</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/charte-cookie</loc><priority>0.3</priority></url>
   <url><loc>https://quercus-capital.lovable.app/open-account</loc><priority>0.8</priority></url>
-  <url><loc>https://quercus-capital.lovable.app/signin</loc><priority>0.5</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/signin</loc><priority>0.4</priority></url>
+  <url><loc>https://quercus-capital.lovable.app/unsubscribe</loc><priority>0.2</priority></url>
 </urlset>

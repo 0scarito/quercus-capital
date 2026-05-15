@@ -5,7 +5,7 @@
 //
 // Single-DB architecture (since 2026-05-13): the Quercus website and the
 // Chamfeuil KYC admin share ONE Supabase project (`ppjniitilienzugeeyfe`).
-// The bridge calls SECURITY DEFINER RPCs directly via `supabase.rpc()` —
+// The bridge calls SECURITY DEFINER RPCs directly via `sb.rpc()` —
 // no Edge Function, no service-role key, no HTTP plumbing. RPCs enforce
 // `caller=user_id` server-side so a user can only log their own activity.
 //
@@ -28,6 +28,12 @@
 // ============================================================================
 
 import { supabase } from "@/integrations/supabase/client";
+// RPCs below are defined in the shared Chamfeuil DB but absent from the
+// generated Supabase types. Cast to any to bypass the typed RPC name union.
+const sb = supabase as unknown as {
+  rpc: (fn: string, args?: Record<string, unknown>) => Promise<{ data: unknown; error: { message: string } | null }>;
+  auth: typeof supabase.auth;
+};
 
 type BridgeMethod =
   | "signup"
@@ -76,7 +82,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("signup", () =>
-      supabase.rpc("quercus_sync_signup", {
+      sb.rpc("quercus_sync_signup", {
         p_user_id:    u.id,
         p_email:      u.email ?? "",
         p_first_name: data.first_name ?? (u.user_metadata?.first_name as string) ?? "",
@@ -91,7 +97,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("login", () =>
-      supabase.rpc("quercus_log_activity", {
+      sb.rpc("quercus_log_activity", {
         p_user_id:     u.id,
         p_action_type: "login",
         p_description: null,
@@ -105,7 +111,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("logout", () =>
-      supabase.rpc("quercus_log_activity", {
+      sb.rpc("quercus_log_activity", {
         p_user_id:     u.id,
         p_action_type: "logout",
         p_description: null,
@@ -131,7 +137,7 @@ export const bridge = {
     if (!u) return;
     // Two RPCs in parallel: sync the structured profile fields + log the milestone.
     void rpcOrSkip("profile_updated", () =>
-      supabase.rpc("quercus_sync_profile", {
+      sb.rpc("quercus_sync_profile", {
         p_user_id:       u.id,
         p_first_name:    data.first_name    ?? null,
         p_last_name:     data.last_name     ?? null,
@@ -146,7 +152,7 @@ export const bridge = {
       })
     );
     void rpcOrSkip("kyc_complete", () =>
-      supabase.rpc("quercus_sync_kyc_complete", {
+      sb.rpc("quercus_sync_kyc_complete", {
         p_user_id:  u.id,
         p_metadata: data.metadata ?? {},
       })
@@ -169,7 +175,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("profile_updated", () =>
-      supabase.rpc("quercus_sync_profile", {
+      sb.rpc("quercus_sync_profile", {
         p_user_id:       u.id,
         p_first_name:    data.first_name    ?? null,
         p_last_name:     data.last_name     ?? null,
@@ -184,7 +190,7 @@ export const bridge = {
       })
     );
     void rpcOrSkip("activity", () =>
-      supabase.rpc("quercus_log_activity", {
+      sb.rpc("quercus_log_activity", {
         p_user_id:     u.id,
         p_action_type: "profile_updated",
         p_description: "Profil mis à jour",
@@ -203,7 +209,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("deposit_intent", () =>
-      supabase.rpc("quercus_log_deposit_intent", {
+      sb.rpc("quercus_log_deposit_intent", {
         p_user_id:      u.id,
         p_product_id:   data.product_id,
         p_product_name: data.product_name ?? null,
@@ -230,7 +236,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("investment_purchased", () =>
-      supabase.rpc("quercus_sync_subscription", {
+      sb.rpc("quercus_sync_subscription", {
         p_user_id:         u.id,
         p_fund_code:       data.fund_code,
         p_fund_name:       data.fund_name       ?? null,
@@ -252,7 +258,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("investment_sold", () =>
-      supabase.rpc("quercus_log_activity", {
+      sb.rpc("quercus_log_activity", {
         p_user_id:     u.id,
         p_action_type: "investment_sold",
         p_description: `Vente ${data.fund_code}`,
@@ -266,7 +272,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("document_uploaded", () =>
-      supabase.rpc("quercus_log_activity", {
+      sb.rpc("quercus_log_activity", {
         p_user_id:     u.id,
         p_action_type: "document_uploaded",
         p_description: `Document uploadé : ${data.document_type}`,
@@ -280,7 +286,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("fund_view", () =>
-      supabase.rpc("quercus_log_activity", {
+      sb.rpc("quercus_log_activity", {
         p_user_id:     u.id,
         p_action_type: "fund_view",
         p_description: `Consultation ${data.fund_name ?? data.fund_slug}`,
@@ -294,7 +300,7 @@ export const bridge = {
     const u = await currentUser();
     if (!u) return;
     void rpcOrSkip("activity", () =>
-      supabase.rpc("quercus_log_activity", {
+      sb.rpc("quercus_log_activity", {
         p_user_id:     u.id,
         p_action_type: action_type,
         p_description: description ?? null,

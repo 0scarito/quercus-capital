@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Scale, Building2, BookOpen, BadgeCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Seo } from "@/components/Seo";
 
 export default function RegulationPage() {
   const { t } = useTranslation("pages");
@@ -27,6 +28,8 @@ export default function RegulationPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo title="Régulation et statut CIF | Quercus Capital" description="Quercus Capital — statut CIF, immatriculation ORIAS et cadre réglementaire AMF." path="/regulation" />
+
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-16 relative z-10">

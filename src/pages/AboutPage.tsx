@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import audreyPhoto from "@/assets/team-audrey.jpg";
 import davidPhoto from "@/assets/team-david.png";
 import thomasPhoto from "@/assets/team-thomas.jpg";
+import { Seo } from "@/components/Seo";
 
 export default function AboutPage() {
   const { t } = useTranslation("pages");
@@ -28,6 +29,8 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo title="À propos de Quercus Capital" description="Notre mission, notre équipe et nos partenaires : la gestion de trésorerie réinventée pour la France." path="/a-propos" />
+
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-16 relative z-10">

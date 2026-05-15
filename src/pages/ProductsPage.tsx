@@ -9,11 +9,14 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { LIVE_YIELDS } from "@/data/liveYields";
 import { useTranslation } from "react-i18next";
+import { Seo } from "@/components/Seo";
 
 export default function ProductsPage() {
   const { t } = useTranslation("products");
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <Seo title="Produits — Fonds monétaires et Smart Cash | Quercus Capital" description="Découvrez les fonds monétaires Quercus Velvet, Tobam et le portefeuille conseillé pour optimiser votre trésorerie." path="/products" />
+
       <FloatingBlobs />
       <LandingNav />
       <div className="pt-16 relative z-10">
