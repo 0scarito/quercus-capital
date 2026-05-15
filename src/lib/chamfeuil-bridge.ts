@@ -28,6 +28,12 @@
 // ============================================================================
 
 import { supabase } from "@/integrations/supabase/client";
+// RPCs below are defined in the shared Chamfeuil DB but absent from the
+// generated Supabase types. Cast to any to bypass the typed RPC name union.
+const sb = supabase as unknown as {
+  rpc: (fn: string, args?: Record<string, unknown>) => Promise<{ data: unknown; error: { message: string } | null }>;
+  auth: typeof supabase.auth;
+};
 
 type BridgeMethod =
   | "signup"
