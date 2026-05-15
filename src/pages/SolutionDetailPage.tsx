@@ -19,8 +19,8 @@ export default function SolutionDetailPage() {
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <Seo
-        title={`${data.label} — Solutions Quercus Capital`}
-        description={`Solutions Quercus Capital pour ${data.label.toLowerCase()} : gestion de trésorerie, fonds monétaires et conseil dédié.`}
+        title={`${data.name} — Solutions Quercus Capital`}
+        description={data.heroDescription}
         path={`/solutions/${data.slug}`}
       />
       <FloatingBlobs />
